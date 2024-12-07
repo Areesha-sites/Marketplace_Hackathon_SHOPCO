@@ -8,11 +8,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        whiteText: "var(--whiteText)",
+        blackText: "var(--blackText)",
+        grayBackground: "var(--grayBackground)",
+        redBackgroundColor: "var(--redBackgroundColor)",
+        lightRedBgColor: "var(--lightRedBgColor)",
+        greenTextColor: "var(--greenTextColor)",
+        bgRedDotColor: "var(--bgRedDotColor)",
+        hoverRedBgColor: "var(--hoverRedBgColor)",
+        circlebgColor: "var(--circlebgColor)",
+        lightSeaGreenBgColor: "var(--lightSeaGreenBgColor)"
       },
+      fontFamily: {
+        poppins: ["poppins", "serif"],
+        inter: ["inter", "serif"]
+      }
     },
   },
   plugins: [],
