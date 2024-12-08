@@ -9,16 +9,23 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --whiteText: #FAFAFA;
-  --blackText: #000000;
-  --grayBackground: #F5F5F5;
-  --redBackgroundColor: #DB4444;
-  --lightRedBgColor: #E07575;
-  --greenTextColor: #00FF66;
-  --bgRedDotColor: #FB1314;
-  --hoverRedBgColor: #E07575;
-  --circlebgColor: #2F2E30;
-  --lightSeaGreenBgColor: #CBE4E8;
+ --blackBgColor: #000000;
+ --whiteBgColor: #ffffff;
+ --bgLightGrayColor:  #F0F0F0;
+ --BannerBgColor: #F2F0F1;
+ --redOfferBgColor: #ffc4c4;
+ --redTextOfferColor:#FF3333;
+ --productDetailBbImageColor: #F0EEED;
+ --productDetailBgCircle1: #4F4631;
+ --productDetailBgCircle2: #314F4A;
+ --productDetailBgCircle3: #31344F;
+
+
+
+
+
+
+
 
 }
 

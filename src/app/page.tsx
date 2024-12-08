@@ -1,9 +1,23 @@
+import Banner from "./Components/Banner"
+import DressStyleSection from "./Components/DressStyleSection"
+import HappyCustomer from "./Components/HappyCustomer"
+import TopSelling from "./Components/TopSelling"
+import TopSellingCard from "./Components/TopSellingCard"
+import NewArrival from "./NewArrival"
+import { CartProvider } from "./context/CartContext"
 export default function Home() {
  return (
   <>
-  <div className="bg-green-400">
-    Hello world
-  </div>
+  <CartProvider>
+ <div className="">
+  <Banner/>
+  <NewArrival/>
+  {/* <TopSelling/>
+  <HappyCustomer/> */}
+  {/* <DressStyleSection/> */}
+ </div>
+ </CartProvider>
+ 
   </>
  )
 }
