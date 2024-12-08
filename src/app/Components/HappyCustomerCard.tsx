@@ -6,13 +6,14 @@ const HappyCustomerCard = ({
   title,
   correctImg,
   des,
-  positionStyles
+  positionStyles,
 }: HappyCustomerCardPropsTypes) => {
   return (
     <>
-      <div className="w-[400px] h-[240px] flex-shrink-0 absolute top-[3461px] left-[100px] rounded-[20px] border-[1px] border-black/10 py-[28px] px-[32px]"
-       style={{ position: "absolute", ...positionStyles }}>
-      
+      <div
+        className="w-[400px] h-[240px] flex-shrink-0 absolute top-[3461px] left-[100px] rounded-[20px] border-[1px] border-black/10 py-[28px] px-[32px]"
+        style={{ position: "absolute", ...positionStyles }}
+      >
         <div className=" w-[336px] h-[161.58px] flex justify-between flex-col">
           <Image
             src={rating}

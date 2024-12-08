@@ -32,15 +32,14 @@ export interface TopSellingDetailPagePropsTypes {
   id: string,
   image: string,
   title: string,
-  price: number,
-  discount: string,
+  price: number ,
+  discount?: string,
   rating: string,
   ratingReview: string,
   des: string,
   offer?: string,
   positionStyles:  React.CSSProperties 
 }
-
 export interface AddToCartItemPropsTypes  {
   id: string;
   title: string;
@@ -62,20 +61,6 @@ export interface AddToCartItemPropsTypes  {
   isStock: boolean;
 };
 
-// export interface AddToCartItemPropsTypes {
-//   id: string,
-//   offer?: string,
-//   image: string,
-//   title: string,
-//   price: string,
-//   discount?: string,
-//   rating?: string,
-//   ratingNum?: number | string,
-//   isStock?: boolean,
-//   des: string,
-//   quantity: number
-//   product?: any;
-// }
 export interface CartContextTypes  {
   cart: AddToCartItemPropsTypes[];
   addItemToCart: (item: AddToCartItemPropsTypes) => void;

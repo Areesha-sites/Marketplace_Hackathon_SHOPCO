@@ -3,8 +3,6 @@ import React from "react";
 import { topSellingCardsData } from "../../../../data/data";
 import Image from "next/image";
 import TopSellingCardList from "@/app/Components/TopSellingCardsList";
-// import ReviewCardList from "@/app/Components/ReviewCardList";
-import TopSellingCard from "@/app/Components/TopSellingCard";
 import ReviewCardList from "@/app/Components/ReviewCardList";
 interface Props {
   params: {

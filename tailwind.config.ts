@@ -24,7 +24,8 @@ const config: Config = {
       },
       fontFamily: {
         poppins: ["poppins", "serif"],
-        inter: ["inter", "serif"]
+        inter: ["inter", "serif"],
+        // satoshi: ["satoshi"],
       }
     },
   },

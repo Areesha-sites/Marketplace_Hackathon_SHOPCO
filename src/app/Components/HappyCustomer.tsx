@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-// import HappyCustomerCard from "./HappyCustomerCard";
 import HappyCustomerCardList from "./HappyCustomerCardList";
 const HappyCustomer = () => {
   return (
@@ -26,7 +25,7 @@ const HappyCustomer = () => {
         />
 
         <div className="">
-          <HappyCustomerCardList/>
+          <HappyCustomerCardList />
         </div>
       </section>
     </>

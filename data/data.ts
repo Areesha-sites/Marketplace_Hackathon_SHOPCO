@@ -7,7 +7,6 @@ export const newArrivalCardsData = [
     rating: "/rating-star.svg",
     ratingReview: "4.5",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-
     positionStyles: { left: "100px" },
   },
   {
@@ -20,7 +19,6 @@ export const newArrivalCardsData = [
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
     discount: "$260",
     offer: "-20%",
-
     positionStyles: { left: "415px" },
   },
   {
@@ -224,8 +222,7 @@ export const happyCustomerCardData = [
   },
   
 ];
-
-;export const casualCardsData = [
+export const casualCardsData = [
   {
     id: "1",
     image: "/casual1.svg",
@@ -238,81 +235,79 @@ export const happyCustomerCardData = [
   {
     id: "2",
     image: "/Frame 34.svg",
-    title: "Gradient Graphic T-shirt",
+    title: "Polo with Tipping Details",
     rating: "/five-star.svg",
-    ratingReview: "3.5",
-    price: 145,
+    ratingReview: "4.5",
+    price: 180,
     positionStyles: { left: "730px", top: "263px" },
-
-
   },
   {
     id: "3",
     image: "/Frame 38.svg",
-    title: "Gradient Graphic T-shirt",
+    title: "Black Striped T-Shirt",
     rating: "/Frame 10.svg",
-    ratingReview: "3.5",
-    price: 145,
+    ratingReview: "5.0",
+    price: 120,
+    discount: "$150",
+    offer: "-30%",
     positionStyles: { left: "1045px", top: "263px" },
-
-
   },
   {
     id: "4",
-    image: "/Frame 72.svg",
-    title: "Gradient Graphic T-shirt",
+    image: "/jeans.png",
+    title: "Skinny Fit Jeans",
     rating: "/Frame 10.svg",
     ratingReview: "3.5",
-    price: 145,
+    price: 240,
+    discount: "$260",
+    offer: "-20%",
     positionStyles: { left: "416px", top: "720px" },
   },
   {
     id: "5",
-    image: "/casual1.svg",
-    title: "Gradient Graphic T-shirt",
+    image: "/Frame 72 (1).svg",
+    title: "Checkered Shirt",
     rating: "/Frame 10.svg",
-    ratingReview: "3.5",
-    price: 145,
+    ratingReview: "4.5",
+    price: 180,
     positionStyles: { left: "731px", top: "720px" },
   },
   {
     id: "6",
-    image: "/casual1.svg",
-    title: "Gradient Graphic T-shirt",
+    image: "/Frame 73.svg",
+    title: "Sleeve Striped T-shirt",
     rating: "/Frame 10.svg",
-    ratingReview: "3.5",
-    price: 145,
+    ratingReview: "4.5",
+    price: 130,
+    discount: "$160",
+    offer: "-30%",
     positionStyles: { left: "1045px", top: "720px" },
-
-
   },
   {
     id: "7",
-    image: "/casual1.svg",
-    title: "Gradient Graphic T-shirt",
+    image: "/Frame 32.svg",
+    title: "Vertical Striped Shirt",
     rating: "/Frame 10.svg",
-    ratingReview: "3.5",
-    price: 145,
+    ratingReview: "5.0",
+    price: 212,
     positionStyles: { left: "415px", top: "1180px" },
   },
   {
     id: "8",
-    image: "/casual1.svg",
-    title: "Gradient Graphic T-shirt",
+    image: "/Frame 70.svg",
+    title: "Courage Graphic T-shirt ",
     rating: "/Frame 10.svg",
-    ratingReview: "3.5",
+    ratingReview: "4.0",
     price: 145,
     positionStyles: { left: "731px", top: "1180px" },
   },
   {
     id: "9",
-    image: "/casual1.svg",
-    title: "Gradient Graphic T-shirt",
+    image: "/Frame 71.svg",
+    title: "Loose Fit Bermuda Shorts",
     rating: "/Frame 10.svg",
-    ratingReview: "3.5",
-    price: 145,
+    ratingReview: "3.0",
+    price: 80,
     positionStyles: { left: "1045px", top: "1180px" },
-
-
   },
 ];

@@ -4,8 +4,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,14 +17,6 @@
  --productDetailBgCircle1: #4F4631;
  --productDetailBgCircle2: #314F4A;
  --productDetailBgCircle3: #31344F;
-
-
-
-
-
-
-
-
 }
 
 @media (prefers-color-scheme: dark) {

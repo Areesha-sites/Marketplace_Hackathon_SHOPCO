@@ -33,7 +33,7 @@ const DressStyleSection = () => {
         </div>
         <div className="w-[684px] h-[289px] absolute top-[501px] left-[64px] rounded-[20px] bg-white">
           <h1 className="text-[36px] font-bold text-black relative z-30 top-[25px] left-[36px]">
-          Party
+            Party
           </h1>
           <Image
             src="/image 12 (2).svg"
@@ -45,7 +45,7 @@ const DressStyleSection = () => {
         </div>
         <div className="w-[407px] h-[289px] absolute top-[501px] left-[768px] rounded-[20px] bg-white">
           <h1 className="text-[36px] font-bold text-black relative z-30 top-[25px] left-[36px]">
-          Party
+            Party
           </h1>
           <Image
             src="/image 14 (1).svg"

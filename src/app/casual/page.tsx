@@ -1,6 +1,7 @@
 import React from "react";
 import SideBar from "../Components/SideBar";
 import Image from "next/image";
+import Pagination from "../Components/Pagination";
 import CausalCardsList from "../Components/CasualCardsList";
 const Casual = () => {
   return (
@@ -27,9 +28,10 @@ const Casual = () => {
             />
           </div>
         </div>
+        <CausalCardsList />
+        <div className="w-[925px] left-[415px] top-[1630px] absolute border-b-[1px] border-black/10 "></div>
 
-<CausalCardsList/>
-
+        <Pagination />
       </section>
     </>
   );

@@ -1,10 +1,7 @@
 import React from "react";
 import Image from "next/image";
-// import { newArrivalCardsData } from "../../../data/data";
 import { ReviewCardPropsTypes } from "../../../types/ComponentsTypes";
-
 const TopSellingCard = ({
-  id,
   rating,
   title,
   correct,
@@ -14,7 +11,6 @@ const TopSellingCard = ({
 }: ReviewCardPropsTypes) => {
   return (
     <>
-
       <div
         className="w-[610px] h-[241.58px] rounded-[20px] border-black/10 border-[1px]  py-[28px] px-[32px] absolute  flex flex-col justify-between"
         style={{ position: "absolute", ...positionStyles }}
@@ -62,8 +58,6 @@ const TopSellingCard = ({
           {date}
         </p>
       </div>
-
-      
     </>
   );
 };

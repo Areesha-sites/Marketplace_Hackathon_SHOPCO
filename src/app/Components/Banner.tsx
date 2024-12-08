@@ -12,7 +12,7 @@ const Banner = () => {
           className="md:w-[56px] md:h-[56px] absolute md:left-[785px] md:top-[300px] z-20 w-[44px] h-[44px] top-[620px] left-[27px]"
         />
 
-        <h1 className="md:w-[577px] md:h-[173px] absolute md:top-[100px] md:left-[100px] font-[Integral CF] md:text-[64px] text-[36px] font-bold md:leading-[64px] leading-[34px] text-blackBgColor z-20 w-[315px] h-[93px] top-[40px]  left-[16px]">
+        <h1 className="md:w-[577px] md:h-[173px] absolute md:top-[100px] md:left-[100px] font-[Integral CF] md:text-[64px] text-[36px] md:leading-[64px] leading-[34px] text-blackBgColor z-20 w-[315px] h-[93px] top-[40px]  left-[16px] font-integral font-extrabold">
           FIND CLOTHES THAT MATCHES YOUR STYLE
         </h1>
 

@@ -1,15 +1,14 @@
 import React from "react";
 import Image from "next/image";
-import NewsLetter from './NewsLetter'
-
+import NewsLetter from "./NewsLetter";
 const Footer = () => {
   return (
     <>
       <NewsLetter />
-      <section className="w-[1440px] h-[499px] absolute left-[-1px] ">
-        <div className="w-[1240px] h-[177px] absolute left-[100px] top-[4011px] flex justify-between ">
+      <footer className="md:w-[1440px] md:h-[499px] absolute top-[3871px] w-[392px] bg-[#F0F0F0] ">
+        <div className="md:w-[1240px] h-[177px] relative left-[100px] top-[130px]  flex justify-between md:flex-row flex-col">
           <div className="w-[248px] h-[177px] flex flex-col gap-[35px]">
-            <div className="w-[167px] h-[23px] font-integral font-bold text-[33.4545px] leading-[20px]">
+            <div className="md:w-[167px] md:h-[23px] w-[144px] h-[20px] md:static absolute left-[16px] font-integral font-bold text-[33.4545px]  leading-[20px]">
               SHOP.CO
             </div>
             <div className="font-satoshi font-normal text-[14px] leading-[22px] text-[#000000] opacity-[60%]">
@@ -19,11 +18,11 @@ const Footer = () => {
             <div className="w-[148px] h-[28px] flex justify-between flex-row-reverse">
               <div className="w-[28px] h-[28px] border-[1px] border-[#000000] border-opacity-[20%] bg-[#ffffff] rounded-full flex justify-center items-center">
                 <Image
-                  src="/Group (3).svg"
+                  src="/logo-github 1.svg"
                   alt="github-image"
                   height={10}
                   width={10}
-                  className="w-[15px] h-[15px] "
+                  className="w-[16px] h-[16px] "
                 />
               </div>
               <div className="w-[28px] h-[28px] border-[1px] border-[#000000] border-opacity-[20%] bg-[#ffffff] rounded-full flex justify-center items-center">
@@ -125,20 +124,20 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-[1240px] absolute left-[100px] top-[4238px] border-[1px] border-[#000000] border-opacity-[10%]"></div>
+        <div className="w-[1240px] relative left-[100px] top-[240px]  border-[1px] border-[#000000] border-opacity-[10%]"></div>
 
-        <span className="w-[269px] h-[19px] absolute top-[4263px] left-[100px] font-satoshi font-normal text-[14px] leading-[18.9px] text-right text-[#00000] opacity-[60%] whitespace-nowrap">
+        <span className="w-[269px] h-[19px] relative  left-[100px]  font-satoshi font-normal text-[14px] leading-[18.9px] text-right text-[#00000] opacity-[60%] whitespace-nowrap top-[260px]">
           Shop.co © 2000-2023, All Rights Reserved
         </span>
 
-        <div className="w-[281.07px] h-[30.3px] absolute top-[4258px] left-[1059px] flex justify-between gap-[12px]">
+        <div className="w-[281.07px] h-[30.3px] relative  left-[1059px] flex justify-between gap-[12px] top-[230px]">
           <div className="w-[46.61px] h-[30.3px] rounded-[5.38px] border-[0.22px] bg-[#ffffff] border-[#D6DCE5] flex justify-center items-center">
             <Image
-              src="/.svg"
+              src="/Visa (1).svg"
               alt="visa-image"
               height={10}
               width={10}
-              className="w-[12.96px] h-[12.65px] "
+              className="w-[20px] h-[20px] "
             />
           </div>
           <div className="w-[46.61px] h-[30.3px] rounded-[5.38px] border-[0.22px] bg-[#ffffff] border-[#D6DCE5] flex justify-center items-center">
@@ -147,12 +146,12 @@ const Footer = () => {
               alt="mastercard-image"
               height={10}
               width={10}
-              className="w-[25.38px] h-[15.69px] "
+              className="w-[20px] h-[20px] "
             />
           </div>
           <div className="w-[46.61px] h-[30.3px] rounded-[5.38px] border-[0.22px] bg-[#ffffff] border-[#D6DCE5] flex justify-center items-center">
             <Image
-              src="/Paypal.svg"
+              src="/Paypal (1).svg"
               alt="paypal-image"
               height={10}
               width={10}
@@ -161,24 +160,24 @@ const Footer = () => {
           </div>
           <div className="w-[46.61px] h-[30.3px] rounded-[5.38px] border-[0.22px] bg-[#ffffff] border-[#D6DCE5] flex justify-center items-center">
             <Image
-              src="/.svg"
+              src="/ Pay (1).svg"
               alt="twittwr-image"
               height={10}
               width={10}
-              className="w-[12.96px] h-[12.65px] "
+              className="w-[25px] h-[25px] "
             />
           </div>
           <div className="w-[46.61px] h-[30.3px] rounded-[5.38px] border-[0.22px] bg-[#ffffff] border-[#D6DCE5] flex justify-center items-center">
             <Image
-              src="/.svg"
+              src="/G Pay.svg"
               alt="twittwr-image"
               height={10}
               width={10}
-              className="w-[12.96px] h-[12.65px] "
+              className="w-[25px] h-[25px] "
             />
           </div>
         </div>
-      </section>
+      </footer>
     </>
   );
 };

@@ -1,4 +1,3 @@
-import NewArrivalCard from "./NewArrivalCard";
 import { topSellingCardsData } from "../../../data/data";
 import TopSellingCard from "./TopSellingCard";
 const TopSellingCardList = () => {

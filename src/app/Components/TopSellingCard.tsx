@@ -3,7 +3,7 @@ import Image from "next/image";
 // import { newArrivalCardsData } from "../../../data/data";
 import { TopSellingDetailPagePropsTypes } from "../../../types/ComponentsTypes";
 import Link from "next/link";
-const TopSellingCard = ({id, image, title, price, discount, rating, ratingReview, des, offer, positionStyles}:TopSellingDetailPagePropsTypes) => {
+const TopSellingCard = ({id, image, title, price, discount, rating, ratingReview, offer, positionStyles}:TopSellingDetailPagePropsTypes) => {
   return (
     <>
      <Link href={`/topSelling/${id}`} passHref>
