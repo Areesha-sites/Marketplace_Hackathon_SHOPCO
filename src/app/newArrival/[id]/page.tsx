@@ -11,7 +11,7 @@ interface Props {
     id: string;
   };
 }
-const newArrivalDetails: React.FC<Props> = ({ params }) => {
+const NewArrivalDetails: React.FC<Props> = ({ params }) => {
   const cartContext = useContext(CartContext);
   if (!cartContext) {
     return null;
@@ -220,4 +220,4 @@ const newArrivalDetails: React.FC<Props> = ({ params }) => {
   );
 };
 
-export default newArrivalDetails;
+export default NewArrivalDetails;
