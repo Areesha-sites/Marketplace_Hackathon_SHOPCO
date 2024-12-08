@@ -1,18 +1,10 @@
 import { newArrivalCardsData } from "../../../data/data";
 import NewArrivalCard from "./NewArrivalCard";
-
 const NewArrivalCardsList = () => {
   return (
-    <div className="flex flex-wrap justify-center md:flex-row gap-4 ">
-      {newArrivalCardsData.map((item, index) => (
-        <div
-          key={item.id}
-          className={`${
-            index < 1 ? "block" : "hidden"
-          } md:block md:w-auto flex-1`}
-        >
-          <NewArrivalCard {...item} />
-        </div>
+    <div className="">
+      {newArrivalCardsData.map((item) => (
+        <NewArrivalCard key={item.id} {...item} />
       ))}
     </div>
   );

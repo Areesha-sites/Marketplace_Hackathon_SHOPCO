@@ -5,12 +5,10 @@ import { NewArrivalCardsPropsTypes } from "../../../types/ComponentsTypes";
 import Link from "next/link";
 
 const NewArrivalCard = ({id, image, title, price, discount, rating, ratingReview, des, offer, positionStyles}:NewArrivalCardsPropsTypes) => {
-
-  
   return (
     <>
      <Link href={`/newArrival/${id}`} passHref>
-      <div className="w-[295px] h-[298px] rounded-[20px] bg-BannerBgColor "
+      <div className="md:w-[295px] md:h-[298px] h-[200px] w-[198px] rounded-[20px] bg-BannerBgColor "
       
       style={{ position: "absolute", ...positionStyles }}>
         <Image
@@ -18,7 +16,7 @@ const NewArrivalCard = ({id, image, title, price, discount, rating, ratingReview
           alt="product-image"
           height={296}
           width={444}
-          className="w-[444px] h-[296px] absolute rounded-[20px]"
+          className="md:w-[444px] md:h-[296px] absolute rounded-[20px]"
         />
         <h1 className="absolute top-[317px] font-satoshi font-bold text-[20px] text-blackBgColor">
          {title}
