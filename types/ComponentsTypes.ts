@@ -20,6 +20,29 @@ export interface NewArrivalCardsPropsTypes {
     };
   };
 }
+export interface ProductDetaildCardsPropsType {
+  id: string;
+  image: string;
+  title: string;
+  price: string | number;
+  discount?: string;
+  rating: string;
+  ratingReview?: string;
+  des: string;
+  offer?: string;
+  positionStyles?: {
+    left: string;
+  } | {
+    mobile?: {
+      left?: string;
+      top?: string;
+    };
+    desktop?: {
+      left?: string;
+      top?: string;
+    };
+  };
+}
 export interface ReviewCardPropsTypes {
   id: string;
   rating: string;

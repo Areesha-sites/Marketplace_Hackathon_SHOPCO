@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { NewArrivalCardsPropsTypes } from "../../../types/ComponentsTypes";
 import Link from "next/link";
-const ProductDetailCard = ({id, image, title, price, discount, rating, ratingReview, des, offer, positionStyles}:NewArrivalCardsPropsTypes) => {
+import { ProductDetaildCardsPropsType } from "../../../types/ComponentsTypes";
+const ProductDetailCard = ({id, image, title, price, discount, rating, ratingReview, offer, positionStyles}:ProductDetaildCardsPropsType) => {
   return (
     <>
      <Link href={`/newArrival/${id}`} passHref>
