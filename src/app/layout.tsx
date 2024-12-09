@@ -19,13 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`{inter.className} md:max-w-[1440px] md:w-[1440px] max-w-[390px] mx-auto   relative `}
+        className={`{inter.className} md:max-w-[1440px] md:w-[1440px] max-w-[390px] mx-auto  md:relative `}
       >
         <CartProvider>
           {children}
           <TopHeader />
           <Navbar />
-          <Footer />
+          {/* <Footer /> */}
         </CartProvider>
       </body>
     </html>

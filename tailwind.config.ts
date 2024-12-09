@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -25,8 +24,9 @@ const config: Config = {
       fontFamily: {
         poppins: ["poppins", "serif"],
         inter: ["inter", "serif"],
-        // satoshi: ["satoshi"],
-      }
+       anton: ["anton", "serif"],
+       oswald: ["oswald", "serif"]
+      },
     },
   },
   plugins: [],

@@ -3,13 +3,13 @@ import NewArrivalCard from "./NewArrivalCard";
 
 const NewArrivalCardsList = () => {
   return (
-    <div className="flex flex-wrap justify-center md:flex-row gap-4 ">
+    <div className=" ">
       {newArrivalCardsData.map((item, index) => (
         <div
           key={item.id}
           className={`${
             index < 2 ? "block" : "hidden"
-          } md:block md:w-auto flex-1`}
+          } md:block `}
         >
           <NewArrivalCard {...item} />
         </div>

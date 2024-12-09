@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 export interface NewArrivalCardsPropsTypes {
-  id: string
+  id: string;
   image: string;
   title: string;
   price: string | number;
@@ -9,38 +9,74 @@ export interface NewArrivalCardsPropsTypes {
   ratingReview?: string;
   des: string;
   offer?: string;
-  positionStyles?: React.CSSProperties; 
+  positionStyles?: {
+    mobile?: {
+      left?: string;
+      top?: string;
+    };
+    desktop?: {
+      left?: string;
+      top?: string;
+    };
+  };
 }
 export interface ReviewCardPropsTypes {
-  id: string,
-  rating: string,
-  title: string,
-  correct: string,
-  des: string,
-  date: string,
-  positionStyles?: React.CSSProperties; 
+  id: string;
+  rating: string;
+  title: string;
+  correct: string;
+  des: string;
+  date: string;
+  positionStyles?: {
+    mobile?: {
+      left?: string;
+      top?: string;
+    };
+    desktop?: {
+      left?: string;
+      top?: string;
+    };
+  };
 }
 export interface HappyCustomerCardPropsTypes {
-  id: string,
-  rating: string,
-  title: string,
-  correctImg: string,
-  des: string,
-  positionStyles?: React.CSSProperties; 
+  id: string;
+  rating: string;
+  title: string;
+  correctImg: string;
+  des: string;
+  positionStyles?: {
+    mobile?: {
+      left?: string;
+      top?: string;
+    };
+    desktop?: {
+      left?: string;
+      top?: string;
+    };
+  };
 }
 export interface TopSellingDetailPagePropsTypes {
-  id: string,
-  image: string,
-  title: string,
-  price: number ,
-  discount?: string,
-  rating: string,
-  ratingReview: string,
-  des: string,
-  offer?: string,
-  positionStyles:  React.CSSProperties 
+  id: string;
+  image: string;
+  title: string;
+  price: number;
+  discount?: string;
+  rating: string;
+  ratingReview: string;
+  des: string;
+  offer?: string;
+  positionStyles?: {
+    mobile?: {
+      left?: string;
+      top?: string;
+    };
+    desktop?: {
+      left?: string;
+      top?: string;
+    };
+  };
 }
-export interface AddToCartItemPropsTypes  {
+export interface AddToCartItemPropsTypes {
   id: string;
   title: string;
   price: number;
@@ -49,35 +85,44 @@ export interface AddToCartItemPropsTypes  {
   offer: string;
   discount: string;
   rating: string;
-  product: {
-    id: string;
-    image: string;
-    title: string;
-    price: number;
-    rating: string;
-   
-  } | {
-  };
+  product:
+    | {
+        id: string;
+        image: string;
+        title: string;
+        price: number;
+        rating: string;
+      }
+    | {};
   isStock: boolean;
-};
+}
 
-export interface CartContextTypes  {
+export interface CartContextTypes {
   cart: AddToCartItemPropsTypes[];
   addItemToCart: (item: AddToCartItemPropsTypes) => void;
   deleteItemFromCart: (id: string) => void;
-  clearCart: () => void,
+  clearCart: () => void;
 }
 export interface CartProviderProps {
-  children: ReactNode
+  children: ReactNode;
 }
- export interface CasualCardsPropsTypes {
-  id: string,
-  image: string,
-  title: string, 
-  rating: string,
-  ratingReview: string,
-  price: number
-  offer?: string,
-  discount?: number | string,
-  positionStyles:  React.CSSProperties 
- }
+export interface CasualCardsPropsTypes {
+  id: string;
+  image: string;
+  title: string;
+  rating: string;
+  ratingReview: string;
+  price: number;
+  offer?: string;
+  discount?: number | string;
+  positionStyles?: {
+    mobile?: {
+      left?: string;
+      top?: string;
+    };
+    desktop?: {
+      left?: string;
+      top?: string;
+    };
+  };
+}
