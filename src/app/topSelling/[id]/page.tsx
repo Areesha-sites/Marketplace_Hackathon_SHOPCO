@@ -143,7 +143,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
         <h1
           data-aos="fade-left"
           data-aos-delay="100"
-          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[267px] md:w-[600px] leading-[28px] tracking-wider font-integralCf whitespace-nowrap"
+          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[267px] md:w-[600px] leading-[28px] tracking-wider font-integralCf md:whitespace-nowrap"
         >
           {product.title}
         </h1>
@@ -175,14 +175,14 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
           data-aos-delay="300"
           className="md:w-[176px] md:h-[43px] absolute md:top-[317px] md:left-[750px] left-[16px] flex gap-[12px] items-center top-[694px]"
         >
-          <span className="font-satoshi md:text-[32px] text-[20px] font-bold text-black">
+          <span className="font-satoshiBold md:text-[32px] text-[24px] font-bold text-black">
             ${product.price}
           </span>
-          <span className="font-satoshi text-[32px] text-black font-bold opacity-30">
+          <span className="font-satoshiBold text-[24px] md:text-[32px] text-black font-bold opacity-30">
             {product.discount}
           </span>
           {product.offer && (
-            <p className="py-[6px] px-[14px] rounded-[62px] bg-red-100 text-redTextOfferColor justify-center flex items-center h-[34px] w-[72px] bg-opacity-40 text-opacity-100 font-satoshi">
+            <p className="py-[6px] px-[14px] rounded-[62px] bg-red-100 text-redTextOfferColor justify-center flex items-center h-[34px] w-[72px] bg-opacity-40 text-opacity-100 font-satoshi text-[14px] md:text-[18px]">
               {product.offer}
             </p>
           )}

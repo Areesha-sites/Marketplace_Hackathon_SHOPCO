@@ -137,7 +137,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <h1
           data-aos="fade-left"
           data-aos-delay="100"
-          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[267px] md:w-[600px] leading-[28px] tracking-wider font-integralCf whitespace-nowrap"
+          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[287px] md:w-[600px] leading-[28px] tracking-wider font-integralCf md:leading-[38px]"
         >
           {product.title}
         </h1>
@@ -145,7 +145,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-left"
           data-aos-delay="200"
-          className="md:w-[193px] md:h-[24.71px] absolute md:top-[278px] md:left-[750px] flex gap-[16px] w-[154px] h-[19px] top-[666px] left-[16px] items-center"
+          className="md:w-[193px] md:h-[24.71px] absolute md:top-[298px] md:left-[750px] flex gap-[16px] w-[154px] h-[19px] top-[666px] left-[16px] items-center"
         >
           <Image
             data-aos="fade-left"
@@ -169,7 +169,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-left"
           data-aos-delay="300"
-          className="md:w-[176px] md:h-[43px] absolute md:top-[317px] md:left-[750px] left-[16px] flex gap-[12px] items-center top-[694px]"
+          className="md:w-[176px] md:h-[43px] absolute md:top-[327px] md:left-[750px] left-[16px] flex gap-[12px] items-center top-[694px]"
         >
           <span className="font-satoshiBold md:text-[32px] text-[20px] font-bold text-black">
             ${product.price}

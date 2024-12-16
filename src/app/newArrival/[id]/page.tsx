@@ -139,7 +139,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <h1
           data-aos="fade-left"
           data-aos-delay="100"
-          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[267px] md:w-[600px] leading-[28px] tracking-wider font-integralCf whitespace-nowrap"
+          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[297px] md:w-[600px] md:leading-[28px] tracking-wider font-integralCf md:whitespace-nowrap leading-[30px]"
         >
           {product.title}
         </h1>
@@ -147,7 +147,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-left"
           data-aos-delay="200"
-          className="md:w-[193px] md:h-[24.71px] absolute md:top-[278px] md:left-[750px] flex gap-[16px] w-[154px] h-[19px] top-[635px] left-[16px] items-center"
+          className="md:w-[193px] md:h-[24.71px] absolute md:top-[278px] md:left-[750px] flex gap-[16px] w-[154px] h-[19px] top-[665px] left-[16px] items-center"
         >
           <Image
             data-aos="fade-left"
@@ -171,7 +171,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-left"
           data-aos-delay="300"
-          className="md:w-[176px] md:h-[43px] absolute md:top-[317px] md:left-[750px] left-[16px] flex gap-[12px] items-center top-[655px]"
+          className="md:w-[176px] md:h-[43px] absolute md:top-[317px] md:left-[750px] left-[16px] flex gap-[12px] items-center top-[685px]"
         >
           <span className="font-satoshiBold md:text-[32px] text-[24px] font-bold text-black">
             ${product.price}
@@ -385,7 +385,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <h1
           data-aos="zoom-in"
           data-aos-delay="300"
-          className="md:w-[579px] md:h-[58px] absolute md:top-[1878px] md:left-[431px] font-black text-black md:text-[48px] text-[32px] left-[89px] w-[200px] leading-[36px] mx-auto top-[2200px] text-center uppercase tracking-wider font-integralCf whitespace-nowrap "
+          className="md:w-[579px] md:h-[58px] absolute md:top-[1878px] md:left-[431px] font-black text-black md:text-[48px] text-[32px] left-[79px] w-[250px] leading-[36px] mx-auto top-[2200px] text-center uppercase tracking-wider font-integralCf md:whitespace-nowrap "
         >
           You might also like
         </h1>
