@@ -13,7 +13,7 @@ interface Props {
     id: string;
   };
 }
-const topSellingDetails: React.FC<Props> = ({ params }) => {
+const TopSellingDetails: React.FC<Props> = ({ params }) => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -400,4 +400,4 @@ const topSellingDetails: React.FC<Props> = ({ params }) => {
   );
 };
 
-export default topSellingDetails;
+export default TopSellingDetails;

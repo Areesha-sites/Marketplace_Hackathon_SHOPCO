@@ -97,7 +97,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="zoom-in"
           data-aos-delay="200"
-          className="md:w-[1240px] absolute md:top-[134px] md:left-[100px]  border-b-[1px] border-black opacity-10 w-[358px] top-[98px] left-[16px]"
+          className="md:w-[1240px] absolute md:top-[134px] md:left-[100px]  border-b-[1px] border-black/10 w-[358px] top-[98px] left-[16px]"
         ></div>
         <Image
           data-aos="zoom-in-down"
