@@ -7,10 +7,6 @@ export const newArrivalCardsData = [
     rating: "/rating-star.svg",
     ratingReview: "4.5",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-    positionStyles: {
-      mobile: {left: "10px", top: "10px"},
-      desktop:{ left: "99px", top: "1px" },
-    }
   },
   {
     id: "2",
@@ -22,23 +18,15 @@ export const newArrivalCardsData = [
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
     discount: "$260",
     offer: "-20%",
-    positionStyles: {
-      mobile: {left: "200px", top: "10px"},
-      desktop:{ left: "415px", top: "1px" },
-    }
   },
   {
     id: "3",
     image: "/new-arrival3.svg",
-    title: "Checked Shirt",
+    title: "Checkered Shirt",
     price: 180,
     rating: "/rating-star.svg",
     ratingReview: "4.5",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-    positionStyles: {
-      mobile: {left: "100px", top: "2px"},
-    desktop: {left: "725px", top: "1px"}
-    },
   },
   {
     id: "4",
@@ -50,10 +38,6 @@ export const newArrivalCardsData = [
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
     discount: "$160",
     offer: "-30%",
-    positionStyles: {
-     mobile: {left: "100px", top: "0px"},
-     desktop: {left: "1045px", top: "1px"}
-    },
   },
 ];
 export const topSellingCardsData = [
@@ -67,10 +51,6 @@ export const topSellingCardsData = [
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
     discount: "$232",
     offer: "-20%",
-    positionStyles: {
-      mobile: {left: "16px", top: "-120px"},
-      desktop:{ left: "100px", top: "0px" }
-    },
   },
   {
     id: "2",
@@ -80,10 +60,6 @@ export const topSellingCardsData = [
     rating: "/rating-star.svg",
     ratingReview: "4.0",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-    positionStyles: {
-      mobile: {left: "210px", top: "-120px"},
-     desktop: { left: "415px", top: "1px" }
-    },
   },
   {
     id: "3",
@@ -93,10 +69,6 @@ export const topSellingCardsData = [
     rating: "/rating-star.svg",
     ratingReview: "3.0",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-    positionStyles: {
-      mobile: {left: "", top: ""},
-      desktop: { left: "730px", top: "0px" }
-    },
   },
   {
     id: "4",
@@ -106,7 +78,6 @@ export const topSellingCardsData = [
     rating: "/rating-star.svg",
     ratingReview: "4.5",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-    positionStyles: { left: "1045px" },
   },
 ];
 export const reviewCardsdata = [
@@ -117,111 +88,91 @@ export const reviewCardsdata = [
     correct: "/correct-icon.svg",
     des: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt.",
     date: "Posted on August 14, 2023",
-    positionStyles: {
-      mobile: {left: "16px", top: "1330px"},
-      desktop:{ left: "100px", top: "960px" }
-    },
   },
   {
     id: "2",
     rating: "/rating-star.svg",
-    title: "Samantha D.",
+    title: "Alex M.",
     correct: "/correct-icon.svg",
     des: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt.",
     date: "Posted on August 14, 2023",
-    positionStyles: {
-    mobile: {left: "16px", top: "1590px"},
-   desktop: { left: "730px", top: "960px" }
-    },
   },
   {
     id: "3",
     rating: "/rating-star.svg",
-    title: "Samantha D.",
+    title: "Ethan R.",
     correct: "/correct-icon.svg",
     des: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt.",
     date: "Posted on August 14, 2023",
-    positionStyles: {
-      mobile: {left: "16px", top: "1850px"},
-      desktop: { left: "100px", top: "1222px" }
-    },
   },
   {
     id: "4",
     rating: "/rating-star.svg",
-    title: "Samantha D.",
+    title: "Olivia P.",
     correct: "/correct-icon.svg",
     des: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt.",
     date: "Posted on August 14, 2023",
-    positionStyles: { left: "730px", top: "1222px" },
   },
   {
     id: "5",
     rating: "/rating-star.svg",
-    title: "Samantha D.",
+    title: "Liam K.",
     correct: "/correct-icon.svg",
     des: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt.",
     date: "Posted on August 14, 2023",
-    positionStyles: { left: "100px", top: "1484px" },
   },
   {
     id: "6",
     rating: "/rating-star.svg",
-    title: "Samantha D.",
+    title: "Ava H.",
     correct: "/correct-icon.svg",
     des: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt.",
     date: "Posted on August 14, 2023",
-    positionStyles: { left: "730px", top: "1484px" },
+
   },
 ];
 export const productDetailsCardData = [
   {
     id: "1",
-    image: "/new-arrival1.svg",
-    title: "T-SHIRT WITH TAPE DETAILS",
-    price: 120,
-    rating: "/rating-star.svg",
-    ratingReview: "3.5",
+    image: "/image 7 (4).svg",
+    title: "Polo with Contrast Trims",
+    price: 212,
+    rating: "/Frame 10 (7).svg",
+    ratingReview: "4.0",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-    discount: "$260",
+    discount: "$242",
     offer: "-20%",
-    positionStyles: { left: "100px" },
   },
   {
     id: "2",
-    image: "/new-arrival1.svg",
-    title: "T-SHIRT WITH TAPE DETAILS",
-    price: 120,
-    rating: "/rating-star.svg",
+    image: "/image 8 (16).svg",
+    title: "Gradient Graphic T-shirt",
+    price: 145,
+    rating: "/Frame 10 (8).svg",
     ratingReview: "3.5",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-    discount: "$260",
-    offer: "-20%",
-    positionStyles: { left: "415px" },
+   
   },
   {
     id: "3",
-    image: "/new-arrival1.svg",
-    title: "T-SHIRT WITH TAPE DETAILS",
-    price: 120,
-    rating: "/rating-star.svg",
-    ratingReview: "3.5",
+    image: "/image 9 (5).svg",
+    title: "Polo with Tipping Details",
+    price: 180,
+    rating: "/Frame 10 (9).svg",
+    ratingReview: "4.5",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-    discount: "$260",
-    offer: "-20%",
-    positionStyles: { left: "730px" },
+    
   },
   {
     id: "4",
-    image: "/new-arrival1.svg",
-    title: "T-SHIRT WITH TAPE DETAILS",
+    image: "/image 10 (5).svg",
+    title: "Black Striped T-shirt",
     price: 120,
-    rating: "/rating-star.svg",
-    ratingReview: "3.5",
+    rating: "/Frame 10 (10).svg",
+    ratingReview: "5.0",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-    discount: "$260",
-    offer: "-20%",
-    positionStyles: { left: "1045px" },
+    discount: "$150",
+    offer: "-30%",
   },
 ];
 export const happyCustomerCardData = [
@@ -231,30 +182,24 @@ export const happyCustomerCardData = [
     title: "Sarah M.",
     correctImg: "/correct-icon.svg",
     des: "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.",
-    positionStyles: {
-      mobile: {left: "50px", top: "-150px"},
-      desktop: {left: "1px", top: "1px"}
-    },
   },
   {
     id: "2",
     rating: "/five-star.svg",
-    title: "Sarah hsjsj.",
+    title: "Alex K.",
     correctImg: "/correct-icon.svg",
     des: "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.",
-    positionStyles: { left: "520px" },
   },
   {
     id: "3",
     rating: "/five-star.svg",
-    title: "Sarah M.",
+    title: "James L.",
     correctImg: "/correct-icon.svg",
     des: "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.",
-    positionStyles: { left: "940px" },
   },
+ 
   
 ];
-
 export const casualCardsData = [
   {
     id: "1",
@@ -265,10 +210,7 @@ export const casualCardsData = [
     price: 145,
     discount: "$242",
     offer: "20",
-    positionStyles: {
-      desktop: { left: "415px", top: "263px" },
-      mobile: { left: "16px", top: "210px" },
-    },
+    des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
   },
   {
     id: "2",
@@ -279,12 +221,7 @@ export const casualCardsData = [
     price: 180,
     discount: "$242",
     offer: "20",
-    positionStyles:{
-    desktop:  { left: "730px", top: "263px" },
-    mobile: {left: "202px", top:"210px"}
-
-    }
-    
+    des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
   },
   {
     id: "3",
@@ -295,10 +232,7 @@ export const casualCardsData = [
     price: 120,
     discount: "$150",
     offer: "30",
-    positionStyles: {
-      desktop:{ left: "1045px", top: "263px" },
-      mobile: { left: "16px", top: "520px" }
-    }
+    des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
   },
   {
     id: "4",
@@ -309,11 +243,7 @@ export const casualCardsData = [
     price: 240,
     discount: "$260",
     offer: "20",
-    positionStyles: {
-      desktop:{ left: "416px", top: "707px" },
-      mobile: { left: "202px", top: "520px" }
-    }
-    
+    des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
   },
   {
     id: "5",
@@ -322,12 +252,7 @@ export const casualCardsData = [
     rating: "/Frame 10.svg",
     ratingReview: "4.5",
     price: 180,
-    positionStyles:{
-      desktop:{ left: "731px", top: "707px" },
-      mobile: { left: "16px", top: "800px" }
-
-    }
-    
+    des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
   },
   {
     id: "6",
@@ -338,12 +263,7 @@ export const casualCardsData = [
     price: 130,
     discount: "$160",
     offer: "30",
-    positionStyles:{
-     desktop: { left: "1045px", top: "707px" },
-     mobile: {left: "202px", top: "800px"}
-
-    }
-    
+    des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
   },
   {
     id: "7",
@@ -354,12 +274,7 @@ export const casualCardsData = [
     price: 212,
     discount: "$232",
     offer: "20",
-    positionStyles:{
-      desktop:{ left: "415px", top: "1151px" },
-      mobile: {left: "16px", top: "1080px"}
-
-    }
-    
+    des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
   },
   {
     id: "8",
@@ -368,11 +283,7 @@ export const casualCardsData = [
     rating: "/Frame 10.svg",
     ratingReview: "4.0",
     price: 145,
-    positionStyles: {
-     desktop: { left: "731px", top: "1151px" },
-     mobile:{left: "202px", top: "1080px"}
-
-    }
+    des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
   },
   {
     id: "9",
@@ -381,11 +292,6 @@ export const casualCardsData = [
     rating: "/Frame 10.svg",
     ratingReview: "3.0",
     price: 80,
-    positionStyles: {
-     desktop: { left: "1045px", top: "1151px" },
-     mobile: {left: "16px" , top: "1360px"}
-
-    } 
-    
+    des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
   },
 ];

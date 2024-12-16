@@ -1,10 +1,12 @@
-"use client"
+"use client";
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { CasualCardsPropsTypes } from "../../../types/ComponentsTypes";
-import { useMediaQuery } from "react-responsive";
-const CasualCards = ({
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import Link from "next/link";
+const NewArrivalCard = ({
   id,
   image,
   title,
@@ -13,71 +15,76 @@ const CasualCards = ({
   rating,
   ratingReview,
   offer,
-  positionStyles,
-}: CasualCardsPropsTypes & { isSmallScreen: boolean }) => {
-  const isDesktop = useMediaQuery({ minWidth: 768 });
-
-  const left = isDesktop
-    ? positionStyles?.desktop?.left
-    : positionStyles?.mobile?.left;
-  const top = isDesktop
-    ? positionStyles?.desktop?.top
-    : positionStyles?.mobile?.top;
+}: CasualCardsPropsTypes) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease",
+      once: true,
+      anchorPlacement: "top-bottom",
+    });
+  }, []);
   return (
-    <Link href={`/newArrival/${id}`} passHref>
-       <div
-          className="absolute"
-          style={{
-            left: left || "0px",
-            top: top || "0px",
-          }}
+    <>
+      <Link href={`/casualDetails/${id}`} passHref>
+        <div
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+          className="md:h-[420px]"
         >
-        <div className="md:w-[295px] md:h-[298px] w-[172px] h-[174px] rounded-[20px] bg-BannerBgColor">
-          <Image
-            src={image}
-            alt="product-image"
-            height={296}
-            width={444}
-            className="md:w-[444px] md:h-[296px] w-[172px] h-[174px] absolute rounded-[20px]"
-            layout="responsive"
-          />
-          <h1 className="md:absolute md:top-[317px] relative top-[185px]  font-bold md:text-[20px] text-[13px] text-blackBgColor font-inter">
-            {title}
-          </h1>
-          <div className="w-[150px] h-[19px] md:absolute relative top-[185px] md:top-[350px] flex gap-[13px] items-center">
+          <div className="md:w-[295px] md:h-[298px] w-[180px] h-[190px] rounded-[20px] bg-bannerBg relative ">
             <Image
-              src={rating}
-              alt="rating-star"
-              height={18.49}
-              width={104}
-              className="md:h-[18.49px] md:w-[104px] w-[67px] h-[15px]"
+              src={image}
+              alt="product-image"
+              height={296}
+              width={444}
+              className="md:w-[444px] md:h-[296px] w-[180px] h-[190px] object-cover rounded-[20px]"
             />
-            {ratingReview && (
-              <p className="md:text-[14px] text-[12px] font-inter text-blackBgColor font-normal whitespace-nowrap">
-                {ratingReview}{" "}
-                <span className="text-opacity-60 text-black font-inter">/5</span>
-              </p>
-            )}
-          </div>
-          <div className="md:w-[200px] h-[32px] flex md:gap-[10px] gap-[5px] relative md:top-[370px] top-[190px]">
-            <p className="md:text-[24px] text-[20px] font-bold text-black font-inter">
-              ${price}
-            </p>
-            <p className="md:text-[24px] text-[20px] font-inter font-bold text-black/40 line-through">
-              {discount}
-            </p>
-          </div>
-          <div className="md:w-[200px] h-[32px] flex md:gap-[10px] items-center justify-end">
-            {offer && (
-              <span className="md:w-[58px] md:h-[28px] w-[42px] h-[20px] py-[6px] px-[14px] rounded-[62px] bg-red-400 bg-opacity-10 text-[10px] font-medium text-redTextOfferColor flex justify-center items-center md:relative md:top-[340px] font-inter">
-                -{offer}%
-              </span>
-            )}
+            <div
+              data-aos="flip-left"
+              data-aos-delay="300"
+              className="flex flex-col h-[200px] justify-between absolute top-[210px]"
+            >
+              <h1 className="absolute  top-[-10px] md:top-[100px]  left-[9px] font-satoshiBold font-semibold md:text-[20px] text-black text-[12px] whitespace-nowrap">
+                {title}
+              </h1>
+              <div className="md:w-[150px] w-[117px] h-[19px] md:top-[135px] absolute top-[10px] left-[9px] flex gap-[11px] items-center md:gap-[13px] justify-start">
+                <Image
+                  src={rating}
+                  alt="rating-star"
+                  height={18.49}
+                  width={104}
+                  className="md:h-[18.49px] md:w-[104px] w-[75px] h-[15px]"
+                />
+                {ratingReview && (
+                  <p className="md:text-[14px] text-[12px] text-black font-normal whitespace-nowrap font-satoshi ">
+                    {ratingReview}{" "}
+                    <span className="text-opacity-60 text-black">/5</span>
+                  </p>
+                )}
+              </div>
+              <div className="md:w-[200px] h-[32px] absolute  top-[30px] left-[9px] flex gap-[10px] items-center md:top-[155px]">
+                <span className="md:text-[24px] text-[20px] font-bold text-black font-satoshiBold">
+                  ${price}
+                </span>
+                {discount && (
+                  <span className="md:text-[24px] text-[20px]  font-bold font-satoshiBold  text-black opacity-15 line-through">
+                    {discount}
+                  </span>
+                )}
+                {offer && (
+                  <span className="md:w-[58px] w-[42px] md:h-[28px] h-[20px] py-[6px] px-[14px] rounded-[62px] bg-red-400 bg-opacity-20 text-[10px] md:text-[12px] font-medium text-redTextOfferColor flex justify-center items-center font-satoshi">
+                    -{offer}%
+                  </span>
+                )}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </>
   );
 };
 
-export default CasualCards;
+export default NewArrivalCard;

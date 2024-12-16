@@ -6,7 +6,11 @@ const Cart = () => {
     <>
       <section>
         <div className="md:w-[1240px] w-[358px] absolute md:top-[134px] top-[98px] left-[16px] md:left-[100px] border-b-[1px] border-black/10"></div>
-        <div className="md:w-[106px] w-[89px] h-[22px] absolute md:top-[158px] md:left-[100px] left-[16px] flex gap-[12px] items-center top-[118px]">
+        <div
+          data-aos="flip-right"
+          data-aos-delay="200"
+          className="md:w-[106px] w-[89px] h-[22px] absolute md:top-[158px] md:left-[100px] left-[16px] flex gap-[12px] items-center top-[118px]"
+        >
           <span className="font-inter text-[16px] font-normal text-black/60">
             Home
           </span>
@@ -21,10 +25,19 @@ const Cart = () => {
             Cart
           </span>
         </div>
-        <h1 className="absolute md:top-[204px] left-[16px] md:left-[100px] text-black font-black uppercase md:text-[40px] text-[32px] top-[145px]">
+        <h1
+          data-aos="zoom-in"
+          data-aos-delay="300"
+          className="absolute md:top-[204px] left-[16px] md:left-[100px] text-black font-black uppercase md:text-[40px] text-[32px] top-[145px]"
+        >
           Your cart
         </h1>
-        <div className="md:w-[715px] w-[358px] h-[389px] md:h-[508px] absolute md:left-[100px] left-[16px] md:top-[276px] top-[203px] md:py-[20px] md:px-[24px] p-[14px] rounded-[20px] border-[1px] border-black/10 flex flex-col md:gap-[24px] gap-[16px]">
+        <div
+          data-aos="flip-right"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+          className="md:w-[715px] w-[358px] h-[389px] md:h-[508px] absolute md:left-[100px] left-[16px] md:top-[276px] top-[203px] md:py-[20px] md:px-[24px] p-[14px] rounded-[20px] border-[1px] border-black/10 flex flex-col md:gap-[24px] gap-[16px]"
+        >
           <div className="md:w-[667px] w-[330px]  md:h-[124px] h-[99px] flex gap-[14px] md:gap-[16px] ">
             <div className="w-[124px] h-[124px] rounded-[8.66px] bg-bgLightGrayColor">
               <Image
@@ -38,7 +51,7 @@ const Cart = () => {
             <div className="md:w-[527px] md:h-[124px] flex justify-between">
               <div className="md:w-[227px] md:h-[118px] flex justify-between ">
                 <div className="md:w-[227px] md:h-[71px] w-[217px] h-[57px] flex flex-col gap-[2px] relative left-[100px] md:static">
-                  <h1 className="md:text-[20px] text-[16px] md:font-bold font-medium text-black font-satoshi whitespace-nowrap font-inter">
+                  <h1 className="md:text-[20px] text-[16px] md:font-bold font-medium text-black font-satoshi whitespace-nowrap ">
                     Gradient Graphic T-shirt
                   </h1>
                   <div className="w-[78px] h-[42px] flex flex-col gap-[4px]">
@@ -68,7 +81,7 @@ const Cart = () => {
                   alt="delete"
                   height={24}
                   width={24}
-                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[280px] relative left-[105px] top-[3px]"
+                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[295px] relative left-[105px] top-[3px]"
                 />
               </div>
               <div className="md:w-[225px] md:h-[124px] flex justify-between">
@@ -229,7 +242,12 @@ const Cart = () => {
             </div>
           </div>
         </div>
-        <div className="md:w-[505px] md:h-[458px] absolute md:top-[276px] md:left-[835px] md:py-[20px] md:px-[24px] rounded-[20px] border-[1px] border-black/10 flex flex-col md:gap-[24px] w-[358px] h-[390px] top-[612px] left-[16px] p-[20px] gap-[16px]">
+        <div
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+          className="md:w-[505px] md:h-[458px] absolute md:top-[276px] md:left-[835px] md:py-[20px] md:px-[24px] rounded-[20px] border-[1px] border-black/10 flex flex-col md:gap-[24px] w-[358px] h-[390px] top-[612px] left-[16px] p-[20px] gap-[16px]"
+        >
           <h2 className="font-inter md:text-[24px] text-[20px] font-bold text-black">
             Order Summary
           </h2>

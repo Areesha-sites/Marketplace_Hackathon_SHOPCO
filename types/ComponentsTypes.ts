@@ -9,16 +9,6 @@ export interface NewArrivalCardsPropsTypes {
   ratingReview?: string;
   des: string;
   offer?: string;
-  positionStyles?: {
-    mobile?: {
-      left?: string;
-      top?: string;
-    };
-    desktop?: {
-      left?: string;
-      top?: string;
-    };
-  };
 }
 export interface ProductDetaildCardsPropsType {
   id: string;
@@ -30,18 +20,6 @@ export interface ProductDetaildCardsPropsType {
   ratingReview?: string;
   des: string;
   offer?: string;
-  positionStyles?: {
-    left: string;
-  } | {
-    mobile?: {
-      left?: string;
-      top?: string;
-    };
-    desktop?: {
-      left?: string;
-      top?: string;
-    };
-  };
 }
 export interface ReviewCardPropsTypes {
   id: string;
@@ -50,16 +28,6 @@ export interface ReviewCardPropsTypes {
   correct: string;
   des: string;
   date: string;
-  positionStyles?: {
-    mobile?: {
-      left?: string;
-      top?: string;
-    };
-    desktop?: {
-      left?: string;
-      top?: string;
-    };
-  };
 }
 export interface HappyCustomerCardPropsTypes {
   id: string;
@@ -67,16 +35,6 @@ export interface HappyCustomerCardPropsTypes {
   title: string;
   correctImg: string;
   des: string;
-  positionStyles?: {
-    mobile?: {
-      left?: string;
-      top?: string;
-    };
-    desktop?: {
-      left?: string;
-      top?: string;
-    };
-  };
 }
 export interface TopSellingDetailPagePropsTypes {
   id: string;
@@ -88,16 +46,6 @@ export interface TopSellingDetailPagePropsTypes {
   ratingReview: string;
   des: string;
   offer?: string;
-  positionStyles?: {
-    mobile?: {
-      left?: string;
-      top?: string;
-    };
-    desktop?: {
-      left?: string;
-      top?: string;
-    };
-  };
 }
 export interface AddToCartItemPropsTypes {
   id: string;
@@ -138,14 +86,11 @@ export interface CasualCardsPropsTypes {
   price: number;
   offer?: string;
   discount?: number | string;
-  positionStyles?: {
-    mobile?: {
-      left?: string;
-      top?: string;
-    };
-    desktop?: {
-      left?: string;
-      top?: string;
-    };
-  };
+}
+
+export interface NextArrowPropsTypes {
+  onClick: () => void;
+}
+export interface PrevArrowPropsTypes {
+  onClick: () => void;
 }

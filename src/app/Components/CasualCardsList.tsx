@@ -1,22 +1,28 @@
-import { useMediaQuery } from "react-responsive";
 import { casualCardsData } from "../../../data/data";
 import CasualCards from "./CasualCard";
-const CausalCardsList = () => {
-  const isSmallScreen = useMediaQuery({maxWidth: 767})
+const CasualCardsList = () => {
   return (
-    <div className=" ">
-    {casualCardsData.map((item, index) => (
-      <div
-        key={item.id}
-        className={`${
-          index < 6 ? "block" : "hidden"
-        } md:block `}
-      >
-        <CasualCards {...item} isSmallScreen={isSmallScreen}/>
-      </div>
-    ))}
-  </div>
+    <div
+      className="
+        grid 
+        grid-cols-2 
+        gap-y-[100px] 
+        gap-x-[10px] 
+        md:grid-cols-3 
+        md:gap-[20px]
+        items-start
+      "
+    >
+      {casualCardsData.map((item, index) => (
+        <div
+          className={`${index < 6 ? "block" : "hidden"} md:block`}
+          key={index}
+        >
+          <CasualCards {...item} />
+        </div>
+      ))}
+    </div>
   );
 };
 
-export default CausalCardsList;
+export default CasualCardsList;

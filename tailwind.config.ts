@@ -22,10 +22,9 @@ const config: Config = {
         productDetailBgCircle3: "var(--productDetailBgCircle3)",
       },
       fontFamily: {
-        poppins: ["poppins", "serif"],
-        inter: ["inter", "serif"],
-       anton: ["anton", "serif"],
-       oswald: ["oswald", "serif"]
+        integralCf: ["integralCF", "serif"],
+        satoshi: ["satoshi", "serif"],
+        satoshiBold: ["satoshiBold", "serif"],
       },
     },
   },

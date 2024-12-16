@@ -1,6 +1,5 @@
 "use client";
 import { createContext, useState, useEffect, ReactNode } from "react";
-import { useRouter } from "next/navigation";
 export interface AddToCartItemPropsTypes {
   id: string;
   image: string;
