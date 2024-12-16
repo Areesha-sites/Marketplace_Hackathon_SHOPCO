@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`{inter.className} relative mx-auto w-[390px] md:w-[1440px] bg-white overflow-x-hidden `}
+        className={`{inter.className} relative mx-auto w-[390px] md:w-[1440px] bg-white  `}
       >
         <CartProvider>
           {children}

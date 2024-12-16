@@ -13,7 +13,7 @@ interface Props {
     id: string;
   };
 }
-const casualDetails: React.FC<Props> = ({ params }) => {
+const CasualDetails: React.FC<Props> = ({ params }) => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -400,4 +400,4 @@ const casualDetails: React.FC<Props> = ({ params }) => {
   );
 };
 
-export default casualDetails;
+export default CasualDetails;
