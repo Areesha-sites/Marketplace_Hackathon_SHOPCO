@@ -143,14 +143,14 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         <h1
           data-aos="fade-left"
           data-aos-delay="100"
-          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[267px] md:w-[600px] leading-[28px] tracking-wider font-integralCf whitespace-nowrap"
+          className="absolute md:top-[200px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[247px] md:w-[600px] leading-[28px] tracking-wider font-integralCf md:leading-[40px] "
         >
           {product.title}
         </h1>
         <div
           data-aos="fade-left"
           data-aos-delay="200"
-          className="md:w-[193px] md:h-[24.71px] absolute md:top-[278px] md:left-[750px] flex gap-[16px] w-[154px] h-[19px] top-[666px] left-[16px]"
+          className="md:w-[193px] md:h-[24.71px] absolute md:top-[288px] md:left-[750px] flex gap-[16px] w-[154px] h-[19px] top-[666px] left-[16px]"
         >
           <Image
             data-aos="fade-left"
@@ -175,14 +175,14 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
           data-aos-delay="300"
           className="md:w-[176px] md:h-[43px] absolute md:top-[317px] md:left-[750px] left-[16px] flex gap-[12px] items-center top-[694px]"
         >
-          <span className="font-satoshiBold md:text-[32px] text-[20px] font-bold text-black">
+          <span className="font-satoshiBold md:text-[32px] text-[24px] font-bold text-black">
             ${product.price}
           </span>
-          <span className="font-satoshiBold text-[32px] text-black font-bold opacity-30">
+          <span className="font-satoshiBold md:text-[32px] text-[24px] text-black font-bold opacity-30">
             {product.discount}
           </span>
           {product.offer && (
-            <p className="py-[6px] px-[14px] rounded-[62px] bg-red-100 text-redTextOfferColor justify-center flex items-center h-[34px] w-[72px] bg-opacity-40 text-opacity-100 font-satoshi">
+            <p className="py-[6px] px-[14px] rounded-[62px] bg-red-100 text-redTextOfferColor justify-center flex items-center h-[34px] w-[72px] bg-opacity-40 text-opacity-100 font-satoshi text-[14px]">
               -{product.offer}%
             </p>
           )}
@@ -202,7 +202,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         <p
           data-aos="fade-right"
           data-aos-delay="200"
-          className="absolute md:top-[461px] md:left-[750px] font-satoshiBold left-[16px] font-inter text-[16px] font-normal text-black/60 op-[834px]"
+          className="absolute md:top-[461px] md:left-[750px] font-satoshiBold left-[16px] text-[16px] font-normal text-black/60 "
         >
           Select Colors
         </p>

@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <>
       <CartProvider>
-        <div>
+        <div className="mx-auto relative w-[390px] md:w-[1440px]">
           <Banner />
           <NewArrivalSection />
           <TopSelling />

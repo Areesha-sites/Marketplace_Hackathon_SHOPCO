@@ -10,7 +10,7 @@ const Footer = () => {
       <footer className="md:w-[1440px] md:h-[499px] absolute  bg-[#F0F0F0] w-[392px] h-[846px]">
         <div className="md:w-[1240px] h-[177px]  relative md:left-[100px] md:top-[130px]  flex md:justify-between md:flex-row flex-col top-[200px] ">
           <div className="md:w-[248px] md:h-[177px] w-[100px] flex flex-col md:gap-[35px]">
-            <div className="md:w-[167px] md:h-[23px] md:static absolute font-black text-[33.4545px] leading-[20px] left-[16px] tracking-wider font-integralCf">
+            <div className="md:w-[167px] md:h-[23px] md:static absolute top-[-10px] font-black text-[33.4545px] leading-[20px] left-[16px] tracking-wider font-integralCf">
               SHOP.CO
             </div>
             <div className="font-satoshi font-normal md:text-[14px] text-[12px] leading-[22px] text-[#000000] opacity-[60%] md:w-[248px] md:static absolute top-[30px] w-[357px] left-[16px]">

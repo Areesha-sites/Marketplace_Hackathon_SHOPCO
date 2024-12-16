@@ -81,7 +81,7 @@ const Cart = () => {
                   alt="delete"
                   height={24}
                   width={24}
-                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[295px] relative left-[105px] top-[3px]"
+                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[280px] relative left-[105px] top-[3px]"
                 />
               </div>
               <div className="md:w-[225px] md:h-[124px] flex justify-between">
@@ -93,7 +93,7 @@ const Cart = () => {
                     width={20}
                     className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] "
                   />
-                  <span className="text-[14px] text-black font-bold">1</span>
+                  <span className="text-[14px] font-satoshi text-black font-bold">1</span>
                   <Image
                     src="/increase.svg"
                     alt="increase"
@@ -145,7 +145,7 @@ const Cart = () => {
                   alt="delete"
                   height={24}
                   width={24}
-                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[305px] relative
+                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[300px] relative
                  top-[3px] left-[180px]"
                 />
               </div>
@@ -158,7 +158,7 @@ const Cart = () => {
                     width={20}
                     className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] "
                   />
-                  <span className="text-[14px] text-black font-bold font-inter">1</span>
+                  <span className="text-[14px] text-black font-bold font-satoshi">1</span>
                   <Image
                     src="/increase.svg"
                     alt="increase"

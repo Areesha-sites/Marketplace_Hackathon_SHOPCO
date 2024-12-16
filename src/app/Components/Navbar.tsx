@@ -185,7 +185,7 @@ const Navbar = () => {
               {["Casual", "Formal", "Aesthetic"].map((item, index) => (
                 <Link
                   key={index}
-                  href="/"
+                  href="/casual"
                   className="block px-[8px] py-[4px] text-[14px] text-black hover:bg-gray-100 w-full text-center font-satoshi"
                 >
                   {item}
