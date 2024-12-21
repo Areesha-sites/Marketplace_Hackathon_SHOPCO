@@ -24,10 +24,6 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
       anchorPlacement: "top-bottom",
     });
   }, []);
-  const cartContext = useContext(CartContext);
-  if (!cartContext) {
-    return null;
-  }
   const { id } = params;
   const product = newArrivalCardsData.find((item: any) => item.id === id);
   if (!product) {

@@ -16,8 +16,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -66,7 +64,6 @@ body {
     transform: rotate(360deg);
   }
 }
-
 .star-rotate {
   animation: rotateStar 3s linear infinite;
 }

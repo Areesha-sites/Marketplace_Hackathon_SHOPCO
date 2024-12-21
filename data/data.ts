@@ -128,7 +128,6 @@ export const reviewCardsdata = [
     correct: "/correct-icon.svg",
     des: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt.",
     date: "Posted on August 14, 2023",
-
   },
 ];
 export const productDetailsCardData = [
@@ -151,7 +150,6 @@ export const productDetailsCardData = [
     rating: "/Frame 10 (8).svg",
     ratingReview: "3.5",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-   
   },
   {
     id: "3",
@@ -161,7 +159,6 @@ export const productDetailsCardData = [
     rating: "/Frame 10 (9).svg",
     ratingReview: "4.5",
     des: "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-    
   },
   {
     id: "4",
@@ -197,8 +194,6 @@ export const happyCustomerCardData = [
     correctImg: "/correct-icon.svg",
     des: "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.",
   },
- 
-  
 ];
 export const casualCardsData = [
   {

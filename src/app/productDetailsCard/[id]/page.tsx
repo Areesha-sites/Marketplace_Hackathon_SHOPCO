@@ -4,8 +4,6 @@ import { productDetailsCardData } from "../../../../data/data";
 import Image from "next/image";
 import ReviewCardList from "@/app/Components/ReviewCardList";
 import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
-import CartContext from "@/app/context/CartContext";
-import { useContext } from "react";
 import Footer from "@/app/Components/Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -24,11 +22,6 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
       anchorPlacement: "top-bottom",
     });
   }, []);
-
-  const cartContext = useContext(CartContext);
-  if (!cartContext) {
-    return null;
-  }
   const { id } = params;
   const product = productDetailsCardData.find((item: any) => item.id === id);
   if (!product) {
