@@ -17,7 +17,7 @@ const Casual = () => {
         <div
           data-aos="zoom-in"
           data-aos-delay="200"
-          className="md:w-[1240px] absolute md:top-[134px] md:left-[100px]  border-b-[1px] border-black/10 w-[358px] top-[98px] left-[16px]"
+          className="md:w-[1240px] xxl:w-[1240px] xl:w-[1100px] absolute md:top-[134px] md:left-[100px]  border-b-[1px] border-black/10 w-[358px] top-[98px] left-[16px]"
         ></div>
         <div
           data-aos="fade-right"
@@ -48,11 +48,11 @@ const Casual = () => {
         >
           Casual
         </h1>
-        <div className="md:w-[396px] md:h-[16px]  absolute md:top-[217px] md:left-[944px] left-[112px]  flex md:gap-[12px] top-[157px] items-center">
+        <div className="md:w-[396px] md:h-[16px]  absolute md:top-[217px] md:left-[944px] xxl:left-[944px] xl:left-[800px] left-[112px]  flex md:gap-[12px] top-[157px] items-center">
           <p
             data-aos="zoom-in"
             data-aos-delay="200"
-            className="md:text-[16px] text-[14px] font-normal font-satoshi text-black/60 whitespace-nowrap"
+            className="md:text-[16px] xxl:text-[16px] xl:text-[14px] text-[14px] font-normal font-satoshi text-black/60 whitespace-nowrap"
           >
             Showing 1-10 of 100 Products
           </p>
@@ -91,11 +91,11 @@ const Casual = () => {
         <div
           data-aos="zoom-in"
           data-aos-delay="200"
-          className="md:w-[925px] w-[358px] md:left-[415px] md:top-[1580px] top-[1083px]  left-[16px] absolute border-b-[1px] border-black/10 "
+          className="md:w-[925px] w-[358px] md:left-[415px] md:top-[1580px] xxl:top-[1580px] xxl:w-[925px] xl:w-[770px]  xl:top-[1370px] top-[1083px]  left-[16px] absolute border-b-[1px] border-black/10 "
         ></div>
         <Pagination />
       </section>
-      <div className="absolute md:top-[1830px] top-[1500px] z-20">
+      <div className="absolute md:top-[1830px] xxl:top-[1830px] xl:top-[1700px] top-[1500px] z-20">
         <Footer />
       </div>
     </>

@@ -6,7 +6,7 @@ const DressStyleSection = () => {
       <section
         data-aos="zoom-in"
         data-aos-delay="100"
-        className="md:w-[1239px] bg-bgLightGrayColor md:h-[846px] w-[358px] h-[995px] absolute md:top-[2417px] md:left-[100px] md:rounded-[40px] rounded-[20px] top-[2123px] left-[18px] "
+        className="md:w-[1239px] xxl:w-[1239px] xl:w-[1180px] bg-bgLightGrayColor md:h-[846px] w-[358px] h-[995px] absolute md:top-[2417px] md:left-[100px] xxl:left-[100px] xl:left-[50px] md:rounded-[40px] rounded-[20px] top-[2123px] left-[18px] "
       >
         <h1
           data-aos="zoom-in"
@@ -18,7 +18,7 @@ const DressStyleSection = () => {
         <div
           data-aos="fade-right"
           data-aos-delay="100"
-          className="md:w-[407px] md:h-[289px] w-[310px] h-[190px] relative top-[80px] left-[24px] md:top-[135px] md:left-[64px] rounded-[20px] bg-white"
+          className="md:w-[407px] md:h-[289px] w-[310px] h-[190px] relative top-[80px] left-[24px] md:top-[135px]  md:left-[64px] xxl:left-[64px] xl:left-[34px] rounded-[20px] bg-white"
         >
           <h1 className="md:text-[36px] text-[24px] left-[24px] font-bold font-satoshiBold text-black relative z-30 top-[25px] md:left-[36px]">
             Casual
@@ -34,7 +34,7 @@ const DressStyleSection = () => {
         <div
           data-aos="fade-left"
           data-aos-delay="200"
-          className="md:w-[684px] md:h-[289px] w-[310px] h-[190px] relative md:top-[-155px] top-[100px] left-[24px] md:left-[491px] rounded-[20px] bg-white "
+          className="md:w-[684px] md:h-[289px] w-[310px] h-[190px] relative md:top-[-155px] top-[100px] left-[24px] md:left-[491px] xxl:left-[491px] xl:left-[461px] rounded-[20px] bg-white "
         >
           <h1 className="md:text-[36px] text-[24px] left-[24px] font-bold font-satoshiBold text-black relative z-30 top-[25px] md:left-[36px]">
             Formal

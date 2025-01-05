@@ -31,20 +31,20 @@ const NewArrivalCard = ({
           data-aos="flip-left"
           data-aos-easing="ease-out-cubic"
           data-aos-duration="2000"
-          className="md:h-[420px]"
+          className="md:h-[420px] xxl:h-[420px] xl:h-[350px]"
         >
-          <div className="md:w-[295px] md:h-[298px] w-[180px] h-[190px] rounded-[20px] bg-bannerBg relative ">
+          <div className="md:w-[295px] md:h-[298px] xxl:w-[295px] xxl:h-[298px] xl:w-[240px] xl:h-[180px] w-[180px] h-[190px] rounded-[20px] bg-bannerBg relative ">
             <Image
               src={image}
               alt="product-image"
               height={296}
               width={444}
-              className="md:w-[444px] md:h-[296px] w-[180px] h-[190px] object-cover rounded-[20px]"
+              className="md:w-[444px] md:h-[296px] xxl:w-[444px] xxl:h-[296px] xl:w-[240px] xl:h-[250px] w-[180px] h-[190px] object-cover rounded-[20px]"
             />
             <div
               data-aos="flip-left"
               data-aos-delay="300"
-              className="flex flex-col h-[200px] justify-between absolute top-[210px]"
+              className="flex flex-col h-[200px] justify-between absolute xxl:top-[210px] md:top-[210px] xl:top-[160px] top-[210px]"
             >
               <h1 className="absolute  top-[-10px] md:top-[100px]  left-[9px] font-satoshiBold font-semibold md:text-[20px] text-black text-[12px] whitespace-nowrap">
                 {title}

@@ -20,7 +20,7 @@ const TopSellingCard = ({
           data-aos="flip-left"
           data-aos-easing="ease-out-cubic"
           data-aos-duration="2000"
-          className="md:w-[295px] md:h-[298px] h-[180px] w-[180px] rounded-[20px] bg-BannerBgColor "
+          className="md:w-[295px] md:h-[298px] xxl:w-[295px] xxl:h-[298px] xl:w-[275px] xl:h-[298px] h-[180px] w-[180px] rounded-[20px] bg-BannerBgColor "
         >
           <Image
             src={image}

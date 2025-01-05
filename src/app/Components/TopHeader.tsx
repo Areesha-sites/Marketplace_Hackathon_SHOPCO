@@ -6,7 +6,7 @@ const TopHeader = () => {
       <header
         data-aos="fade-right"
         data-aos-delay="100"
-        className="md:w-[1440px] md:h-[38px] bg-black md:py-[9px] md:pl-[544px] md:pr-[100px] w-[390px] h-[34px] "
+        className="xxl:w-[1440px] absolute top-0 md:w-[1440px] md:h-[38px] bg-black md:py-[9px] md:pl-[544px] xl:pl-[444px] lg:pl-[344px] md:pr-[100px] w-[390px] h-[34px] lg:w-full xl:w-full xxl:pl-[544px] mx-auto"
       >
         <p
           data-aos="fade-right"
@@ -29,7 +29,7 @@ const TopHeader = () => {
           alt=""
           height={20}
           width={20}
-          className="h-[20px] w-[20px] absolute left-[1320px] top-[9px] md:block hidden"
+          className="h-[20px] w-[20px] absolute md:left-[1320px] xxl:left-[1320px] xl:left-[1100px] lg:left-[900px] top-[9px] md:block hidden"
         />
       </header>
     </>

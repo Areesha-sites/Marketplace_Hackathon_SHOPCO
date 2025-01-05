@@ -30,7 +30,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className="md:w-[1240px] h-[41px] absolute md:top-[62px] top-[42px] md:left-[100px] flex md:gap-[40px] items-center">
+      <nav className="md:w-[1240px] xxl:w-[1240px] lg:w-[900px] xl:w-[1124px] h-[41px] absolute md:top-[62px] top-[42px] md:left-[100px] xl:left-[75px] flex md:gap-[40px] items-center xl:justify-center lg:left-[40px] xxl:left-[100px]">
         <IoMenu
           className="absolute left-[16px] md:hidden cursor-pointer w-[24px] h-[24px]"
           onClick={toggleMenu}
@@ -38,11 +38,11 @@ const Navbar = () => {
         <h1
           data-aos="fade-right"
           data-aos-delay="100"
-          className="md:text-[32px] left-[56px] text-black absolute font-bold md:static text-[25.5px] font-integralCf tracking-wider"
+          className="md:text-[32px] md:left-[56px] left-[70px] lg:left-[20px] xl:left-[20px] text-black absolute font-bold md:static text-[25.5px] font-integralCf tracking-wider"
         >
           <Link href="/"> SHOP.CO</Link>
         </h1>
-        <div className="w-[321px] h-[22px] md:flex gap-[24px] items-center hidden">
+        <div className="md:w-[321px] xl:w-[280px] xl:gap-[14px] h-[22px] md:flex md:gap-[24px] xxl:gap-[24px] items-center hidden">
           <div
             className="w-[57px] h-[22px] flex gap-[4px] items-center cursor-pointer"
             onClick={toggleDropdown}
@@ -96,7 +96,7 @@ const Navbar = () => {
         <div
           data-aos="fade-right"
           data-aos-delay="300"
-          className="w-[577px] h-[48px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center hidden font-satoshi"
+          className="w-[577px] h-[48px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center hidden font-satoshi xxl:left-[16px]"
         >
           <Image
             src="/Frame (34).svg"
@@ -114,7 +114,7 @@ const Navbar = () => {
         <div
           data-aos="fade-left"
           data-aos-delay="300"
-          className="flex md:gap-[14px] md:w-[62px] md:h-[24px] w-[96px] h-[24px] md:static absolute left-[278px] gap-[12px]"
+          className="flex md:gap-[14px] md:w-[62px] xxl:w-[62px] xxl:gap-[14px] md:h-[24px] w-[96px] h-[24px] md:static absolute left-[278px] gap-[12px] xl:gap-[10px]"
         >
           <Image
             src="/Frame (35).svg"

@@ -6,7 +6,7 @@ const NewsLetter = () => {
     <div
       data-aos="flip-down"
       data-aos-delay="300"
-      className="md:w-[1240px] md:h-[180px] w-[358px] h-[293px] top-[1052px] absolute  md:left-[100px] z-20 rounded-[20px] flex justify-between md:flex-row flex-col md:pt-[36px] md:px-[64px] md:pb-[36px] md:pl-[64px] bg-[#000000] left-[16px]"
+      className="md:w-[1240px] md:h-[180px] xxl:w-[1280px] xl:w-[1100px] w-[358px] h-[293px] top-[1052px] absolute  md:left-[100px] xxl:left-[80px] xl:left-[78px] z-20 rounded-[20px] flex justify-between md:flex-row flex-col md:pt-[36px] md:px-[64px] md:pb-[36px] md:pl-[64px] bg-[#000000] left-[16px]"
     >
       <span className="md:w-[651px] w-[330px] font-extrabold md:text-[40px] text-[32px] leading-[35px] md:leading-[45px] text-[#ffffff] md:text-left md:static relative top-[32px] left-[24px] tracking-wider font-integralCf">
         STAY UPTO DATE ABOUT OUR LATEST OFFERS

@@ -97,12 +97,14 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="zoom-in"
           data-aos-delay="200"
-          className="md:w-[1240px] absolute md:top-[134px] md:left-[100px]  border-b-[1px] border-black/5 w-[358px] top-[98px] left-[16px]"
+          className="md:w-[1240px] xxl:w-[1280px] xl:w-[1100px] absolute md:top-[134px] md:left-[100px]  border-b-[1px] border-black/5 w-[358px] top-[98px] left-[16px]"
         ></div>
         <div
           data-aos="zoom-in"
           data-aos-delay="200"
-          className="md:w-[1240px] md:absolute top-[134px] left-[100px] border-b-[1px] border-black/10 opacity-10"
+          className="
+          md:w-[1240px] xxl:w-[1240px] xl:w-[1125px] absolute md:top-[134px] md:left-[100px] xxl:left-[100px] xl:left-[80px]
+           md:absolute top-[134px] left-[100px] border-b-[1px] border-black/10 opacity-10"
         ></div>
         <Image
           data-aos="zoom-in-down"
@@ -143,14 +145,14 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
         <h1
           data-aos="fade-left"
           data-aos-delay="100"
-          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[267px] md:w-[600px] leading-[28px] tracking-wider font-integralCf md:whitespace-nowrap"
+          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[267px] md:w-[600px] leading-[28px] tracking-wider font-integralCf md:whitespace-nowrap xl:whitespace-normal xl:leading-[40px] xl:w-[470px] "
         >
           {product.title}
         </h1>
         <div
           data-aos="fade-left"
           data-aos-delay="200"
-          className="md:w-[193px] md:h-[24.71px] absolute md:top-[278px] md:left-[750px] flex gap-[16px] w-[154px] h-[19px] top-[666px] left-[16px]"
+          className="md:w-[193px] md:h-[24.71px] absolute xxl:top-[298px] xl:top-[305px] md:top-[278px] md:left-[750px] flex gap-[16px] w-[154px] h-[19px] top-[666px] left-[16px]"
         >
           <Image
             data-aos="fade-left"
@@ -159,7 +161,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
             alt="rating"
             height={24.71}
             width={139}
-            className="md:w-[139px] md:h-[24.71px] w-[105px] h-[18.67px] "
+            className="md:w-[139px] md:h-[24.71px] w-[105px] h-[18.67px] xl:w-[100px]"
           />
           <span
             data-aos="fade-left"
@@ -173,7 +175,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-left"
           data-aos-delay="300"
-          className="md:w-[176px] md:h-[43px] absolute md:top-[317px] md:left-[750px] left-[16px] flex gap-[12px] items-center top-[694px]"
+          className="md:w-[176px] md:h-[43px] absolute md:top-[317px] xl:top-[327px] md:left-[750px] left-[16px] flex gap-[12px] items-center top-[694px]"
         >
           <span className="font-satoshiBold md:text-[32px] text-[24px] font-bold text-black">
             ${product.price}
@@ -190,14 +192,14 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
         <p
           data-aos="fade-left"
           data-aos-delay="400"
-          className="md:w-[590px] absolute md:top-[380px] md:left-[750px] font-satoshi md:text-[16px] text-[12px] font-normal text-black text-opacity-60 top-[736px] left-[20px] w-[358px]  "
+          className="md:w-[590px] absolute md:top-[380px] md:left-[750px] font-satoshi md:text-[16px] text-[12px] font-normal text-black text-opacity-60 top-[736px] left-[20px] w-[358px] xxl:w-[590px] xl:w-[500px]  "
         >
           {product.des}
         </p>
         <div
           data-aos="fade-left"
           data-aos-delay="400"
-          className="md:w-[590px] absolute md:top-[442px] md:left-[750px] border-b-[1px] border-black/10 w-[358px] top-[810px] left-[16px]"
+          className="md:w-[590px] xxl:w-[590px] xl:w-[470px]  absolute md:top-[442px] md:left-[750px] border-b-[1px] border-black/10 w-[358px] top-[810px] left-[16px]"
         ></div>
         <p
           data-aos="fade-right"
@@ -226,7 +228,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-right"
           data-aos-delay="300"
-          className="md:w-[590px] absolute md:top-[549px] md:left-[750px] left-[16px] w-[358px] top-[923px] border-b-[1px] border-black/10"
+          className="md:w-[590px] xxl:w-[590px] xl:w-[470px]  absolute md:top-[549px] md:left-[750px] left-[16px] w-[358px] top-[923px] border-b-[1px] border-black/10"
         ></div>
         <p
           data-aos="fade-right"
@@ -256,7 +258,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-left"
           data-aos-delay="200"
-          className="md:w-[590px] w-[353px]  absolute md:top-[673px] md:left-[750px] top-[1056px] left-[16px] border-b-[1px] border-black/10"
+          className="md:w-[590px] xxl:w-[590px] xl:w-[470px] w-[353px]  absolute md:top-[673px] md:left-[750px] top-[1056px] left-[16px] border-b-[1px] border-black/10"
         ></div>
         <div
           data-aos="zoom-in"
@@ -270,7 +272,9 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
             width={24}
             className="md:h-[24px] md:w-[24px] h-[16px] w-[16px]"
           />
-          <span className="text-[16px] font-medium text-black font-satoshi">1</span>
+          <span className="text-[16px] font-medium text-black font-satoshi">
+            1
+          </span>
           <Image
             src="/increase.svg"
             alt="decrease-icon"
@@ -282,7 +286,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
         <button
           data-aos="zoom-in"
           data-aos-delay="300"
-          className="md:w-[400px] md:h-[52px] h-[44px] absolute md:top-[694px] md:left-[940px] top-[1080px] py-[16px] px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center flex justify-center font-inter w-[236px] left-[138px] font-satoshi"
+          className="md:w-[400px] xxl:w-[400px] xl:w-[300px] md:h-[52px] h-[44px] absolute md:top-[694px] md:left-[940px] top-[1080px] py-[16px] px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center flex justify-center font-inter w-[236px] left-[138px] font-satoshi"
         >
           Add to Cart
         </button>
@@ -310,7 +314,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="zoom-in-down"
           data-aos-delay="300"
-          className="md:w-[1240px] absolute md:top-[864px] md:left-[100px] border-b-[1px] border-black/10 w-[358px] left-[16px] top-[1210px]"
+          className="md:w-[1240px] xxl:w-[1240px] xl:w-[1130px] absolute md:top-[864px] md:left-[100px] border-b-[1px] border-black/10 w-[358px] left-[16px] top-[1210px]"
         >
           <div
             data-aos="zoom-in-down"
@@ -334,11 +338,11 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
             (451)
           </span>
         </div>
-        <div classNamew-="md:w-[354px] h-[48px]  absolute md:left-[986px] md:top-[888px] flex justify-between top-[1280px]">
+        <div classNamew-="md:w-[354px] h-[48px] absolute md:left-[986px] xxl:left-[986px] xl:left-[100px] xxl:w-[986px] md:top-[888px] flex justify-between top-[1280px]">
           <div
             data-aos="fade-up-left"
             data-aos-delay="300"
-            className="md:h-[48px] md:w-[48px] w-[40px] h-[40px]  left-[213px] bg-bgLightGrayColor rounded-full absolute md:left-[986px] md:top-[888px] flex justify-center items-center top-[1245px]"
+            className="md:h-[48px] md:w-[48px] w-[40px] h-[40px] left-[213px] bg-bgLightGrayColor rounded-full absolute md:left-[986px] xxl:left-[986px] xl:left-[870px] md:top-[888px] flex justify-center items-center top-[1245px]"
           >
             <Image
               src="/product-detail-review-icon.svg"
@@ -351,7 +355,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
           <div
             data-aos="fade-up-left"
             data-aos-delay="300"
-            className="w-[120px] h-[48px] py-[16px] px-[20px] rounded-[62px] absolute md:left-[1045px] md:top-[888px] md:flex justify-between items-center bg-bgLightGrayColor hidden"
+            className="w-[120px] h-[48px] py-[16px] px-[20px] rounded-[62px] absolute md:left-[1045px] xxl:left-[1045px] xl:left-[930px] md:top-[888px] md:flex justify-between items-center bg-bgLightGrayColor hidden"
           >
             <p className="text-[16px] font-medium font-satoshi text-black">
               Latest
@@ -367,12 +371,12 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
           <div
             data-aos="fade-up-left"
             data-aos-delay="300"
-            className="md:w-[166px] w-[113px] md:h-[48px] h-[40px] py-[16px] px-[20px] rounded-[62px] absolute md:left-[1178px] md:top-[888px] flex justify-center items-center bg-black text-white whitespace-nowrap text-[12px] md:text-[16px] font-medium top-[1245px] left-[261px]  font-satoshi"
+            className="md:w-[166px] w-[113px] md:h-[48px] h-[40px] py-[16px] px-[20px] rounded-[62px] absolute md:left-[1178px] xxl:left-[1178px] xl:left-[1063px] md:top-[888px] flex justify-center items-center bg-black text-white whitespace-nowrap text-[12px] md:text-[16px] font-medium top-[1245px] left-[261px]  font-satoshi"
           >
             Write a Review
           </div>
         </div>
-        <div className="absolute md:top-[980px] md:left-[100px] top-[1310px] left-[16px]">
+        <div className="absolute md:top-[980px] md:left-[100px] xxl:left-[100px] xl:left-[50px] top-[1310px] left-[16px]">
           <ReviewCardList />
         </div>
         <button
@@ -389,7 +393,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
         >
           You might also like
         </h1>
-        <div className="absolute md:top-[1991px] top-[2300px] md:left-[100px] left-[16px]">
+        <div className="absolute md:top-[1991px] top-[2300px] md:left-[100px] xxl:left-[100px] xl:left-[50px] left-[16px]">
           <ProductDetailsCardList />
         </div>
         <div className="absolute md:top-[2572px] top-[2800px]">

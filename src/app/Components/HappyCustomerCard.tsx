@@ -14,9 +14,9 @@ const HappyCustomerCard = ({
         data-aos="flip-left"
         data-aos-easing="ease-out-cubic"
         data-aos-duration="2000"
-        className="md:w-[400px] md:h-[240px] w-[358px] h-[176px] md:flex-shrink-0 top-[3461px] left-[-40px] rounded-[20px] border-[1px] border-black/10 md:py-[28px] md:px-[32px] p-[24px]"
+        className="md:w-[400px] md:h-[240px] xxl:w-[400px] xxl:h-[240px] xl:w-[363px] xl:h-[240px] w-[358px] h-[176px] md:flex-shrink-0 top-[3461px] left-[-40px] rounded-[20px] border-[1px] border-black/10 md:py-[28px] md:px-[32px] p-[24px]"
       >
-        <div className=" md:w-[336px] md:h-[161.58px] w-[118px] flex justify-between flex-col">
+        <div className="md:w-[336px] md:h-[161.58px] w-[118px] flex justify-between flex-col">
           <Image
             src={rating}
             alt="rating"

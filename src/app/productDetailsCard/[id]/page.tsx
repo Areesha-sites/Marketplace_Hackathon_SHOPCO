@@ -88,7 +88,11 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
             />
           </div>
         </div>
-        <div className="md:w-[1240px] absolute md:top-[134px] md:left-[100px]  border-b-[1px] border-black opacity-10 w-[358px] top-[98px] left-[16px]"></div>
+        <div
+          data-aos="zoom-in"
+          data-aos-delay="200"
+          className="md:w-[1240px] xxl:w-[1240px] xl:w-[1125px] absolute md:top-[134px] md:left-[100px] xxl:left-[100px] xl:left-[80px] border-b-[1px] border-black/10 w-[358px] top-[98px] left-[16px]"
+        ></div>
         <Image
           data-aos="zoom-in-down"
           data-aos-delay="200"
@@ -96,7 +100,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
           alt={product.title}
           height={530}
           width={444}
-          className="md:w-[444px] md:h-[530px] absolute md:top-[216px] md:left-[266px] rounded-[20px] bg-productDetailBbImageColor h-[290px] w-[358px] top-[170px] left-[18px] "
+          className="md:w-[444px] md:h-[530px] absolute md:top-[216px] md:left-[266px] rounded-[20px] bg-productDetailBbImageColor h-[290px] w-[358px] top-[170px] left-[18px]"
         />
         <Image
           data-aos="flip-up"
@@ -105,7 +109,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
           alt={product.title}
           height={167}
           width={152}
-          className="md:h-[167px] md:w-[152px]  absolute md:top-[216px] md:left-[100px] rounded-[20px] border-[1px] border-black left-[16px] w-[112px] h-[106px] top-[475px] "
+          className="md:h-[167px] md:w-[152px] absolute md:top-[216px] md:left-[100px] rounded-[20px] border-[1px] border-black left-[16px] w-[112px] h-[106px] top-[475px] "
         />
         <Image
           data-aos="flip-up"
@@ -124,21 +128,20 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
           alt={product.title}
           height={167}
           width={152}
-          className="md:h-[167px] md:w-[152px] absolute md:top-[579px] md:left-[100px] rounded-[20px] w-[111px] h-[106px] top-[475px] left-[263px]  "
+          className="md:h-[167px] md:w-[152px] absolute md:top-[579px] md:left-[100px] rounded-[20px] w-[111px] h-[106px] top-[475px] left-[263px] "
         />
 
         <h1
           data-aos="fade-left"
           data-aos-delay="100"
-          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[287px] md:w-[600px] leading-[28px] tracking-wider font-integralCf md:leading-[38px]"
+          className="absolute md:top-[216px] md:left-[750px] top-[600px] text-[24px] left-[16px] md:text-[40px] text-black font-black w-[297px] md:w-[600px] xxl:w-[600px] md:leading-[28px] tracking-wider font-integralCf md:whitespace-nowrap leading-[30px] xl:whitespace-normal xl:leading-[40px] xl:w-[470px] "
         >
           {product.title}
         </h1>
-
         <div
           data-aos="fade-left"
           data-aos-delay="200"
-          className="md:w-[193px] md:h-[24.71px] absolute md:top-[298px] md:left-[750px] flex gap-[16px] w-[154px] h-[19px] top-[666px] left-[16px] items-center"
+          className="md:w-[193px] md:h-[24.71px] absolute md:top-[278px]  xxl:top-[298px] xl:top-[305px] md:left-[750px] flex gap-[16px] w-[154px] h-[19px] top-[665px] left-[16px] items-center"
         >
           <Image
             data-aos="fade-left"
@@ -147,7 +150,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
             alt="rating"
             height={24.71}
             width={139}
-            className="md:w-[139px] md:h-[24.71px] w-[105px] h-[18.67px] "
+            className="md:w-[139px] md:h-[24.71px] w-[105px] h-[18.67px] xl:w-[100px]"
           />
           <span
             data-aos="fade-left"
@@ -162,7 +165,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-left"
           data-aos-delay="300"
-          className="md:w-[176px] md:h-[43px] absolute md:top-[327px] md:left-[750px] left-[16px] flex gap-[12px] items-center top-[694px]"
+          className="md:w-[176px] md:h-[43px] absolute md:top-[317px] xxl:top-[317px] xl:top-[327px] md:left-[750px] left-[16px] flex gap-[12px] items-center top-[685px]"
         >
           <span className="font-satoshiBold md:text-[32px] text-[20px] font-bold text-black">
             ${product.price}
@@ -179,14 +182,14 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <p
           data-aos="fade-left"
           data-aos-delay="400"
-          className="md:w-[590px] absolute md:top-[380px] md:left-[750px] md:text-[16px] text-[12px] font-normal text-black text-opacity-60 top-[736px] left-[20px] w-[358px] font-satoshi"
+          className="md:w-[590px] absolute md:top-[380px] md:left-[750px] xxl:w-[590px] xl:w-[500px] md:text-[16px] text-[12px] font-normal text-black text-opacity-60 top-[736px] left-[20px] w-[358px] font-satoshi"
         >
           {product.des}
         </p>
         <div
           data-aos="fade-left"
           data-aos-delay="400"
-          className="md:w-[590px] absolute md:top-[442px] md:left-[750px] border-b-[1px] border-black/10 w-[358px] top-[810px] left-[16px]"
+          className="md:w-[590px] xxl:w-[590px] xl:w-[470px] absolute md:top-[442px] md:left-[750px] border-b-[1px] border-black/10 w-[358px] top-[810px] left-[16px]"
         ></div>
 
         <p
@@ -199,7 +202,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-right"
           data-aos-delay="200"
-          className="w-[143px] h-[37px] absolute md:top-[494px] top-[870px] md:left-[750px] left-[16px] flex gap-[16px]"
+          className="-[143px] h-[37px] absolute md:top-[494px] top-[870px] md:left-[750px] left-[16px] flex gap-[16px]"
         >
           <div className="h-[37px] w-[37px] bg-productDetailBgCircle1 rounded-full flex justify-center items-center">
             <Image
@@ -216,12 +219,12 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-right"
           data-aos-delay="300"
-          className="md:w-[590px] absolute md:top-[549px] md:left-[750px] left-[16px] w-[358px] top-[923px] border-b-[1px] border-black/10"
+          className="md:w-[590px] xxl:w-[590px] xl:w-[470px] absolute md:top-[549px] md:left-[750px] left-[16px] w-[358px] top-[923px] border-b-[1px] border-black/10"
         ></div>
         <p
           data-aos="fade-right"
           data-aos-delay="400"
-          className="absolute md:top-[573px] top-[947px] md:left-[750px] font-satoshi  text-[16px] font-normal text-black text-opacity-60 left-[16px]"
+          className="absolute md:top-[573px] top-[947px] md:left-[750px] font-satoshi text-[16px] font-normal text-black text-opacity-60 left-[16px]"
         >
           Choose Size
         </p>
@@ -246,7 +249,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <div
           data-aos="fade-left"
           data-aos-delay="200"
-          className="md:w-[590px] w-[353px]  absolute md:top-[673px] md:left-[750px] top-[1056px] left-[16px] border-b-[1px] border-black/10"
+          className="md:w-[590px] xxl:w-[590px] xl:w-[470px] w-[353px]  absolute md:top-[673px] md:left-[750px] top-[1056px] left-[16px] border-b-[1px] border-black/10"
         ></div>
         <div
           data-aos="zoom-in"
@@ -272,37 +275,37 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
         <button
           data-aos="zoom-in"
           data-aos-delay="300"
-          className="md:w-[400px] md:h-[52px] h-[44px] absolute md:top-[694px] md:left-[940px] top-[1080px] py-[16px] px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center font-satoshi flex justify-center w-[236px] left-[138px] "
+          className="md:w-[400px] xxl:w-[400px] xl:w-[300px] md:h-[52px] h-[44px] absolute md:top-[694px] md:left-[940px] top-[1080px] py-[16px] px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center flex justify-center font-satoshi w-[236px] left-[138px] "
         >
           Add to Cart
         </button>
         <h3
           data-aos="zoom-in-down"
           data-aos-delay="300"
-          className="absolute md:top-[826px] md:left-[240px] font-satoshi md:text-[20px] font-medium text-black/60 left-[16px] top-[1170px] text-[16px]"
+          className="absolute md:top-[826px] md:left-[240px] font-satoshi md:text-[20px] font-medium text-black/60 left-[16px] top-[1170px] text-[16px] "
         >
           Product Details
         </h3>
         <h3
           data-aos="zoom-in-down"
           data-aos-delay="300"
-          className="absolute md:top-[826px] md:left-[624px] font-satoshi md:text-[20px] font-medium text-black left-[168px] top-[1170px] text-[16px] "
+          className="absolute md:top-[826px] md:left-[624px] font-satoshi md:text-[20px] font-medium text-black left-[168px] top-[1170px] text-[16px]"
         >
           Rating & Reviews
         </h3>
         <h3
           data-aos="zoom-in-down"
           data-aos-delay="300"
-          className="absolute md:top-[826px] md:left-[1110px] top-[1170px] font-satoshi md:text-[20px] font-medium text-black/60 left-[336px] text-[16px] "
+          className="absolute md:top-[826px] md:left-[1110px] top-[1170px] font-satoshi md:text-[20px] font-medium text-black/60 left-[336px] text-[16px]  "
         >
           FAQs
         </h3>
         <div
           data-aos="zoom-in-down"
           data-aos-delay="300"
-          className="md:w-[1240px] absolute md:top-[864px] md:left-[100px] border-b-[1px] border-black/10 w-[358px] left-[16px] top-[1210px]"
+          className="md:w-[1240px] absolute md:top-[864px] md:left-[100px] xxl:w-[1240px] xl:w-[1130px] border-b-[1px] border-black/10 w-[358px] left-[16px] top-[1210px]"
         >
-          <div
+            <div
             data-aos="zoom-in-down"
             data-aos-delay="300"
             className="md:w-[414px] border-b-[2px] border-black w-[123px] left-[168px] top-[0px] absolute md:left-[400px] "
@@ -319,16 +322,16 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
           <span
             data-aos="fade-up-right"
             data-aos-delay="300"
-            className="absolute md:top-[905px] md:left-[240px] font-satoshi md:text-[16px] font-normal text-black/60 text-[14px] top-[1252px] left-[140px] "
+            className="absolute md:top-[905px] md:left-[235px] font-satoshi md:text-[16px] font-normal text-black/60 text-[14px] top-[1252px] left-[140px] "
           >
             (451)
           </span>
         </div>
-        <div classNamew-="md:w-[354px] h-[48px]  absolute md:left-[986px] md:top-[888px] flex justify-between top-[1280px] ">
+        <div classNamew-="md:w-[354px] h-[48px] absolute md:left-[986px] xxl:left-[986px] xl:left-[100px] xxl:w-[986px]  md:top-[888px] flex justify-between top-[1280px]">
           <div
             data-aos="fade-up-left"
             data-aos-delay="300"
-            className="md:h-[48px] md:w-[48px] w-[40px] h-[40px]  left-[213px] bg-bgLightGrayColor rounded-full  absolute md:left-[986px] md:top-[888px] flex justify-center items-center top-[1245px]"
+            className="md:h-[48px] md:w-[48px] w-[40px] h-[40px] left-[213px] bg-bgLightGrayColor rounded-full absolute md:left-[986px] xxl:left-[986px] xl:left-[870px] md:top-[888px] flex justify-center items-center top-[1245px]"
           >
             <Image
               src="/product-detail-review-icon.svg"
@@ -342,7 +345,7 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
           <div
             data-aos="fade-up-left"
             data-aos-delay="300"
-            className="w-[120px] h-[48px] py-[16px] px-[20px] rounded-[62px] absolute md:left-[1045px] md:top-[888px] md:flex justify-between items-center bg-bgLightGrayColor hidden"
+            className="w-[120px] h-[48px] py-[16px] px-[20px] rounded-[62px] absolute md:left-[1045px] xxl:left-[1045px] xl:left-[930px] md:top-[888px] md:flex justify-between items-center bg-bgLightGrayColor hidden"
           >
             <p className="text-[16px] font-medium font-satoshi text-black ">
               Latest
@@ -358,29 +361,29 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
           <div
             data-aos="fade-up-left"
             data-aos-delay="300"
-            className="md:w-[166px] w-[113px] md:h-[48px] h-[40px] py-[16px] px-[20px] rounded-[62px] absolute md:left-[1178px] md:top-[888px] flex justify-center items-center bg-black text-white whitespace-nowrap text-[12px] md:text-[16px] font-medium top-[1245px] left-[261px]  font-satoshi"
+            className="md:w-[166px] w-[113px] md:h-[48px] h-[40px] py-[16px] px-[20px] rounded-[62px] absolute md:left-[1178px] xxl:left-[1178px] xl:left-[1063px] md:top-[888px] flex justify-center items-center bg-black text-white whitespace-nowrap text-[12px] md:text-[16px] font-medium top-[1245px] left-[261px]  font-satoshi"
           >
             Write a Review
           </div>
         </div>
-        <div className="absolute md:top-[980px] md:left-[100px] top-[1310px] left-[16px]">
+        <div className="absolute md:top-[980px] md:left-[100px] xxl:left-[100px] xl:left-[50px] top-[1310px] left-[16px]">
           <ReviewCardList />
         </div>
         <button
           data-aos="zoom-in"
           data-aos-delay="200"
-          className="md:w-[230px] w-[195px] h-[47px] left-[98px] md:h-[52px] absolute md:top-[1772px] md:left-[605px] py-[14px] md:py-[16px] px-[36px] md:px-[54px] rounded-[62px] border-[1px] border-black/10 md:text-[16px] text-[14px] font-satoshi font-medium whitespace-nowrap items-center flex justify-center top-[2100.19px]  "
+          className="md:w-[230px] w-[195px] h-[47px] left-[98px] md:h-[52px] absolute md:top-[1772px] md:left-[605px] xxl:left-[605px] xl:left-[530px] py-[14px] md:py-[16px] px-[36px] md:px-[54px] rounded-[62px] border-[1px] border-black/10 md:text-[16px] text-[14px] font-satoshi font-medium whitespace-nowrap items-center flex justify-center top-[2100.19px] "
         >
           Load More Reviews
         </button>
         <h1
           data-aos="zoom-in"
           data-aos-delay="300"
-          className="md:w-[579px] md:h-[58px] absolute md:top-[1878px] md:left-[431px] font-black text-black md:text-[48px] text-[32px] left-[89px] w-[200px] leading-[36px] mx-auto top-[2200px] text-center uppercase "
+          className="md:w-[579px] md:h-[58px] absolute md:top-[1878px] md:left-[431px] xxl:left-[431px] xl:left-[330px] font-black text-black md:text-[48px] text-[32px] left-[79px] w-[250px] leading-[36px] mx-auto top-[2200px] text-center uppercase tracking-wider font-integralCf md:whitespace-nowrap"
         >
           You might also like
         </h1>
-        <div className="absolute md:top-[1991px] top-[2300px] md:left-[100px] left-[16px]">
+        <div className="absolute md:top-[1991px] top-[2300px] md:left-[100px] xxl:left-[100px] xl:left-[50px] left-[16px]">
           <ProductDetailsCardList />
         </div>
       </section>

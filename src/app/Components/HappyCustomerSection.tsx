@@ -8,7 +8,7 @@ const HappyCustomerSection = () => {
         <h1
           data-aos="zoom-in"
           data-aos-delay="200"
-          className="absolute md:top-[3363px] top-[3170px] md:left-[100px] left-[16px]  text-[32px] md:text-[48px] font-extrabold text-blackBgColor leading-[36px] tracking-wider font-integralCf"
+          className="absolute md:top-[3363px] top-[3170px] md:left-[100px] xxl:left-[100px] xl:left-[50px] left-[16px]  text-[32px] md:text-[48px] font-extrabold text-blackBgColor leading-[36px] tracking-wider font-integralCf"
         >
           OUR HAPPY CUSTOMERS
         </h1>
@@ -19,7 +19,7 @@ const HappyCustomerSection = () => {
           alt="left-arrow"
           height={18.75}
           width={15.76}
-          className="h-[24px] w-[24px] absolute md:top-[3383px] top-[3215px] md:left-[1280px] left-[300px]"
+          className="h-[24px] w-[24px] absolute md:top-[3383px] top-[3215px] md:left-[1280px] xxl:left-[1280px] left-[300px] xl:left-[1150px]"
         />
         <Image
           data-aos="zoom-in-right"
@@ -28,10 +28,9 @@ const HappyCustomerSection = () => {
           alt="left-arrow"
           height={18.75}
           width={15.76}
-          className="h-[24px] w-[24px] absolute md:top-[3383px] top-[3215px]  md:left-[1320px]  left-[345px]"
+          className="h-[24px] w-[24px] absolute md:top-[3383px] top-[3215px] md:left-[1320px] xxl:left-[1320px] xl:left-[1180px] left-[345px]"
         />
-
-        <div className="absolute md:left-[100px] md:top-[3461px] left-[135px] top-[3280px]">
+        <div className="relative top-[3280px] md:top-[3461px] left-[135px] md:left-[100px] xl:left-0 lg:left-0">
           <HappyCustomerCardList />
         </div>
       </section>

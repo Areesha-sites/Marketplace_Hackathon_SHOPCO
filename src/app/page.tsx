@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import Banner from "./Components/Banner";
 import DressStyleSection from "./Components/DressStyleSection";
 import TopSelling from "./Components/TopSellingSection";
-import { CartProvider } from "./context/CartContext";
 import Footer from "./Components/Footer";
 import NewArrivalSection from "./Components/NewArrivalSection";
 import HappyCustomerSection from "./Components/HappyCustomerSection";
@@ -21,18 +20,16 @@ export default function Home() {
 
   return (
     <>
-      <CartProvider>
-        <div className="mx-auto relative w-[390px] md:w-[1440px]">
-          <Banner />
-          <NewArrivalSection />
-          <TopSelling />
-          <DressStyleSection />
-          <HappyCustomerSection />
+      <div className="mx-auto relative w-[390px] md:w-[1440px] xxl:w-[1440px] xl:w-full ">
+        <Banner />
+        <NewArrivalSection />
+        <TopSelling />
+        <DressStyleSection />
+         <HappyCustomerSection />
           <div className="absolute md:top-[3900px] top-[3660px] ">
             <Footer />
           </div>
-        </div>
-      </CartProvider>
+      </div>
     </>
   );
 }

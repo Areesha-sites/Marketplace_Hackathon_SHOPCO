@@ -14,10 +14,10 @@ const TopSellingCard = ({
         data-aos="flip-left"
         data-aos-easing="ease-out-cubic"
         data-aos-duration="2000"
-        className="md:w-[610px] md:h-[241.58px] w-[358px] h-[244px] p-[24px] rounded-[20px] border-black/10 border-[1px]  md:py-[28px] md:px-[32px] "
+        className="md:w-[610px] xxl:w-[610px] xl:w-[570px] md:h-[241.58px] w-[358px] h-[244px] p-[24px] rounded-[20px] border-black/10 border-[1px]  md:py-[28px] md:px-[32px] "
       >
-        <div className=" md:h-[139.58px] flex justify-between">
-          <div className="md:w-[522px] md:h-[139.58px] w-[310px] h-[176px] flex flex-col gap-[15px]">
+        <div className=" md:h-[139.58px] xxl:w-[400px] xl:w-[400px] flex justify-between">
+          <div className="md:w-[522px] xxl:w-[522px] xl:w-[495px] md:h-[139.58px] w-[310px] h-[176px] flex flex-col gap-[15px]">
             <Image
               src={rating}
               alt="rating"
