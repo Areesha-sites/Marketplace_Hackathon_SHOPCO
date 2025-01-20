@@ -5,14 +5,14 @@ const Banner = () => {
   return (
     <>
       <section
-        data-aos="zoom-up"
-        data-aos-delay="200"
-        className="md:w-full xxl:w-[1440px] xl:w-full h-[900px] absolute xl:top-[200px] top-[98px] bg-BannerBgColor w-full mx-auto lg:w-full lg:top-[130px] xxl:top-[230px] flex justify-center items-center"
+        // data-aos="zoom-up"
+        // data-aos-delay="200"
+        className="md:w-full xxl:w-[1440px] xl:w-full absolute xl:top-[200px] top-[98px] bg-BannerBgColor w-full mx-auto lg:w-full lg:top-[130px] xxl:top-[230px] flex justify-center items-center"
       >
         <div className="flex justify-center items-center w-full mx-auto">
           <Image
-            data-aos="zoom-in-down"
-            data-aos-delay="300"
+            // data-aos="zoom-in-down"
+            // data-aos-delay="300"
             src="/Vector (2).svg"
             alt="star"
             height={56}
@@ -21,15 +21,15 @@ const Banner = () => {
           />
           <div className="flex justify-center items-center mx-auto w-full">
             <h1
-              data-aos="fade-right"
-              data-aos-delay="100"
+              // data-aos="fade-right"
+              // data-aos-delay="100"
               className="lg:w-[577px] lg:h-[173px] absolute lg:top-[80px] md:left-[20px] xxl:left-[100px] xl:left-[70px] xxl:text-[64px] xl:text-[54px] xl:leading-[54px] sm:text-[36px] xxl:leading-[64px] leading-[34px] text-blackBgColor z-20 sm:w-[350px] h-[93px] top-[40px] left-[16px] font-bold tracking-wider font-integralCf lg:left-[26px] lg:text-[50px] lg:leading-[45px] xl:top-[20px] w-[300px] text-[30px]"
             >
               FIND CLOTHES THAT MATCHES YOUR STYLE
             </h1>
             <p
-              data-aos="fade-right"
-              data-aos-delay="300"
+              // data-aos="fade-right"
+              // data-aos-delay="300"
               className="absolute md:top-[160px] xxl:top-[240px] xl:top-[210px] md:left-[20px] xxl:left-[100px] xl:left-[70px] md:text-[16px] font-normal text-black/60 text-opacity-60 md:leading-[22px] z-20 w-[300px] sm:w-[358px] h-[50px] top-[160px] left-[16px] text-[14px] leading-[20px] xl:w-[560px] font-satoshi lg:left-[26px] lg:top-[240px] lg:w-[500px] "
             >
               Browse through our diverse range of meticulously crafted garments,
@@ -38,8 +38,8 @@ const Banner = () => {
             </p>
             <Link href="/casual">
               <button
-                data-aos="fade-right"
-                data-aos-delay="300"
+                // data-aos="fade-right"
+                // data-aos-delay="300"
                 className="lg:w-[210px] h-[52px] absolute xxl:left-[100px] xxl:top-[315px] md:left-[20px] xl:left-[70px] md:py-[16px] md:px-[54px] rounded-[62px] bg-black text-[16px] font-medium text-white flex items-center justify-center z-20 md:w-[250px] w-[290px] sm:w-[358px] left-[16px] top-[268px] sm:top-[238px] font-satoshi hover:bg-black/85 lg:left-[26px] lg:top-[310px] xl:top-[280px]"
               >
                 Shop Now
@@ -47,8 +47,8 @@ const Banner = () => {
             </Link>
             <div className="w-[278px] h-[52px] absolute top-[350px] sm:top-[310px] left-[20px] sm:left-[56px] flex justify-between md:hidden">
               <div
-                data-aos="fade-right"
-                data-aos-delay="200"
+                // data-aos="fade-right"
+                // data-aos-delay="200"
                 className="w-[106px] h-[48px] flex flex-col"
               >
                 <h2 className="text-[24px] font-bold font-satoshiBold text-blackBgColor">
@@ -60,8 +60,8 @@ const Banner = () => {
               </div>
               <span className="border-b-[1px] border-black/10 w-[52px] rotate-90 relative left-[27px] "></span>
               <div
-                data-aos="fade-left"
-                data-aos-delay="200"
+                // data-aos="fade-left"
+                // data-aos-delay="200"
                 className="w-[106px] h-[48px] flex flex-col"
               >
                 <h2 className="text-[24px] font-bold font-satoshiBold text-blackBgColor">
@@ -74,8 +74,8 @@ const Banner = () => {
             </div>
             <div className="w-[103px] h-[48px] absolute top-[420px] sm:top-[390px] left-[122px] sm:left-[144px] md:hidden">
               <div
-                data-aos="fade-right"
-                data-aos-delay="200"
+                // data-aos="fade-right"
+                // data-aos-delay="200"
                 className=" flex flex-col"
               >
                 <h2 className="text-[24px] font-bold font-satoshiBold text-blackBgColor">
@@ -88,8 +88,8 @@ const Banner = () => {
             </div>
           </div>
           <Image
-            data-aos="fade-left"
-            data-aos-delay="100"
+            // data-aos="fade-left"
+            // data-aos-delay="100"
             src="/Rectangle 2 (2).svg"
             alt="main-image"
             height={390}
@@ -97,8 +97,8 @@ const Banner = () => {
             className="relative w-[320px] sm:w-[390px] h-[448px] lg:top-[200px] xl:top-[450px] object-cover md:hidden top-[65px]"
           />
           <Image
-            data-aos="fade-left"
-            data-aos-delay="100"
+            // data-aos="fade-left"
+            // data-aos-delay="100"
             src="/Rectangle 2 (3).svg"
             alt="main-image"
             height={663}
@@ -106,8 +106,8 @@ const Banner = () => {
             className="h-[663px] w-[1440px] md:block hidden lg:absolute lg:top-[-100px] md:absolute md:top-[-140px]"
           />
           <Image
-            data-aos="zoom-in-up"
-            data-aos-delay="300"
+            // data-aos="zoom-in-up"
+            // data-aos-delay="300"
             src="/Vector (3).svg"
             alt="star"
             height={104}
@@ -117,13 +117,13 @@ const Banner = () => {
         </div>
       </section>
       <div
-        data-aos="zoom-in"
-        data-aos-delay="100"
-        className=" xxl:w-[1440px] xl:w-full w-full sm:w-full h-[146px] md:h-[122px] xxl:h-[122px] md:top-[797px] xxl:top-[797px] xl:top-[760px] absolute bg-black top-[951px] flex justify-center sm:flex-row flex-wrap gap-x-[40px] px-[8px] items-center lg:w-full gap-y-0"
+        // data-aos="zoom-in"
+        // data-aos-delay="100"
+        className=" xxl:w-[1440px] xl:w-full w-full sm:w-full h-[146px] md:h-[122px] xxl:h-[122px] md:top-[797px] xxl:top-[797px] xl:top-[723px] absolute bg-black top-[951px] flex justify-center sm:flex-row flex-wrap gap-x-[40px] px-[8px] items-center lg:w-full gap-y-0"
       >
         <Image
-          data-aos="fade-right"
-          data-aos-delay="200"
+          // data-aos="fade-right"
+          // data-aos-delay="200"
           src="/Group (5).svg"
           alt="brand-logo"
           height={33.16}
@@ -131,8 +131,8 @@ const Banner = () => {
           className="md:h-[33.16px] h-[23.25px] md:w-[166.48px] w-[116.74px] md:left-[100px] xxl:left-[100px] xl:left-[80px] md:top-[50px] left-[16px] top-[40px] lg:left-[50px]"
         />
         <Image
-          data-aos="fade-right"
-          data-aos-delay="300"
+          // data-aos="fade-right"
+          // data-aos-delay="300"
           src="/zara-logo-1 1 (2).svg"
           alt="brand-logo"
           height={33.16}
@@ -140,8 +140,8 @@ const Banner = () => {
           className="md:h-[33.16px] md:w-[146.48px] h-[26.65px] w-[63.81px]  md:left-[357.48px] xxl:left-[357.48px] xl:left-[290px] left-[166.74px] top-[40px] md:top-[50px] lg:left-[230px]"
         />
         <Image
-          data-aos="fade-right"
-          data-aos-delay="400"
+          // data-aos="fade-right"
+          // data-aos-delay="400"
           src="/gucci-logo-1 1 (2).svg"
           alt="brand-logo"
           height={33.16}
@@ -149,8 +149,8 @@ const Banner = () => {
           className="md:h-[33.16px] md:w-[166.48px] h-[25.24px] w-[109.39px]  md:left-[569.48px] xxl:left-[569.48px] xl:left-[480px] left-[264.55px] top-[40px] md:top-[50px] lg:left-[380px]"
         />
         <Image
-          data-aos="fade-right"
-          data-aos-delay="500"
+          // data-aos="fade-right"
+          // data-aos-delay="500"
           src="/prada-logo-1 1 (1).svg"
           alt="brand-logo"
           height={33.16}
@@ -158,8 +158,8 @@ const Banner = () => {
           className="md:h-[33.16px] md:w-[166.48px] h-[21px] w-[127px] left-[50px] top-[90px]  md:left-[831.48px] xxl:left-[851.48px] xl:left-[740px] md:top-[50px] lg:left-[580px]"
         />
         <Image
-          data-aos="fade-right"
-          data-aos-delay="600"
+          // data-aos="fade-right"
+          // data-aos-delay="600"
           src="/Group (6).svg"
           alt="brand-logo"
           height={33.16}

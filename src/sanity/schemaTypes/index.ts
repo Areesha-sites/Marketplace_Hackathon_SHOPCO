@@ -3,7 +3,11 @@ import casual from './casual'
 import newArrivals from './newArrivals'
 import topSelling from './topSelling'
 import productDetailsProduct from './productDetailsProduct'
+import kids from './kids'
+import women from './women'
+import men from './men'
+import customerComments from './customerComments'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [casual, newArrivals, topSelling, productDetailsProduct],
+  types: [casual, newArrivals, topSelling, productDetailsProduct, kids, women, men, customerComments],
 }

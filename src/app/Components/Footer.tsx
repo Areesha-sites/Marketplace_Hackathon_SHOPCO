@@ -10,12 +10,12 @@ const Footer = () => {
   return (
     <>
       <div className="relative">
-  <div className="absolute md:top-[-300px]">
+  <div className="absolute md:top-[-400px]">
     <NewsLetter />
   </div>
  
-      {/* <footer className=" md:h-[499px] bg-BannerBgColor xl:h-[430px] xxl:h-[500px] xl:w-[1263px] xxl:w-[1440px] absolute top-[-160px] lg:w-[1024px]"> */}
-        {/* <div className=" xxl:w-[1400px] h-[177px] xl:left-[130px] xxl:left-[100px] md:top-[130px] xl:justify-center xl:gap-[100px] lg:flex-row flex-col w-[1240px] absolute xxl:top-[150px] left-[100px] flex justify-between lg:left-[26px] lg:w-[980px]">
+      <footer className=" md:h-[499px] bg-BannerBgColor xl:h-[430px] xxl:h-[500px] xl:w-[1263px] xxl:w-[1440px] absolute top-[-160px] lg:w-[1024px]">
+        <div className=" xxl:w-[1400px] h-[177px] xl:left-[130px] xxl:left-[100px] md:top-[130px] xl:justify-center xl:gap-[100px] lg:flex-row flex-col w-[1240px] absolute xxl:top-[150px] left-[100px] flex justify-between lg:left-[26px] lg:w-[980px]">
           <div className="md:w-[248px] md:h-[177px] w-[100px] flex flex-col md:gap-[35px]">
             <div className="md:w-[167px] md:h-[23px] md:static absolute top-[-10px] font-black text-[33.4545px] leading-[20px] left-[16px] tracking-wider font-integralCf">
               SHOP.CO
@@ -188,8 +188,8 @@ const Footer = () => {
               Youtube Playlist
             </Link>
           </div>
-        </div> */}
-        {/* <div className="md:w-[1240px] w-[358px] relative md:left-[100px] xl:left-[50px] xl:w-[1150px] md:top-[240px] border-[1px] border-[#000000] border-opacity-[10%] left-[16px] top-[560px] xxl:top-[380px] xxl:w-[1240px] xxl:left-[100px] xl:top-[350px] lg:w-[950px] lg:top-[370px] lg:left-[26px]"></div>
+        </div>
+        <div className="md:w-[1240px] w-[358px] relative md:left-[100px] xl:left-[50px] xl:w-[1150px] md:top-[240px] border-[1px] border-[#000000] border-opacity-[10%] left-[16px] top-[560px] xxl:top-[380px] xxl:w-[1240px] xxl:left-[100px] xl:top-[350px] lg:w-[950px] lg:top-[370px] lg:left-[26px]"></div>
         <span className="md:w-[269px] h-[19px] relative  md:left-[100px] xxl:left-[100px] xl:left-[50px] left-[61px] font-satoshi font-normal text-[14px] leading-[18.9px] text-right text-[#00000] opacity-[60%] whitespace-nowrap md:top-[260px] top-[573px] xxl:top-[400px] xl:top-[370px] lg:top-[380px] lg:left-[26px]">
           Shop.co © 2000-2023, All Rights Reserved
         </span>
@@ -239,8 +239,8 @@ const Footer = () => {
               className="md:w-[30px] md:h-[30px] h-[25px] w-[25px]  "
             />
           </div>
-        </div> */}
-      {/* </footer> */}
+        </div>
+      </footer>
       </div>
     </>
   );

@@ -102,14 +102,14 @@ const TopSellingCardsList = () => {
     return <p>Loading products...</p>;
   }
   return (
-    <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1900px] ">
+    <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1750px] ">
       <Slider {...settings}>
         {products.map((item) => (
           <Link href={`/topSelling/${item._id}`} passHref>
             <div className="h-[400px]">
               <div
-                data-aos="fade-up"
-                data-aos-duration="3000"
+                // data-aos="fade-up"
+                // data-aos-duration="3000"
                 className="lg:w-[295px] lg:h-[298px] md:w-[240px] md:h-[250px] xxl:w-[295px] xxl:h-[298px] xl:w-[275px] xl:h-[298px] h-[150px] w-[145px] sm:w-[175px] sm:h-[200px] rounded-[20px] bg-bannerBg "
               >
                 <div className="relative">

@@ -24,6 +24,7 @@ const Grid: React.FC<GridProps> = ({ products }) => {
        md:grid-cols-3
        lg:grid-cols-2
        xl:grid-cols-3
+       xl:gap-0
        md:gap-[20px]
        items-start
        md:gap-y-[130px]

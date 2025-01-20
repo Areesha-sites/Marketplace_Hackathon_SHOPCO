@@ -102,11 +102,11 @@ const NewArrivalCardsList = () => {
     return <p>Loading products...</p>;
   }
   return (
-    <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1200px] ">
+    <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1020px] ">
       <Slider {...settings}>
         {products.map((item) => (
           <Link href={`/newArrival/${item._id}`} passHref>
-            <div className="h-[400px]">
+            <div className="h-[400px] flex flex-col gap-y-[10px]">
               <div
                 data-aos="fade-up"
                 data-aos-duration="3000"
@@ -122,11 +122,11 @@ const NewArrivalCardsList = () => {
                   />
                   <div className="absolute inset-0 bg-gray-100 opacity-0 hover:opacity-20 rounded-[20px] duration-300 ease-in-out hover:scale-110 transition-all" />
                 </div>
-                <div className="flex flex-col h-[200px] justify-between absolute top-[160px] sm:top-[210px] md:top-[160px] lg:top-[200px]">
-                  <h1 className="absolute top-[-8px] left-[10px] md:top-[100px] font-black md:text-[20px] text-black text-[12px] sm:text-[14px] whitespace-nowrap font-satoshiBold  ">
+                <div className="flex flex-col justify-center gap-[5px] mt-2">
+                  <h1 className=" font-black md:text-[20px] text-black text-[12px] sm:text-[14px] font-satoshiBold w-[280px] leading-[20px] ">
                     {item.name}
                   </h1>
-                  <div className="md:w-[150px] w-[117px] h-[19px] md:top-[135px] left-[10px] absolute top-[11px] flex gap-[13px] items-start justify-start">
+                  <div className="md:w-[150px] w-[117px] h-[19px] flex gap-[13px] items-start justify-start">
                     <Image
                       src="/Frame 10.svg"
                       alt="rating-star"
@@ -141,7 +141,7 @@ const NewArrivalCardsList = () => {
                       </p>
                     )}
                   </div>
-                  <div className="md:w-[200px] h-[32px] absolute top-[30px] flex gap-[5px] sm:gap-[10px] items-center md:top-[155px] left-[10px] ">
+                  <div className="md:w-[200px] h-[32px] flex gap-[5px] sm:gap-[10px] items-center">
                     <span className="md:text-[24px] text-[18px] sm:text-[20px] font-black text-black  font-satoshiBold ">
                       ${item.price}
                     </span>

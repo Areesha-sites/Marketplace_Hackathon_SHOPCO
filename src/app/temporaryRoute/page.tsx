@@ -4,6 +4,7 @@ import LabTabs from "../Components/ProductDetailsTab";
 import CasualCardsList from "../Components/CasualCardsList";
 import CasualCard from "../Components/casualComp/CasualCard";
 import ProductsData from "../Components/products/category";
+import KidsCard from "../Components/kidsComp/Card";
 
 const TemporaryRoute = () => {
   return (
@@ -16,8 +17,9 @@ const TemporaryRoute = () => {
         {/* <CasualCard/>
 
 */}
-<CasualCard/>
+{/* <CasualCard/> */}
         {/* <CasualCardsList/> */}
+        {/* <KidsCard/> */}
       </div>
     </>
   );

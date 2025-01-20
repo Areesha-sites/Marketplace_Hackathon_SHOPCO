@@ -10,32 +10,40 @@ interface Product {
   title: string;
   price: number;
 }
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 const Navbar = () => {
   const dropdownItems = [
     {
-      name: "Men",
+      name: "Casual",
       href: "/casual",
       description:
         "Discover our curated selection of men's clothing and accessories.",
     },
     {
       name: "Women",
-      href: "/casual",
+      href: "/women",
       description: "Explore our stylish collection for women.",
     },
     {
       name: "Kids",
-      href: "/casual",
+      href: "/kids",
       description: "Find adorable outfits for your little ones.",
     },
     {
-      name: "Sale",
-      href: "/casual",
+      name: "Men",
+      href: "/men",
       description: "Shop our exclusive deals and discounts.",
     },
   ];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const navOpen = showNav ? "translate-x-0" : "translate-x-[-100%]";
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -61,11 +69,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav
-        data-aos="fade-up"
-        data-aos-duration="3000"
-        className="w-full h-[41px] absolute md:top-[52px] lg:top-[62px] top-[47px] flex justify-center items-center xl:px-[60px] md:px-5 lg:px-[50px] xxl:px-[87px] "
-      >
+      <nav className="w-full h-[41px] absolute md:top-[52px] lg:top-[62px] top-[47px] flex justify-center items-center xl:px-[60px] md:px-5 lg:px-[50px] xxl:px-[87px] ">
         <div className="flex lg:justify-center md:justify-between items-center h-full w-full lg:gap-[20px] xl:gap-[40px]">
           <h1 className="lg:text-[32px] md:-mt-2 -mt-1 text-black font-bold md:static absolute md:left-[56px] text-[25.2px] font-integralCf tracking-wider md:block hidden">
             <Link href="/"> SHOP.CO</Link>
@@ -146,11 +150,7 @@ const Navbar = () => {
               width={24}
               className="xl:h-[24px] xl:w-[24px] lg:h-[20px] lg:w-[20px] md:w-[15px] h-[24px] w-[24px] md:h-[15px] md:hidden hidden"
             />
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              className="flex flex-col "
-            >
+            <div className="flex flex-col ">
               <Link href="/cart">
                 <Image
                   src="/Frame (36).svg"
@@ -160,9 +160,6 @@ const Navbar = () => {
                   className="xl:h-[24px] xl:w-[24px] md:w-[15px] md:h-[15px] lg:w-[20px] lg:h-[20px] md:block hidden "
                 />
               </Link>
-              {/* <div className="w-[16px] h-[16px] rounded-full bg-black text-white text-[8px] flex justify-center items-center absolute left-[12px] top-[-4px] font-normal font-satoshi">
-                {cartCount}
-              </div> */}
             </div>
             <Link href="/signup">
               <Image
@@ -177,14 +174,72 @@ const Navbar = () => {
         </div>
       </nav>
       <div className="flex justify-between py-2 px-6 md:hidden h-[41px] w-full absolute top-[46px]">
-        <div className="flex justify-center w-[180px] items-center">
-          <IoMenu
-            className="absolute left-[16px] md:hidden cursor-pointer w-[24px] h-[24px]"
-            onClick={toggleMenu}
-          />
-          <h1 className="md:hidden block text-[25px] -mt-2 font-bold text-black font-integralCf">
-            <Link href="/"> SHOP.CO</Link>
-          </h1>
+        <div className="">
+          <div className="flex justify-center w-[180px] items-center">
+            <Sheet>
+              <SheetTrigger asChild>
+                <div className="absolute left-[0px] top-[3px] md:hidden cursor-pointer w-[35px] h-[35px]">
+                  <Button className="bg-white shadow-white hover:bg-white">
+                    <IoMenu
+                      className="absolute left-[16px] md:hidden cursor-pointer w-[35px] h-[35px] text-black"
+                      onClick={toggleMenu}
+                    />
+                  </Button>
+                </div>
+              </SheetTrigger>
+              <SheetContent>
+                <div className="mt-14">
+                  <div
+                    className="w-[57px] h-[22px] flex gap-[4px] flex-row justify-center items-center cursor-pointer"
+                    onClick={toggleDropdown}
+                  >
+                    <span className="text-[16px] font-normal text-black font-satoshi">
+                      Shop
+                    </span>
+                    <Image
+                      src="/Vector (4).svg"
+                      alt="dropdown"
+                      height={16}
+                      width={16}
+                      className="h-[13px] w-[13px]"
+                    />
+                  </div>
+                  {isDropdownOpen && (
+                    <div className="mt-[4px] bg-white shadow-lg absolute left-[20px] rounded-[4px] p-[8px] w-[200px] h-[300px] grid grid-cols-1 overflow-auto">
+                      {dropdownItems.map((item, index) => (
+                        <Link
+                          key={index}
+                          href={item.href}
+                          className="block group"
+                        >
+                          <div className="px-3 py-3 hover:bg-gray-100 rounded-md">
+                            <p className="text-black text-[16px]  font-medium group-hover:text-blue-600 font-satoshi">
+                              {item.name}
+                            </p>
+                            <p className="text-gray-500 text-[12px] leading-[1.5] font-satoshi">
+                              {item.description}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                  {["On Sale", "New Arrivals", "Brands"].map((link, index) => (
+                    <Link
+                      key={index}
+                      href="/"
+                      className="text-[14px] font-normal text-black mb-[8px] hover:text-gray-700 font-satoshi flex flex-col mt-4"
+                    >
+                      {link}
+                    </Link>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
+            <h1 className="md:hidden block text-[25px] -mt-2 font-bold text-black font-integralCf">
+              <Link href="/"> SHOP.CO</Link>
+            </h1>
+          </div>
         </div>
         <div className="flex justify-center items-center gap-[10px] md:hidden">
           <Image
@@ -212,51 +267,6 @@ const Navbar = () => {
           />
         </div>
       </div>
-      {isMenuOpen && (
-        <div className="absolute top-0 left-0 pt-[20%] transition-all ease-in-out duration-300 bg-white z-50 flex flex-col items-center space-y-4 p-[16px]">
-          <RxCross2
-            className="mb-[16px] cursor-pointer absolute top-7 right-5 w-[24px] h-[24px]"
-            onClick={toggleMenu}
-          />
-          <div
-            className="w-[57px] h-[22px] flex gap-[4px] items-center cursor-pointer"
-            onClick={toggleDropdown}
-          >
-            <span className="text-[16px] font-normal text-black font-satoshi">
-              Shop
-            </span>
-            <Image
-              src="/Vector (4).svg"
-              alt="dropdown"
-              height={16}
-              width={16}
-              className="h-[13px] w-[13px]"
-            />
-          </div>
-          {isDropdownOpen && (
-            <div className="mt-[4px] bg-white shadow-lg absolute left-[70px] rounded-[4px] p-[8px] ml-[50%] flex flex-col items-center w-[100px]">
-              {["Casual", "Formal", "Aesthetic"].map((item, index) => (
-                <Link
-                  key={index}
-                  href="/casual"
-                  className="block px-[8px] py-[4px] text-[14px] text-black hover:bg-gray-100 w-full text-center font-satoshi"
-                >
-                  {item}
-                </Link>
-              ))}
-            </div>
-          )}
-          {["On Sale", "New Arrivals", "Brands"].map((link, index) => (
-            <Link
-              key={index}
-              href="/"
-              className="text-[14px] font-normal text-black mb-[8px] hover:text-gray-700 font-satoshi"
-            >
-              {link}
-            </Link>
-          ))}
-        </div>
-      )}
     </>
   );
 };

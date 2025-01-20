@@ -5,8 +5,8 @@ const TopHeader = () => {
   return (
     <>
       <header
-        data-aos="fade-up"
-        data-aos-duration="3000"
+        // data-aos="fade-up"
+        // data-aos-duration="3000"
         className="w-full h-[38px] absolute top-0 bg-black py-[9px] flex justify-center items-center "
       >
         <p

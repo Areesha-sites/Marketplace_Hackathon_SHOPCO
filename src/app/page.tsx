@@ -23,12 +23,12 @@ export default function Home() {
       <div className="h-[1500px] lg:h-[100px]">
         <Banner />
         <NewArrivalSection />
-        <TopSelling />
-        {/* <DressStyleSection />
-        <HappyCustomerSection />
-        <div className="absolute md:top-[4100px] top-[3660px] ">
+         <TopSelling />
+       <DressStyleSection />
+         <HappyCustomerSection />
+         <div className="absolute md:top-[4100px] top-[3660px] ">
           <Footer />
-        </div> */}
+        </div>
       </div>
     </>
   );

@@ -247,9 +247,9 @@ const ProductDetailsTab = () => {
                   Write a Review
                 </div>
               </div>
-              {/* <div className="absolute md:top-[180px] md:left-[100px] xxl:left-[0px] xl:left-0 top-[130px] left-[16px]">
+              <div className="absolute md:top-[180px] md:left-[100px] xxl:left-[0px] xl:left-0 top-[130px] left-[16px]">
                 <ReviewCardList />
-              </div> */}
+              </div>
             </div>
           </div>
         )}
