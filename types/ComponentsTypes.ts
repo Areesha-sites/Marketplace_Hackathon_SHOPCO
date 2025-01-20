@@ -88,9 +88,44 @@ export interface CasualCardsPropsTypes {
   discount?: number | string;
 }
 
-export interface NextArrowPropsTypes {
+export interface NextArrowsProps {
   onClick: () => void;
 }
-export interface PrevArrowPropsTypes {
+export interface PrevArrowsProps {
   onClick: () => void;
+}
+
+export interface NewArrivalDetailsPropsTypes {
+  id: string | number;
+  image: string;
+  title: string;
+  size?: string;
+  color?: string;
+  price: number;
+  rating: string;
+  ratingReview: string;
+  discount?: string;
+  offer?: string | number
+  des: string;
+}
+
+export interface CartItem {
+  id: number; 
+  name: string; 
+  title: string;
+  image: string; 
+  price: number; 
+  quantity: number; 
+  size?: string;
+  color?: string; 
+}
+export interface CategorySelectionTypes {
+  name: string;
+  bgColor: string;
+  imgSrc: string;
+}
+export interface CategorySelectionPropTypes {
+  onSelectCategory: (category: string | null) => void;
+  activeCategory: string | null;
+  selectedCategory: string | null;
 }

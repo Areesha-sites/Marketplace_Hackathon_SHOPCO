@@ -20,15 +20,15 @@ export default function Home() {
 
   return (
     <>
-      <div className="mx-auto relative w-[390px] md:w-[1440px] xxl:w-[1440px] xl:w-full ">
+      <div className="h-[1500px] lg:h-[100px]">
         <Banner />
         <NewArrivalSection />
         <TopSelling />
-        <DressStyleSection />
-         <HappyCustomerSection />
-          <div className="absolute md:top-[3900px] top-[3660px] ">
-            <Footer />
-          </div>
+        {/* <DressStyleSection />
+        <HappyCustomerSection />
+        <div className="absolute md:top-[4100px] top-[3660px] ">
+          <Footer />
+        </div> */}
       </div>
     </>
   );

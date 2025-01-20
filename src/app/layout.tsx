@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`{inter.className} relative mx-auto w-[390px] md:w-[1440px] lg:w-[1480px] xl:w-[1280px] xxl:w-[1440px] bg-white  `}
+        className={`{inter.className} bg-white `}
       >
           {children}
           <TopHeader />

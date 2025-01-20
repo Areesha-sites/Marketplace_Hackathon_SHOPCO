@@ -1,11 +1,21 @@
 "use client";
 import Image from "next/image";
 import Footer from "../Footer";
+import { useState } from "react";
 const Cart = () => {
+  const [count, setCount] = useState(1);
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
+  const handleDecrement = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
   return (
     <>
       <section>
-        <div className="md:w-[1240px] xxl:w-[1240px] xl:w-[1100px] w-[358px] absolute md:top-[134px] top-[98px] left-[16px] md:left-[100px] border-b-[1px] border-black/10"></div>
+        {/* <div className="md:w-[1240px] xxl:w-[1240px] xl:w-[1100px] w-full absolute md:top-[134px] top-[98px] left-[16px] md:left-[100px] border-b-[1px] border-black/10"></div> */}
         <div
           data-aos="flip-right"
           data-aos-delay="200"
@@ -91,17 +101,19 @@ const Cart = () => {
                     alt="decrease"
                     height={20}
                     width={20}
-                    className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] "
+                    onClick={handleDecrement} // Add onClick handler
+                    className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] cursor-pointer "
                   />
                   <span className="text-[14px] font-satoshi text-black font-bold">
-                    1
+                  {count}
                   </span>
                   <Image
                     src="/increase.svg"
                     alt="increase"
                     height={20}
                     width={20}
-                    className="md:h-[20px] md:w-[20px] h-[16px] w-[16px]"
+                    onClick={handleIncrement} // Add onClick handler
+                    className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] cursor-pointer "
                   />
                 </div>
               </div>
@@ -119,7 +131,7 @@ const Cart = () => {
               />
             </div>
             <div className="md:w-[527px] md:h-[124px] w-[330px] h-[99px] flex justify-between">
-              <div className="md:w-[227px] md:h-[118px] flex justify-between ">
+              <div className="md:w-[230px] md:h-[118px] flex justify-between ">
                 <div className="md:w-[227px] md:h-[71px] flex flex-col gap-[2px] relative left-[100px] md:static">
                   <h1 className="md:text-[20px] text-[14px] md:font-bold font-medium text-black whitespace-nowrap font-satoshiBold">
                     CHECKERED SHIRT
@@ -147,12 +159,12 @@ const Cart = () => {
                   alt="delete"
                   height={24}
                   width={24}
-                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[300px] xxl:left-[300px] xl:left-[214px] relative
-                 top-[3px] left-[180px]"
+                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[300px] xxl:left-[300px] xl:left-[210px] relative
+                 top-[3px] left-[175px]"
                 />
               </div>
               <div className="w-[225px] h-[124px] flex justify-between">
-                <div className="md:w-[126px] md:h-[44px] md:py-[12px] md:px-[20px] rounded-[62px] bg-bgLightGrayColor relative md:left-[110px] xxl:left-[110px] xl:left-[10px] md:top-[83px] flex md:gap-[20px] h-[31px] w-[105px] py-[14px] px-[20px] top-[75px] justify-center items-center gap-[12px] left-[90px]">
+                <div className="md:w-[126px] md:h-[44px] md:py-[12px] md:px-[20px] rounded-[62px] bg-bgLightGrayColor relative md:left-[110px] xxl:left-[110px] xl:left-[10px] md:top-[83px] flex md:gap-[20px] h-[31px] w-[105px] py-[14px] px-[20px] top-[75px] justify-center items-center gap-[12px] left-[84px]">
                   <Image
                     src="/decrease.svg"
                     alt="decrease"
@@ -168,6 +180,7 @@ const Cart = () => {
                     alt="increase"
                     height={20}
                     width={20}
+                    onClick={handleIncrement} // Add onClick handler
                     className="md:h-[20px] md:w-[20px] h-[16px] w-[16px]"
                   />
                 </div>
@@ -186,8 +199,8 @@ const Cart = () => {
               />
             </div>
             <div className="md:w-[527px] md:h-[124px] flex justify-between">
-              <div className="md:w-[227px] md:h-[118px] flex justify-between ">
-                <div className="md:w-[227px] md:h-[71px] flex flex-col gap-[2px] relative left-[100px]  md:left-[160px] md:absolute">
+              <div className="md:w-[225px] md:h-[118px] flex justify-between ">
+                <div className="md:w-[225px] md:h-[71px] flex flex-col gap-[2px] relative left-[100px]  md:left-[160px] md:absolute">
                   <h1 className="md:text-[20px] md:font-bold font-medium text-[14px] text-black font-satoshiBold   whitespace-nowrap">
                     SKINNY FIT JEANS
                   </h1>
@@ -222,8 +235,8 @@ const Cart = () => {
                  top-[3px] left-[180px] "
                 />
               </div>
-              <div className="w-[225px] h-[124px] flex justify-between">
-                <div className="md:w-[126px] md:h-[44px] md:py-[12px] md:px-[20px] rounded-[62px] bg-bgLightGrayColor relative md:left-[110px] xxl:left-[110px] xl:left-[10px] md:top-[80px] flex md:gap-[20px] h-[31px] w-[105px] py-[14px] px-[20px] top-[70px] justify-center items-center gap-[12px] left-[85px] ">
+              <div className="w-[210px] h-[124px] flex justify-between">
+                <div className="md:w-[126px] md:h-[44px] md:py-[12px] md:px-[20px] rounded-[62px] bg-bgLightGrayColor relative md:left-[96px] xxl:left-[95px] xl:left-[-7px] md:top-[80px] flex md:gap-[20px] h-[31px] w-[105px] py-[14px] px-[20px] top-[70px] justify-center items-center gap-[12px] left-[80px] ">
                   <Image
                     src="/decrease.svg"
                     alt="decrease"

@@ -1,35 +1,30 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 const TopHeader = () => {
   return (
     <>
       <header
-        data-aos="fade-right"
-        data-aos-delay="100"
-        className="xxl:w-[1440px] absolute top-0 md:w-[1440px] md:h-[38px] bg-black md:py-[9px] md:pl-[544px] xl:pl-[444px] lg:pl-[344px] md:pr-[100px] w-[390px] h-[34px] lg:w-full xl:w-full xxl:pl-[544px] mx-auto"
+        data-aos="fade-up"
+        data-aos-duration="3000"
+        className="w-full h-[38px] absolute top-0 bg-black py-[9px] flex justify-center items-center "
       >
         <p
-          data-aos="fade-right"
-          data-aos-delay="200"
-          className="font-normal text-white md:text-[14px] text-[12px] font-satoshi absolute left-[44px] top-[9px] md:static"
+          className="font-normal text-white md:text-[14px] text-[12px] font-satoshi md:text-end text-center absolute md:left-[44px] top-[9px] md:static"
         >
-          Sign up and get 20% off to your first order.{" "}
+          Sign up and get 20% off to your first order.
           <span
-            data-aos="fade-right"
-            data-aos-delay="200"
-            className="font-medium underline"
+            className="font-medium underline hover:text-gray-200 cursor-pointer"
           >
-            Sign Up Now
+            <Link href="/signup"> Sign Up Now</Link>
           </span>
         </p>
         <Image
-          data-aos="fade-left"
-          data-aos-delay="200"
           src="/Frame (32).svg"
           alt=""
           height={20}
           width={20}
-          className="h-[20px] w-[20px] absolute md:left-[1320px] xxl:left-[1320px] xl:left-[1100px] lg:left-[900px] top-[9px] md:block hidden"
+          className="h-[20px] w-[20px] hidden md:flex absolute lg:right-[150px] md:right-[100px] xl:right-[100px]"
         />
       </header>
     </>

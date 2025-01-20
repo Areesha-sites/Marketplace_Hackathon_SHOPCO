@@ -14,7 +14,7 @@ const TopSellingCard = ({
         data-aos="flip-left"
         data-aos-easing="ease-out-cubic"
         data-aos-duration="2000"
-        className="md:w-[610px] xxl:w-[610px] xl:w-[570px] md:h-[241.58px] w-[358px] h-[244px] p-[24px] rounded-[20px] border-black/10 border-[1px]  md:py-[28px] md:px-[32px] "
+        className="md:w-[610px] xxl:w-[610px] xl:w-[570px] md:h-[241.58px] w-[280px] sm:w-[358px] h-[244px] p-[24px] rounded-[20px] border-black/10 border-[1px]  md:py-[28px] md:px-[32px] "
       >
         <div className=" md:h-[139.58px] xxl:w-[400px] xl:w-[400px] flex justify-between">
           <div className="md:w-[522px] xxl:w-[522px] xl:w-[495px] md:h-[139.58px] w-[310px] h-[176px] flex flex-col gap-[15px]">
@@ -38,7 +38,7 @@ const TopSellingCard = ({
                   className="md:h-[24px] md:w-[24px] h-[19px] w-[19px]"
                 />
               </div>
-              <p className="md:w-[522px] md:h-[66px] w-[310px] font-satoshi font-normal text-[12px] md:text-[16px] text-black/60">
+              <p className="md:w-[522px] text-left md:h-[66px] w-[250px] sm:w-[310px] font-satoshi font-normal text-[12px] md:text-[16px] text-black/60">
                 {" "}
                 {des}
               </p>
@@ -52,7 +52,7 @@ const TopSellingCard = ({
             className="w-[24px] h-[24px] md:block hidden"
           />
         </div>
-        <p className="font-satoshi font-medium md:text-[16px] text-[12px] text-black/60 relative md:top-[25px]">
+        <p className="font-satoshi text-left font-medium md:text-[16px] text-[12px] text-black/60 relative md:top-[25px]">
           {date}
         </p>
       </div>
