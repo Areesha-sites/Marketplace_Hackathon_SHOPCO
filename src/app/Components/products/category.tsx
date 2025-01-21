@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { client } from "../../../sanity/lib/client";
 import CategorySelection from "../CategorySelection";
-
+import Image from "next/image";
 // Interface for product data type
 interface Products {
   _id: string;
@@ -56,7 +56,10 @@ export default function ProductsData(): React.FC {
       setFilteredProducts(products);
     } else {
       setFilteredProducts(
-        products.filter((product) => product.category.toLowerCase() === activeCategory.toLowerCase())
+        products.filter(
+          (product) =>
+            product.category.toLowerCase() === activeCategory.toLowerCase()
+        )
       );
     }
   }, [activeCategory, products]);
@@ -65,14 +68,19 @@ export default function ProductsData(): React.FC {
     <>
       <div className="mt-56">
         <CategorySelection
-        activeCategory={activeCategory}
+          activeCategory={activeCategory}
           selectedCategory={activeCategory}
           onSelectCategory={setActiveCategory}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-11 mt-16">
           {filteredProducts.map((product) => (
-            <div key={product._id} className="border p-4 rounded shadow-md flex flex-col">
-              <img
+            <div
+              key={product._id}
+              className="border p-4 rounded shadow-md flex flex-col"
+            >
+              <Image
+                height={100}
+                width={100}
                 src={product.imageUrl}
                 alt={product.name}
                 className="w-full h-48 object-cover mb-4"
@@ -81,7 +89,9 @@ export default function ProductsData(): React.FC {
               <p className="text-gray-600">{product.description}</p>
               <p className="text-gray-800 font-bold mt-2">${product.price}</p>
               {product.discountPercent && (
-                <p className="text-red-500 text-sm">{product.discountPercent}% off</p>
+                <p className="text-red-500 text-sm">
+                  {product.discountPercent}% off
+                </p>
               )}
             </div>
           ))}

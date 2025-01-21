@@ -105,7 +105,7 @@ const TopSellingCardsList = () => {
     <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1750px] ">
       <Slider {...settings}>
         {products.map((item, index) => (
-          <Link href={`/topSelling/${item._id}`} passHref>
+          <Link href={`/topSelling/${item._id}`} key={item._id} passHref>
             <div className="h-[400px]" key={index}>
               <div
                 // data-aos="fade-up"

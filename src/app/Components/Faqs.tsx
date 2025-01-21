@@ -68,7 +68,7 @@ const Faqs = () => {
               <div className="px-4 pb-4">
                 <p className="font-satoshi text-[14px] md:text-[16px] text-left">
                   Shipping times can vary depending on your location and the
-                  shipping method you choose. Here's a general guideline:
+                  shipping method you choose. Here is a general guideline:
                   <br />
                   - Standard shipping within India typically takes 3-7 business
                   days.

@@ -141,7 +141,7 @@ const NewArrivalCard = () => {
   return (
     <>
       {products.map((item, index) => (
-        <Link href={`/newArrival/${item._id}`} passHref>
+        <Link href={`/newArrival/${item._id}`} key={item._id} passHref>
           <div key={index} className="h-[400px]">
             <div
               data-aos="fade-up"

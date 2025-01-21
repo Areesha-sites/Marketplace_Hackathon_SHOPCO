@@ -105,7 +105,7 @@ const NewArrivalCardsList = () => {
     <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1020px] ">
       <Slider {...settings}>
         {products.map((item, index) => (
-          <Link href={`/newArrival/${item._id}`} passHref>
+          <Link href={`/newArrival/${item._id}`} key={item._id} passHref>
             <div key={index} className="h-[400px] flex flex-col gap-y-[10px]">
               <div
                 data-aos="fade-up"
