@@ -33,7 +33,7 @@ const KidsCard = () => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await fetchProducts(currentPage, pageSize);
+        const data = await fetchProducts(currentPage, pageSize, selectedCategory); 
         setProducts(data);
         const countQuery = `count(*[_type == "kids"])`;
         const totalCount = await client.fetch(countQuery);
