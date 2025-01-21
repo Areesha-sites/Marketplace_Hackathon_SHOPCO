@@ -102,12 +102,12 @@ return (
             date={new Date(item.date).toLocaleDateString()}
             rating="/rating.svg"
             correct="/correct-icon.svg"
-            onEdit={() => {
-              setCurrentReview(item);
-              setIsEditModal(true);
-              setIsModalOpen(true);
-            }}
-            onRemove={() => handleRemoveReview(item._id)}
+            // onEdit={() => {
+            //   setCurrentReview(item);
+            //   setIsEditModal(true);
+            //   setIsModalOpen(true);
+            // }}
+            // onRemove={() => handleRemoveReview(item._id)}
           />
         ))
       ) : (
@@ -122,13 +122,13 @@ return (
           Write a Review
         </button>
       </div>
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <Modal
           onClose={() => setIsModalOpen(false)}
           onSubmit={isEditModal ? handleEditReview : handleAddReview} 
           currentReview={currentReview}
         />
-      )}
+      )} */}
     </>
   );
 };
