@@ -4,15 +4,17 @@ import Grid from "./CasualGrid";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa";
 import SideBar from "../SideBar";
-
+import Image from "next/image";
+import RangeSlider from "../PriceRange";
 const fetchProducts = async (
   page: number,
   pageSize: number,
-  category: string | null
+  category: string | null,
+  sortOrder: string
 ): Promise<any[]> => {
   const start = (page - 1) * pageSize;
   const categoryFilter = category ? `&& category == "${category}"` : "";
-  const query = `*[_type == "casual" ${categoryFilter}] {
+  let query = `*[_type == "casual" ${categoryFilter}] {
     _id,
     name,
     price,
@@ -21,6 +23,17 @@ const fetchProducts = async (
     "imageUrl": image.asset->url,
     ratingReviews
   }[${start}...${start + pageSize}]`;
+  if (sortOrder === "lowToHigh") {
+    query += ` | order(price asc)`;
+  } else if (sortOrder === "highToLow") {
+    query += ` | order(price desc)`;
+  } else if (sortOrder === "topRated") {
+    query += ` | order(ratingReviews desc)`;
+  } else if (sortOrder === "bestSellers") {
+    query += ` | order(discountPercent desc, offer desc)`;
+  } else if (sortOrder === "newestFirst") {
+    query += ` | order(_createdAt desc)`;
+  }
   return await client.fetch(query);
 };
 const CasualCard = () => {
@@ -29,12 +42,18 @@ const CasualCard = () => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [activeColor, setActiveColor] = useState<number | null>(null);
-  const [sortOrder, setSortOrder] = useState<string>(""); // New state for sorting order
+  const [sortOrder, setSortOrder] = useState<string>("");
+  const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
   const pageSize = 9;
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await fetchProducts(currentPage, pageSize, selectedCategory);
+        const data = await fetchProducts(
+          currentPage,
+          pageSize,
+          selectedCategory,
+          sortOrder
+        );
         setProducts(data);
         const countQuery = `count(*[_type == "casual" ${
           selectedCategory ? `&& category == "${selectedCategory}"` : ""
@@ -46,21 +65,14 @@ const CasualCard = () => {
       }
     };
     loadProducts();
-  }, [currentPage, selectedCategory]);
-  // Function to handle sorting
+  }, [currentPage, selectedCategory, sortOrder]);
   const handleSort = (order: string) => {
     setSortOrder(order);
-    if (order === "lowToHigh") {
-      setProducts((prevProducts) =>
-        [...prevProducts].sort((a, b) => a.price - b.price)
-      );
-    } else if (order === "highToLow") {
-      setProducts((prevProducts) =>
-        [...prevProducts].sort((a, b) => b.price - a.price)
-      );
-    }
+    setCurrentPage(1);
   };
-
+  const [isOpen, setIsOpen] = useState(false);
+  const handleMouseEnter = () => setIsOpen(true);
+  const handleMouseLeave = () => setIsOpen(false);
   const handleCategoryChange = (category: string, index: number) => {
     setSelectedCategory(category);
     setActiveColor(index);
@@ -71,13 +83,11 @@ const CasualCard = () => {
       setCurrentPage(page);
     }
   };
-
   const handlePrevious = () => {
     if (currentPage > 1) {
       handlePageChange(currentPage - 1);
     }
   };
-
   const handleNext = () => {
     if (currentPage < totalPages) {
       handlePageChange(currentPage + 1);
@@ -87,44 +97,84 @@ const CasualCard = () => {
     <div>
       <div className="">
         <div className="">
-          <SideBar
-            handleCategoryChange={handleCategoryChange}
-            activeColor={activeColor}
-          />
+        <SideBar
+        handleCategoryChange={handleCategoryChange}
+        activeColor={activeColor}
+        setFilteredProducts={setProducts}
+        setTotalPages={setTotalPages}
+      />
         </div>
-        {/* Dropdown for Sorting */}
         <div className="flex justify-end items-center w-full px-5">
-          <div className="relative">
-            <p className="text-[16px] font-normal text-black/60 whitespace-nowrap">
-              Sort by: <span className="text-black">Most Popular</span>
+          <div
+            className="md:w-[396px] md:h-[16px] absolute lg:top-[217px] xl:top-[-50px] lg:left-[580px] xxl:left-[944px] xl:left-[380px] flex md:gap-[12px] top-[157px] left-[96px] items-center mt-1 md:mt-3 md:ml-6"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <p
+              data-aos="zoom-in"
+              data-aos-delay="200"
+              className="md:text-[16px] xxl:text-[16px] xl:text-[14px] sm:text-[14px] text-[12px] font-normal font-satoshi text-black/60 whitespace-nowrap text-center"
+            >
+              Showing 1-10 of {totalPages * pageSize} Products
             </p>
-            <div className="absolute top-[25px] left-[0px] bg-white border border-gray-200 shadow-md rounded-md w-[150px] z-50">
-              <ul className="text-black text-[14px] font-satoshi">
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => handleSort("lowToHigh")}
-                >
-                  Price: Low to High
-                </li>
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => handleSort("highToLow")}
-                >
-                  Price: High to Low
-                </li>
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => setSortOrder("")}
-                >
-                  New Arrivals
-                </li>
-              </ul>
+            <div
+              data-aos="zoom-in"
+              data-aos-delay="200"
+              className="md:flex gap-[4px] items-center hidden"
+            >
+              <p className="text-[16px] font-normal font-satoshi text-black/60 whitespace-nowrap">
+                Sort by: <span className="text-black">Most Popular</span>
+              </p>
+              <Image
+                src="/sort-chevron.svg"
+                alt="icon"
+                height={16}
+                width={16}
+                className={`h-[16px] w-[16px] transition-transform duration-300 ${
+                  isOpen ? "rotate-180" : "rotate-0"
+                }`}
+              />
             </div>
+            {isOpen && (
+              <div className="absolute top-[25px] left-[300px] bg-white border border-gray-200 shadow-md rounded-md w-[150px] z-50">
+                <ul className="text-black text-[14px] font-satoshi">
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500"
+                    onClick={() => handleSort("lowToHigh")}
+                  >
+                    Price: Low to High
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500"
+                    onClick={() => handleSort("highToLow")}
+                  >
+                    Price: High to Low
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500"
+                    onClick={() => handleSort("topRated")}
+                  >
+                    Top Rated
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500"
+                    onClick={() => handleSort("bestSellers")}
+                  >
+                    Best Sellers
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500"
+                    onClick={() => handleSort("newestFirst")}
+                  >
+                    Newest First
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
         <Grid products={products} />
       </div>
-
       <div className="flex items-center justify-between w-[90%] mx-auto mt-28">
         <button
           onClick={handlePrevious}
@@ -157,7 +207,7 @@ const CasualCard = () => {
           Next
           <FaArrowRight className="text-black h-[16px] w-[16px]" />
         </button>
-        </div>
+      </div>
     </div>
   );
 };

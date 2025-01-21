@@ -103,9 +103,9 @@ const ProductDetailsTab = () => {
                 <li className="md:text-[16px] text-[12px]">Eco-friendly and sustainable production processes.</li>
                 <li className="md:text-[16px] text-[12px]">Available in multiple sizes and color variants.</li>
               </ul>
-              <div className="mt-6 md:mt-14">
+              {/* <div className="mt-6 md:mt-14">
                 <ProductDetailsTable />
-              </div>
+              </div> */}
             </div>
           </div>
         )}
@@ -115,15 +115,15 @@ const ProductDetailsTab = () => {
             <div className="">
               <div className="flex items-center">
                 <h4
-                  data-aos="fade-up-right"
-                  data-aos-delay="300"
+                  // data-aos="fade-up-right"
+                  // data-aos-delay="300"
                   className="absolute md:top-[100px] xl:left-[50px] xxl:left-0 left-[16px] text-[16px]  lg:top-[1245px] top-[80px] md:text-[24px] font-bold text-black font-satoshiBold"
                 >
                   All Reviews
                 </h4>
                 <span
-                  data-aos="fade-up-right"
-                  data-aos-delay="300"
+                  // data-aos="fade-up-right"
+                  // data-aos-delay="300"
                   className="absolute md:top-[110px] xl:left-[180px] xxl:left-[130px] font-satoshi md:text-[16px] font-normal text-black/60 text-[12px] lg:top-[1245px] top-[85px] left-[105px] md:left-[140px] "
                 >
                   (451)
@@ -131,8 +131,8 @@ const ProductDetailsTab = () => {
               </div>
               <div className="md:w-[354px] mx-auto h-[48px] lg:left-0 lg:top-0 absolute md:left-0 xxl:left-0 xl:left-0 xl:top-0 xxl:w-[986px] flex justify-between top-[80px] md:top-[1280px] left-[170px] ">
                 <div
-                  data-aos="fade-up-left"
-                  data-aos-delay="300"
+                  // data-aos="fade-up-left"
+                  // data-aos-delay="300"
                   className="md:h-[48px] md:w-[48px] sm:w-[40px] sm:h-[40px] w-[30px] h-[30px] bg-bgLightGrayColor rounded-full absolute md:left-[986px] xxl:left-[910px] xl:left-[830px] xl:top-[100px] md:top-[888px] flex justify-center items-center sm:left-[30px] "
                 >
                   <Image
@@ -239,13 +239,7 @@ const ProductDetailsTab = () => {
                     </div>
                   )}
                 </div> */}
-                <div
-                  data-aos="fade-up-left"
-                  data-aos-delay="300"
-                  className="md:w-[166px] sm:w-[113px] md:h-[48px] h-[40px] py-[10px] sm:py-[16px] px-[10px] sm:px-[20px] rounded-[62px] absolute md:left-[1178px] xl:top-[100px] xxl:left-[1090px] xl:left-[1012px] md:top-[888px] flex justify-center items-center bg-black text-white whitespace-nowrap text-[10px] sm:text-[12px] md:text-[16px] font-medium top-[-5px] left-[40px] font-satoshi sm:left-[80px]"
-                >
-                  Write a Review
-                </div>
+               
               </div>
               <div className="absolute md:top-[180px] md:left-[100px] xxl:left-[0px] xl:left-0 top-[130px] left-[16px]">
                 <ReviewCardList />

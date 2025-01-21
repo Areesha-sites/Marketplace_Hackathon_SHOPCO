@@ -26,7 +26,7 @@ export interface ReviewCardPropsTypes {
   rating: string;
   title: string;
   correct: string;
-  des: string;
+  description: string;
   date: string;
 }
 export interface HappyCustomerCardPropsTypes {

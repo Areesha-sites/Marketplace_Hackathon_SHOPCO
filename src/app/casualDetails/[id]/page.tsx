@@ -388,7 +388,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
 
 
 
-{/* 
+ 
         <div className="flex justify-center items-center w-full mx-auto">
           <Image
             // data-aos="zoom-in-down"
@@ -437,7 +437,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
               onClick={() => handleImageClick(product.imageUrl)}
             />
           </div>
-        </div> */}
+        </div>
 
 
 
@@ -459,20 +459,20 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         {/* <ProductGallery/> */}
         <div className="flex flex-col gap-y-[10px] absolute md:top-[216px] left-[16px] md:left-[750px] top-[580px] sm:top-[600px]">
           <h1
-            data-aos="fade-left"
-            data-aos-delay="100"
+            // data-aos="fade-left"
+            // data-aos-delay="100"
             className=" text-[24px] md:text-[40px] text-black font-black sm:w-[90%] w-[297px] md:w-[600px] xxl:w-[600px] md:leading-[28px] tracking-wider font-integralCf md:whitespace-nowrap leading-[30px] xl:whitespace-normal xl:leading-[40px] xl:w-[470px]"
           >
             {product.name}
           </h1>
           <div
-            data-aos="fade-left"
-            data-aos-delay="200"
+            // data-aos="fade-left"
+            // data-aos-delay="200"
             className="md:w-[193px] md:h-[24.71px] flex gap-[16px] w-[154px] h-[19px] items-center"
           >
             <Image
-              data-aos="fade-left"
-              data-aos-delay="200"
+              // data-aos="fade-left"
+              // data-aos-delay="200"
               src="/Frame 10.svg"
               alt="rating"
               height={24.71}
@@ -480,8 +480,8 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
               className="md:w-[129px] md:h-[20.71px] w-[105px] h-[18.67px] xl:w-[100px]"
             />
             <span
-              data-aos="fade-left"
-              data-aos-delay="200"
+              // data-aos="fade-left"
+              // data-aos-delay="200"
               className="w-[139px] h-[24.71px] font-satoshi text-[16px] font-normal text-black"
             >
               {product.ratingReviews}
@@ -489,8 +489,8 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
             </span>
           </div>
           <div
-            data-aos="fade-left"
-            data-aos-delay="300"
+            // data-aos="fade-left"
+            // data-aos-delay="300"
             className="md:w-[176px] md:h-[43px] flex gap-[12px] items-center"
           >
             <span className="font-satoshiBold md:text-[32px] text-[24px] font-bold text-black">
@@ -506,27 +506,27 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
             )}
           </div>
           <p
-            data-aos="fade-left"
-            data-aos-delay="400"
+            // data-aos="fade-left"
+            // data-aos-delay="400"
             className="md:w-[590px] xxl:w-[590px] xl:w-[500px] md:text-[16px] text-[12px] font-normal text-black text-opacity-60 w-[280px] font-satoshi "
           >
             {product.description}
           </p>
           <div
-            data-aos="fade-left"
-            data-aos-delay="400"
+            // data-aos="fade-left"
+            // data-aos-delay="400"
             className="md:w-[590px] xxl:w-[590px] xl:w-[470px] border-b-[1px] border-black/10 sm:w-[358px] w-[280px] "
           ></div>
           <p
-            data-aos="fade-right"
-            data-aos-delay="200"
+            // data-aos="fade-right"
+            // data-aos-delay="200"
             className="font-satoshi text-[16px] font-normal text-black/60 "
           >
             Select Colors
           </p>
           <div
-            data-aos="fade-right"
-            data-aos-delay="200"
+            // data-aos="fade-right"
+            // data-aos-delay="200"
             className="w-[143px] h-[37px] flex gap-[16px]"
           >
             <div
@@ -579,20 +579,20 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
             </div>
           </div>
           <div
-            data-aos="fade-right"
-            data-aos-delay="300"
+            // data-aos="fade-right"
+            // data-aos-delay="300"
             className="md:w-[590px] xxl:w-[590px] xl:w-[470px] border-b-[1px] border-black/10 sm:w-[358px] w-[280px] "
           ></div>
           <p
-            data-aos="fade-right"
-            data-aos-delay="400"
+            // data-aos="fade-right"
+            // data-aos-delay="400"
             className=" font-satoshi text-[16px] font-normal text-black text-opacity-60 "
           >
             Choose Size
           </p>
           <div
-            data-aos="fade-right"
-            data-aos-delay="400"
+            // data-aos="fade-right"
+            // data-aos-delay="400"
             className="md:w-[420px] w-[280px] sm:w-[353px] h-[46px] flex gap-[6px] sm:gap-[12px] "
           >
             <button
@@ -637,14 +637,14 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
             </button>
           </div>
           <div
-            data-aos="fade-left"
-            data-aos-delay="200"
+            // data-aos="fade-left"
+            // data-aos-delay="200"
             className="md:w-[590px] xxl:w-[590px] xl:w-[470px] sm:w-[353px] border-b-[1px] border-black/10] w-[280px] "
           ></div>
           <div className="flex gap-x-[10px]">
             <div
-              data-aos="zoom-in"
-              data-aos-delay="300"
+              // data-aos="zoom-in"
+              // data-aos-delay="300"
               className="md:w-[170px] w-[110px] md:h-[52px] h-[44px] py-[16px] px-[20px] rounded-[62px] flex justify-between bg-bgLightGrayColor items-center"
             >
               <Image
@@ -669,26 +669,26 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
             </div>
             <button
               onClick={() => addToCart(product)}
-              data-aos="zoom-in"
-              data-aos-delay="300"
+              // data-aos="zoom-in"
+              // data-aos-delay="300"
               className="md:w-[400px] xxl:w-[400px] xl:w-[300px] md:h-[52px] h-[44px] py-[16px] px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center flex justify-center font-satoshi w-[180px] sm:w-[236px]  "
             >
               Add to Cart
             </button>{" "}
           </div>
         </div>
-        <div className="absolute top-[1150px] xl:top-[800px] xl:left-[50px] xxl:left-[100px]">
+        <div className="absolute top-[1150px] xl:top-[900px] xl:left-[50px] xxl:left-[100px]">
          <ProductDetailsTab />
         </div>
         <h1
-          data-aos="zoom-in"
-          data-aos-delay="300"
-          className="md:w-[579px] md:h-[58px] absolute md:top-[1878px] xl:top-[2000px] md:left-[431px] xxl:left-[431px] xl:left-[330px] font-black text-black md:text-[48px] text-[32px] left-[79px] w-[250px] leading-[36px] mx-auto top-[2200px] text-center uppercase tracking-wider font-integralCf md:whitespace-nowrap "
+          // data-aos="zoom-in"
+          // data-aos-delay="300"
+          className="md:w-[579px] md:h-[58px] absolute md:top-[1878px] xl:top-[2100px] md:left-[431px] xxl:left-[431px] xl:left-[330px] font-black text-black md:text-[48px] text-[32px] left-[79px] w-[250px] leading-[36px] mx-auto top-[2200px] text-center uppercase tracking-wider font-integralCf md:whitespace-nowrap "
         >
           You might also like
         </h1>
         <div className="">
-          <ProductDetailsCardList />
+          {/* <ProductDetailsCardList /> */}
         </div>
         {/* <div className="absolute xl:top-[2870px] xxl:top-[2872px] top-[2800px]">
           <Footer />

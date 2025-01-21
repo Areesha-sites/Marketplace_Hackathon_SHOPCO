@@ -1,55 +1,93 @@
 "use client";
-import { reviewCardsdata } from "../../../data/data";
-import ReviewCard from "./ReviewCard";
 import { useState, useEffect } from "react";
+import ReviewsCard from "./ReviewCard";
+import { client } from "@/sanity/lib/client";
+import Modal from "./Modal";
+import { v4 as uuidv4 } from "uuid";
+interface ReviewPropsTypes {
+  _id: string;
+  name: string;
+  description: string;
+  date: string;
+}
 const ReviewCardList = () => {
-  const [displayedCards, setDisplayedCards] = useState(6);
-  const [allCardsLoaded, setAllCardsLoaded] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [reviewCardsData, setReviewCardsData] = useState<ReviewPropsTypes[]>(
+    []
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
-    setAllCardsLoaded(displayedCards === reviewCardsdata.length);
-  }, [displayedCards]);
-  const handleLoadMore = async () => {
-    setIsLoading(true);
+    const fetchReviews = async () => {
+      try {
+        const reviews = await client.fetch(
+          `*[_type == "customerReviews"]{
+            _id,
+            name,
+            description,
+            date
+          }`
+        );
+        setReviewCardsData(reviews);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+    fetchReviews();
+  }, []);
+  const handleAddReview = async (newReview: {
+    name: string;
+    description: string;
+    date: string;
+  }) => {
+    const reviewWithId: ReviewPropsTypes = {
+      ...newReview,
+      _id: uuidv4(),
+    };
     try {
-      const delay = 2000;
-      await new Promise((resolve) => setTimeout(resolve, delay));
-      const newDisplayedCards = Math.min(
-        displayedCards + 2,
-        reviewCardsdata.length
-      );
-      setDisplayedCards(newDisplayedCards);
-      setAllCardsLoaded(newDisplayedCards === reviewCardsdata.length);
+      await client.create({
+        _type: "customerReviews",
+        name: newReview.name,
+        description: newReview.description,
+        date: newReview.date,
+      });
+      console.log("Review added successfully to Sanity");
+      setReviewCardsData((prevReviews) => [reviewWithId, ...prevReviews]);
     } catch (error) {
-      console.error("Error loading more reviews:", error);
-    } finally {
-      setIsLoading(false);
+      console.error("Error adding review:", error);
     }
   };
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] justify-items-center h-[800px] overflow-y-auto overflow-x-visible">
-        {reviewCardsdata.slice(0, displayedCards).map((item) => (
-          <div key={item.id}>
-            <ReviewCard {...item} />
-          </div>
-        ))}
+        {reviewCardsData.length > 0 ? (
+          reviewCardsData.map((item) => (
+            <ReviewsCard
+              key={item._id}
+              id={item._id}
+              title={item.name}
+              description={item.description}
+              date={new Date(item.date).toLocaleDateString()}
+              rating="/rating.svg"
+              correct="/correct-icon.svg"
+            />
+          ))
+        ) : (
+          <div>No reviews yet. Be the first to leave a review!</div>
+        )}
       </div>
-      <div className="flex justify-center items-center mt-5">
+      <div className="absolute top-10 left-10">
         <button
-          className={`md:w-[230px] w-[195px] h-[47px] md:h-[52px] py-[14px] md:py-[16px] px-[36px] md:px-[54px] rounded-[62px] border-[1px] border-black/10 md:text-[16px] text-[14px] font-satoshi hover:bg-black hover:text-white transition-all font-medium whitespace-nowrap items-center flex justify-center ${
-            allCardsLoaded || isLoading ? "disabled cursor-not-allowed" : ""
-          }`}
-          onClick={handleLoadMore}
-          disabled={allCardsLoaded || isLoading}
+          onClick={() => setIsModalOpen(true)}
+          className="md:w-[166px] sm:w-[113px] md:h-[48px] h-[40px] py-[10px] sm:py-[16px] px-[10px] sm:px-[20px] rounded-[62px] absolute md:left-[1178px] xl:top-[-120px] xxl:left-[1090px] xl:left-[970px] md:top-[888px] flex justify-center items-center bg-black text-white whitespace-nowrap text-[10px] sm:text-[12px] md:text-[16px] font-medium top-[-5px] left-[40px] font-satoshi sm:left-[80px]"
         >
-          {isLoading
-            ? "Loading..."
-            : allCardsLoaded
-            ? "No More Reviews"
-            : "Load More Reviews"}
+          Write a Review
         </button>
       </div>
+      {isModalOpen && (
+        <Modal
+          onClose={() => setIsModalOpen(false)}
+          onSubmit={handleAddReview}
+        />
+      )}
     </>
   );
 };

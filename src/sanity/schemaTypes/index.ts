@@ -7,7 +7,8 @@ import kids from './kids'
 import women from './women'
 import men from './men'
 import customerComments from './customerComments'
+import customerReviews from './customerReviews'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [casual, newArrivals, topSelling, productDetailsProduct, kids, women, men, customerComments],
+  types: [casual, newArrivals, topSelling, productDetailsProduct, kids, women, men, customerComments, customerReviews],
 }

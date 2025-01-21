@@ -199,138 +199,7 @@ const CasualDetails: React.FC = () => {
               >
                 Casual
               </h1>
-
-              <div className="flex justify-end items-center w-full px-5">
-                <div
-                  className=" md:w-[396px] md:h-[16px] absolute lg:top-[217px] lg:left-[580px] xxl:left-[944px] xl:left-[770px] flex md:gap-[12px] top-[157px] left-[96px] items-center mt-1 md:mt-3 md:ml-6"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <p
-                    data-aos="zoom-in"
-                    data-aos-delay="200"
-                    className="md:text-[16px] xxl:text-[16px] xl:text-[14px] sm:text-[14px] text-[12px] font-normal font-satoshi text-black/60 whitespace-nowrap text-center"
-                  >
-                    Showing 1-10 of 100 Products
-                  </p>
-                  <div
-                    data-aos="zoom-in"
-                    data-aos-delay="200"
-                    className="md:flex gap-[4px] items-center hidden "
-                  >
-                    <p className="text-[16px] font-normal font-satoshi text-black/60 whitespace-nowrap">
-                      Sort by: <span className="text-black">Most Popular</span>
-                    </p>
-                    <Image
-                      src="/sort-chevron.svg"
-                      alt="icon"
-                      height={16}
-                      width={16}
-                      className={`h-[16px] w-[16px] transition-transform duration-300 ${
-                        isOpen ? "rotate-180" : "rotate-0"
-                      }`}
-                    />
-                  </div>
-                  {isOpen && (
-                    <div className="absolute top-[25px] left-[300px] bg-white border border-gray-200 shadow-md rounded-md w-[150px] z-50">
-                      <ul className="text-black text-[14px] font-satoshi">
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500">
-                          Price: Low to High
-                        </li>
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500">
-                          Price: High to Low
-                        </li>
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500">
-                          New Arrivals
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                  <div className="flex justify-end items-center w-full px-5">
-                    <div
-                      className="w-[32px] h-[32px] absolute top-[-5px] left-[170px] lg:left-[700px] lg:top-[120px] rounded-[62px] bg-bgLightGrayColor flex justify-center items-center lg:hidden md:top-[0px] md:left-[600px]"
-                      onClick={toggleSidebar}
-                    >
-                      <Image
-                        src="/Frame (6).svg"
-                        alt="icon"
-                        height={16}
-                        width={16}
-                        className="h-[16px] w-[16px]"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className=""></div>
             </div>
-
-            {/* <h1
-          data-aos="zoom-in"
-          data-aos-delay="200"
-          className="absolute md:top-[204px] top-[149px] lg:left-[360px] xl:left-[415px] md:text-[32px] text-[24px] font-bold text-black font-satoshiBold"
-        >
-          Casual
-        </h1> */}
-            {/* <div
-          className=" md:w-[396px] md:h-[16px] absolute md:top-[217px] md:left-[944px] xxl:left-[944px] xl:left-[800px] left-[90px] flex md:gap-[12px] top-[157px] mt-1"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <p
-            data-aos="zoom-in"
-            data-aos-delay="200"
-            className="md:text-[16px] xxl:text-[16px] xl:text-[14px] text-[14px] font-normal font-satoshi text-black/60 whitespace-nowrap"
-          >
-            Showing 1-10 of 100 Products
-          </p>
-          <div
-            data-aos="zoom-in"
-            data-aos-delay="200"
-            className="md:flex gap-[4px] items-center hidden "
-          >
-            <p className="text-[16px] font-normal font-satoshi text-black/60 whitespace-nowrap">
-              Sort by: <span className="text-black">Most Popular</span>
-            </p>
-            <Image
-              src="/sort-chevron.svg"
-              alt="icon"
-              height={16}
-              width={16}
-              className={`h-[16px] w-[16px] transition-transform duration-300 ${
-                isOpen ? "rotate-180" : "rotate-0"
-              }`}
-            />
-          </div>
-          {isOpen && (
-            <div className="absolute top-[25px] left-[300px] bg-white border border-gray-200 shadow-md rounded-md w-[150px] z-50">
-              <ul className="text-black text-[14px] font-satoshi">
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500">
-                  Price: Low to High
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500">
-                  Price: High to Low
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500">
-                  New Arrivals
-                </li>
-              </ul>
-            </div>
-          )}
-          <div
-            className="w-[32px] h-[32px] absolute top-[-5px] left-[200px] rounded-[62px] bg-bgLightGrayColor flex justify-center items-center md:hidden"
-            onClick={toggleSidebar}
-          >
-            <Image
-              src="/Frame (6).svg"
-              alt="icon"
-              height={16}
-              width={16}
-              className="h-[16px] w-[16px]"
-            />
-          </div>
-        </div> */}
           </div>
           <div className="flex justify-center items-center w-full mx-auto px-6">
             <div className="absolute md:top-[236px] lg:top-[263px] xl:left-[400px] lg:left-[370px] top-[220px]">
@@ -339,10 +208,10 @@ const CasualDetails: React.FC = () => {
           </div>
           <div className="flex justify-center items-center w-full mx-auto">
             <div
-          data-aos="zoom-in"
-          data-aos-delay="200"
-          className="lg:w-[600px] md:w-[700px] w-full mx-auto lg:left-[375px] xl:left-[415px] md:top-[1333px] lg:top-[2400px] xxl:top-[1580px] xxl:w-[925px] xl:w-[770px] xl:top-[1470px] top-[1400px] sm:top-[1590px] absolute border-b-[1px] border-black/10 "
-        ></div>
+              data-aos="zoom-in"
+              data-aos-delay="200"
+              className="lg:w-[600px] md:w-[700px] w-full mx-auto lg:left-[375px] xl:left-[415px] md:top-[1333px] lg:top-[2400px] xxl:top-[1580px] xxl:w-[925px] xl:w-[770px] xl:top-[1470px] top-[1400px] sm:top-[1590px] absolute border-b-[1px] border-black/10 "
+            ></div>
           </div>
         </section>
       </div>
