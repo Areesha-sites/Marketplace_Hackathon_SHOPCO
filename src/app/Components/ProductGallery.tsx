@@ -1,10 +1,25 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const ProductGallery = ({ productId }:any) => {
-  const [mainImage, setMainImage] = useState("");
-  const [thumbnails, setThumbnails] = useState([]);
-  const [productData, setProductData] = useState(null);
+interface Product {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  ratingReviews?: number;
+  imageUrl: string;
+  category: string;
+  discountPercent?: number;
+  isNew?: boolean;
+  colors: string[];
+  offer?: string;
+  sizes: string[];
+}
+
+const ProductGallery: React.FC<{ productId: string }> = ({ productId }) => {
+  const [productData, setProductData] = useState<Product | null>(null);
+  const [mainImage, setMainImage] = useState<string>("");
+  const [thumbnails, setThumbnails] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -14,7 +29,7 @@ const ProductGallery = ({ productId }:any) => {
         description,
         price,
         ratingReviews,
-        "imageUrl": image.asset->url, // Assuming "image" field holds an image URL
+        "imageUrl": image.asset->url,
         category,
         discountPercent,
         "isNew": new,
@@ -23,20 +38,22 @@ const ProductGallery = ({ productId }:any) => {
         sizes
       }`;
 
-      const response = await fetch(`/api/sanity?query=${encodeURIComponent(query)}&id=${productId}`);
+      const response = await fetch(
+        `/api/sanity?query=${encodeURIComponent(query)}&id=${productId}`
+      );
       const data = await response.json();
 
       if (data && data.length > 0) {
         setProductData(data[0]);
-        setThumbnails(data[0].imageUrl); // Assuming a single image URL in "imageUrl"
+        setThumbnails(data[0].imageUrl); // Assuming a single image URL for thumbnails initially
         setMainImage(data[0].imageUrl); // Set initial main image
       }
     };
 
     fetchProduct();
-  }, [productId]); // Run effect only when productId changes
+  }, [productId]);
 
-  const handleThumbnailClick = (imageUrl:string) => {
+  const handleThumbnailClick = (imageUrl: string) => {
     setMainImage(imageUrl);
   };
 
@@ -46,8 +63,10 @@ const ProductGallery = ({ productId }:any) => {
         <div className="flex space-x-6 p-4 bg-white shadow-lg rounded-lg">
           <div className="flex flex-col space-y-4">
             {thumbnails.map((thumb, index) => (
-              <img
+              <Image
                 key={index}
+                height={80}
+                width={80}
                 src={thumb}
                 alt={`Thumbnail ${index + 1}`}
                 onClick={() => handleThumbnailClick(thumb)}

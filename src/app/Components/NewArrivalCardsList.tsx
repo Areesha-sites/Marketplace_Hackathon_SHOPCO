@@ -4,7 +4,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Item } from "@radix-ui/react-select";
+// import { Item } from "@radix-ui/react-select";
 interface Products {
   _id: string;
   name: string;
@@ -104,9 +104,9 @@ const NewArrivalCardsList = () => {
   return (
     <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1020px] ">
       <Slider {...settings}>
-        {products.map((item) => (
+        {products.map((item, index) => (
           <Link href={`/newArrival/${item._id}`} passHref>
-            <div className="h-[400px] flex flex-col gap-y-[10px]">
+            <div key={index} className="h-[400px] flex flex-col gap-y-[10px]">
               <div
                 data-aos="fade-up"
                 data-aos-duration="3000"

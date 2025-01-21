@@ -1,4 +1,4 @@
-export default {
+const customerReviewsSchema = {
   name: "customerReviews",
   title: "Customer Reviews",
   type: "document",
@@ -20,3 +20,5 @@ export default {
     },
   ],
 };
+
+export default customerReviewsSchema;

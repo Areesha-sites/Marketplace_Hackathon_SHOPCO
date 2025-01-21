@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
-
 interface CustomerCommnetsProps {
   name: string,
   description: string,
@@ -22,7 +21,7 @@ const HappyCustomerCard = () => {
       setCustomerComments(data);
     };
     fetchData();
-  }, []);
+  }, [query]);
 
   return (
     <div className="grid grid-cols-1 gap-6">

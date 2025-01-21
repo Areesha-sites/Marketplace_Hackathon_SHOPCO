@@ -13,23 +13,26 @@ interface CustomerCommnetsProps {
   description: string;
   date: string;
 }
+
 const HappyCustomerCardList = () => {
   const [customerComments, setCustomerComments] = useState<
     CustomerCommnetsProps[]
   >([]);
+
   const query = `*[_type == "customerComments"] {
-      name,
-      description,
-      _id,
-      date
-    }`;
+    name,
+    description,
+    _id,
+    date
+  }`;
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await client.fetch(query);
       setCustomerComments(data);
     };
     fetchData();
-  }, []);
+  }, [query]); 
 
   const settings = {
     arrows: true,
@@ -50,6 +53,7 @@ const HappyCustomerCardList = () => {
       { breakpoint: 767, settings: { slidesToShow: 1 } },
     ],
   };
+
   return (
     <div className="w-full xl:px-14 xxl:px-20 lg:px-20">
       <Slider {...settings}>

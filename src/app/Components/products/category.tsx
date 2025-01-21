@@ -1,7 +1,9 @@
-"use client";
+// Import necessary libraries
 import React, { useState, useEffect } from "react";
 import { client } from "../../../sanity/lib/client";
 import CategorySelection from "../CategorySelection";
+
+// Interface for product data type
 interface Products {
   _id: string;
   name: string;
@@ -9,21 +11,25 @@ interface Products {
   price: number;
   imageUrl: string;
   category: string;
-  discountPercent: number | null;
-  isNew: boolean | null;
+  discountPercent?: number | null;
+  isNew?: boolean | null;
   colors: string[];
   sizes: string[];
 }
-export const revalidate = 10;
 
-export default function ProductsData() {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(null);
+// Set revalidate time (optional)
+export const revalidate = 10; // Adjust as needed
 
+export default function ProductsData(): React.FC {
+  // State variables for products, filtered products, and active category
+  const [products, setProducts] = useState<Products[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Products[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  // Fetch products on component mount
   useEffect(() => {
     const fetchProducts = async () => {
-      const query = `*[_type=="products"][0]{
+      const query = `*[_type == "products"] {
         _id,
         name,
         description,
@@ -35,13 +41,16 @@ export default function ProductsData() {
         colors,
         sizes
       }`;
-      const fetchedProducts = await client.fetch(query);
+
+      const fetchedProducts: Products[] = await client.fetch(query);
       setProducts(fetchedProducts);
-      setFilteredProducts(fetchedProducts);
+      setFilteredProducts(fetchedProducts); // Set initial filtered products
     };
+
     fetchProducts();
   }, []);
 
+  // Update filtered products based on active category
   useEffect(() => {
     if (!activeCategory) {
       setFilteredProducts(products);
@@ -51,20 +60,18 @@ export default function ProductsData() {
       );
     }
   }, [activeCategory, products]);
+
   return (
     <>
       <div className="mt-56">
         <CategorySelection
+        activeCategory={activeCategory}
           selectedCategory={activeCategory}
           onSelectCategory={setActiveCategory}
-          activeCategory={activeCategory}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-11 mt-16">
           {filteredProducts.map((product) => (
-            <div
-              key={product._id}
-              className="border p-4 rounded shadow-md flex flex-col"
-            >
+            <div key={product._id} className="border p-4 rounded shadow-md flex flex-col">
               <img
                 src={product.imageUrl}
                 alt={product.name}
@@ -74,9 +81,7 @@ export default function ProductsData() {
               <p className="text-gray-600">{product.description}</p>
               <p className="text-gray-800 font-bold mt-2">${product.price}</p>
               {product.discountPercent && (
-                <p className="text-red-500 text-sm">
-                  {product.discountPercent}% off
-                </p>
+                <p className="text-red-500 text-sm">{product.discountPercent}% off</p>
               )}
             </div>
           ))}
