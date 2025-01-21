@@ -2,13 +2,17 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { RxCross2 } from "react-icons/rx";
-import { IoMenu } from "react-icons/io5";
 import { useEffect } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 interface Product {
   id: string;
   title: string;
   price: number;
+}
+interface SearchbarTypes {
+  _id: string;
+  name: string;
+  route: any;
 }
 import { Button } from "@/components/ui/button";
 import {
@@ -17,7 +21,10 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-const Navbar = () => {
+import { IoMenu } from "react-icons/io5";
+import SearchBar from "./Searchbar";
+import { client } from "@/sanity/lib/client";
+const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
   const dropdownItems = [
     {
       name: "Casual",
@@ -41,9 +48,67 @@ const Navbar = () => {
       description: "Shop our exclusive deals and discounts.",
     },
   ];
+
+  const navbarLinks = [
+    {
+      name: "On Sale",
+      href: "/",
+    },
+    {
+      name: "New Arrivals",
+      href: "/",
+    },
+    {
+      name: "Contact Us",
+      href: "/contact",
+    },
+  ];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // const navOpen = showNav ? "translate-x-0" : "translate-x-[-100%]";
+  const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState<SearchbarTypes[]>([]);
+  const fetchSuggestions = async (searchTerm: string) => {
+    const routes = [
+      "casualDetails",
+      "newArrival",
+      "topSelling",
+      "productDetailsCard",
+      "kidsDetails",
+      "womenDetails",
+      "menDetails",
+    ];
+    const queries = routes.map((route) =>
+      client.fetch(
+        `*[_type == "${route}" && lower(name) match "${searchTerm.toLowerCase()}*"] {
+          _id,
+          name,
+          _type
+        }`
+      )
+    );
+    const results = await Promise.all(queries);
+    console.log("Results from all routes:", results); 
+    const allResults = results.flat().map((product) => ({
+      ...product,
+      route: product._type,
+    }));
+  
+    console.log("Flattened Results:", allResults);
+  
+    setSuggestions(allResults);
+  };
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchTerm(query);
+    if (query) {
+      fetchSuggestions(query);
+    } else {
+      setSuggestions([]);
+    }
+  };
+  const handleMouseLeave = () => {
+    setSuggestions([]);
+  };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -67,6 +132,73 @@ const Navbar = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
     setCartCount(cart.length);
   };
+  // const fetchSuggestions = async (searchTerm: string, route: string) => {
+  //   let query;
+  //   switch (route) {
+  //     case "casualDetails":
+  //       query = `*[_type == "casual" && name match "${searchTerm}*"] {
+  //         _id,
+  //         name
+  //       }`;
+  //       break;
+  //     case "newArrivalDetails":
+  //       query = `*[_type == "newArrivals" && name match "${searchTerm}*"] {
+  //         _id,
+  //         name
+  //       }`;
+  //       break;
+  //     case "topSellingDetails":
+  //       query = `*[_type == "topSelling" && name match "${searchTerm}*"] {
+  //         _id,
+  //         name
+  //       }`;
+  //       break;
+  //     case "productsDetailedProduct":
+  //       query = `*[_type == "products" && name match "${searchTerm}*"] {
+  //         _id,
+  //         name
+  //       }`;
+  //       break;
+  //       case "kids":
+  //       query = `*[_type == "kids" && name match "${searchTerm}*"] {
+  //         _id,
+  //         name
+  //       }`;
+  //       break;
+  //       case "men":
+  //       query = `*[_type == "men" && name match "${searchTerm}*"] {
+  //         _id,
+  //         name
+  //       }`;
+  //       break;
+  //       case "women":
+  //       query = `*[_type == "women" && name match "${searchTerm}*"] {
+  //         _id,
+  //         name
+  //       }`;
+  //       break;
+  //     default:
+  //       query = `*[_type == "casual" && name match "${searchTerm}*"] {
+  //         _id,
+  //         name
+  //       }`;
+  //       break;
+  //   }
+  //   const results = await client.fetch(query);
+  //   setSuggestions(results);
+  // };
+
+  // const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const query = e.target.value;
+  //   setSearchTerm(query);
+  //   if (query) {
+  //     // Pass the correct route name here based on where you are searching
+  //     fetchSuggestions(query, "casualDetails"); // Adjust this based on the current route or search context
+  //   } else {
+  //     setSuggestions([]);
+  //   }
+  // };
+
   return (
     <>
       <nav className="w-full h-[41px] absolute md:top-[52px] lg:top-[62px] top-[47px] flex justify-center items-center xl:px-[60px] md:px-5 lg:px-[50px] xxl:px-[87px] ">
@@ -118,7 +250,7 @@ const Navbar = () => {
                 )}
               </div>
             </div>
-            {["On Sale", "New Arrivals", "Brands"].map((link, index) => (
+            {["On Sale", "New Arrivals", "Contact"].map((link, index) => (
               <Link
                 key={index}
                 href="/"
@@ -128,7 +260,81 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-          <div className="xl:w-[577px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center hidden font-satoshi ">
+
+          {/* <div className="xl:w-[577px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor flex gap-[12px] items-center font-satoshi relative">
+            <Image
+              src="/Frame (34).svg"
+              alt="search-icon"
+              height={24}
+              width={24}
+              className="xl:h-[24px] xl:w-[24px] lg:h-[20px] lg:w-[20px] md:w-[15px] h-[15px]"
+            />
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="md:text-[12px] lg:text-[16px] font-normal text-black/40 border-none outline-none bg-bgLightGrayColor font-satoshi"
+              placeholder="Search for products..."
+            />
+
+            {suggestions.length > 0 && (
+              <div
+                className="absolute top-[10px] bg-white shadow-md rounded-lg w-full mt-16 font-satoshi"
+                onMouseLeave={handleMouseLeave}
+              >
+                <ScrollArea className="h-48 w-full max-h-[200px] overflow-y-auto">
+                  {suggestions.map((product) => (
+                    <Link
+                      key={product._id}
+                      href={`/casualDetails/${product._id}`}
+                    >
+                      <p className="block px-4 py-2 hover:bg-gray-200 text-black font-satoshi">
+                        {product.name}
+                      </p>
+                    </Link>
+                  ))}
+                </ScrollArea>
+              </div>
+            )}
+          </div> */}
+
+          <div className="xl:w-[577px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor flex gap-[12px] items-center font-satoshi relative">
+            <Image
+              src="/Frame (34).svg"
+              alt="search-icon"
+              height={24}
+              width={24}
+              className="xl:h-[24px] xl:w-[24px] lg:h-[20px] lg:w-[20px] md:w-[15px] h-[15px]"
+            />
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="md:text-[12px] lg:text-[16px] font-normal text-black/40 border-none outline-none bg-bgLightGrayColor font-satoshi"
+              placeholder="Search for products..."
+            />
+            {suggestions.length > 0 && (
+              <div
+                className="absolute top-[10px] bg-white shadow-md rounded-lg w-full mt-16 font-satoshi"
+                onMouseLeave={handleMouseLeave}
+              >
+                <ScrollArea className="h-48 w-full max-h-[200px] overflow-y-auto">
+                  {suggestions.map((product) => (
+                    <Link
+                      key={product._id}
+                      href={`/${product.route}/${product._id}`}
+                    >
+                      <p className="block px-4 py-2 hover:bg-gray-200 text-black font-satoshi">
+                        {product.name}
+                      </p>
+                    </Link>
+                  ))}
+                </ScrollArea>
+              </div>
+            )}
+          </div>
+
+          {/* <div className="xl:w-[577px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center hidden font-satoshi ">
             <Image
               src="/Frame (34).svg"
               alt="search-icon"
@@ -141,7 +347,8 @@ const Navbar = () => {
               className=" md:text-[12px] lg:text-[16px] font-normal text-black/40 border-none outline-none bg-bgLightGrayColor font-satoshi"
               placeholder="Search for products..."
             />
-          </div>
+          </div> */}
+
           <div className="flex justify-center items-center md:gap-[14px] md:w-[62px] xxl:w-[62px] xxl:gap-[14px] md:h-[24px] w-[96px] h-[24px] gap-[12px] xl:gap-[10px] absolute md:left-[278px] md:static">
             <Image
               src="/Frame (35).svg"

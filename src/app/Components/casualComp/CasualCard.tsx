@@ -6,6 +6,7 @@ import { FaArrowRight } from "react-icons/fa";
 import SideBar from "../SideBar";
 import Image from "next/image";
 import RangeSlider from "../PriceRange";
+import SearchBar from "../Searchbar";
 const fetchProducts = async (
   page: number,
   pageSize: number,
@@ -66,6 +67,19 @@ const CasualCard = () => {
     };
     loadProducts();
   }, [currentPage, selectedCategory, sortOrder]);
+
+
+  const handleSearch = (searchTerm: string) => {
+    if (searchTerm === "") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredProducts(filtered); 
+    }
+  };
+
   const handleSort = (order: string) => {
     setSortOrder(order);
     setCurrentPage(1);
@@ -95,7 +109,12 @@ const CasualCard = () => {
   };
   return (
     <div>
+       {/* <div className="mt-[-100px]" >
+  <SearchBar onSearch={handleSearch} />
+  </div> */}
       <div className="">
+
+ 
         <div className="">
         <SideBar
         handleCategoryChange={handleCategoryChange}
@@ -141,7 +160,7 @@ const CasualCard = () => {
                   <li
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500"
                     onClick={() => handleSort("lowToHigh")}
-                  >
+                  >z
                     Price: Low to High
                   </li>
                   <li
@@ -173,7 +192,9 @@ const CasualCard = () => {
             )}
           </div>
         </div>
+        <div >
         <Grid products={products} />
+        </div>
       </div>
       <div className="flex items-center justify-between w-[90%] mx-auto mt-28">
         <button

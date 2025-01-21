@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -13,16 +13,25 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 interface ModalProps {
   onClose: () => void;
-  onSubmit: (newReview: {
+  onSubmit: (review: { name: string; description: string; date: string; _id?: string }) => void; // _id is optional
+  currentReview: {
+    _id?: string;
     name: string;
     description: string;
     date: string;
-  }) => void;
+  } | null;
 }
-const Modal: React.FC<ModalProps> = ({ onClose, onSubmit }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, onSubmit, currentReview }) => {
   const { toast } = useToast();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState(currentReview?.name || "");
+  const [description, setDescription] = useState(currentReview?.description || "");
+
+  useEffect(() => {
+    if (currentReview) {
+      setName(currentReview.name);
+      setDescription(currentReview.description);
+    }
+  }, [currentReview]);
 
   const handleSubmit = () => {
     if (!name || !description) {
@@ -34,10 +43,9 @@ const Modal: React.FC<ModalProps> = ({ onClose, onSubmit }) => {
       description,
       date: new Date().toISOString(),
     };
-    console.log("Submitting review:", newReview);
     onSubmit(newReview);
     toast({
-      description: "Your review has been submitted successfully.",
+      description: currentReview ? "Review updated successfully" : "Your review has been submitted successfully.",
     });
     onClose();
   };
@@ -45,7 +53,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, onSubmit }) => {
     <Dialog open onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="font-satoshiBold">Write a Review</DialogTitle>
+          <DialogTitle className="font-satoshiBold">{currentReview ? "Edit Review" : "Write a Review"}</DialogTitle>
           <DialogDescription className="font-satoshi">
             Please provide your name and feedback below.
           </DialogDescription>
@@ -87,7 +95,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, onSubmit }) => {
             onClick={handleSubmit}
             className="font-satoshi"
           >
-            Submit
+            {currentReview ? "Save Changes" : "Submit"}
           </Button>
         </DialogFooter>
       </DialogContent>

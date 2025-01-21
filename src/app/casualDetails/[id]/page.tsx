@@ -34,12 +34,15 @@ interface Props {
     id: string;
   };
 }
+
 interface Product {
   id: string;
-  title: string;
+  name: string;
   price: number;
-  image: string;
-  quantity?: number;
+  imageUrl: string;
+  quantity: number;
+  selectedSize: string;
+  selectedColor: string;
 }
 interface Products {
   _id: string;
@@ -70,6 +73,8 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
   const [count, setCount] = useState(1);
   const [cart, setCart] = useState<Product[]>([]);
   const [showCart, setShowCart] = useState(false);
+  const [selectedSize, setSelectedSize] = useState<string>(""); 
+  const [selectedColor, setSelectedColor] = useState<string>(""); 
   useEffect(() => {
     const fetchProduct = async () => {
       const query = `*[_type=="casual" && _id==$id][0]{
@@ -102,67 +107,162 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
   
     fetchProduct();
   }, [id]);
+  const addToCart = (product: any, selectedSize: string, selectedColor: string) => {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find(
+        (item) =>
+          item.id === product._id &&
+          item.selectedSize === selectedSize &&
+          item.selectedColor === selectedColor
+      );
 
-  // Function to increase the quantity of a specific product in the cart
-  const increaseQuantity = (productId: string, selectedSize: string) => {
-    const updatedCart = cart.map((item) =>
-      item.id === productId && item.selectedSize === selectedSize
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    );
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  // Function to decrease the quantity of a specific product in the cart
-  const decreaseQuantity = (productId: string, selectedSize: string) => {
-    const updatedCart = cart.map((item) =>
-      item.id === productId &&
-      item.selectedSize === selectedSize &&
-      item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
-    );
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-  // Function to add product to the cart
-  const addToCart = (product: Products, selectedSize: string) => {
-    const existingProductIndex = cart.findIndex(
-      (item) => item.id === product._id && item.selectedSize === selectedSize
-    );
-
-    if (existingProductIndex === -1) {
-      // Add new product to cart if it's not already present
-      const updatedCart = [
-        ...cart,
-        { ...product, quantity: 1, selectedSize }, // Add selectedSize to cart item
-      ];
-      setCart(updatedCart);
+      if (existingItem) {
+        // Increase quantity if item already exists
+        const updatedCart = prevCart.map((item) =>
+          item.id === product._id &&
+          item.selectedSize === selectedSize &&
+          item.selectedColor === selectedColor
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        return updatedCart;
+      }
+      const newCartItem = {
+        id: product._id,
+        name: product.name,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        quantity: 1,
+        selectedSize,
+        selectedColor,
+      };
+      const updatedCart = [...prevCart, newCartItem];
       localStorage.setItem("cart", JSON.stringify(updatedCart));
-    } else {
-      // If the product already exists, only increase the quantity
-      const updatedCart = [...cart];
-      updatedCart[existingProductIndex].quantity += 1;
-      setCart(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-    }
-  };
-  const removeFromCart = (productId: string, selectedSize: string) => {
-    const updatedCart = cart.filter(
-      (item) => !(item.id === productId && item.selectedSize === selectedSize) // Only remove the matching product
-    );
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
   };
 
-  // Load saved cart from localStorage on initial render
+  // Remove from Cart
+  const removeFromCart = (id: string, selectedSize: string, selectedColor: string) => {
+    setCart((prevCart) => {
+      const updatedCart = prevCart.filter(
+        (item) =>
+          !(item.id === id && item.selectedSize === selectedSize && item.selectedColor === selectedColor)
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
+  };
+  
+  // Save cart to localStorage whenever it updates
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+  
+  // Load cart from localStorage on initial render
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
-      setCart(JSON.parse(savedCart) as Product[]);
+      setCart(JSON.parse(savedCart));
     }
   }, []);
+
+  const increaseQuantity = (id: string, selectedSize: string, selectedColor: string) => {
+    setCart((prevCart) => {
+      const updatedCart = prevCart.map((item) =>
+        item.id === id && item.selectedSize === selectedSize && item.selectedColor === selectedColor
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
+  };
+
+  // Decrease Quantity
+  const decreaseQuantity = (id: string, selectedSize: string, selectedColor: string) => {
+    setCart((prevCart) => {
+      const updatedCart = prevCart.map((item) =>
+        item.id === id &&
+        item.selectedSize === selectedSize &&
+        item.selectedColor === selectedColor &&
+        item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
+  };
+
+  // Load cart from localStorage on component mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+  // Function to increase the quantity of a specific product in the cart
+  // const increaseQuantity = (productId: string, selectedSize: string) => {
+  //   const updatedCart = cart.map((item) =>
+  //     item.id === productId && item.selectedSize === selectedSize
+  //       ? { ...item, quantity: item.quantity + 1 }
+  //       : item
+  //   );
+  //   setCart(updatedCart);
+  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  // };
+
+  // Function to decrease the quantity of a specific product in the cart
+  // const decreaseQuantity = (productId: string, selectedSize: string) => {
+  //   const updatedCart = cart.map((item) =>
+  //     item.id === productId &&
+  //     item.selectedSize === selectedSize &&
+  //     item.quantity > 1
+  //       ? { ...item, quantity: item.quantity - 1 }
+  //       : item
+  //   );
+  //   setCart(updatedCart);
+  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  // };
+  // Function to add product to the cart
+  // const addToCart = (product: Products, selectedSize: string) => {
+  //   const existingProductIndex = cart.findIndex(
+  //     (item) => item.id === product._id && item.selectedSize === selectedSize
+  //   );
+
+  //   if (existingProductIndex === -1) {
+  //     // Add new product to cart if it's not already present
+  //     const updatedCart = [
+  //       ...cart,
+  //       { ...product, quantity: 1, selectedSize }, // Add selectedSize to cart item
+  //     ];
+  //     setCart(updatedCart);
+  //     localStorage.setItem("cart", JSON.stringify(updatedCart));
+  //   } else {
+  //     // If the product already exists, only increase the quantity
+  //     const updatedCart = [...cart];
+  //     updatedCart[existingProductIndex].quantity += 1;
+  //     setCart(updatedCart);
+  //     localStorage.setItem("cart", JSON.stringify(updatedCart));
+  //   }
+  // };
+  // const removeFromCart = (productId: string, selectedSize: string) => {
+  //   const updatedCart = cart.filter(
+  //     (item) => !(item.id === productId && item.selectedSize === selectedSize) // Only remove the matching product
+  //   );
+  //   setCart(updatedCart);
+  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  // };
+
+  // Load saved cart from localStorage on initial render
+  // useEffect(() => {
+  //   const savedCart = localStorage.getItem("cart");
+  //   if (savedCart) {
+  //     setCart(JSON.parse(savedCart) as Product[]);
+  //   }
+  // }, []);
   const handleIncrement = () => {
     setCount(count + 1);
   };
@@ -438,24 +538,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
             />
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         {/* <ProductGallery/> */}
         <div className="flex flex-col gap-y-[10px] absolute md:top-[216px] left-[16px] md:left-[750px] top-[580px] sm:top-[600px]">
           <h1
@@ -667,14 +749,46 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
                 className="md:h-[24px] md:w-[24px] h-[16px] w-[16px] cursor-pointer"
               />
             </div>
+
+            <div className="flex gap-2">
+                {product.sizes.map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`px-4 py-2 border ${
+                      selectedSize === size ? "bg-black text-white" : "bg-white text-black"
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+              <div className="flex gap-2">
+                {product.colors.map((color) => (
+                  <button
+                    key={color}
+                    onClick={() => setSelectedColor(color)}
+                    className={`px-4 py-2 border ${
+                      selectedColor === color ? "bg-black text-white" : "bg-white text-black"
+                    }`}
+                  >
+                    {color}
+                  </button>
+                ))}
+              </div>
             <button
-              onClick={() => addToCart(product)}
-              // data-aos="zoom-in"
-              // data-aos-delay="300"
-              className="md:w-[400px] xxl:w-[400px] xl:w-[300px] md:h-[52px] h-[44px] py-[16px] px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center flex justify-center font-satoshi w-[180px] sm:w-[236px]  "
+            
+              onClick={() => {
+                if (!selectedSize || !selectedColor) {
+                  alert("Please select a size and color before adding to cart.");
+                  return;
+                }
+                addToCart(product, selectedSize, selectedColor);
+              }}
+              className="md:w-[400px] xxl:w-[400px] xl:w-[300px] md:h-[52px] h-[44px] py-[16px] px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center flex justify-center font-satoshi w-[180px] sm:w-[236px]"
             >
               Add to Cart
-            </button>{" "}
+            </button>
           </div>
         </div>
         <div className="absolute top-[1150px] xl:top-[900px] xl:left-[50px] xxl:left-[100px]">
@@ -693,109 +807,127 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         {/* <div className="absolute xl:top-[2870px] xxl:top-[2872px] top-[2800px]">
           <Footer />
         </div> */}
-        <Sheet open={showCart} onOpenChange={setShowCart}>
-          <SheetTrigger asChild>
-            <Button
-              variant="outline"
-              className="fixed bottom-6 right-6 font-satoshi bg-black text-white p-4 rounded-full flex items-center justify-center text-lg cursor-pointer w-[50px] h-[50px] hover:text-white hover:bg-black"
-              onClick={() => setShowCart(!showCart)}
-            >
-              <div className="w-[15px] h-[15px] flex justify-center items-center bg-white text-black rounded-full text-[10px] absolute top-[8px] left-[25px]">
-                {cart.length}
+
+
+
+
+
+
+
+
+
+<Sheet open={showCart} onOpenChange={setShowCart}>
+        <SheetTrigger asChild>
+          <Button
+            variant="outline"
+            className="fixed bottom-6 right-6 font-satoshi bg-black text-white p-4 rounded-full flex items-center justify-center text-lg cursor-pointer w-[50px] h-[50px] hover:text-white hover:bg-black"
+            onClick={() => setShowCart(!showCart)}
+          >
+            <div className="w-[15px] h-[15px] flex justify-center items-center bg-white text-black rounded-full text-[10px] absolute top-[8px] left-[25px]">
+              {cart.length}
+            </div>
+            <FaCartArrowDown className="text-white h-7 w-7 ml-[-10px]" />
+          </Button>
+        </SheetTrigger>
+        <SheetContent className="overflow-y-auto h-auto">
+          <SheetHeader>
+            <h2 className="text-2xl font-semibold mb-4 font-integralCf uppercase">
+              Your Cart
+            </h2>
+          </SheetHeader>
+
+
+
+
+
+
+
+
+         <div>
+  {cart.length === 0 ? (
+    <div className="flex justify-start gap-1 items-center">
+      <p className="text-lg text-gray-500 font-satoshi">
+        Your cart is empty
+      </p>
+      <PiSmileySad className="h-[20px] w-[20px] text-gray-500" />
+    </div>
+  ) : (
+    cart.map((item) => (
+      <div key={`${item.id}-${item.selectedSize}-${item.selectedColor}`} className="border-b py-4">
+        <div className="flex justify-center items-center w-full px-4 gap-[10px]">
+          <Image
+            src={item.imageUrl}
+            alt="product-image"
+            height={40}
+            width={40}
+            className="h-[60px] w-[60px] object-cover"
+          />
+          <div className="flex flex-col">
+            <h3 className="font-semibold text-black font-satoshi">
+              {item.name}
+            </h3>
+            <p>Size: {item.selectedSize}</p>
+            <p>Color: {item.selectedColor}</p>
+            <div className="flex justify-between items-center w-[270px]">
+              <p className="text-black font-satoshi font-bold text-[16px]">
+                ${item.price}
+              </p>
+              <div className="flex gap-[10px]">
+                <IoAddOutline
+                  onClick={() =>
+                    increaseQuantity(item.id, item.selectedSize, item.selectedColor)
+                  }
+                  className="cursor-pointer"
+                />
+                <p>{item.quantity}</p>
+                <RiSubtractLine
+                  onClick={() =>
+                    decreaseQuantity(item.id, item.selectedSize, item.selectedColor)
+                  }
+                  className="cursor-pointer"
+                />
               </div>
-              <FaCartArrowDown className="text-white h-7 w-7 ml-[-10px]" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent className="overflow-y-auto h-auto">
-            <SheetHeader>
-              <h2 className="text-2xl font-semibold mb-4 font-integralCf uppercase">
-                Your Cart
-              </h2>
-            </SheetHeader>
-            <div>
-              {cart.length === 0 ? (
-                <div className="flex justify-start gap-1 items-center">
-                  <p className="text-lg text-gray-500 font-satoshi">
-                    Your cart is empty
-                  </p>
-                  <PiSmileySad className="h-[20px] w-[20px] text-gray-500" />
-                </div>
-              ) : (
-                cart.map((item) => (
-                  <div
-                    key={`${item.id}-${item.selectedSize}`}
-                    className="border-b py-4"
-                  >
-                    <div className="flex justify-center items-center w-full px-4 gap-[10px]">
-                      <Image
-                        src={item.imageUrl}
-                        alt="product-image"
-                        height={40}
-                        width={40}
-                        className="h-[60px] w-[60px] object-cover"
-                      />
-                      <div className="flex flex-col">
-                        <div className="flex justify-between items-center w-[270px]">
-                          <h3 className="font-semibold text-black font-satoshi">
-                            {item.name}
-                          </h3>
-                          <PiTrashFill
-                            onClick={() =>
-                              removeFromCart(item.id, item.selectedSize)
-                            }
-                            className="text-red-500 h-5 w-5 cursor-pointer hover:text-red-400"
-                          />
-                        </div>
-                        <p className="font-satoshi font-normal text-black text-[12px]">
-                          Size:{" "}
-                          <span className="text-black/50">
-                            {item.selectedSize}
-                          </span>
-                        </p>
-                        <div className="flex justify-between items-center w-[270px]">
-                          <p className="text-black font-satoshi font-bold text-[16px]">
-                            ${item.price}
-                          </p>
-                          <div className="flex justify-center items-center gap-[10px] w-[100px] bg-BannerBgColor rounded-[50px] px-3 py-2 h-8">
-                            <IoAddOutline
-                              onClick={() =>
-                                increaseQuantity(item.id, item.selectedSize)
-                              }
-                              className="h-4 w-4 text-black cursor-pointer"
-                            />
-                            <p className="text-[14px] text-black font-satoshi font-bold">
-                              {item.quantity}
-                            </p>
-                            <RiSubtractLine
-                              onClick={() =>
-                                decreaseQuantity(item.id, item.selectedSize)
-                              }
-                              className="h-4 w-4 text-black cursor-pointer"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              )}
+              <PiTrashFill
+                onClick={() =>
+                  removeFromCart(item.id, item.selectedSize, item.selectedColor)
+                }
+                className="text-red-500 cursor-pointer"
+              />
             </div>
-            <div className="mt-4 flex justify-center gap-[20px] items-center">
-              <Link
-                href="/cart"
-                className="w-full h-[50px] bg-black text-white font-satoshi text-[15px] font-medium rounded-[50px] flex justify-center items-center"
-              >
-                <button>View cart</button>
-              </Link>
-            </div>
-            <SheetFooter>
-              <SheetClose
-                asChild
-                className="border-none outline-none"
-              ></SheetClose>
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
+          </div>
+        </div>
+      </div>
+    ))
+  )}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        </SheetContent>
+      </Sheet>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
       </section>
     </>
   );

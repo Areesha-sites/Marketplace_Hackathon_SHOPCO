@@ -17,6 +17,7 @@ const TemporaryRoute = () => {
         {/* <CasualCard/>
 
 */}
+
 {/* <CasualCard/> */}
         {/* <CasualCardsList/> */}
         {/* <KidsCard/> */}

@@ -6,19 +6,17 @@ import { useRef } from "react";
 import ReviewCardList from "./ReviewCardList";
 import ProductDetailsTable from "./ProductDetailsTable";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import Link from "next/link";
 const ProductDetailsTab = () => {
   const [activeTab, setActiveTab] = useState("tab1");
   const dropdownRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSubDropdownOpen, setIsSubDropdownOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const handleMouseEnter = () => {
     setIsDropdownOpen(true);
   };
@@ -31,9 +29,7 @@ const ProductDetailsTab = () => {
   };
   return (
     <div className="flex justify-between md:justify-center items-center w-full flex-col mx-auto px-4 sm:px-2">
-
       <div className="border-b border-black/10 dark:border-neutral-700 w-[270px] sm:w-full mx-auto xl:w-[1160px] xxl:w-[1240px]">
-
         <nav
           className="flex justify-between sm:gap-x-[40px] gap-x-[30px] w-full md:px-11 "
           aria-label="Tabs"
@@ -100,8 +96,12 @@ const ProductDetailsTab = () => {
                   Advanced technology for unmatched performance in all
                   conditions.
                 </li>
-                <li className="md:text-[16px] text-[12px]">Eco-friendly and sustainable production processes.</li>
-                <li className="md:text-[16px] text-[12px]">Available in multiple sizes and color variants.</li>
+                <li className="md:text-[16px] text-[12px]">
+                  Eco-friendly and sustainable production processes.
+                </li>
+                <li className="md:text-[16px] text-[12px]">
+                  Available in multiple sizes and color variants.
+                </li>
               </ul>
               {/* <div className="mt-6 md:mt-14">
                 <ProductDetailsTable />
@@ -117,14 +117,14 @@ const ProductDetailsTab = () => {
                 <h4
                   // data-aos="fade-up-right"
                   // data-aos-delay="300"
-                  className="absolute md:top-[100px] xl:left-[50px] xxl:left-0 left-[16px] text-[16px]  lg:top-[1245px] top-[80px] md:text-[24px] font-bold text-black font-satoshiBold"
+                  className="absolute md:top-[100px] xl:left-[50px] xxl:left-0 left-[16px] text-[16px]  lg:top-[1245px] top-[80px] md:text-[24px] font-bold text-black font-satoshiBold xl:top-[100px]"
                 >
                   All Reviews
                 </h4>
                 <span
                   // data-aos="fade-up-right"
                   // data-aos-delay="300"
-                  className="absolute md:top-[110px] xl:left-[180px] xxl:left-[130px] font-satoshi md:text-[16px] font-normal text-black/60 text-[12px] lg:top-[1245px] top-[85px] left-[105px] md:left-[140px] "
+                  className="absolute md:top-[110px] xl:left-[180px] xxl:left-[130px]  xl:top-[110px] font-satoshi md:text-[16px] font-normal text-black/60 text-[12px] lg:top-[1245px] top-[85px] left-[105px] md:left-[140px] "
                 >
                   (451)
                 </span>
@@ -143,103 +143,142 @@ const ProductDetailsTab = () => {
                     className="md:w-[24px] md:h-[24px] sm:w-[20px] sm:h-[20px] h-[15px] w-[15px]"
                   />
                 </div>
-
-                <Select>
-                  <SelectTrigger className="w-[120px] h-[48px] py-[16px] px-[20px] rounded-[62px] absolute md:left-[1045px] xxl:left-[965px] xl:left-[885px] xl:top-[100px] xxl:top-[100px] md:flex justify-between items-center bg-bgLightGrayColor hidden cursor-pointer border-none outline-none font-satoshi">
-                    <SelectValue
-                      placeholder="Latest"
-                      className="border-none outline-none text-[20px]"
-                    />
-                  </SelectTrigger>
-                  <SelectContent className="border-none outline-none">
-                    <SelectGroup>
-                      <SelectLabel className="font-satoshi">Latest</SelectLabel>
-                      <SelectItem value="apple" className="font-satoshi">
-                        Overview
-                      </SelectItem>
-                      <SelectItem value="banana" className="font-satoshi">
-                        {" "}
-                        My downloads
-                      </SelectItem>
-                      <SelectItem value="blueberry" className="font-satoshi">
-                        Billing
-                      </SelectItem>
-                      <SelectItem value="grapes" className="font-satoshi">
-                        Rewards
-                      </SelectItem>
-                      <SelectItem value="pineapple" className="font-satoshi">
-                        Earnings
-                      </SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-
-                {/* <div
-                  ref={dropdownRef}
-                  className="w-[120px] h-[48px] py-[16px] px-[20px] rounded-[62px] absolute md:left-[1045px] xxl:left-[1045px] xl:left-[885px] xl:top-[100px] xxl:top-[888px] md:flex justify-between items-center bg-bgLightGrayColor hidden cursor-pointer"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <p className="text-[16px] font-medium font-satoshi text-black">
+                <div className="relative inline-block left-[885px] top-[102px]">
+                  <button
+                    onClick={() => setIsDropdownOpen((prev) => !prev)}
+                    className="text-black bg-bgLightGrayColor rounded-[62px] outline-none border-none font-medium  text-sm px-7 py-3 inline-flex items-center font-satoshi"
+                  >
                     Latest
-                  </p>
-                  <Image
-                    src="/dropdown (3).svg"
-                    alt="dropdown"
-                    height={16}
-                    width={16}
-                    className="w-[16px] h-[16px] "
-                  />
+                    <svg
+                      className="w-2.5 h-2.5 ml-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 10 6"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 1 4 4 4-4"
+                      />
+                    </svg>
+                  </button>
                   {isDropdownOpen && (
-                    <div className="absolute top-full left-0 bg-white shadow-md rounded-md z-20">
-                      <ul className="p-2">
-                        <li className="font-satoshi text-[14px] text-black font-normal hover:bg-gray-100 px-4 py-2">
-                          Dashboard
+                    <div className="absolute left-0 z-10 mt-2 w-36 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
+                      <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 ">
+                        <li>
+                          <button
+                            onClick={() =>
+                              setIsSubDropdownOpen((prev) => !prev)
+                            }
+                            className="flex items-center font-satoshi justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            Shop
+                            <svg
+                              className="w-2.5 h-2.5 ml-2"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 6 10"
+                            >
+                              <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="m1 9 4-4-4-4"
+                              />
+                            </svg>
+                          </button>
+                          {isSubDropdownOpen && (
+                            <div className="absolute left-full top-0 z-20 ml-2 w-36 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
+                              <ul className="py-2 font-satoshi text-sm text-gray-700 dark:text-gray-200">
+                                <li>
+                                  <Link
+                                    href="/casual"
+                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                  >
+                                    Casual
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    href="/men"
+                                    className="block font-satoshi px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                  >
+                                    Men
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    href="/women"
+                                    className="block font-satoshi px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                  >
+                                    Women
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    href="/kids"
+                                    className="block font-satoshi px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                  >
+                                    Kids
+                                  </Link>
+                                </li>
+                              </ul>
+                            </div>
+                          )}
                         </li>
-                        <li
-                          className="font-satoshi text-[14px] text-black font-normal hover:bg-gray-100 px-4 py-2 flex justify-between items-center"
-                          onClick={toggleSubDropdown}
-                        >
-                          Dropdown
-                          <Image
-                            src="/dropdown (3).svg"
-                            alt="dropdown"
-                            height={12}
-                            width={12}
-                            className={`w-[12px] h-[12px] transition-transform ml-2 ${
-                              isSubDropdownOpen ? "rotate-90" : "rotate-0"
-                            }`}
-                          />
+                        <li>
+                          <Link
+                            href="/cart"
+                            className="block px-4 py-2 font-satoshi hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            Cart
+                          </Link>
                         </li>
-                        {isSubDropdownOpen && (
-                          <div className="absolute top-0 left-[120px] bg-white shadow-md rounded-md z-30">
-                            <ul className="p-2">
-                              <li className="font-satoshi text-[14px] text-black font-normal hover:bg-gray-100 px-4 py-2">
-                                Overview
-                              </li>
-                              <li className="font-satoshi text-[14px] text-black font-normal hover:bg-gray-100 px-4 py-2">
-                                My downloads
-                              </li>
-                              <li className="font-satoshi text-[14px] text-black font-normal hover:bg-gray-100 px-4 py-2">
-                                Billing
-                              </li>
-                              <li className="font-satoshi text-[14px] text-black font-normal hover:bg-gray-100 px-4 py-2">
-                                Rewards
-                              </li>
-                            </ul>
-                          </div>
-                        )}
-                        <li className="font-satoshi text-[14px] text-black font-normal hover:bg-gray-100 px-4 py-2">
-                          Earnings
+
+                        <li>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <span className="block px-4 py-2 font-satoshi hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                Sizes Available
+                              </span>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-80">
+                              <div className="grid gap-4">
+                                <div className="space-y-2">
+                                  <h4 className="font-medium leading-none font-satoshiBold">
+                                    Available Sizes
+                                  </h4>
+                                  <p className="text-sm text-muted-foreground font-satoshi">
+                                    Here are the sizes available in our shop:
+                                  </p>
+                                </div>
+                                <ul className="list-disc pl-6 text-sm font-satoshi text-gray-800">
+                                  <li>Small (S)</li>
+                                  <li>Medium (M)</li>
+                                  <li>Large (L)</li>
+                                  <li>Extra Large (XL)</li>
+                                  <li>Extra Extra Large (XXL)</li>
+                                </ul>
+                              </div>
+                            </PopoverContent>
+                          </Popover>
                         </li>
-                        <li className="font-satoshi text-[14px] text-black font-normal hover:bg-gray-100 px-4 py-2">
-                          Sign out
+
+                        <li>
+                          <Link
+                            href="/signup"
+                            className="block px-4 py-2 font-satoshi hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
+                            Sign out
+                          </Link>
                         </li>
                       </ul>
                     </div>
                   )}
-                </div> */}
-               
+                </div>
               </div>
               <div className="absolute md:top-[180px] md:left-[100px] xxl:left-[0px] xl:left-0 top-[130px] left-[16px]">
                 <ReviewCardList />
