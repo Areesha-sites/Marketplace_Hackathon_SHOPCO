@@ -16,7 +16,7 @@ import { FaCartArrowDown } from "react-icons/fa";
 import ProductDetailsTab from "@/app/Components/ProductDetailsTab";
 import { Button } from "@/components/ui/button";
 import { PiSmileySad } from "react-icons/pi";
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import {
   Sheet,
   SheetClose,
@@ -36,20 +36,29 @@ interface Props {
 }
 
 interface Product {
-  id: string;
+  _id: string;
   name: string;
   price: number;
-  imageUrl: string;
-  quantity: number;
-  selectedSize: string;
-  selectedColor: string;
+  imageUrl: string | string[];
+  quantity?: number;
+  selectedSize?: string;
+  selectedColor?: string;
+  sizes: string;
+  colors: string;
+  description: string;
+  category: string;
+  discountPercent: number | null;
+  isNew: boolean | null;
+  ratingReviews: number;
+  offer: number;
 }
+
 interface Products {
   _id: string;
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
+  imageUrl: string | string[]; // Handle single or multiple image URLs
   category: string;
   discountPercent: number | null;
   isNew: boolean | null;
@@ -57,24 +66,22 @@ interface Products {
   sizes: string[];
   ratingReviews: number;
   offer: number;
-  quantiy?: number;
 }
-import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 const CasualDetails: React.FC<Props> = ({ params }) => {
-  // const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const { id } = params;
   const [product, setProduct] = useState<Products | null>(null);
   const [count, setCount] = useState(1);
   const [cart, setCart] = useState<Product[]>([]);
   const [showCart, setShowCart] = useState(false);
-  const [selectedSize, setSelectedSize] = useState<string>(""); 
-  const [selectedColor, setSelectedColor] = useState<string>(""); 
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [selectedColor, setSelectedColor] = useState<string>("");
   useEffect(() => {
     const fetchProduct = async () => {
       const query = `*[_type=="casual" && _id==$id][0]{
@@ -108,14 +115,13 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         notFound();
       }
     };
-  
+
     fetchProduct();
   }, [id]);
-  
-  // Add to Cart function using fetched product data
+
   const addToCart = (product: Product) => {
     const productInCart = cart.find((item) => item.id === product._id);
-  
+
     if (productInCart) {
       const updatedCart = cart.map((item) =>
         item.id === product._id
@@ -141,7 +147,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
   };
-  // Remove from Cart
+
   const removeFromCart = (productId: string) => {
     const updatedCart = cart.filter((item) => item.id !== productId);
     setCart(updatedCart);
@@ -150,17 +156,16 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
-      setCart(JSON.parse(savedCart)); // Ensure this updates the cart correctly on page load
+      setCart(JSON.parse(savedCart));
     }
-  }, []); // This runs only once on component mount
-  
+  }, []);
+
   useEffect(() => {
     if (cart.length > 0) {
-      localStorage.setItem("cart", JSON.stringify(cart)); // Save cart to localStorage whenever it changes
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
-  }, [cart]); // This runs whenever the cart state is updated
-  
-  // Load cart from localStorage on initial render
+  }, [cart]);
+
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
@@ -295,7 +300,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
   if (!product) {
     return null;
   }
- 
 
   const thumbnails = [
     "/the-edge-men-s-graphic-tee.jpg",
@@ -365,11 +369,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
           className="md:w-[1240px] xxl:w-[1240px] xl:w-[1175px] absolute md:top-[134px] md:left-[100px] xxl:left-[100px] xl:left-[80px] w-full border-b-[1px] border-black/10 top-[98px] sm:left-[16px]"
         ></div>
 
-
-
-
-
-{/* <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        {/* <div className="min-h-screen flex items-center justify-center bg-gray-100">
   <div className="flex space-x-6 p-4 bg-white shadow-lg rounded-lg">
     <div className="flex flex-col space-y-4">
       {product &&
@@ -415,8 +415,8 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
     </div>
   </div>
 </div> */}
-    {/* </div> */}        
-         {/* <Image
+        {/* </div> */}
+        {/* <Image
           data-aos="zoom-in-down"
           data-aos-delay="200"
           src={product.imageUrl}
@@ -454,35 +454,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         /> 
  */}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
         <div className="flex justify-center items-center w-full mx-auto">
           <Image
             // data-aos="zoom-in-down"
@@ -593,125 +564,60 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
             // data-aos-delay="400"
             className="md:w-[590px] xxl:w-[590px] xl:w-[470px] border-b-[1px] border-black/10 sm:w-[358px] w-[280px] "
           ></div>
-          <p
-            // data-aos="fade-right"
-            // data-aos-delay="200"
-            className="font-satoshi text-[16px] font-normal text-black/60 "
-          >
+
+          <p className="font-satoshi text-[16px] font-normal text-black/60 ">
             Select Colors
           </p>
-          <div
-            // data-aos="fade-right"
-            // data-aos-delay="200"
-            className="w-[143px] h-[37px] flex gap-[16px]"
-          >
-            <div
-              className={`h-[37px] w-[37px] bg-productDetailBgCircle1 rounded-full flex justify-center items-center ${
-                activeCircle === 1 ? "bg-productDetailBgCircle1Active" : ""
-              }`}
-              onClick={() => handleCircleClick(1)}
-            >
-              {activeCircle === 1 && (
-                <Image
-                  src="/check-icon.svg"
-                  alt="check-icon"
-                  height={16}
-                  width={16}
-                  className="h-[16px] w-[14px]"
-                />
-              )}
-            </div>
-            <div
-              className={`h-[37px] w-[37px] bg-productDetailBgCircle2 rounded-full flex justify-center items-center  ${
-                activeCircle === 2 ? "bg-productDetailBgCircle2Active" : ""
-              }`}
-              onClick={() => handleCircleClick(2)}
-            >
-              {activeCircle === 2 && (
-                <Image
-                  src="/check-icon.svg"
-                  alt="check-icon"
-                  height={16}
-                  width={16}
-                  className="h-[16px] w-[14px]"
-                />
-              )}
-            </div>
-            <div
-              className={`h-[37px] w-[37px] bg-productDetailBgCircle3 rounded-full flex justify-center items-center  ${
-                activeCircle === 3 ? "bg-productDetailBgCircle3Active" : ""
-              }`}
-              onClick={() => handleCircleClick(3)}
-            >
-              {activeCircle === 3 && (
-                <Image
-                  src="/check-icon.svg"
-                  alt="check-icon"
-                  height={16}
-                  width={16}
-                  className="h-[16px] w-[14px]"
-                />
-              )}
-            </div>
+          <div className="w-[143px] h-[37px] flex gap-[16px]">
+            {product.colors.map((color, index) => (
+              <div
+                key={index}
+                className={`h-[37px] w-[37px] rounded-full flex justify-center items-center ${
+                  selectedColor === color ? "" : ""
+                }`}
+                style={{
+                  backgroundColor: color, // The circle will display the color dynamically
+                }}
+                onClick={() => setSelectedColor(color)} // Update the selected color
+              >
+                {selectedColor === color && (
+                  <Image
+                    src="/check-icon.svg"
+                    alt="check-icon"
+                    height={16}
+                    width={16}
+                    className="h-[16px] w-[14px]"
+                  />
+                )}
+              </div>
+            ))}
           </div>
-          <div
-            // data-aos="fade-right"
-            // data-aos-delay="300"
-            className="md:w-[590px] xxl:w-[590px] xl:w-[470px] border-b-[1px] border-black/10 sm:w-[358px] w-[280px] "
-          ></div>
-          <p
-            // data-aos="fade-right"
-            // data-aos-delay="400"
-            className=" font-satoshi text-[16px] font-normal text-black text-opacity-60 "
-          >
+          <p className="font-satoshi text-[16px] font-normal text-black text-opacity-60 ">
             Choose Size
           </p>
-          <div
-            // data-aos="fade-right"
-            // data-aos-delay="400"
-            className="md:w-[420px] w-[280px] sm:w-[353px] h-[46px] flex gap-[6px] sm:gap-[12px] "
-          >
-            <button
-              className={`md:w-[86px] md:h-[46px] w-[64px] sm:w-[74px] h-[29px] sm:h-[39px] md:py-[12px]  md:px-[24px] py-[10px] px-[24px] rounded-[62px] sm:text-[14px] text-[12px] ${
-                isActive === "small"
-                  ? "bg-black text-white"
-                  : "bg-bgLightGrayColor text-black/60"
-              } flex justify-center items-center font-satoshi`}
-              onClick={() => handleSizeChange("small")}
-            >
-              Small
-            </button>
-            <button
-              className={`md:w-[105px] md:h-[46px] sm:w-[90px] h-[29px] w-[80px] sm:h-[39px]  md:py-[12px] md:px-[24px] rounded-[62px] ${
-                isActive === "medium"
-                  ? "bg-black text-white"
-                  : "bg-bgLightGrayColor text-black/60"
-              } py-[10px] px-[20px] sm:text-[14px] text-[12px] flex justify-center items-center font-satoshi`}
-              onClick={() => handleSizeChange("medium")}
-            >
-              Medium
-            </button>
-            <button
-              className={`md:w-[89px] md:h-[46px] sm:w-[76px] w-[66px] h-[29px] sm:h-[39px] md:py-[12px] md:px-[24px] py-[10px] px-[20px] rounded-[62px] sm:text-[14px] text-[12px] ${
-                isActive === "large"
-                  ? "bg-black text-white"
-                  : "bg-bgLightGrayColor text-black/60"
-              } flex justify-center items-center font-satoshi`}
-              onClick={() => handleSizeChange("large")}
-            >
-              large
-            </button>
-            <button
-              className={`md:w-[104px] md:h-[46px] md:py-[12px] md:px-[24px] w-[70px]  sm:w-[80px] h-[29px] sm:h-[39px] py-[10px] px-[20px] rounded-[62px] sm:text-[14px] text-[12px] ${
-                isActive === "x-large"
-                  ? "bg-black text-white"
-                  : "bg-bgLightGrayColor text-black/60"
-              } whitespace-nowrap text-center flex justify-center items-center font-satoshi`}
-              onClick={() => handleSizeChange("x-large")}
-            >
-              X-Large
-            </button>
+          <div className="md:w-[420px] w-[280px] sm:w-[353px] h-[46px] flex gap-[6px] sm:gap-[12px]">
+            {product.sizes.map((size) => (
+              <button
+                key={size}
+                onClick={() => setSelectedSize(size)} // Update the selected size
+                className={`md:w-[86px] md:h-[46px] w-[64px] sm:w-[74px] h-[29px] sm:h-[39px] md:py-[12px] md:px-[24px] py-[10px] px-[24px] rounded-[62px] sm:text-[14px] text-[12px] ${
+                  selectedSize === size
+                    ? "bg-black text-white"
+                    : "bg-bgLightGrayColor text-black/60"
+                } flex justify-center items-center font-satoshi`}
+              >
+                {size}
+              </button>
+            ))}
           </div>
+
+          <p className="font-satoshi font-normal text-black text-[12px]">
+            Size: <span className="text-black/50">{selectedSize}</span>
+          </p>
+          <p className="font-satoshi font-normal text-black text-[12px]">
+            Color: <span className="text-black/50">{selectedColor}</span>
+          </p>
+
           <div
             // data-aos="fade-left"
             // data-aos-delay="200"
@@ -744,7 +650,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
               />
             </div>
 
-            <div className="flex gap-2">
+            {/* <div className="flex gap-2">
                 {product.sizes.map((size) => (
                   <button
                     key={size}
@@ -769,12 +675,13 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
                     {color}
                   </button>
                 ))}
-              </div>
+              </div> */}
             <button
-            
               onClick={() => {
                 if (!selectedSize || !selectedColor) {
-                  alert("Please select a size and color before adding to cart.");
+                  alert(
+                    "Please select a size and color before adding to cart."
+                  );
                   return;
                 }
                 addToCart(product, selectedSize, selectedColor);
@@ -786,7 +693,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
           </div>
         </div>
         <div className="absolute top-[1150px] xl:top-[900px] xl:left-[50px] xxl:left-[100px]">
-         <ProductDetailsTab />
+          <ProductDetailsTab />
         </div>
         <h1
           // data-aos="zoom-in"
@@ -795,126 +702,109 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         >
           You might also like
         </h1>
-        <div className="">
-          {/* <ProductDetailsCardList /> */}
-        </div>
+        <div className="">{/* <ProductDetailsCardList /> */}</div>
         {/* <div className="absolute xl:top-[2870px] xxl:top-[2872px] top-[2800px]">
           <Footer />
         </div> */}
 
-
-
-
-
-
-
-
-
-<Sheet open={showCart} onOpenChange={setShowCart}>
-  <SheetTrigger asChild>
-    <Button
-      variant="outline"
-      className="fixed bottom-6 right-6 font-satoshi bg-black text-white p-4 rounded-full flex items-center justify-center text-lg cursor-pointer w-[50px] h-[50px] hover:text-white hover:bg-black"
-      onClick={() => setShowCart(!showCart)}
-    >
-      <div className="w-[15px] h-[15px] flex justify-center items-center bg-white text-black rounded-full text-[10px] absolute top-[8px] left-[25px]">
-        {cart.length}
-      </div>
-      <FaCartArrowDown className="text-white h-7 w-7 ml-[-10px]" />
-    </Button>
-  </SheetTrigger>
-
-  <SheetContent className="overflow-y-auto h-auto">
-    <SheetHeader>
-      <h2 className="text-2xl font-semibold mb-4 font-integralCf uppercase">
-        Your Cart
-      </h2>
-    </SheetHeader>
-    <div>
-      {cart.length === 0 ? (
-        <div className="flex justify-start gap-1 items-center">
-          <p className="text-lg text-gray-500 font-satoshi">
-            Your cart is empty
-          </p>
-          <PiSmileySad className="h-[20px] w-[20px] text-gray-500" />
-        </div>
-        ) : (
-          cart.map((item) => (
-            <div key={item.id} className="border-b py-4">
-              <div className="flex justify-center items-center w-full px-4 gap-[10px]">
-                <Image
-                  src={item.image}
-                  alt="product-image"
-                  height={40}
-                  width={40}
-                  className="h-[60px] w-[60px] object-cover"
-                />
-                <div className="flex flex-col">
-                  <div className="flex justify-between items-center w-[270px]">
-                    <h3 className="font-semibold text-black font-satoshi">
-                      {item.title}
-                    </h3>
-                    <PiTrashFill
-                      onClick={() => removeFromCart(item.id)}
-                      className="text-red-500 h-5 w-5 cursor-pointer hover:text-red-400"
-                    />
-                  </div>
-                  <p className="font-satoshi font-normal text-black text-[12px]">
-                    Size: <span className="text-black/50">{item.sizes[0]}</span>
-                  </p>
-                  <p className="font-satoshi font-normal text-black text-[12px]">
-                  Color: <span className="text-black/50">{item.colors[0]}</span>
-                </p>
-                <div className="flex justify-between items-center w-[270px]">
-                  <p className="text-black font-satoshi font-bold text-[16px]">
-                    ${item.price}
-                  </p>
-                  <div className="flex justify-center items-center gap-[10px] w-[100px] bg-BannerBgColor rounded-[50px] px-3 py-2 h-8">
-                    <IoAddOutline
-                      onClick={() => increaseQuantity(item.id)}
-                      className="h-4 w-4 text-black cursor-pointer"
-                    />
-                    <p className="text-[14px] text-black font-satoshi font-bold">
-                      {item.quantity}
-                    </p>
-                    <RiSubtractLine
-                      onClick={() => decreaseQuantity(item.id)}
-                      className="h-4 w-4 text-black cursor-pointer"
-                    />
-                  </div>
-                </div>
+        <Sheet open={showCart} onOpenChange={setShowCart}>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              className="fixed bottom-6 right-6 font-satoshi bg-black text-white p-4 rounded-full flex items-center justify-center text-lg cursor-pointer w-[50px] h-[50px] hover:text-white hover:bg-black"
+              onClick={() => setShowCart(!showCart)}
+            >
+              <div className="w-[15px] h-[15px] flex justify-center items-center bg-white text-black rounded-full text-[10px] absolute top-[8px] left-[25px]">
+                {cart.length}
               </div>
+              <FaCartArrowDown className="text-white h-7 w-7 ml-[-10px]" />
+            </Button>
+          </SheetTrigger>
+
+          <SheetContent className="overflow-y-auto h-auto">
+            <SheetHeader>
+              <h2 className="text-2xl font-semibold mb-4 font-integralCf uppercase">
+                Your Cart
+              </h2>
+            </SheetHeader>
+            <div>
+              {cart.length === 0 ? (
+                <div className="flex justify-start gap-1 items-center">
+                  <p className="text-lg text-gray-500 font-satoshi">
+                    Your cart is empty
+                  </p>
+                  <PiSmileySad className="h-[20px] w-[20px] text-gray-500" />
+                </div>
+              ) : (
+                cart.map((item) => (
+                  <div key={item.id} className="border-b py-4">
+                    <div className="flex justify-center items-center w-full px-4 gap-[10px]">
+                      <Image
+                        src={item.image}
+                        alt="product-image"
+                        height={40}
+                        width={40}
+                        className="h-[60px] w-[60px] object-cover"
+                      />
+                      <div className="flex flex-col">
+                        <div className="flex justify-between items-center w-[270px]">
+                          <h3 className="font-semibold text-black font-satoshi">
+                            {item.title}
+                          </h3>
+                          <PiTrashFill
+                            onClick={() => removeFromCart(item.id)}
+                            className="text-red-500 h-5 w-5 cursor-pointer hover:text-red-400"
+                          />
+                        </div>
+                        <p className="font-satoshi font-normal text-black text-[12px]">
+                          Size:{" "}
+                          <span className="text-black/50">{item.sizes}</span>
+                        </p>
+                        <p className="font-satoshi font-normal text-black text-[12px]">
+                          Color:{" "}
+                          <span className="text-black/50">{item.colors}</span>
+                        </p>
+                        💛.
+                        <div className="flex justify-between items-center w-[270px]">
+                          <p className="text-black font-satoshi font-bold text-[16px]">
+                            ${item.price}
+                          </p>
+                          <div className="flex justify-center items-center gap-[10px] w-[100px] bg-BannerBgColor rounded-[50px] px-3 py-2 h-8">
+                            <IoAddOutline
+                              onClick={() => increaseQuantity(item.id)}
+                              className="h-4 w-4 text-black cursor-pointer"
+                            />
+                            <p className="text-[14px] text-black font-satoshi font-bold">
+                              {item.quantity}
+                            </p>
+                            <RiSubtractLine
+                              onClick={() => decreaseQuantity(item.id)}
+                              className="h-4 w-4 text-black cursor-pointer"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
-          </div>
-        ))
-      )}
-    </div>
-    <div className="mt-4 flex justify-center gap-[20px] items-center">
-      <Link
-        href="/cart"
-        className="w-full h-[50px] bg-black text-white font-satoshi text-[15px] font-medium rounded-[50px] flex justify-center items-center"
-      >
-        <button>View cart</button>
-      </Link>
-    </div>
-    <SheetFooter>
-      <SheetClose asChild className="border-none outline-none"></SheetClose>
-    </SheetFooter>
-  </SheetContent>
-</Sheet>
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <div className="mt-4 flex justify-center gap-[20px] items-center">
+              <Link
+                href="/cart"
+                className="w-full h-[50px] bg-black text-white font-satoshi text-[15px] font-medium rounded-[50px] flex justify-center items-center"
+              >
+                <button>View cart</button>
+              </Link>
+            </div>
+            <SheetFooter>
+              <SheetClose
+                asChild
+                className="border-none outline-none"
+              ></SheetClose>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
       </section>
     </>
   );
