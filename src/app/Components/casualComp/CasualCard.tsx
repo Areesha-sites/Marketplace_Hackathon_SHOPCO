@@ -5,8 +5,8 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa";
 import SideBar from "../SideBar";
 import Image from "next/image";
-import RangeSlider from "../PriceRange";
-import SearchBar from "../Searchbar";
+// import RangeSlider from "../PriceRange";
+// import SearchBar from "../Searchbar";
 const fetchProducts = async (
   page: number,
   pageSize: number,
@@ -44,7 +44,7 @@ const CasualCard = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [activeColor, setActiveColor] = useState<number | null>(null);
   const [sortOrder, setSortOrder] = useState<string>("");
-  const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
+  // const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
   const pageSize = 9;
   useEffect(() => {
     const loadProducts = async () => {
@@ -69,16 +69,16 @@ const CasualCard = () => {
   }, [currentPage, selectedCategory, sortOrder]);
 
 
-  const handleSearch = (searchTerm: string) => {
-    if (searchTerm === "") {
-      setFilteredProducts(products);
-    } else {
-      const filtered = products.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredProducts(filtered); 
-    }
-  };
+  // const handleSearch = (searchTerm: string) => {
+  //   if (searchTerm === "") {
+  //     setFilteredProducts(products);
+  //   } else {
+  //     const filtered = products.filter((product) =>
+  //       product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //     );
+  //     setFilteredProducts(filtered); 
+  //   }
+  // };
 
   const handleSort = (order: string) => {
     setSortOrder(order);

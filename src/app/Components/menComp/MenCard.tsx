@@ -33,7 +33,7 @@ const MenCards = () => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await fetchProducts(currentPage, pageSize);
+        const data = await fetchProducts(currentPage, pageSize, selectedCategory); 
         setProducts(data);
         const countQuery = `count(*[_type == "men"])`;
         const totalCount = await client.fetch(countQuery);
