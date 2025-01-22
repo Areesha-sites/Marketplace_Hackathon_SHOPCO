@@ -1,72 +1,72 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import SideBar from "../Components/SideBar";
+import React, { useState } from "react";
+// import SideBar from "../Components/SideBar";
 import Image from "next/image";
-import Pagination from "../Components/Pagination";
-import CausalCardsList from "../Components/CasualCardsList";
+// import Pagination from "../Components/Pagination";
+// import CausalCardsList from "../Components/CasualCardsList";
 import Footer from "../Components/Footer";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { client } from "@/sanity/lib/client";
+// import { Button } from "@/components/ui/button";
+// import {
+//   Drawer,
+//   DrawerClose,
+//   DrawerContent,
+//   DrawerDescription,
+//   DrawerFooter,
+//   DrawerHeader,
+//   DrawerTitle,
+//   DrawerTrigger,
+// } from "@/components/ui/drawer";
+// import { client } from "@/sanity/lib/client";
 import CasualCard from "../Components/casualComp/CasualCard";
-import CasualProduct from "../Components/CasualProduct";
-import { notFound } from "next/navigation";
-interface Products {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string;
-  category: string;
-  discountPercent: number | null;
-  isNew: boolean | null;
-  colors: string[];
-  sizes: string[];
-}
-const fetchProducts = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
-  const query = `*[_type=="products" && _id==$id][0]{
-    _id,
-    name,
-    description,
-    price,
-    "imageUrl" : image.asset->url,
-    category,
-    discountPercent,
-    "isNew": new,
-    colors,
-    sizes
-  }`;
-  try {
-    const product: Products | null = await client.fetch(query, { id });
+// import CasualProduct from "../Components/CasualProduct";
+// import { notFound } from "next/navigation";
+// interface Products {
+//   _id: string;
+//   name: string;
+//   description: string;
+//   price: number;
+//   imageUrl: string;
+//   category: string;
+//   discountPercent: number | null;
+//   isNew: boolean | null;
+//   colors: string[];
+//   sizes: string[];
+// }
+// // const fetchProducts = async ({ params }: { params: { id: string } }) => {
+//   const { id } = params;
+//   const query = `*[_type=="products" && _id==$id][0]{
+//     _id,
+//     name,
+//     description,
+//     price,
+//     "imageUrl" : image.asset->url,
+//     category,
+//     discountPercent,
+//     "isNew": new,
+//     colors,
+//     sizes
+//   }`;
+//   try {
+//     const product: Products | null = await client.fetch(query, { id });
 
-    if (!product) {
-      return notFound();
-    }
-    return product;
-  } catch (error) {
-    console.error("Error fetching product:", error);
-    return notFound();
-  }
-};
+//     if (!product) {
+//       return notFound();
+//     }
+//     return product;
+//   } catch (error) {
+//     console.error("Error fetching product:", error);
+//     return notFound();
+//   }
+// };
 const CasualDetails: React.FC = () => {
-  const [isSidebarVisible, setSidebarVisible] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const handleMouseEnter = () => setIsOpen(true);
-  const handleMouseLeave = () => setIsOpen(false);
-  const toggleSidebar = () => {
-    setSidebarVisible((prev) => !prev);
-  };
+  // const [isSidebarVisible, setSidebarVisible] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  // const handleMouseEnter = () => setIsOpen(true);
+  // const handleMouseLeave = () => setIsOpen(false);
+  // const toggleSidebar = () => {
+  //   setSidebarVisible((prev) => !prev);
+  // };
 
   return (
     <>
@@ -96,7 +96,7 @@ const CasualDetails: React.FC = () => {
               <Link href="/casual"> Casual</Link>
             </span>
           </div>
-          <div className={`${isSidebarVisible ? "block" : "hidden"} lg:block`}>
+          {/* <div className={`${isSidebarVisible ? "block" : "hidden"} lg:block`}> */}
             {/* <Drawer>
   <DrawerTrigger asChild>
   <div
@@ -189,7 +189,7 @@ const CasualDetails: React.FC = () => {
       </DrawerContent>
     </Drawer> */}
             {/* <SideBar closeSidebar={toggleSidebar} /> */}
-          </div>
+          {/* </div> */}
           <div className="flex justify-between items-center w-full px-2 mx-auto">
             <div className="flex justify-between w-full ml-2 items-center gap-x-[40px]">
               <h1

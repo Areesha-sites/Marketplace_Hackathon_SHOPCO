@@ -21,14 +21,14 @@ export default function Home() {
   return (
     <>
       <div className="h-[1500px] lg:h-[100px]">
-        <Banner />
+        {/* <Banner />
         <NewArrivalSection />
          <TopSelling />
        <DressStyleSection />
-         <HappyCustomerSection />
-         <div className="absolute md:top-[4100px] top-[3660px] ">
+         <HappyCustomerSection /> */}
+         {/* <div className="absolute md:top-[4100px] top-[3660px] ">
           <Footer />
-        </div>
+        </div> */}
       </div>
     </>
   );

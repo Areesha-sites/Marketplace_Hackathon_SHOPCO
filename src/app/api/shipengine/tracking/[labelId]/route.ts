@@ -1,8 +1,8 @@
 import { shipengine } from "@/lib/helper/shipEngine";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function GET(
-  req: NextRequest,
+  // req: NextRequest,
   { params }: {
   params: Promise<{ labelId: string }>
 }) {

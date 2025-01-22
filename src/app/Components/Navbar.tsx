@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
 interface Product {
   id: string;
   title: string;
@@ -87,14 +88,14 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
       )
     );
     const results = await Promise.all(queries);
-    console.log("Results from all routes:", results); 
+    console.log("Results from all routes:", results);
     const allResults = results.flat().map((product) => ({
       ...product,
       route: product._type,
     }));
-  
+
     console.log("Flattened Results:", allResults);
-  
+
     setSuggestions(allResults);
   };
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -198,10 +199,26 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
   //     setSuggestions([]);
   //   }
   // };
+  const [wishlistCount, setWishlistCount] = useState(0);
 
+  useEffect(() => {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    setWishlistCount(wishlist.length);
+
+    // Listen for changes in localStorage
+    const handleStorageChange = () => {
+      const updatedWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+      setWishlistCount(updatedWishlist.length);
+    };
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
   return (
     <>
-      <nav className="w-full h-[41px] absolute md:top-[52px] lg:top-[62px] top-[47px] flex justify-center items-center xl:px-[60px] md:px-5 lg:px-[50px] xxl:px-[87px] ">
+      <nav className="w-full h-[41px] absolute md:top-[52px] lg:top-[62px] top-[47px] flex justify-center items-center xl:px-[20px] md:px-5 lg:px-[50px] xxl:px-[87px] 2xL:w-full">
         <div className="flex lg:justify-center md:justify-between items-center h-full w-full lg:gap-[20px] xl:gap-[40px]">
           <h1 className="lg:text-[32px] md:-mt-2 -mt-1 text-black font-bold md:static absolute md:left-[56px] text-[25.2px] font-integralCf tracking-wider md:block hidden">
             <Link href="/"> SHOP.CO</Link>
@@ -209,7 +226,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
           <div className=" xl:gap-[14px] md:flex lg:gap-[10px] xxl:gap-[24px] md:gap-[10px] items-center hidden">
             <div className="">
               <div
-                className="relative inline-block"
+                className="relative inline-block "
                 onMouseLeave={closeDropdown}
               >
                 <div
@@ -217,7 +234,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
           cursor-pointer"
                   onMouseEnter={toggleDropdown}
                 >
-                  <span className="text-black font-satoshi xl:text-[16px] lg:text-[14px] text-[12px]">
+                  <span className="text-black font-satoshi xl:text-[16px] lg:text-[14px] text-[12px] mt-[-32px] xl:mt-[-23px] ">
                     Shop
                   </span>
                   <Image
@@ -225,7 +242,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
                     width={16}
                     src="/Frame (33).svg"
                     alt="dropdown"
-                    className="xl:h-[16px] xl:w-[16px] w-[14px] h-[14px]"
+                    className="xl:h-[16px] xl:w-[16px] w-[14px] h-[14px] mt-[-32px] xl:mt-[-23px] "
                   />
                 </div>
                 {isDropdownOpen && (
@@ -298,7 +315,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
             )}
           </div> */}
 
-          <div className="xl:w-[577px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor flex gap-[12px] items-center font-satoshi relative">
+          <div className="xl:w-[377px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center font-satoshi relative hidden">
             <Image
               src="/Frame (34).svg"
               alt="search-icon"
@@ -349,7 +366,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
             />
           </div> */}
 
-          <div className="flex justify-center items-center md:gap-[14px] md:w-[62px] xxl:w-[62px] xxl:gap-[14px] md:h-[24px] w-[96px] h-[24px] gap-[12px] xl:gap-[10px] absolute md:left-[278px] md:static">
+          <div className="flex justify-center items-center md:gap-[14px] md:w-[62px] xxl:w-[62px] xl:w-[80px] xxl:gap-[14px] md:h-[24px] w-[96px] h-[24px] gap-[12px] xl:gap-[10px] absolute md:left-[278px] md:static">
             <Image
               src="/Frame (35).svg"
               alt="searchBar"
@@ -377,7 +394,23 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
                 className="xl:h-[24px] xl:w-[24px] h-[24px] w-[24px] md:w-[15px] md:h-[15px] lg:w-[25px] lg:h-[25px] md:block hidden"
               />
             </Link>
+            <Link href="/wishlist">
+        <div className="relative">
+          <RiHeart3Fill className="text-red-500 text-2xl" />
+          {wishlistCount > 0 && (
+            <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+              {wishlistCount}
+            </span>
+          )}
+        </div>
+      </Link>
           </div>
+
+
+
+
+
+
         </div>
       </nav>
       <div className="flex justify-between py-2 px-6 md:hidden h-[41px] w-full absolute top-[46px]">

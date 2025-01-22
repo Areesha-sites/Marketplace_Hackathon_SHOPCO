@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { GoChevronRight } from "react-icons/go";
 import Link from "next/link";
-import Footer from "../Components/Footer";
+// import Footer from "../Components/Footer";
 import { PiTrashFill } from "react-icons/pi";
 import { IoAddOutline } from "react-icons/io5";
 import { RiSubtractLine } from "react-icons/ri";

@@ -129,3 +129,14 @@ export interface CategorySelectionPropTypes {
   activeCategory: string | null;
   selectedCategory: string | null;
 }
+export interface WishlistProductsType {
+  _id: string; 
+  name: string;
+  imageUrl: string;
+  price: number;
+}
+
+export interface NavbarProps {
+  wishlist: WishlistProductsType[]; 
+  onSearch: (searchTerm: string) => void; 
+}

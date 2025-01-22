@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { casualCardsData } from "../../../../data/data";
+// import { casualCardsData } from "../../../../data/data";
 import Image from "next/image";
-import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
-import Footer from "@/app/Components/Footer";
+// import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
+// import Footer from "@/app/Components/Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { notFound } from "next/navigation";
@@ -58,7 +58,7 @@ interface Products {
   name: string;
   description: string;
   price: number;
-  imageUrl: string | string[]; // Handle single or multiple image URLs
+  imageUrl: string | string[];
   category: string;
   discountPercent: number | null;
   isNew: boolean | null;
@@ -68,7 +68,7 @@ interface Products {
   offer: number;
 }
 
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -272,7 +272,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
     }
   };
   const [mainImage, setMainImage] = useState("");
-  // const [thumbnails, setThumbnails] = useState([])/
+  // const [thumbnails, setThumbnails] = useState([])
   const [activeImage, setActiveImage] = useState(product?.imageUrl);
   const handleImageClick = (imageSrc: any) => {
     setActiveImage(imageSrc);
@@ -576,9 +576,9 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
                   selectedColor === color ? "" : ""
                 }`}
                 style={{
-                  backgroundColor: color, // The circle will display the color dynamically
+                  backgroundColor: color,
                 }}
-                onClick={() => setSelectedColor(color)} // Update the selected color
+                onClick={() => setSelectedColor(color)}
               >
                 {selectedColor === color && (
                   <Image
@@ -599,7 +599,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
             {product.sizes.map((size) => (
               <button
                 key={size}
-                onClick={() => setSelectedSize(size)} // Update the selected size
+                onClick={() => setSelectedSize(size)}
                 className={`md:w-[86px] md:h-[46px] w-[64px] sm:w-[74px] h-[29px] sm:h-[39px] md:py-[12px] md:px-[24px] py-[10px] px-[24px] rounded-[62px] sm:text-[14px] text-[12px] ${
                   selectedSize === size
                     ? "bg-black text-white"
@@ -650,32 +650,36 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
               />
             </div>
 
-            {/* <div className="flex gap-2">
-                {product.sizes.map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`px-4 py-2 border ${
-                      selectedSize === size ? "bg-black text-white" : "bg-white text-black"
-                    }`}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-              <div className="flex gap-2">
-                {product.colors.map((color) => (
-                  <button
-                    key={color}
-                    onClick={() => setSelectedColor(color)}
-                    className={`px-4 py-2 border ${
-                      selectedColor === color ? "bg-black text-white" : "bg-white text-black"
-                    }`}
-                  >
-                    {color}
-                  </button>
-                ))}
-              </div> */}
+            <div className="flex gap-2">
+              {product.sizes.map((size) => (
+                <button
+                  key={size}
+                  onClick={() => setSelectedSize(size)}
+                  className={`px-4 py-2 border ${
+                    selectedSize === size
+                      ? "bg-black text-white"
+                      : "bg-white text-black"
+                  }`}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+            <div className="flex gap-2">
+              {product.colors.map((color) => (
+                <button
+                  key={color}
+                  onClick={() => setSelectedColor(color)}
+                  className={`px-4 py-2 border ${
+                    selectedColor === color
+                      ? "bg-black text-white"
+                      : "bg-white text-black"
+                  }`}
+                >
+                  {color}
+                </button>
+              ))}
+            </div>
             <button
               onClick={() => {
                 if (!selectedSize || !selectedColor) {
