@@ -102,7 +102,8 @@ const NewArrivalCardsList = () => {
     return <p>Loading products...</p>;
   }
   return (
-    <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1020px] ">
+   <div className="flex justify-center items-center w-full mx-auto">
+     <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[740px] top-[1270px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1020px] lg:top-[920px] xxl:top-[1100px]">
       <Slider {...settings}>
         {products.map((item, index) => (
           <Link href={`/newArrival/${item._id}`} key={item._id} passHref>
@@ -123,7 +124,7 @@ const NewArrivalCardsList = () => {
                   <div className="absolute inset-0 bg-gray-100 opacity-0 hover:opacity-20 rounded-[20px] duration-300 ease-in-out hover:scale-110 transition-all" />
                 </div>
                 <div className="flex flex-col justify-center gap-[5px] mt-2">
-                  <h1 className=" font-black md:text-[20px] text-black text-[12px] sm:text-[14px] font-satoshiBold w-[280px] leading-[20px] ">
+                  <h1 className=" font-black md:text-[20px] text-black text-[12px] sm:text-[14px] font-satoshiBold w-[160px] sm:w-[200px] leading-[15px] sm:leading-[20px] ">
                     {item.name}
                   </h1>
                   <div className="md:w-[150px] w-[117px] h-[19px] flex gap-[13px] items-start justify-start">
@@ -163,6 +164,7 @@ const NewArrivalCardsList = () => {
         ))}
       </Slider>
     </div>
+   </div>
   );
 };
 

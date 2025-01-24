@@ -68,12 +68,12 @@ interface Products {
   offer: number;
 }
 
-// import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
 const CasualDetails: React.FC<Props> = ({ params }) => {
   const { id } = params;
   const [product, setProduct] = useState<Products | null>(null);
@@ -81,7 +81,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
   const [cart, setCart] = useState<Product[]>([]);
   const [showCart, setShowCart] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
-  const [selectedColor, setSelectedColor] = useState<string>("");
+  const [selectedColor, setSelectedColor] = useState<string>(""); 
   useEffect(() => {
     const fetchProduct = async () => {
       const query = `*[_type=="casual" && _id==$id][0]{
@@ -118,7 +118,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
 
     fetchProduct();
   }, [id]);
-
   const addToCart = (product: Product) => {
     const productInCart = cart.find((item) => item.id === product._id);
 
@@ -138,7 +137,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
           title: product.name,
           image: product.imageUrl,
           price: product.price,
-          quantity: 1, // Initialize quantity
+          quantity: 1, 
           colors: product.colors,
           sizes: product.sizes,
         },
@@ -147,7 +146,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
   };
-
   const removeFromCart = (productId: string) => {
     const updatedCart = cart.filter((item) => item.id !== productId);
     setCart(updatedCart);
@@ -182,7 +180,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
-
   const decreaseQuantity = (productId: string) => {
     const updatedCart = cart.map((item) => {
       if (item.id === productId && (item.quantity ?? 0) > 1) {
@@ -194,74 +191,12 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
-
-  // Load cart from localStorage on component mount
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
       setCart(JSON.parse(savedCart));
     }
   }, []);
-  // Function to increase the quantity of a specific product in the cart
-  // const increaseQuantity = (productId: string, selectedSize: string) => {
-  //   const updatedCart = cart.map((item) =>
-  //     item.id === productId && item.selectedSize === selectedSize
-  //       ? { ...item, quantity: item.quantity + 1 }
-  //       : item
-  //   );
-  //   setCart(updatedCart);
-  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
-  // };
-
-  // Function to decrease the quantity of a specific product in the cart
-  // const decreaseQuantity = (productId: string, selectedSize: string) => {
-  //   const updatedCart = cart.map((item) =>
-  //     item.id === productId &&
-  //     item.selectedSize === selectedSize &&
-  //     item.quantity > 1
-  //       ? { ...item, quantity: item.quantity - 1 }
-  //       : item
-  //   );
-  //   setCart(updatedCart);
-  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
-  // };
-  // Function to add product to the cart
-  // const addToCart = (product: Products, selectedSize: string) => {
-  //   const existingProductIndex = cart.findIndex(
-  //     (item) => item.id === product._id && item.selectedSize === selectedSize
-  //   );
-
-  //   if (existingProductIndex === -1) {
-  //     // Add new product to cart if it's not already present
-  //     const updatedCart = [
-  //       ...cart,
-  //       { ...product, quantity: 1, selectedSize }, // Add selectedSize to cart item
-  //     ];
-  //     setCart(updatedCart);
-  //     localStorage.setItem("cart", JSON.stringify(updatedCart));
-  //   } else {
-  //     // If the product already exists, only increase the quantity
-  //     const updatedCart = [...cart];
-  //     updatedCart[existingProductIndex].quantity += 1;
-  //     setCart(updatedCart);
-  //     localStorage.setItem("cart", JSON.stringify(updatedCart));
-  //   }
-  // };
-  // const removeFromCart = (productId: string, selectedSize: string) => {
-  //   const updatedCart = cart.filter(
-  //     (item) => !(item.id === productId && item.selectedSize === selectedSize) // Only remove the matching product
-  //   );
-  //   setCart(updatedCart);
-  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
-  // };
-
-  // Load saved cart from localStorage on initial render
-  // useEffect(() => {
-  //   const savedCart = localStorage.getItem("cart");
-  //   if (savedCart) {
-  //     setCart(JSON.parse(savedCart) as Product[]);
-  //   }
-  // }, []);
   const handleIncrement = () => {
     setCount(count + 1);
   };
@@ -272,7 +207,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
     }
   };
   const [mainImage, setMainImage] = useState("");
-  // const [thumbnails, setThumbnails] = useState([])
   const [activeImage, setActiveImage] = useState(product?.imageUrl);
   const handleImageClick = (imageSrc: any) => {
     setActiveImage(imageSrc);
@@ -282,9 +216,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
   const handleSizeChange = (size: string) => {
     setIsActive(size);
   };
-
   const [activeCircle, setActiveCircle] = useState<number>(1);
-
   const handleCircleClick = (circleIndex: number) => {
     setActiveCircle(circleIndex);
   };
@@ -296,16 +228,9 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
       anchorPlacement: "top-bottom",
     });
   }, []);
-
   if (!product) {
     return null;
   }
-
-  const thumbnails = [
-    "/the-edge-men-s-graphic-tee.jpg",
-    "/WA7504.webp",
-    "/rev-it_tonalite-casual-t-shirt_dark-grey.jpg",
-  ];
   return (
     <>
       <section className="h-[3000px]">
@@ -368,92 +293,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
           data-aos-delay="200"
           className="md:w-[1240px] xxl:w-[1240px] xl:w-[1175px] absolute md:top-[134px] md:left-[100px] xxl:left-[100px] xl:left-[80px] w-full border-b-[1px] border-black/10 top-[98px] sm:left-[16px]"
         ></div>
-
-        {/* <div className="min-h-screen flex items-center justify-center bg-gray-100">
-  <div className="flex space-x-6 p-4 bg-white shadow-lg rounded-lg">
-    <div className="flex flex-col space-y-4">
-      {product &&
-        (Array.isArray(product.imageUrl) ? (
-          product.imageUrl.map((thumb, index) => (
-            <img
-              key={index}
-              src={thumb}
-              alt={`Thumbnail ${index + 1}`}
-              onClick={() => setMainImage(thumb)}
-              className="w-24 h-24 object-cover cursor-pointer hover:opacity-75 border-2 border-gray-200"
-            />
-          ))
-        ) : (
-          <div className="flex flex-col space-y-2">
-            <img
-              src={product.imageUrl}
-              alt="Thumbnail"
-              onClick={() => setMainImage(product.imageUrl)}
-              className="w-24 h-24 object-cover cursor-pointer hover:opacity-75 border-2 border-gray-200 hue-rotate-30"
-            />
-            <img
-              src={product.imageUrl}
-              alt="Thumbnail"
-              onClick={() => setMainImage(product.imageUrl)}
-              className="w-24 h-24 object-cover cursor-pointer hover:opacity-75 border-2 border-gray-200 hue-rotate-180"
-            />
-            <img
-              src={product.imageUrl}
-              alt="Thumbnail"
-              onClick={() => setMainImage(product.imageUrl)}
-              className="w-24 h-24 object-cover cursor-pointer hover:opacity-75 border-2 border-gray-200 rotate-90"
-            />
-          </div>
-        ))}
-    </div>
-    <div className="flex-1 flex items-center justify-center">
-      <img
-        src={mainImage}
-        alt="Main Display"
-        className="w-96 h-96 object-cover border-4 border-gray-300 rounded-lg"
-      />
-    </div>
-  </div>
-</div> */}
         {/* </div> */}
-        {/* <Image
-          data-aos="zoom-in-down"
-          data-aos-delay="200"
-          src={product.imageUrl}
-          alt={product.name}
-          height={530}
-          width={444}
-          className="md:w-[444px] md:h-[480px] absolute md:top-[216px] md:left-[266px] rounded-[20px] bg-productDetailBbImageColor h-[290px] w-[358px] top-[170px] left-[18px] "
-        />
-        <Image
-          data-aos="flip-up"
-          data-aos-delay="200"
-          src={product.imageUrl}
-          alt={product.name}
-          height={167}
-          width={152}
-          className="md:h-[167px] md:w-[152px] absolute md:top-[216px] md:left-[100px] rounded-[20px] border-[1px] border-black left-[16px] w-[112px] h-[106px] top-[475px] -hue-rotate-180"
-        />
-        <Image
-          data-aos="flip-up"
-          data-aos-delay="300"
-          src={product.imageUrl}
-          alt={product.name}
-          height={167}
-          width={152}
-          className="md:h-[167px] md:w-[152px] absolute md:top-[397px] md:left-[100px] rounded-[20px] w-[112px] h-[106px] top-[475px] left-[139px] -hue-rotate-90"
-        />
-        <Image
-          data-aos="flip-up"
-          data-aos-delay="400"
-          src={product.imageUrl}
-          alt={product.name}
-          height={167}
-          width={152}
-          className="md:h-[167px] md:w-[152px] absolute md:top-[579px] md:left-[100px] rounded-[20px] w-[111px] h-[106px] top-[475px] left-[263px] -hue-rotate-30 "
-        /> 
- */}
-
         <div className="flex justify-center items-center w-full mx-auto">
           <Image
             // data-aos="zoom-in-down"
@@ -503,7 +343,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
             />
           </div>
         </div>
-        {/* <ProductGallery/> */}
         <div className="flex flex-col gap-y-[10px] absolute md:top-[216px] left-[16px] md:left-[750px] top-[580px] sm:top-[600px]">
           <h1
             // data-aos="fade-left"
@@ -617,7 +456,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
           <p className="font-satoshi font-normal text-black text-[12px]">
             Color: <span className="text-black/50">{selectedColor}</span>
           </p>
-
           <div
             // data-aos="fade-left"
             // data-aos-delay="200"
@@ -650,7 +488,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
               />
             </div>
 
-            <div className="flex gap-2">
+            {/* <div className="flex gap-2">
               {product.sizes.map((size) => (
                 <button
                   key={size}
@@ -679,7 +517,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
                   {color}
                 </button>
               ))}
-            </div>
+            </div> */}
             <button
               onClick={() => {
                 if (!selectedSize || !selectedColor) {
@@ -706,7 +544,9 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         >
           You might also like
         </h1>
-        <div className="">{/* <ProductDetailsCardList /> */}</div>
+        <div className="">
+          <ProductDetailsCardList />
+        </div>
         {/* <div className="absolute xl:top-[2870px] xxl:top-[2872px] top-[2800px]">
           <Footer />
         </div> */}

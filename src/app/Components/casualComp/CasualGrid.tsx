@@ -10,8 +10,15 @@ interface GridProps {
     imageUrl: string;
     ratingReviews: number;
   }[];
+  addToCompare: (product: any) => void;
 }
-const Grid: React.FC<GridProps> = ({ products }) => {
+const Grid: React.FC<GridProps> = ({
+  products,
+  addToCompare,
+}: {
+  products: any[];
+  addToCompare: (product: any) => void;
+}) => {
   return (
     <div
       className="
@@ -31,7 +38,7 @@ const Grid: React.FC<GridProps> = ({ products }) => {
       "
     >
       {products.map((product) => (
-        <Card key={product._id} product={product} />
+        <Card key={product._id} product={product} addToCompare={addToCompare} />
       ))}
     </div>
   );

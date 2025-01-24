@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/components/hooks/use-toast";
 interface ModalProps {
   onClose: () => void;
   onSubmit: (review: { name: string; description: string; date: string; _id?: string }) => void; // _id is optional

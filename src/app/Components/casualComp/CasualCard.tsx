@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import Grid from "./CasualGrid";
+// import RangeSlider from "../PriceRange";
+import SearchBar from "../Searchbar";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa";
 import SideBar from "../SideBar";
+// import ComparisonTable from "../ComparisonTable";
+import ComparisonTable from "../ComparisonTable";
+import { toast } from "sonner";
 import Image from "next/image";
-// import RangeSlider from "../PriceRange";
-// import SearchBar from "../Searchbar";
+// import ComparisonTable from "../ComparisonTable";
+import { useToast } from "@/components/hooks/use-toast";
 const fetchProducts = async (
   page: number,
   pageSize: number,
@@ -44,7 +49,7 @@ const CasualCard = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [activeColor, setActiveColor] = useState<number | null>(null);
   const [sortOrder, setSortOrder] = useState<string>("");
-  // const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
   const pageSize = 9;
   useEffect(() => {
     const loadProducts = async () => {
@@ -67,19 +72,16 @@ const CasualCard = () => {
     };
     loadProducts();
   }, [currentPage, selectedCategory, sortOrder]);
-
-
-  // const handleSearch = (searchTerm: string) => {
-  //   if (searchTerm === "") {
-  //     setFilteredProducts(products);
-  //   } else {
-  //     const filtered = products.filter((product) =>
-  //       product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  //     );
-  //     setFilteredProducts(filtered); 
-  //   }
-  // };
-
+  const handleSearch = (searchTerm: string) => {
+    if (searchTerm === "") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  };
   const handleSort = (order: string) => {
     setSortOrder(order);
     setCurrentPage(1);
@@ -107,22 +109,55 @@ const CasualCard = () => {
       handlePageChange(currentPage + 1);
     }
   };
+  const [comparisonList, setComparisonList] = useState<any[]>([]);
+  const [showCompareDialog, setShowCompareDialog] = useState(false);
+  const addToCompare = (product: any) => {
+    if (comparisonList.length === 2) {
+      if (
+        window.confirm(
+          "You can only compare two items at a time. Do you want to clear the comparison list?"
+        )
+      ) {
+        setComparisonList([]);
+      }
+      return;
+    }
+
+    const isAlreadyAdded = comparisonList.some(
+      (item) => item._id === product._id
+    );
+
+    if (!isAlreadyAdded) {
+      setComparisonList([...comparisonList, product]);
+
+      if (comparisonList.length === 0) {
+        alert(
+          "First product selected successfully. Now select the second product."
+        );
+      } else if (comparisonList.length === 1) {
+        alert("Second product selected successfully.");
+        setShowCompareDialog(true);
+      }
+    } else {
+      alert("This item is already in the comparison list.");
+    }
+  };
+
+  const removeCompareItem = (productId: string) => {
+    const updatedList = comparisonList.filter((item) => item._id !== productId);
+    setComparisonList(updatedList);
+    if (updatedList.length === 0) {
+      setShowCompareDialog(false);
+    }
+    alert("Item removed from comparison list.");
+  };
+
   return (
     <div>
-       {/* <div className="mt-[-100px]" >
+      {/* <div className="mt-[-100px]" >
   <SearchBar onSearch={handleSearch} />
   </div> */}
       <div className="">
-
- 
-        <div className="">
-        <SideBar
-        handleCategoryChange={handleCategoryChange}
-        activeColor={activeColor}
-        setFilteredProducts={setProducts}
-        setTotalPages={setTotalPages}
-      />
-        </div>
         <div className="flex justify-end items-center w-full px-5">
           <div
             className="md:w-[396px] md:h-[16px] absolute lg:top-[217px] xl:top-[-50px] lg:left-[580px] xxl:left-[944px] xl:left-[380px] flex md:gap-[12px] top-[157px] left-[96px] items-center mt-1 md:mt-3 md:ml-6"
@@ -160,7 +195,7 @@ const CasualCard = () => {
                   <li
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500"
                     onClick={() => handleSort("lowToHigh")}
-                  >z
+                  >
                     Price: Low to High
                   </li>
                   <li
@@ -192,9 +227,35 @@ const CasualCard = () => {
             )}
           </div>
         </div>
-        <div >
-        <Grid products={products} />
-        </div>
+      </div>
+      <div className="">
+        <SideBar
+          handleCategoryChange={handleCategoryChange}
+          activeColor={activeColor}
+          setFilteredProducts={setProducts}
+          setTotalPages={setTotalPages}
+        />
+      </div>
+      <div>
+        <Grid products={products} addToCompare={addToCompare} />
+      </div>
+      <div>
+        {showCompareDialog && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg shadow-lg p-8 w-full md:w-3/4 relative">
+              <button
+                className="absolute top-2 right-3 text-gray-400 hover:text-gray-600"
+                onClick={() => setShowCompareDialog(false)}
+              >
+                ✖
+              </button>
+              <ComparisonTable
+                products={comparisonList}
+                removeCompareItem={removeCompareItem}
+              />
+            </div>
+          </div>
+        )}
       </div>
       <div className="flex items-center justify-between w-[90%] mx-auto mt-28">
         <button

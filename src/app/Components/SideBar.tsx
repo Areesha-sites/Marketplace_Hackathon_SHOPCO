@@ -49,9 +49,9 @@ const SideBar = ({
   ];
   return (
     <aside
-      data-aos="flip-left"
-      data-aos-easing="ease-out-cubic"
-      data-aos-duration="2000"
+      // data-aos="flip-left"
+      // data-aos-easing="ease-out-cubic"
+      // data-aos-duration="2000"
       className="lg:w-[295px] w-full h-[1130px] md:h-[1220px] absolute md:top-[204px] xl:top-[-60px] top-[93px] xxl:left-[100px] xl:left-[-350px] py-[20px] px-[24px] flex flex-col gap-[24px] rounded-[20px] border-[1px] border-black/10 z-50 bg-white lg:left-[50px]"
     >
       <div className="lg:w-[247px] h-[27px] w-full px-4 flex justify-between">

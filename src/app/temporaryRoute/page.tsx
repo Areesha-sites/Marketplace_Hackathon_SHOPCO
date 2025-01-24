@@ -1,29 +1,21 @@
-import React from "react";
-import Faqs from "../Components/Faqs";
-import LabTabs from "../Components/ProductDetailsTab";
-import CasualCardsList from "../Components/CasualCardsList";
-import CasualCard from "../Components/casualComp/CasualCard";
-import ProductsData from "../Components/products/category";
-import KidsCard from "../Components/kidsComp/Card";
+import ProductCard from "../Components/CompareBox";
+const App = () => {
+  const products = [
+    { id: 1, name: "Product 1", price: 100, image: "https://via.placeholder.com/150" },
+    { id: 2, name: "Product 2", price: 200, image: "https://via.placeholder.com/150" },
+    { id: 3, name: "Product 3", price: 300, image: "https://via.placeholder.com/150" },
+  ];
 
-const TemporaryRoute = () => {
   return (
-    <>
-      <div className="">
-        {/* <Faqs/>
-      </div> 
-      <div className="">
-<LabTabs/> */}
-        {/* <CasualCard/>
-
-*/}
-
-{/* <CasualCard/> */}
-        {/* <CasualCardsList/> */}
-        {/* <KidsCard/> */}
+    <div className="app">
+      <h1>Product List</h1>
+      <div className="product-list">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 
-export default TemporaryRoute;
+export default App;

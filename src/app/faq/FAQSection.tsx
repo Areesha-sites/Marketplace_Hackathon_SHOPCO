@@ -1,0 +1,38 @@
+import Link from "next/link";
+const FAQSection = ({ faqs, query }: any) => {
+  const filteredFaqs = faqs.filter((faq: any) =>
+    faq.question.toLowerCase().includes(query.toLowerCase())
+  );
+  return (
+    <>
+      <div className="flex flex-col divide-y sm:px-8 lg:px-12 px-5 xl:px-32 divide-gray-700 w-full">
+        {filteredFaqs.map((faq: any, index: any) => (
+          <details
+            key={index}
+            className="py-2 outline-none text-left cursor-pointer focus:underline font-satoshi text-[14px] xxl:text-[16px] md:text-[16px]"
+          >
+            <summary className="py-2 outline-none text-left cursor-pointer focus:underline font-satoshi text-[14px] xxl:text-[16px] md:text-[16px]">
+              {faq.question}
+            </summary>
+            <div className="px-4 pb-4">
+              <p className="font-satoshi text-[14px] md:text-[16px] text-left">
+                {faq.answer}
+              </p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <div className="mt-5 flex justify-center items-center w-full mx-auto py-9">
+        <p className="font-satoshi text-black font-normal text-[14px] text-center">
+          Have more questions?
+        </p>
+        <Link href="/contact" className="text-blue-500 underline ml-2">
+          Contact Us
+        </Link>
+      </div>
+    </>
+  );
+};
+
+export default FAQSection;

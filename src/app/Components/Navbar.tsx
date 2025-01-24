@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
+import { FaRegHeart } from "react-icons/fa6";
+import SearchBar from "./Searchbar";
 interface Product {
   id: string;
   title: string;
@@ -23,8 +25,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { IoMenu } from "react-icons/io5";
-import SearchBar from "./Searchbar";
+// import SearchBar from "./Searchbar";
 import { client } from "@/sanity/lib/client";
+import { useToast } from "@/components/hooks/use-toast"
+import Alert from '@mui/material/Alert';
 const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
   const dropdownItems = [
     {
@@ -68,48 +72,54 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState<SearchbarTypes[]>([]);
-  const fetchSuggestions = async (searchTerm: string) => {
-    const routes = [
-      "casualDetails",
-      "newArrival",
-      "topSelling",
-      "productDetailsCard",
-      "kidsDetails",
-      "womenDetails",
-      "menDetails",
-    ];
-    const queries = routes.map((route) =>
-      client.fetch(
-        `*[_type == "${route}" && lower(name) match "${searchTerm.toLowerCase()}*"] {
-          _id,
-          name,
-          _type
-        }`
-      )
-    );
-    const results = await Promise.all(queries);
-    console.log("Results from all routes:", results);
-    const allResults = results.flat().map((product) => ({
-      ...product,
-      route: product._type,
-    }));
+  const [loading, setLoading] = useState(false);
 
-    console.log("Flattened Results:", allResults);
+  const schemaRoutes = [
+    "casualDetails",
+    "newArrivals",
+    "topSelling",
+    "productDetailsProduct",
+    "kidsDetails",
+    "women",
+    "men",
+  ];
 
-    setSuggestions(allResults);
+  const fetchSuggestions = async (query: string) => {
+    setLoading(true);
+    try {
+      const queries = schemaRoutes.map((route) =>
+        client.fetch(
+          `*[_type == "${route}" && lower(name) match "${query.toLowerCase()}*"] {
+            _id,
+            name,
+            _type
+          }`
+        )
+      );
+      const results = await Promise.all(queries);
+      const allResults = results.flat().map((product) => ({
+        ...product,
+        route: product._type,
+      }));
+      setSuggestions(allResults);
+    } catch (error) {
+      console.error("Error fetching suggestions:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setSearchTerm(query);
-    if (query) {
+    if (query.trim()) {
       fetchSuggestions(query);
     } else {
       setSuggestions([]);
     }
   };
-  const handleMouseLeave = () => {
-    setSuggestions([]);
-  };
+
+  const handleMouseLeave = () => setSuggestions([]);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -133,6 +143,9 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
     setCartCount(cart.length);
   };
+
+
+
   // const fetchSuggestions = async (searchTerm: string, route: string) => {
   //   let query;
   //   switch (route) {
@@ -199,6 +212,9 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
   //     setSuggestions([]);
   //   }
   // };
+ 
+
+  
   const [wishlistCount, setWishlistCount] = useState(0);
 
   useEffect(() => {
@@ -207,7 +223,9 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
 
     // Listen for changes in localStorage
     const handleStorageChange = () => {
-      const updatedWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+      const updatedWishlist = JSON.parse(
+        localStorage.getItem("wishlist") || "[]"
+      );
       setWishlistCount(updatedWishlist.length);
     };
     window.addEventListener("storage", handleStorageChange);
@@ -216,6 +234,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
+ const { toast } = useToast()
   return (
     <>
       <nav className="w-full h-[41px] absolute md:top-[52px] lg:top-[62px] top-[47px] flex justify-center items-center xl:px-[20px] md:px-5 lg:px-[50px] xxl:px-[87px] 2xL:w-full">
@@ -315,41 +334,45 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
             )}
           </div> */}
 
-          <div className="xl:w-[377px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center font-satoshi relative hidden">
-            <Image
-              src="/Frame (34).svg"
-              alt="search-icon"
-              height={24}
-              width={24}
-              className="xl:h-[24px] xl:w-[24px] lg:h-[20px] lg:w-[20px] md:w-[15px] h-[15px]"
-            />
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              className="md:text-[12px] lg:text-[16px] font-normal text-black/40 border-none outline-none bg-bgLightGrayColor font-satoshi"
-              placeholder="Search for products..."
-            />
-            {suggestions.length > 0 && (
-              <div
-                className="absolute top-[10px] bg-white shadow-md rounded-lg w-full mt-16 font-satoshi"
-                onMouseLeave={handleMouseLeave}
+{/* <div className="xl:w-[377px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center font-satoshi relative hidden">
+      <Image
+        src="/Frame (34).svg"
+        alt="search-icon"
+        height={24}
+        width={24}
+        className="xl:h-[24px] xl:w-[24px] lg:h-[20px] lg:w-[20px] md:w-[15px] h-[15px]"
+      />
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        className="md:text-[12px] lg:text-[16px] font-normal text-black/40 border-none outline-none bg-bgLightGrayColor font-satoshi"
+        placeholder="Search for products..."
+      />
+      {suggestions.length > 0 && (
+        <div
+          className="absolute top-[10px] bg-white shadow-md rounded-lg w-full mt-16 font-satoshi"
+          onMouseLeave={handleMouseLeave}
+        >
+          <ScrollArea className="h-48 w-full max-h-[200px] overflow-y-auto">
+            {suggestions.map((product) => (
+              <Link
+                key={product._id}
+                href={`/${product.route}/${product._id}`}
               >
-                <ScrollArea className="h-48 w-full max-h-[200px] overflow-y-auto">
-                  {suggestions.map((product) => (
-                    <Link
-                      key={product._id}
-                      href={`/${product.route}/${product._id}`}
-                    >
-                      <p className="block px-4 py-2 hover:bg-gray-200 text-black font-satoshi">
-                        {product.name}
-                      </p>
-                    </Link>
-                  ))}
-                </ScrollArea>
-              </div>
-            )}
-          </div>
+                <p className="block px-4 py-2 hover:bg-gray-200 text-black font-satoshi">
+                  {product.name}
+                </p>
+              </Link>
+            ))}
+          </ScrollArea>
+        </div>
+      )}
+    </div> */}
+
+
+<SearchBar/>
+
 
           {/* <div className="xl:w-[577px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center hidden font-satoshi ">
             <Image
@@ -395,22 +418,16 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
               />
             </Link>
             <Link href="/wishlist">
-        <div className="relative">
-          <RiHeart3Fill className="text-red-500 text-2xl" />
-          {wishlistCount > 0 && (
-            <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
-              {wishlistCount}
-            </span>
-          )}
-        </div>
-      </Link>
+              <div className="relative">
+                <FaRegHeart className="text-black h-[20px] w-[20px]" />
+                {wishlistCount > 0 && (
+                  <span className="absolute top-[-7px] right-[-10px] bg-black text-white rounded-full text-[10px] font-satoshi w-4 h-4 flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
+              </div>
+            </Link>
           </div>
-
-
-
-
-
-
         </div>
       </nav>
       <div className="flex justify-between py-2 px-6 md:hidden h-[41px] w-full absolute top-[46px]">

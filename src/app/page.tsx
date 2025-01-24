@@ -20,16 +20,66 @@ export default function Home() {
 
   return (
     <>
-      <div className="h-[1500px] lg:h-[100px]">
-        {/* <Banner />
-        <NewArrivalSection />
-         <TopSelling />
-       <DressStyleSection />
-         <HappyCustomerSection /> */}
-         {/* <div className="absolute md:top-[4100px] top-[3660px] ">
+      <div className="">
+        <Banner />
+       <NewArrivalSection />
+        <TopSelling />
+         <DressStyleSection />
+         {/* <HappyCustomerSection />
+         <div className="absolute md:top-[4100px] top-[3660px] ">
           <Footer />
         </div> */}
       </div>
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { I18nProvider } from 'react-i18next';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { I18nextProvider } from 'react-i18next';
+// import i18next from 'i18next';
+
+// function MyApp({ Component, pageProps }: any) {
+//   return (
+//     <I18nextProvider i18n={i18next}> 
+//       <Component {...pageProps} />
+//     </I18nextProvider>
+//   );
+// }
+
+// export default MyApp;

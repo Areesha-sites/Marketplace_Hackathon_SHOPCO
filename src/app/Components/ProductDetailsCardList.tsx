@@ -102,7 +102,7 @@ const ProductDetailsCardList = () => {
     return <p>Loading products...</p>;
   }
   return (
-    <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1200px] ">
+    <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[2200px] ">
       <Slider {...settings}>
         {products.map((item, index) => (
           <Link href={`/productDetailsCard/${item._id}`} key={item._id} passHref>

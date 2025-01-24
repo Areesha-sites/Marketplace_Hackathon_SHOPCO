@@ -102,63 +102,63 @@ const TopSellingCardsList = () => {
     return <p>Loading products...</p>;
   }
   return (
-    <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1140px] top-[1217px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1750px] ">
+    <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[1340px] top-[1717px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1700px] lg:top-[1620px] xxl:top-[1770px]">
       <Slider {...settings}>
         {products.map((item, index) => (
           <Link href={`/topSelling/${item._id}`} key={item._id} passHref>
-            <div className="h-[400px]" key={index}>
-              <div
-                // data-aos="fade-up"
-                // data-aos-duration="3000"
-                className="lg:w-[295px] lg:h-[298px] md:w-[240px] md:h-[250px] xxl:w-[295px] xxl:h-[298px] xl:w-[275px] xl:h-[298px] h-[150px] w-[145px] sm:w-[175px] sm:h-[200px] rounded-[20px] bg-bannerBg "
-              >
-                <div className="relative">
-                  <Image
-                    src={item.imageUrl}
-                    alt="product-image"
-                    height={296}
-                    width={444}
-                    className="lg:w-[444px] lg:h-[296px] md:w-[240px] md:h-[250px] w-[145px] sm:w-[175px] sm:h-[190px] h-[150px] object-cover rounded-[20px] transition-transform duration-300 ease-in-out"
-                  />
-                  <div className="absolute inset-0 bg-gray-100 opacity-0 hover:opacity-20 rounded-[20px] duration-300 ease-in-out hover:scale-110 transition-all" />
-                </div>
-                <div className="flex flex-col h-[200px] justify-between absolute top-[160px] sm:top-[210px] md:top-[160px] lg:top-[200px]">
-                  <h1 className="absolute top-[-8px] left-[10px] md:top-[100px] font-black md:text-[20px] text-black text-[12px] sm:text-[14px] whitespace-nowrap font-satoshiBold  ">
-                    {item.name}
-                  </h1>
-                  <div className="md:w-[150px] w-[117px] h-[19px] md:top-[135px] left-[10px] absolute top-[11px] flex gap-[13px] items-start justify-start">
-                    <Image
-                      src="/Frame 10.svg"
-                      alt="rating-star"
-                      height={18.49}
-                      width={104}
-                      className="h-[18.49px] md:w-[104px] w-[65px] sm:w-[75px]"
-                    />
-                    {item.ratingReviews && (
-                      <p className="md:text-[14px] text-[12px] text-black font-normal whitespace-nowrap font-satoshi">
-                        {item.ratingReviews}{" "}
-                        <span className="text-opacity-60 text-black">/5</span>
-                      </p>
-                    )}
-                  </div>
-                  <div className="md:w-[200px] h-[32px] absolute top-[30px] flex gap-[5px] sm:gap-[10px] items-center md:top-[155px] left-[10px] ">
-                    <span className="md:text-[24px] text-[18px] sm:text-[20px] font-black text-black  font-satoshiBold ">
-                      ${item.price}
-                    </span>
-                    {item.discountPercent && (
-                      <span className="md:text-[24px] text-[18px] sm:text-[20px] font-black text-black font-satoshiBold opacity-15 line-through">
-                        ${item.discountPercent}
-                      </span>
-                    )}
-                    {item.offer && (
-                      <span className="md:w-[58px] w-[42px] md:h-[28px] h-[20px] py-[6px] px-[14px] rounded-[62px] bg-red-400 bg-opacity-20 text-[10px] md:text-[12px] font-medium text-redTextOfferColor font-satoshi flex justify-center items-center">
-                        -{item.offer}%
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div key={index} className="h-[400px] flex flex-col gap-y-[10px]">
+                       <div
+                        //  data-aos="fade-up"
+                        //  data-aos-duration="3000"
+                         className="lg:w-[295px] lg:h-[298px] md:w-[240px] md:h-[250px] xxl:w-[295px] xxl:h-[298px] xl:w-[275px] xl:h-[298px] h-[150px] w-[145px] sm:w-[175px] sm:h-[200px] rounded-[20px] bg-bannerBg "
+                       >
+                         <div className="relative">
+                           <Image
+                             src={item.imageUrl}
+                             alt="product-image"
+                             height={296}
+                             width={444}
+                             className="lg:w-[444px] lg:h-[296px] md:w-[240px] md:h-[250px] w-[145px] sm:w-[175px] sm:h-[190px] h-[150px] object-cover rounded-[20px] transition-transform duration-300 ease-in-out"
+                           />
+                           <div className="absolute inset-0 bg-gray-100 opacity-0 hover:opacity-20 rounded-[20px] duration-300 ease-in-out hover:scale-110 transition-all" />
+                         </div>
+                         <div className="flex flex-col justify-center gap-[5px] mt-2">
+                           <h1 className=" font-black md:text-[20px] text-black text-[12px] sm:text-[14px] font-satoshiBold w-[160px] sm:w-[280px] leading-[15px] sm:leading-[20px]  ">
+                             {item.name}
+                           </h1>
+                           <div className="md:w-[150px] w-[117px] h-[19px] flex gap-[13px] items-start justify-start">
+                             <Image
+                               src="/Frame 10.svg"
+                               alt="rating-star"
+                               height={18.49}
+                               width={104}
+                               className="h-[18.49px] md:w-[104px] w-[65px] sm:w-[75px]"
+                             />
+                             {item.ratingReviews && (
+                               <p className="md:text-[14px] text-[12px] text-black font-normal whitespace-nowrap font-satoshi">
+                                 {item.ratingReviews}{" "}
+                                 <span className="text-opacity-60 text-black">/5</span>
+                               </p>
+                             )}
+                           </div>
+                           <div className="md:w-[200px] h-[32px] flex gap-[5px] sm:gap-[10px] items-center">
+                             <span className="md:text-[24px] text-[18px] sm:text-[20px] font-black text-black  font-satoshiBold ">
+                               ${item.price}
+                             </span>
+                             {item.discountPercent && (
+                               <span className="md:text-[24px] text-[18px] sm:text-[20px] font-black text-black font-satoshiBold opacity-15 line-through">
+                                 ${item.discountPercent}
+                               </span>
+                             )}
+                             {item.offer && (
+                               <span className="md:w-[58px] w-[42px] md:h-[28px] h-[20px] py-[6px] px-[14px] rounded-[62px] bg-red-400 bg-opacity-20 text-[10px] md:text-[12px] font-medium text-redTextOfferColor font-satoshi flex justify-center items-center">
+                                 -{item.offer}%
+                               </span>
+                             )}
+                           </div>
+                         </div>
+                       </div>
+                     </div>
           </Link>
         ))}
       </Slider>
