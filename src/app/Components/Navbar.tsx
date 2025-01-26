@@ -27,8 +27,8 @@ import {
 import { IoMenu } from "react-icons/io5";
 // import SearchBar from "./Searchbar";
 import { client } from "@/sanity/lib/client";
-import { useToast } from "@/components/hooks/use-toast"
-import Alert from '@mui/material/Alert';
+import { useToast } from "@/components/hooks/use-toast";
+import Alert from "@mui/material/Alert";
 const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
   const dropdownItems = [
     {
@@ -60,8 +60,8 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
       href: "/",
     },
     {
-      name: "New Arrivals",
-      href: "/",
+      name: "Help Center",
+      href: "/helpCenter",
     },
     {
       name: "Contact Us",
@@ -144,8 +144,6 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
     setCartCount(cart.length);
   };
 
-
-
   // const fetchSuggestions = async (searchTerm: string, route: string) => {
   //   let query;
   //   switch (route) {
@@ -212,9 +210,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
   //     setSuggestions([]);
   //   }
   // };
- 
 
-  
   const [wishlistCount, setWishlistCount] = useState(0);
 
   useEffect(() => {
@@ -234,7 +230,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
- const { toast } = useToast()
+  const { toast } = useToast();
   return (
     <>
       <nav className="w-full h-[41px] absolute md:top-[52px] lg:top-[62px] top-[47px] flex justify-center items-center xl:px-[20px] md:px-5 lg:px-[50px] xxl:px-[87px] 2xL:w-full">
@@ -286,13 +282,23 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
                 )}
               </div>
             </div>
-            {["On Sale", "New Arrivals", "Contact"].map((link, index) => (
+            {/* navbarLinks.map((link, index) => (
               <Link
                 key={index}
                 href="/"
                 className="xl:text-[16px] md:text-[12px] lg:text-[12px] font-normal text-black hover:text-gray-700 whitespace-nowrap font-satoshi ml-3"
               >
                 {link}
+              </Link>
+            ))} */}
+
+            {navbarLinks.map((link, index) => (
+              <Link
+                href={link.href}
+                key={index}
+                className="xl:text-[16px] md:text-[12px] lg:text-[12px] font-normal text-black hover:text-gray-700 whitespace-nowrap font-satoshi ml-3"
+              >
+                {link.name}
               </Link>
             ))}
           </div>
@@ -334,7 +340,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
             )}
           </div> */}
 
-{/* <div className="xl:w-[377px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center font-satoshi relative hidden">
+          {/* <div className="xl:w-[377px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center font-satoshi relative hidden">
       <Image
         src="/Frame (34).svg"
         alt="search-icon"
@@ -370,9 +376,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
       )}
     </div> */}
 
-
-<SearchBar/>
-
+          <SearchBar />
 
           {/* <div className="xl:w-[577px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center hidden font-satoshi ">
             <Image
@@ -418,7 +422,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
               />
             </Link>
             <Link href="/wishlist">
-              <div className="relative">
+              <div className="relative hidden md:flex">
                 <FaRegHeart className="text-black h-[20px] w-[20px]" />
                 {wishlistCount > 0 && (
                   <span className="absolute top-[-7px] right-[-10px] bg-black text-white rounded-full text-[10px] font-satoshi w-4 h-4 flex items-center justify-center">
@@ -522,6 +526,16 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
             width={24}
             className="h-[24px] w-[24px]"
           />
+          <Link href="/wishlist">
+            <div className="relative md:hidden flex">
+              <FaRegHeart className="text-black h-[20px] w-[20px]" />
+              {wishlistCount > 0 && (
+                <span className="absolute top-[-7px] right-[-10px] bg-black text-white rounded-full text-[10px] font-satoshi w-4 h-4 flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
+            </div>
+          </Link>
         </div>
       </div>
     </>

@@ -95,8 +95,8 @@ const Card: React.FC<CardProps> = ({ product, addToCompare }) => {
             className="md:w-[444px] md:h-[296px] xxl:w-[444px] xxl:h-[296px] xl:w-[260px] xl:h-[263px] sm:w-[180px] sm:h-[190px] object-cover rounded-[20px] w-[140px] h-[164px]"
           />
           <div
-            data-aos="flip-left"
-            data-aos-delay="300"
+            // data-aos="flip-left"
+            // data-aos-delay="300"
             className="flex flex-col justify-center "
           >
             <h1 className=" font-satoshiBold font-semibold md:text-[20px] text-black text-[12px] w-[280px] capitalize leading-[24px]">

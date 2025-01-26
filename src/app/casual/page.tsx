@@ -19,6 +19,14 @@ import Link from "next/link";
 // } from "@/components/ui/drawer";
 // import { client } from "@/sanity/lib/client";
 import CasualCard from "../Components/casualComp/CasualCard";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 // import CasualProduct from "../Components/CasualProduct";
 // import { notFound } from "next/navigation";
 // interface Products {
@@ -77,24 +85,26 @@ const CasualDetails: React.FC = () => {
             // data-aos-delay="200"
             className="xl:w-[1100px] xxl:w-[1240px] absolute md:top-[134px] lg:left-[50px] xl:left-[100px] border-b-[1px] border-black/10 top-[98px] w-full left-0 mx-auto lg:w-[930px] md:w-[600px]"
           ></div>
-          <div
-            // data-aos="fade-right"
-            // data-aos-delay="100"
-            className="md:w-[106px] w-[89px] h-[22px] absolute lg:top-[158px] xl:left-[100px] lg:left-[50px] left-[16px] flex lg:gap-[12px] gap-[5px] items-center top-[118px]"
-          >
-            <span className="font-satoshi md:text-[16px] text-[14px] font-normal text-black/60">
-              <Link href="/"> Home</Link>
-            </span>
-            <Image
-              src="/Frame (5).svg"
-              alt="icon"
-              height={16}
-              width={16}
-              className="md:h-[16px] md:w-[16px] h-[14px] w-[14px]"
-            />
-            <span className="font-satoshi md:text-[16px] text-[14px] font-normal text-black">
-              <Link href="/casual"> Casual</Link>
-            </span>
+          <div className="absolute top-[160px] left-[100px]">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink>
+                  <Link href="/" className="font-satoshi">
+                    Home
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+              <BreadcrumbPage>
+                  <Link href="/casual" className="font-satoshi">
+                 Casual
+                  </Link>
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
           </div>
           {/* <div className={`${isSidebarVisible ? "block" : "hidden"} lg:block`}> */}
             {/* <Drawer>
@@ -193,8 +203,6 @@ const CasualDetails: React.FC = () => {
           <div className="flex justify-between items-center w-full px-2 mx-auto">
             <div className="flex justify-between w-full ml-2 items-center gap-x-[40px]">
               <h1
-                // data-aos="zoom-in"
-                // data-aos-delay="200"
                 className="absolute lg:top-[204px] top-[149px]  lg:left-[360px] xl:left-[415px] md:text-[32px] text-[24px] font-bold text-black font-satoshiBold"
               >
                 Casual
@@ -208,16 +216,14 @@ const CasualDetails: React.FC = () => {
           </div>
           <div className="flex justify-center items-center w-full mx-auto">
             <div
-              // data-aos="zoom-in"
-              // data-aos-delay="200"
               className="lg:w-[600px] md:w-[700px] w-full mx-auto lg:left-[375px] xl:left-[415px] md:top-[1333px] lg:top-[2400px] xxl:top-[1580px] xxl:w-[925px] xl:w-[770px] xl:top-[1470px] top-[1400px] sm:top-[1590px] absolute border-b-[1px] border-black/10 "
             ></div>
           </div>
         </section>
       </div>
-      {/* <div className="absolute md:top-[1830px] xxl:top-[2100px] xl:top-[2000px] top-[1500px] z-20">
+      <div className="absolute md:top-[1830px] xxl:top-[2100px] xl:top-[1750px] top-[1500px] z-20">
         <Footer />
-      </div> */}
+      </div>
     </>
   );
 };

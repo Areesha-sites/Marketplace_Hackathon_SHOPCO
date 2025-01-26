@@ -1,7 +1,13 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useState, useEffect } from "react";
+import { RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
+import { useToast } from "@/components/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import toast, { Toaster } from "react-hot-toast";
+import { BiGitCompare } from "react-icons/bi";
 interface CardProps {
   product: {
     _id: string;
@@ -12,17 +18,73 @@ interface CardProps {
     imageUrl: string;
     ratingReviews: number;
   };
+  addToCompare: (product: any) => void;
 }
-const MenCard: React.FC<CardProps> = ({ product }) => {
+const MenCard: React.FC<CardProps> = ({ product, addToCompare }) => {
+  const { toast } = useToast();
+  const [isWishlisted, setIsWishlisted] = useState(false);
+  const toggleToast = () => {
+    setIsWishlisted(!isWishlisted);
+    if (!isWishlisted) {
+      toast({
+        description: "Item removed from wishlist.",
+      });
+    } else {
+      toast({
+        description: "Item added to wishlist successfully.",
+      });
+    }
+  };
+  useEffect(() => {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    setIsWishlisted(wishlist.some((item: any) => item._id === product._id));
+  }, [product._id]);
+  const toggleWishlist = () => {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    if (isWishlisted) {
+      const updatedWishlist = wishlist.filter(
+        (item: any) => item._id !== product._id
+      );
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+      toast({
+        description: "Item removed from wishlist.",
+      });
+    } else {
+      wishlist.push(product);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      toast({
+        description: "Item added to wishlist successfully.",
+      });
+    }
+    setIsWishlisted(!isWishlisted);
+  };
   return (
     <Link href={`/menDetails/${product._id}`} passHref>
       <div
-        data-aos="flip-left"
-        data-aos-easing="ease-out-cubic"
-        data-aos-duration="2000"
+        // data-aos="flip-left"
+        // data-aos-easing="ease-out-cubic"
+        // data-aos-duration="2000"
         className="lg:h-[420px] xxl:h-[420px] xl:h-[380px] flex flex-col justify-between"
       >
         <div className="lg:w-[295px] lg:h-[298px] md:w-[230px] md:h-[230px] xxl:w-[295px] xxl:h-[298px] xl:w-[285px] xl:h-[278px] sm:w-[172px] sm:h-[174px] w-[140px] h-[104px] rounded-[20px] bg-bannerBg relative flex flex-col gap-[10px]">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              toggleWishlist();
+            }}
+            className="absolute top-2 left-2 text-black text-2xl z-10"
+          >
+            {isWishlisted ? <RiHeart3Fill /> : <RiHeart3Line />}
+          </button>
+          <button
+              onClick={(e) => {
+                e.preventDefault();
+                addToCompare(product);
+              }}
+              className="absolute top-12 left-2 text-black text-2xl z-10"
+            >
+              <BiGitCompare />
+            </button>
           <Image
             src={product.imageUrl}
             alt="product-image"

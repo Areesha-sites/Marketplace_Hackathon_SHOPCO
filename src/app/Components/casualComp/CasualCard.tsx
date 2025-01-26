@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import Grid from "./CasualGrid";
-// import RangeSlider from "../PriceRange";
-import SearchBar from "../Searchbar";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa";
 import SideBar from "../SideBar";
-// import ComparisonTable from "../ComparisonTable";
 import ComparisonTable from "../ComparisonTable";
-import { toast } from "sonner";
 import Image from "next/image";
-// import ComparisonTable from "../ComparisonTable";
-import { useToast } from "@/components/hooks/use-toast";
 const fetchProducts = async (
   page: number,
   pageSize: number,
@@ -165,15 +159,15 @@ const CasualCard = () => {
             onMouseLeave={handleMouseLeave}
           >
             <p
-              data-aos="zoom-in"
-              data-aos-delay="200"
+              // data-aos="zoom-in"
+              // data-aos-delay="200"
               className="md:text-[16px] xxl:text-[16px] xl:text-[14px] sm:text-[14px] text-[12px] font-normal font-satoshi text-black/60 whitespace-nowrap text-center"
             >
               Showing 1-10 of {totalPages * pageSize} Products
             </p>
             <div
-              data-aos="zoom-in"
-              data-aos-delay="200"
+              // data-aos="zoom-in"
+              // data-aos-delay="200"
               className="md:flex gap-[4px] items-center hidden"
             >
               <p className="text-[16px] font-normal font-satoshi text-black/60 whitespace-nowrap">

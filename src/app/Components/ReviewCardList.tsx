@@ -4,20 +4,17 @@ import ReviewsCard from "./ReviewCard";
 import { client } from "@/sanity/lib/client";
 import Modal from "./Modal";
 import { v4 as uuidv4 } from "uuid";
-
 interface ReviewPropsTypes {
   _id: string;
   name: string;
   description: string;
   date: string;
 }
-
 const ReviewCardList = () => {
   const [reviewCardsData, setReviewCardsData] = useState<ReviewPropsTypes[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
   const [currentReview, setCurrentReview] = useState<ReviewPropsTypes | null>(null); 
-// Fetch reviews from Sanity
 useEffect(() => {
   const fetchReviews = async () => {
     try {
@@ -36,12 +33,10 @@ useEffect(() => {
   };
   fetchReviews();
 }, []);
-
-// Add a new review
 const handleAddReview = async (newReview: { name: string; description: string; date: string }) => {
   const reviewWithId: ReviewPropsTypes = {
     ...newReview,
-    _id: uuidv4(),  // Generate an ID for new reviews
+    _id: uuidv4(),  
   };
   try {
     await client.create({
@@ -55,20 +50,23 @@ const handleAddReview = async (newReview: { name: string; description: string; d
     console.error("Error adding review:", error);
   }
 };
-
-// Edit a review
 const handleEditReview = async (updatedReview: ReviewPropsTypes) => {
   if (!currentReview) return;
-  console.log("Editing review with ID:", currentReview._id); // Debugging
+  console.log("Editing review with ID:", currentReview._id);
   try {
     await client
-      .patch(currentReview._id)
-      .set(updatedReview)
-      .commit();
+    .patch(currentReview._id)
+    .set({
+      name: updatedReview.name,
+      description: updatedReview.description,
+      date: updatedReview.date,
+    })
+    .commit();
     setReviewCardsData((prevReviews) =>
       prevReviews.map((review) =>
         review._id === currentReview._id ? updatedReview : review
       )
+      
     );
     setIsModalOpen(false);
     setIsEditModal(false);
@@ -76,11 +74,14 @@ const handleEditReview = async (updatedReview: ReviewPropsTypes) => {
     console.error("Error updating review:", error);
   }
 };
-// Remove a review
 const handleRemoveReview = async (id: string) => {
-  console.log("Deleting review with ID:", id); // Debugging
+  console.log("Deleting review with ID:", id); 
+  
   try {
-    await client.delete(id);
+    await client.delete(id).then(() => {
+      console.log(`Deleted review with ID: ${id}`);
+    });
+    console.log("Deleting review with ID:", id);
     setReviewCardsData((prevReviews) =>
       prevReviews.filter((review) => review._id !== id)
     );
@@ -102,12 +103,12 @@ return (
             date={new Date(item.date).toLocaleDateString()}
             rating="/rating.svg"
             correct="/correct-icon.svg"
-            // onEdit={() => {
-            //   setCurrentReview(item);
-            //   setIsEditModal(true);
-            //   setIsModalOpen(true);
-            // }}
-            // onRemove={() => handleRemoveReview(item._id)}
+            onEdit={() => {
+              setCurrentReview(item); // Set the current review
+              setIsEditModal(true);   // Indicate it's an edit modal
+              setIsModalOpen(true);   // Open the modal
+            }}
+            onRemove={() => handleRemoveReview(item._id)}
           />
         ))
       ) : (
@@ -122,13 +123,13 @@ return (
           Write a Review
         </button>
       </div>
-      {/* {isModalOpen && (
+      {isModalOpen && (
         <Modal
           onClose={() => setIsModalOpen(false)}
           onSubmit={isEditModal ? handleEditReview : handleAddReview} 
           currentReview={currentReview}
         />
-      )} */}
+      )}
     </>
   );
 };

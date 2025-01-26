@@ -1,6 +1,5 @@
 import React from "react";
 import MenCard from "./Card";
-
 interface GridProps {
   products: {
     _id: string;
@@ -11,8 +10,15 @@ interface GridProps {
     imageUrl: string;
     ratingReviews: number;
   }[];
+  addToCompare: (product: any) => void;
 }
-const MenGrid: React.FC<GridProps> = ({ products }) => {
+const MenGrid: React.FC<GridProps> = ({
+  products,
+  addToCompare,
+}: {
+  products: any[];
+  addToCompare: (product: any) => void;
+}) => {
   return (
     <div
       className="
@@ -25,13 +31,14 @@ const MenGrid: React.FC<GridProps> = ({ products }) => {
        md:grid-cols-3
        lg:grid-cols-2
        xl:grid-cols-3
+       xl:gap-0
        md:gap-[20px]
        items-start
        md:gap-y-[130px]
       "
     >
       {products.map((product) => (
-        <MenCard key={product._id} product={product} />
+        <MenCard key={product._id} product={product} addToCompare={addToCompare} />
       ))}
     </div>
   );

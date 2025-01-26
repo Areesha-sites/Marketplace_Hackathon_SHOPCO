@@ -140,3 +140,34 @@ export interface NavbarProps {
   wishlist: WishlistProductsType[]; 
   onSearch: (searchTerm: string) => void; 
 }
+export interface CasualDetailsProduct {
+  id: string;
+  title: string;
+  price: number;
+  image: string;
+  quantity?: number;
+  selectedSize?: string;
+  selectedColor?: string;
+  sizes: string;
+  colors: string;
+  description: string;
+  category: string;
+  discountPercent: number | null;
+  isNew: boolean | null;
+  ratingReviews: number;
+  offer: number;
+}
+export interface CasualDetailsProducts {
+  _id: string;
+  name: string;
+  description?: string;
+  imageUrl: string;
+  price: number;
+  category?: string;
+  discountPercent?: number | null;
+  isNew?: boolean | null;
+  colors: string[];
+  sizes: string[];
+  ratingReviews?: number;
+  offer?: number;
+}

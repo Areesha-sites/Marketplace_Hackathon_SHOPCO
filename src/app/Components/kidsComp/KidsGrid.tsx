@@ -1,5 +1,5 @@
 import React from "react";
-import KidsCard from "./Card";
+import Card from "./Card";
 interface GridProps {
   products: {
     _id: string;
@@ -10,8 +10,15 @@ interface GridProps {
     imageUrl: string;
     ratingReviews: number;
   }[];
+  addToCompare: (product: any) => void;
 }
-const KidsGrid: React.FC<GridProps> = ({ products }) => {
+const GridKids: React.FC<GridProps> = ({
+  products,
+  addToCompare,
+}: {
+  products: any[];
+  addToCompare: (product: any) => void;
+}) => {
   return (
     <div
       className="
@@ -24,16 +31,17 @@ const KidsGrid: React.FC<GridProps> = ({ products }) => {
        md:grid-cols-3
        lg:grid-cols-2
        xl:grid-cols-3
+       xl:gap-0
        md:gap-[20px]
        items-start
        md:gap-y-[130px]
       "
     >
       {products.map((product) => (
-        <KidsCard key={product._id} product={product} />
+        <Card key={product._id} product={product} addToCompare={addToCompare} />
       ))}
     </div>
   );
 };
 
-export default KidsGrid;
+export default GridKids;

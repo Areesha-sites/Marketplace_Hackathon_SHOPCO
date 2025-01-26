@@ -13,7 +13,12 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/hooks/use-toast";
 interface ModalProps {
   onClose: () => void;
-  onSubmit: (review: { name: string; description: string; date: string; _id?: string }) => void; // _id is optional
+  onSubmit: (review: {
+    name: string;
+    description: string;
+    date: string;
+    _id?: string;
+  }) => void;
   currentReview: {
     _id?: string;
     name: string;
@@ -24,7 +29,9 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ onClose, onSubmit, currentReview }) => {
   const { toast } = useToast();
   const [name, setName] = useState(currentReview?.name || "");
-  const [description, setDescription] = useState(currentReview?.description || "");
+  const [description, setDescription] = useState(
+    currentReview?.description || ""
+  );
 
   useEffect(() => {
     if (currentReview) {
@@ -45,7 +52,9 @@ const Modal: React.FC<ModalProps> = ({ onClose, onSubmit, currentReview }) => {
     };
     onSubmit(newReview);
     toast({
-      description: currentReview ? "Review updated successfully" : "Your review has been submitted successfully.",
+      description: currentReview
+        ? "Review updated successfully"
+        : "Your review has been submitted successfully.",
     });
     onClose();
   };
@@ -53,7 +62,9 @@ const Modal: React.FC<ModalProps> = ({ onClose, onSubmit, currentReview }) => {
     <Dialog open onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="font-satoshiBold">{currentReview ? "Edit Review" : "Write a Review"}</DialogTitle>
+          <DialogTitle className="font-satoshiBold">
+            {currentReview ? "Edit Review" : "Write a Review"}
+          </DialogTitle>
           <DialogDescription className="font-satoshi">
             Please provide your name and feedback below.
           </DialogDescription>

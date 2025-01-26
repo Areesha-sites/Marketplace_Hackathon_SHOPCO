@@ -27,7 +27,7 @@ const FAQSection = ({ faqs, query }: any) => {
         <p className="font-satoshi text-black font-normal text-[14px] text-center">
           Have more questions?
         </p>
-        <Link href="/contact" className="text-blue-500 underline ml-2">
+        <Link href="/contact" className="text-blue-500 underline ml-2 font-satoshi">
           Contact Us
         </Link>
       </div>

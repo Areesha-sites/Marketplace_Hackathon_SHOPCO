@@ -197,60 +197,35 @@ const NewArrivalDetails: React.FC<Props> = ({ params }) => {
   return (
     <>
       <section className="h-[3000px]">
-        <div
-          // data-aos="flip-right"
-          // data-aos-delay="200"
-          className="sm:w-[259px] w-[200px] h-[22px] absolute md:top-[158px] md:left-[100px] left-[16px] top-[120px] flex lg:gap-[12px] gap-[5px]"
-        >
-          <div className="lg:w-[63px] w-[57px] flex gap-[4px] items-center">
-            <p className="md:text-[16px] text-[14px] font-satoshi font-normal text-black/60 hover:text-black">
-              <Link href="/"> Home</Link>
-            </p>
-            <Image
-              src="/Frame (8).svg"
-              alt="chevron"
-              height={16}
-              width={16}
-              className="md:w-[16px] md:h-[16px] w-[14px] h-[14px]"
-            />
-          </div>
-          <div className="lg:w-[63px] w-[57px] flex gap-[4px]  items-center">
-            <p className="md:text-[16px] text-[14px] font-satoshi font-normal text-black/60 hover:text-black">
-              <Link href="/casual"> Shop</Link>
-            </p>
-            <Image
-              src="/Frame (8).svg"
-              alt="chevron"
-              height={16}
-              width={16}
-              className="md:w-[16px] md:h-[16px] w-[14px] h-[14px]"
-            />
-          </div>
-          <div className="lg:w-[63px] w-[57px] flex gap-[4px]  items-center">
-            <p className="md:text-[16px] text-[14px] font-satoshi font-normal text-black/60 hover:text-black">
-              <Link href="/casual"> Men</Link>
-            </p>
-            <Image
-              src="/Frame (8).svg"
-              alt="chevron"
-              height={16}
-              width={16}
-              className="md:w-[16px] md:h-[16px] w-[14px] h-[14px]"
-            />
-          </div>
-          <div className="lg:w-[63px] w-[30px] flex gap-[4px] items-center">
-            <p className="md:text-[16px] text-[14px] font-satoshi font-normal text-black hover:text-black whitespace-nowrap">
-              <Link href="/casaul">T-Shirts</Link>
-            </p>
-            <Image
-              src="/Frame (8).svg"
-              alt="chevron"
-              height={16}
-              width={16}
-              className="md:w-[16px] md:h-[16px] w-[14px] h-[14px]"
-            />
-          </div>
-        </div>
+      {/* <div className="absolute top-[160px] left-[100px]">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink>
+                  <Link href="/" className="font-satoshi">
+                    Home
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink>
+                  <Link href="/casual" className="font-satoshi">
+                    Shop
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>
+                  <Link href="/casualDetails" className="font-satoshi">
+                    Casual
+                  </Link>
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div> */}
         <div
           // data-aos="zoom-in"
           // data-aos-delay="200"

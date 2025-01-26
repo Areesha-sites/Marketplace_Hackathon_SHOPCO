@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-// import { casualCardsData } from "../../../../data/data";
 import Image from "next/image";
-// import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
-// import Footer from "@/app/Components/Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { notFound } from "next/navigation";
@@ -11,77 +8,59 @@ import Link from "next/link";
 import { PiTrashFill } from "react-icons/pi";
 import { IoAddOutline } from "react-icons/io5";
 import { RiSubtractLine } from "react-icons/ri";
-import { RxCross2 } from "react-icons/rx";
 import { FaCartArrowDown } from "react-icons/fa";
 import ProductDetailsTab from "@/app/Components/ProductDetailsTab";
-import { Button } from "@/components/ui/button";
 import { PiSmileySad } from "react-icons/pi";
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import { Bar, BarChart, ResponsiveContainer } from "recharts";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { client } from "@/sanity/lib/client";
-import ProductGallery from "@/app/Components/ProductGallery";
-import ProductDetailCard from "@/app/Components/ProductDetailCard";
+import { CasualDetailsProduct } from "../../../../types/ComponentsTypes";
+import { CasualDetailsProducts } from "../../../../types/ComponentsTypes";
 interface Props {
   params: {
     id: string;
   };
 }
-
-interface Product {
-  _id: string;
-  name: string;
-  price: number;
-  imageUrl: string | string[];
-  quantity?: number;
-  selectedSize?: string;
-  selectedColor?: string;
-  sizes: string;
-  colors: string;
-  description: string;
-  category: string;
-  discountPercent: number | null;
-  isNew: boolean | null;
-  ratingReviews: number;
-  offer: number;
-}
-
-interface Products {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string | string[];
-  category: string;
-  discountPercent: number | null;
-  isNew: boolean | null;
-  colors: string[];
-  sizes: string[];
-  ratingReviews: number;
-  offer: number;
-}
-
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
+import Footer from "@/app/Components/Footer";
 const CasualDetails: React.FC<Props> = ({ params }) => {
   const { id } = params;
-  const [product, setProduct] = useState<Products | null>(null);
+  const [product, setProduct] = useState<CasualDetailsProducts | null>(null);
   const [count, setCount] = useState(1);
-  const [cart, setCart] = useState<Product[]>([]);
+  const [cart, setCart] = useState<CasualDetailsProduct[]>([]);
   const [showCart, setShowCart] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
-  const [selectedColor, setSelectedColor] = useState<string>(""); 
+  const [selectedColor, setSelectedColor] = useState<string>("");
   useEffect(() => {
     const fetchProduct = async () => {
       const query = `*[_type=="casual" && _id==$id][0]{
@@ -90,7 +69,7 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         description,
         price,
         ratingReviews,
-        "imageUrl" : image.asset->url,
+        "imageUrl": image.asset->url,
         category,
         discountPercent,
         "isNew": new,
@@ -98,17 +77,16 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         offer,
         sizes
       }`;
+
       try {
-        const productData: Product | null = await client.fetch(query, { id });
+        const productData = await client.fetch<CasualDetailsProducts>(query, {
+          id,
+        });
+
         if (!productData) {
           notFound();
         } else {
           setProduct(productData);
-          setMainImage(
-            Array.isArray(productData.imageUrl)
-              ? productData.imageUrl[0]
-              : productData.imageUrl
-          );
         }
       } catch (error) {
         console.error("Error fetching product:", error);
@@ -118,12 +96,23 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
 
     fetchProduct();
   }, [id]);
-  const addToCart = (product: Product) => {
-    const productInCart = cart.find((item) => item.id === product._id);
+  const addToCart = (
+    product: CasualDetailsProducts,
+    size: string,
+    color: string
+  ) => {
+    const productInCart = cart.find(
+      (item) =>
+        item.id === product._id &&
+        item.selectedSize === size &&
+        item.selectedColor === color
+    );
 
     if (productInCart) {
       const updatedCart = cart.map((item) =>
-        item.id === product._id
+        item.id === product._id &&
+        item.selectedSize === size &&
+        item.selectedColor === color
           ? { ...item, quantity: (item.quantity ?? 0) + 1 }
           : item
       );
@@ -137,9 +126,11 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
           title: product.name,
           image: product.imageUrl,
           price: product.price,
-          quantity: 1, 
+          quantity: 1,
           colors: product.colors,
           sizes: product.sizes,
+          selectedSize: size,
+          selectedColor: color,
         },
       ];
       setCart(updatedCart);
@@ -163,14 +154,12 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
-
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
       setCart(JSON.parse(savedCart));
     }
   }, []);
-
   const increaseQuantity = (productId: string) => {
     const updatedCart = cart.map((item) =>
       item.id === productId
@@ -206,20 +195,19 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
       setCount(count - 1);
     }
   };
-  const [mainImage, setMainImage] = useState("");
-  const [activeImage, setActiveImage] = useState(product?.imageUrl);
-  const handleImageClick = (imageSrc: any) => {
-    setActiveImage(imageSrc);
-  };
-  const [isActive, setIsActive] = useState("large");
-
-  const handleSizeChange = (size: string) => {
-    setIsActive(size);
-  };
-  const [activeCircle, setActiveCircle] = useState<number>(1);
-  const handleCircleClick = (circleIndex: number) => {
-    setActiveCircle(circleIndex);
-  };
+  // const [mainImage, setMainImage] = useState("");
+  // const [activeImage, setActiveImage] = useState(product?.imageUrl);
+  // const handleImageClick = (imageSrc: any) => {
+  //   setActiveImage(imageSrc);
+  // };
+  // const [isActive, setIsActive] = useState("large");
+  // const handleSizeChange = (size: string) => {
+  //   setIsActive(size);
+  // };
+  // const [activeCircle, setActiveCircle] = useState<number>(1);
+  // const handleCircleClick = (circleIndex: number) => {
+  //   setActiveCircle(circleIndex);
+  // };
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -234,151 +222,94 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
   return (
     <>
       <section className="h-[3000px]">
-        <div
-          data-aos="flip-right"
-          data-aos-delay="200"
-          className="sm:w-[259px] w-[200px] h-[22px] absolute md:top-[158px] md:left-[100px] left-[16px] top-[120px] flex lg:gap-[12px] gap-[5px]"
-        >
-          <div className="lg:w-[63px] w-[57px] flex gap-[4px] items-center">
-            <p className="md:text-[16px] text-[14px] font-satoshi font-normal text-black/60 hover:text-black">
-              <Link href="/"> Home</Link>
-            </p>
-            <Image
-              src="/Frame (8).svg"
-              alt="chevron"
-              height={16}
-              width={16}
-              className="md:w-[16px] md:h-[16px] w-[14px] h-[14px]"
-            />
-          </div>
-          <div className="lg:w-[63px] w-[57px] flex gap-[4px]  items-center">
-            <p className="md:text-[16px] text-[14px] font-satoshi font-normal text-black/60 hover:text-black">
-              <Link href="/casual"> Shop</Link>
-            </p>
-            <Image
-              src="/Frame (8).svg"
-              alt="chevron"
-              height={16}
-              width={16}
-              className="md:w-[16px] md:h-[16px] w-[14px] h-[14px]"
-            />
-          </div>
-          <div className="lg:w-[63px] w-[57px] flex gap-[4px]  items-center">
-            <p className="md:text-[16px] text-[14px] font-satoshi font-normal text-black/60 hover:text-black">
-              <Link href="/casual"> Men</Link>
-            </p>
-            <Image
-              src="/Frame (8).svg"
-              alt="chevron"
-              height={16}
-              width={16}
-              className="md:w-[16px] md:h-[16px] w-[14px] h-[14px]"
-            />
-          </div>
-          <div className="lg:w-[63px] w-[30px] flex gap-[4px] items-center">
-            <p className="md:text-[16px] text-[14px] font-satoshi font-normal text-black hover:text-black whitespace-nowrap">
-              <Link href="/casaul">T-Shirts</Link>
-            </p>
-            <Image
-              src="/Frame (8).svg"
-              alt="chevron"
-              height={16}
-              width={16}
-              className="md:w-[16px] md:h-[16px] w-[14px] h-[14px]"
-            />
-          </div>
+        <div className="absolute top-[160px] left-[100px]">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink>
+                  <Link href="/" className="font-satoshi">
+                    Home
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink>
+                  <Link href="/casual" className="font-satoshi">
+                    Shop
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>
+                  <Link href="/casualDetails" className="font-satoshi">
+                    Casual
+                  </Link>
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
         </div>
         <div
           data-aos="zoom-in"
           data-aos-delay="200"
           className="md:w-[1240px] xxl:w-[1240px] xl:w-[1175px] absolute md:top-[134px] md:left-[100px] xxl:left-[100px] xl:left-[80px] w-full border-b-[1px] border-black/10 top-[98px] sm:left-[16px]"
         ></div>
-        {/* </div> */}
-        <div className="flex justify-center items-center w-full mx-auto">
-          <Image
-            // data-aos="zoom-in-down"
-            // data-aos-delay="200"
-            src={product.imageUrl}
-            alt={product.name}
-            height={530}
-            width={444}
-            className="md:w-[444px] md:h-[530px] absolute md:top-[216px] md:left-[266px] rounded-[20px] bg-productDetailBbImageColor sm:h-[290px] sm:w-[358px] w-[285px] h-[290px] top-[170px]  "
-          />
-          <div className="flex justify-center items-center w-full mx-auto">
-            <Image
-              // data-aos="flip-up"
-              // data-aos-delay="200"
-              src={product.imageUrl}
-              alt={product.name}
-              height={167}
-              width={152}
-              className={`md:h-[167px] md:w-[152px] absolute md:top-[216px] md:left-[100px] rounded-[20px] border-[1px] border-black left-[16px] sm:w-[112px] sm:h-[106px] w-[90px] h-[90px] top-[475px] -hue-rotate-180 flex justify-center items-center ${
-                activeImage === product.imageUrl ? "border-primary" : ""
-              }`}
-              onClick={() => handleImageClick(product.imageUrl)}
-            />
-            <Image
-              // data-aos="flip-up"
-              // data-aos-delay="300"
-              src={product.imageUrl}
-              alt={product.name}
-              height={167}
-              width={152}
-              className={`md:h-[167px] md:w-[152px] absolute md:top-[397px] md:left-[100px] rounded-[20px] sm:w-[112px] sm:h-[106px] w-[90px] h-[90px] top-[475px] left-[113px] sm:left-[139px] -hue-rotate-90 ${
-                activeImage === product.imageUrl ? "border-primary" : ""
-              }`}
-              onClick={() => handleImageClick(product.imageUrl)}
-            />
-            <Image
-              // data-aos="flip-up"
-              // data-aos-delay="400"
-              src={product.imageUrl}
-              alt={product.name}
-              height={167}
-              width={152}
-              className={`md:h-[167px] md:w-[152px] absolute md:top-[579px] md:left-[100px] rounded-[20px] sm:w-[112px] sm:h-[106px] w-[90px] h-[90px] top-[475px] sm:left-[263px] left-[212px] -hue-rotate-30 ${
-                activeImage === product.imageUrl ? "border-primary" : ""
-              } `}
-              onClick={() => handleImageClick(product.imageUrl)}
-            />
-          </div>
-        </div>
+        <Image
+          data-aos="zoom-in-down"
+          data-aos-delay="200"
+          src={product.imageUrl}
+          alt={product.name}
+          height={530}
+          width={444}
+          className="md:w-[444px] md:h-[530px] absolute md:top-[216px] md:left-[266px] rounded-[20px] bg-productDetailBbImageColor h-[290px] w-[358px] top-[170px] left-[18px] hue-rotate-30 "
+        />
+        <Image
+          data-aos="flip-up"
+          data-aos-delay="200"
+          src={product.imageUrl}
+          alt={product.name}
+          height={167}
+          width={152}
+          className="md:h-[167px] md:w-[152px] absolute md:top-[216px] md:left-[100px] rounded-[20px] border-[1px] border-black left-[16px] w-[112px] h-[106px] top-[475px] hue-rotate-90"
+        />
+        <Image
+          data-aos="flip-up"
+          data-aos-delay="300"
+          src={product.imageUrl}
+          alt={product.name}
+          height={167}
+          width={152}
+          className="md:h-[167px] md:w-[152px] absolute md:top-[397px] md:left-[100px] rounded-[20px] w-[112px] h-[106px] top-[475px] left-[139px] "
+        />
+        <Image
+          data-aos="flip-up"
+          data-aos-delay="400"
+          src={product.imageUrl}
+          alt={product.name}
+          height={167}
+          width={152}
+          className="md:h-[167px] md:w-[152px] absolute md:top-[579px] md:left-[100px] rounded-[20px] w-[111px] h-[106px] top-[475px] left-[263px]  -hue-rotate-90"
+        />
         <div className="flex flex-col gap-y-[10px] absolute md:top-[216px] left-[16px] md:left-[750px] top-[580px] sm:top-[600px]">
-          <h1
-            // data-aos="fade-left"
-            // data-aos-delay="100"
-            className=" text-[24px] md:text-[40px] text-black font-black sm:w-[90%] w-[297px] md:w-[600px] xxl:w-[600px] md:leading-[28px] tracking-wider font-integralCf md:whitespace-nowrap leading-[30px] xl:whitespace-normal xl:leading-[40px] xl:w-[470px]"
-          >
+          <h1 className=" text-[24px] md:text-[40px] text-black font-black sm:w-[90%] w-[297px] md:w-[600px] xxl:w-[600px] md:leading-[28px] tracking-wider font-integralCf md:whitespace-nowrap leading-[30px] xl:whitespace-normal xl:leading-[40px] xl:w-[470px]">
             {product.name}
           </h1>
-          <div
-            // data-aos="fade-left"
-            // data-aos-delay="200"
-            className="md:w-[193px] md:h-[24.71px] flex gap-[16px] w-[154px] h-[19px] items-center"
-          >
+          <div className="md:w-[193px] md:h-[24.71px] flex gap-[16px] w-[154px] h-[19px] items-center">
             <Image
-              // data-aos="fade-left"
-              // data-aos-delay="200"
               src="/Frame 10.svg"
               alt="rating"
               height={24.71}
               width={139}
               className="md:w-[129px] md:h-[20.71px] w-[105px] h-[18.67px] xl:w-[100px]"
             />
-            <span
-              // data-aos="fade-left"
-              // data-aos-delay="200"
-              className="w-[139px] h-[24.71px] font-satoshi text-[16px] font-normal text-black"
-            >
+            <span className="w-[139px] h-[24.71px] font-satoshi text-[16px] font-normal text-black">
               {product.ratingReviews}
               <span className="text-black opacity-45">/5</span>
             </span>
           </div>
-          <div
-            // data-aos="fade-left"
-            // data-aos-delay="300"
-            className="md:w-[176px] md:h-[43px] flex gap-[12px] items-center"
-          >
+          <div className="md:w-[176px] md:h-[43px] flex gap-[12px] items-center">
             <span className="font-satoshiBold md:text-[32px] text-[24px] font-bold text-black">
               ${product.price}
             </span>
@@ -391,19 +322,10 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
               </p>
             )}
           </div>
-          <p
-            // data-aos="fade-left"
-            // data-aos-delay="400"
-            className="md:w-[590px] xxl:w-[590px] xl:w-[500px] md:text-[16px] text-[12px] font-normal text-black text-opacity-60 w-[280px] font-satoshi "
-          >
+          <p className="md:w-[590px] xxl:w-[590px] xl:w-[500px] md:text-[16px] text-[12px] font-normal text-black text-opacity-60 w-[280px] font-satoshi ">
             {product.description}
           </p>
-          <div
-            // data-aos="fade-left"
-            // data-aos-delay="400"
-            className="md:w-[590px] xxl:w-[590px] xl:w-[470px] border-b-[1px] border-black/10 sm:w-[358px] w-[280px] "
-          ></div>
-
+          <div className="md:w-[590px] xxl:w-[590px] xl:w-[470px] border-b-[1px] border-black/10 sm:w-[358px] w-[280px] "></div>
           <p className="font-satoshi text-[16px] font-normal text-black/60 ">
             Select Colors
           </p>
@@ -449,24 +371,15 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
               </button>
             ))}
           </div>
-
           <p className="font-satoshi font-normal text-black text-[12px]">
             Size: <span className="text-black/50">{selectedSize}</span>
           </p>
           <p className="font-satoshi font-normal text-black text-[12px]">
             Color: <span className="text-black/50">{selectedColor}</span>
           </p>
-          <div
-            // data-aos="fade-left"
-            // data-aos-delay="200"
-            className="md:w-[590px] xxl:w-[590px] xl:w-[470px] sm:w-[353px] border-b-[1px] border-black/10] w-[280px] "
-          ></div>
+          <div className="md:w-[590px] xxl:w-[590px] xl:w-[470px] sm:w-[353px] border-b-[1px] border-black/10] w-[280px] "></div>
           <div className="flex gap-x-[10px]">
-            <div
-              // data-aos="zoom-in"
-              // data-aos-delay="300"
-              className="md:w-[170px] w-[110px] md:h-[52px] h-[44px] py-[16px] px-[20px] rounded-[62px] flex justify-between bg-bgLightGrayColor items-center"
-            >
+            <div className="md:w-[170px] w-[110px] md:h-[52px] h-[44px] py-[16px] px-[20px] rounded-[62px] flex justify-between bg-bgLightGrayColor items-center">
               <Image
                 src="/decrease.svg"
                 alt="decrease-icon"
@@ -487,37 +400,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
                 className="md:h-[24px] md:w-[24px] h-[16px] w-[16px] cursor-pointer"
               />
             </div>
-
-            {/* <div className="flex gap-2">
-              {product.sizes.map((size) => (
-                <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={`px-4 py-2 border ${
-                    selectedSize === size
-                      ? "bg-black text-white"
-                      : "bg-white text-black"
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-            <div className="flex gap-2">
-              {product.colors.map((color) => (
-                <button
-                  key={color}
-                  onClick={() => setSelectedColor(color)}
-                  className={`px-4 py-2 border ${
-                    selectedColor === color
-                      ? "bg-black text-white"
-                      : "bg-white text-black"
-                  }`}
-                >
-                  {color}
-                </button>
-              ))}
-            </div> */}
             <button
               onClick={() => {
                 if (!selectedSize || !selectedColor) {
@@ -537,20 +419,15 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         <div className="absolute top-[1150px] xl:top-[900px] xl:left-[50px] xxl:left-[100px]">
           <ProductDetailsTab />
         </div>
-        <h1
-          // data-aos="zoom-in"
-          // data-aos-delay="300"
-          className="md:w-[579px] md:h-[58px] absolute md:top-[1878px] xl:top-[2100px] md:left-[431px] xxl:left-[431px] xl:left-[330px] font-black text-black md:text-[48px] text-[32px] left-[79px] w-[250px] leading-[36px] mx-auto top-[2200px] text-center uppercase tracking-wider font-integralCf md:whitespace-nowrap "
-        >
+        <h1 className="md:w-[579px] md:h-[58px] absolute md:top-[1878px] xl:top-[2100px] md:left-[431px] xxl:left-[431px] xl:left-[330px] font-black text-black md:text-[48px] text-[32px] left-[79px] w-[250px] leading-[36px] mx-auto top-[2200px] text-center uppercase tracking-wider font-integralCf md:whitespace-nowrap ">
           You might also like
         </h1>
         <div className="">
           <ProductDetailsCardList />
         </div>
-        {/* <div className="absolute xl:top-[2870px] xxl:top-[2872px] top-[2800px]">
+        <div className="absolute xl:top-[2870px] xxl:top-[2872px] top-[2800px]">
           <Footer />
-        </div> */}
-
+        </div>
         <Sheet open={showCart} onOpenChange={setShowCart}>
           <SheetTrigger asChild>
             <Button
@@ -564,7 +441,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
               <FaCartArrowDown className="text-white h-7 w-7 ml-[-10px]" />
             </Button>
           </SheetTrigger>
-
           <SheetContent className="overflow-y-auto h-auto">
             <SheetHeader>
               <h2 className="text-2xl font-semibold mb-4 font-integralCf uppercase">
@@ -608,7 +484,6 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
                           Color:{" "}
                           <span className="text-black/50">{item.colors}</span>
                         </p>
-                        💛.
                         <div className="flex justify-between items-center w-[270px]">
                           <p className="text-black font-satoshi font-bold text-[16px]">
                             ${item.price}

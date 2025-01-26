@@ -1,4 +1,6 @@
 import React from "react";
+import KidsCard from "../kidsComp/Card";
+import CasualCard from "./CasualCard";
 import Card from "./Card";
 interface GridProps {
   products: {

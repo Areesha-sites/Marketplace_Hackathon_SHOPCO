@@ -1,11 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { useState } from "react";
-const RangeSlider = ({category, setFilteredProducts, setTotalPages }: {
-  category: any,
-  setFilteredProducts: any,
-  setTotalPages: any,
-
-}) => {
+const RangeSlider = ({ setFilteredProducts, setTotalPages }: any) => {
   const [leftValue, setLeftValue] = useState(50);
   const [rightValue, setRightValue] = useState(200);
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,7 +26,7 @@ const RangeSlider = ({category, setFilteredProducts, setTotalPages }: {
     try {
       const productsPerPage = 9;
       const startIndex = (page - 1) * productsPerPage;
-      const query = `*[_type == "${category}" && price >= ${minPrice} && price <= ${maxPrice}] | order(price asc) [${startIndex}...${
+      const query = `*[_type == "women" && price >= ${minPrice} && price <= ${maxPrice}] | order(price asc) [${startIndex}...${
         startIndex + productsPerPage
       }] {
         _id,
@@ -44,7 +39,7 @@ const RangeSlider = ({category, setFilteredProducts, setTotalPages }: {
       }`;
       const products = await client.fetch(query);
       setFilteredProducts(products);
-      const countQuery = `count(*[_type == "${category}" && price >= ${minPrice} && price <= ${maxPrice}])`;
+      const countQuery = `count(*[_type == "women" && price >= ${minPrice} && price <= ${maxPrice}])`;
       const totalCount = await client.fetch(countQuery);
       setTotalPages(Math.ceil(totalCount / productsPerPage));
     } catch (error) {

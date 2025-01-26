@@ -77,14 +77,14 @@ display:  none;
 .slider-bar {
   position: relative;
   height: 8px;
-  background: #ddd; /* Gray background for the entire bar */
+  background: #ddd; 
   border-radius: 5px;
 }
 
 .slider-highlight {
   position: absolute;
   height: 8px;
-  background: black; /* Black color for the center */
+  background: black; 
   border-radius: 5px;
 }
 .range-input {

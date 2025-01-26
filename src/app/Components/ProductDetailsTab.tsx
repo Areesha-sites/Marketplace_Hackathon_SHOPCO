@@ -5,12 +5,27 @@ import Image from "next/image";
 import { useRef } from "react";
 import ReviewCardList from "./ReviewCardList";
 import ProductDetailsTable from "./ProductDetailsTable";
+import { GiSettingsKnobs } from "react-icons/gi";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Link from "next/link";
+import { Minus, Plus } from "lucide-react";
+import { Bar, BarChart, ResponsiveContainer } from "recharts";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
+import SideBar from "./SideBar";
 const ProductDetailsTab = () => {
   const [activeTab, setActiveTab] = useState("tab1");
   const dropdownRef = useRef(null);
@@ -130,7 +145,7 @@ const ProductDetailsTab = () => {
                 </span>
               </div>
               <div className="md:w-[354px] mx-auto h-[48px] lg:left-0 lg:top-0 absolute md:left-0 xxl:left-0 xl:left-0 xl:top-0 xxl:w-[986px] flex justify-between top-[80px] md:top-[1280px] left-[170px] ">
-                <div
+                {/* <div
                   // data-aos="fade-up-left"
                   // data-aos-delay="300"
                   className="md:h-[48px] md:w-[48px] sm:w-[40px] sm:h-[40px] w-[30px] h-[30px] bg-bgLightGrayColor rounded-full absolute md:left-[986px] xxl:left-[910px] xl:left-[830px] xl:top-[100px] md:top-[888px] flex justify-center items-center sm:left-[30px] "
@@ -142,8 +157,43 @@ const ProductDetailsTab = () => {
                     width={24}
                     className="md:w-[24px] md:h-[24px] sm:w-[20px] sm:h-[20px] h-[15px] w-[15px]"
                   />
-                </div>
-                <div className="relative inline-block left-[885px] top-[102px]">
+                </div> */}
+
+                <Drawer>
+                  <DrawerTrigger asChild>
+                    <Button
+                      variant="default"
+                      className="bg-white hover:bg-white shadow-white"
+                    >
+                      <div className="md:h-[48px] md:w-[48px] sm:w-[40px] sm:h-[40px] w-[30px] h-[30px] bg-bgLightGrayColor rounded-full absolute md:left-[986px] xxl:left-[910px] xl:left-[830px] xl:top-[100px] md:top-[888px] flex justify-center items-center sm:left-[30px] ">
+                        {/* <Image
+                          src="/product-detail-review-icon.svg"
+                          alt="client-review"
+                          height={24}
+                          width={24}
+                          className="md:w-[24px] md:h-[24px] sm:w-[20px] sm:h-[20px] h-[15px] w-[15px]"
+                        /> */}
+
+                        <GiSettingsKnobs className="md:w-[50px] md:h-[50px] sm:w-[20px] sm:h-[20px] h-[15px] w-[15px] text-black" />
+                      </div>
+                    </Button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    {/* <SideBar
+                    // handleCategoryChange={handleCategoryChange}
+                    // activeColor={activeColor}
+                    // setFilteredProducts={setProducts}
+                    // setTotalPages={setTotalPages}
+                    /> */}
+                    <DrawerFooter>
+                      <DrawerClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+
+                <div className="relative inline-block left-[645px] top-[102px]">
                   <button
                     onClick={() => setIsDropdownOpen((prev) => !prev)}
                     className="text-black bg-bgLightGrayColor rounded-[62px] outline-none border-none font-medium  text-sm px-7 py-3 inline-flex items-center font-satoshi"

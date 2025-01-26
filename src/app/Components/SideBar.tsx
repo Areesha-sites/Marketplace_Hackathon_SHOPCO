@@ -6,6 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import category from "./products/category";
 interface SideBarProps {
   handleCategoryChange: (category: string, index: number) => void;
   activeColor: number | null;
@@ -117,11 +118,11 @@ const SideBar = ({
           <RangeSlider
             setFilteredProducts={setFilteredProducts}
             setTotalPages={setTotalPages}
+            category={category}
           />
         </div>
       </div>
       <div className="w-full lg:w-[247px] border-b-[1px] border-black/10 "></div>
-
       <div className="lg:w-[247px] w-full h-[137px] flex flex-col gap-[20px] ">
         <div className="lg:w-[247px] w-full h-[27px] flex justify-between items-center">
           <h1 className="text-black text-[20px] font-satoshiBold font-bold">
