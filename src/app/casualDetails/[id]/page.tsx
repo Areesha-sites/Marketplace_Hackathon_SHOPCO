@@ -67,18 +67,15 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
         sizes
       }`;
       try {
-        const productData = await client.fetch<CasualDetailsProducts>(query, {
-          id,
-        });
-
+        const productData = await client.fetch<CasualDetailsProducts>(query, { id });
         if (!productData) {
-          notFound();
+          notFound(); 
         } else {
           setProduct(productData);
         }
       } catch (error) {
         console.error("Error fetching product:", error);
-        notFound();
+        notFound(); 
       }
     };
     fetchProduct();
