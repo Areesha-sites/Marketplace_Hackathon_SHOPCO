@@ -6,11 +6,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import category from "./products/Category";
-interface SideBarProps {
-  handleCategoryChange: (category: string, index: number) => void;
-  activeColor: number | null;
-}
+// import category from "./products/Category";
+import { SideBarProps } from "../../../types/ComponentsTypes";
+
 // const handleColorClick = (colorIndex: number) => {
 //   const [activeColor, setActiveColor] = useState(0);
 //   const handleColorClick = (index: any) => {
@@ -18,20 +16,23 @@ interface SideBarProps {
 //   };
 //   console.log("Selected color index:", colorIndex);
 // };
-
 const SideBar = ({
   handleCategoryChange,
   setFilteredProducts,
   setTotalPages,
-}: any) => {
+}: SideBarProps) => {
   const categories = ["tshirt", "short", "jeans", "hoodie", "shirt"];
   const [activeSize, setActiveSize] = useState("Large");
-
   const handleSizeClick = (size: string) => {
     setActiveSize(size);
   };
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const handleCategoryClick = (category: string, index: number) => {
+    handleCategoryChange(category, index);
+    setSelectedCategory(category); 
+  };
+  const [currentPage, setCurrentPage] = useState(1); 
   const [activeColor, setActiveColor] = useState<number | null>(null);
-
   const handleColorClick = (index: number) => {
     setActiveColor(index);
     console.log("Selected color index:", index); 
@@ -74,30 +75,28 @@ const SideBar = ({
 
       <div className="lg:w-[247px] w-full border-b-[1px] border-black/10 "></div>
       <div className="lg:w-[247px] w-full h-auto flex flex-col gap-[10px]">
-        {categories.map((category, index) => (
+      {categories.map((category, index) => (
           <div
             key={index}
-            onClick={() => handleCategoryChange(category, index)}
+            onClick={() => handleCategoryClick(category, index)} 
             className={`flex justify-between items-center cursor-pointer text-[16px] font-satoshi ${
-              activeColor === index
+              selectedCategory === category
                 ? "text-black font-bold"
                 : "text-gray-600 font-normal"
             }`}
           >
             <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
-            <Image
+            <Image 
               src="/side-chveron.svg"
               alt="icon"
               height={16}
               width={16}
-              className="h-[16px] w-[16px]  "
+              className="h-[16px] w-[16px]"
             />
           </div>
         ))}
       </div>
-
       <div className="lg:w-[247px] w-full border-b-[1px] border-black/10 "></div>
-
       <div className="lg:w-[247px] w-full h-[90px] flex flex-col gap-[20px]">
         <div className="lg:w-[247px] w-full h-[27px] flex justify-between items-center">
           <h1 className="text-black text-[20px] font-satoshiBold font-bold">
@@ -112,11 +111,13 @@ const SideBar = ({
           />
         </div>
         <div className="lg:w-[147px] w-full h-[43px] ">
-          <RangeSlider
-            setFilteredProducts={setFilteredProducts}
-            setTotalPages={setTotalPages}
-            category={category}
-          />
+        <RangeSlider
+          category={selectedCategory || "tshirt"}
+          setFilteredProducts={setFilteredProducts}
+          setTotalPages={setTotalPages}
+          currentPage={currentPage}        
+          setCurrentPage={setCurrentPage} 
+        />
         </div>
       </div>
       <div className="w-full lg:w-[247px] border-b-[1px] border-black/10 "></div>

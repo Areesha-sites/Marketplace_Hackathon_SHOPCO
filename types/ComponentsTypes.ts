@@ -297,11 +297,12 @@ export interface NewArrivalProduct {
 }
 export interface RangeSliderProps {
   category: string;
-  setFilteredProducts: React.Dispatch<React.SetStateAction<Product>>;
-  setTotalPages: React.Dispatch<React.SetStateAction<number>>;
-  currentPage: number;  
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>; 
+  setFilteredProducts: (products: any[]) => void;
+  setTotalPages: (totalPages: number) => void;
+  currentPage: number;            // Add currentPage to props
+  setCurrentPage: (page: number) => void; // Add setCurrentPage to props
 }
+
 export interface ModalProps {
   onClose: () => void;
   onSubmit: (review: ReviewCardPropsTypes) => Promise<void>; 
@@ -368,4 +369,10 @@ export interface WishlistItems {
   imageUrl: string;
   price: number;
   discountPercent?: number; 
+}
+export interface SideBarProps {
+  handleCategoryChange: (category: string, index: number) => void;
+  activeColor: number | null;
+  setFilteredProducts: (products: any[]) => void;
+  setTotalPages: (totalPages: number) => void;
 }
