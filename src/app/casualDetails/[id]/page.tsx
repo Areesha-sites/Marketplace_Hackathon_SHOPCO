@@ -32,7 +32,7 @@ import {
 import { client } from "@/sanity/lib/client";
 import { CasualDetailsProducts } from "../../../../types/ComponentsTypes";
 interface PageProps {
-  params: Promise<{ id: string }>; // Define params as a Promise
+  params: { id: string }; // Define params as a Promise
 }
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -40,9 +40,8 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
 import Footer from "@/app/Components/Footer";
-const CasualDetails = async ({ params }: PageProps) => {
-  const resolvedParams = await params; // Await the Promise to get the resolved value
-  const { id } = resolvedParams;
+const CasualDetails = ({ params }: PageProps) => {
+  const { id } = params;
   const [product, setProduct] = useState<CasualDetailsProducts | null>(null);
   const [count, setCount] = useState(1);
   const [cart, setCart] = useState<CartProduct[]>([]);
@@ -68,21 +67,18 @@ const CasualDetails = async ({ params }: PageProps) => {
       try {
         const productData = await client.fetch<CasualDetailsProducts>(query, { id });
         if (!productData) {
-          // Handle not found (e.g., redirect, show error message)
-          console.error("Product not found"); // Placeholder, implement proper handling
-          return; // Important: Exit early if product not found
+          console.error("Product not found");
+          return;
         } else {
           setProduct(productData);
         }
       } catch (error) {
         console.error("Error fetching product:", error);
-        // Handle error (e.g., show error message)
       }
     };
 
     fetchProduct();
   }, [id]);
-
   const addToCart = (
     product: CasualDetailsProducts,
     size: string,
