@@ -2,6 +2,7 @@
 import { client } from "@/sanity/lib/client";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useCallback } from "react";
 import { RangeSliderProps } from "../../../types/ComponentsTypes";
 const RangeSlider: React.FC<RangeSliderProps> = ({ category, setFilteredProducts, setTotalPages }) => {
   const [leftValue, setLeftValue] = useState(50);
@@ -24,17 +25,11 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ category, setFilteredProducts
       setCurrentPage(1);
     }
   };
-  const fetchAndSetProducts = async (
-    minPrice: number,
-    maxPrice: number,
-    page: number
-  ) => {
+  const fetchAndSetProducts = useCallback(async (minPrice: number, maxPrice: number, page: number) => {
     try {
       const productsPerPage = 9;
       const startIndex = (page - 1) * productsPerPage;
-      const query = `*[_type == "${category}" && price >= ${minPrice} && price <= ${maxPrice}] | order(price asc) [${startIndex}...${
-        startIndex + productsPerPage
-      }] {
+      const query = `*[_type == "${category}" && price >= ${minPrice} && price <= ${maxPrice}] | order(price asc) [${startIndex}...${startIndex + productsPerPage}] {
         _id,
         name,
         price,
@@ -51,7 +46,12 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ category, setFilteredProducts
     } catch (error) {
       console.error("Error fetching filtered products:", error);
     }
-  };
+  }, [category, setFilteredProducts, setTotalPages]); // Add dependencies to useCallback
+
+  useEffect(() => {
+    fetchAndSetProducts(leftValue, rightValue, currentPage); // Now it's okay
+  }, [fetchAndSetProducts, leftValue, rightValue, currentPage]); // Add fetchAndSetProducts
+
   return (
     <div className="slider-container">
       <div className="slider-bar">

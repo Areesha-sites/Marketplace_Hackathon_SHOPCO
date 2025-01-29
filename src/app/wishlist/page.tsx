@@ -97,7 +97,9 @@ const Wishlist: React.FC = () => {
                   className="grid grid-cols-5 items-center px-6 py-4 border-b-[1px] border-gray-300 font-satoshi text-center"
                 >
                   <div>
-                    <img
+                    <Image
+                      height={64}
+                      width={64}
                       src={item.imageUrl}
                       alt={item.name}
                       className="w-16 h-16 object-cover mx-auto"

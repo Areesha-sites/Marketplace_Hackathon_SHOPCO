@@ -1,4 +1,4 @@
-export default {
+const guideSchema = {
   name: "guide",
   title: "Guide",
   type: "document",
@@ -40,3 +40,5 @@ export default {
     },
   ],
 };
+
+export default guideSchema;
