@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PiTrashFill } from "react-icons/pi";
 import { IoAddOutline } from "react-icons/io5";
@@ -31,19 +31,18 @@ import {
 } from "@/components/ui/breadcrumb";
 import { client } from "@/sanity/lib/client";
 import { CasualDetailsProducts } from "../../../../types/ComponentsTypes";
-// interface Props {
-//   params: {
-//     id: string;
-//   };
-// }
+interface PageProps {
+  params: Promise<{ id: string }>; // Define params as a Promise
+}
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
 import Footer from "@/app/Components/Footer";
-const CasualDetails = ({ params }: { params: { id: string } }) => { 
-  const { id } = params;
+const CasualDetails = async ({ params }: PageProps) => {
+  const resolvedParams = await params; // Await the Promise to get the resolved value
+  const { id } = resolvedParams;
   const [product, setProduct] = useState<CasualDetailsProducts | null>(null);
   const [count, setCount] = useState(1);
   const [cart, setCart] = useState<CartProduct[]>([]);
