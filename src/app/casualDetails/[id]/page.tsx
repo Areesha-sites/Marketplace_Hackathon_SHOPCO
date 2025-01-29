@@ -42,7 +42,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
 import Footer from "@/app/Components/Footer";
-const CasualDetails: React.FC<Props> = ({ params }) => {
+const CasualDetails = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const [product, setProduct] = useState<CasualDetailsProducts | null>(null);
   const [count, setCount] = useState(1);
@@ -69,15 +69,16 @@ const CasualDetails: React.FC<Props> = ({ params }) => {
       try {
         const productData = await client.fetch<CasualDetailsProducts>(query, { id });
         if (!productData) {
-          notFound(); 
+          notFound();
         } else {
           setProduct(productData);
         }
       } catch (error) {
         console.error("Error fetching product:", error);
-        notFound(); 
+        notFound();
       }
     };
+
     fetchProduct();
   }, [id]);
   const addToCart = (
