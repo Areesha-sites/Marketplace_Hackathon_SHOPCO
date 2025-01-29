@@ -31,16 +31,16 @@ import {
 } from "@/components/ui/breadcrumb";
 import { client } from "@/sanity/lib/client";
 import { CasualDetailsProducts } from "../../../../types/ComponentsTypes";
-interface PageProps {
-  params: { id: string }; // Define params as a Promise
-}
+// interface PageProps {
+//   params: { id: string };
+// }
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
 import Footer from "@/app/Components/Footer";
-const CasualDetails = ({ params }: PageProps) => {
+const CasualDetails = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const [product, setProduct] = useState<CasualDetailsProducts | null>(null);
   const [count, setCount] = useState(1);
