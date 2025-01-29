@@ -7,32 +7,24 @@ import PrevArrow from "./PrevArrow";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import React, { useEffect, useState } from "react";
-
-interface CustomerCommnetsProps {
-  name: string;
-  description: string;
-  date: string;
-}
-
+import { CustomerCommnetsProps } from "../../../types/ComponentsTypes";
 const HappyCustomerCardList = () => {
   const [customerComments, setCustomerComments] = useState<
     CustomerCommnetsProps[]
   >([]);
-
   const query = `*[_type == "customerComments"] {
     name,
     description,
     _id,
     date
   }`;
-
   useEffect(() => {
     const fetchData = async () => {
       const data = await client.fetch(query);
       setCustomerComments(data);
     };
     fetchData();
-  }, [query]); 
+  }, [query]);
 
   const settings = {
     arrows: true,
@@ -53,7 +45,6 @@ const HappyCustomerCardList = () => {
       { breakpoint: 767, settings: { slidesToShow: 1 } },
     ],
   };
-
   return (
     <div className="w-full xl:px-14 xxl:px-20 lg:px-20">
       <Slider {...settings}>

@@ -5,67 +5,34 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
 import { useToast } from "@/components/hooks/use-toast";
-import { Button } from "@/components/ui/button";
-import toast, { Toaster } from "react-hot-toast";
 import { BiGitCompare } from "react-icons/bi";
-interface CardProps {
-  product: {
-    _id: string;
-    name: string;
-    price: number;
-    discountPercent: number | null;
-    offer: number;
-    imageUrl: string;
-    ratingReviews: number;
-  };
-  addToCompare: (product: any) => void;
-}
-const Card: React.FC<CardProps> = ({ product, addToCompare }) => {
+import { CasualCardPropsTypes } from "../../../../types/ComponentsTypes";
+import { Product } from "../../../../types/ComponentsTypes";
+const Card: React.FC<CasualCardPropsTypes> = ({ product, addToCompare }) => {
   const { toast } = useToast();
   const [isWishlisted, setIsWishlisted] = useState(false);
-  const toggleToast = () => {
-    setIsWishlisted(!isWishlisted);
-    if (!isWishlisted) {
-      toast({
-        description: "Item removed from wishlist.",
-      });
-    } else {
-      toast({
-        description: "Item added to wishlist successfully.",
-      });
-    }
-  };
   useEffect(() => {
-    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
-    setIsWishlisted(wishlist.some((item: any) => item._id === product._id));
+    const storedWishlist = localStorage.getItem("wishlist");
+    const wishlist: Product[] = storedWishlist ? JSON.parse(storedWishlist) : [];
+    setIsWishlisted(wishlist.some((item) => item._id === product._id));
   }, [product._id]);
   const toggleWishlist = () => {
-    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    const storedWishlist = localStorage.getItem("wishlist");
+    const wishlist: Product[] = storedWishlist ? JSON.parse(storedWishlist) : [];
     if (isWishlisted) {
-      const updatedWishlist = wishlist.filter(
-        (item: any) => item._id !== product._id
-      );
+      const updatedWishlist = wishlist.filter((item) => item._id !== product._id);
       localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-      toast({
-        description: "Item removed from wishlist.",
-      });
+      toast({ description: "Item removed from wishlist." });
     } else {
       wishlist.push(product);
       localStorage.setItem("wishlist", JSON.stringify(wishlist));
-      toast({
-        description: "Item added to wishlist successfully.",
-      });
+      toast({ description: "Item added to wishlist successfully." });
     }
     setIsWishlisted(!isWishlisted);
   };
   return (
     <Link href={`/casualDetails/${product._id}`} passHref>
-      <div
-        // data-aos="flip-left"
-        // data-aos-easing="ease-out-cubic"
-        // data-aos-duration="2000"
-        className="lg:h-[420px] xxl:h-[420px] xl:h-[380px] flex flex-col justify-between"
-      >
+      <div className="sm:h-[190px] md:h-[300px] h-[100px] xxl:h-[270px] xl:h-[250px] flex flex-col justify-between">
         <div className="lg:w-[295px] lg:h-[298px] md:w-[230px] md:h-[230px] xxl:w-[295px] xxl:h-[298px] xl:w-[285px] xl:h-[278px] sm:w-[172px] sm:h-[174px] w-[140px] h-[104px] rounded-[20px] bg-bannerBg relative flex flex-col gap-[10px]">
           <button
             onClick={(e) => {
@@ -77,14 +44,14 @@ const Card: React.FC<CardProps> = ({ product, addToCompare }) => {
             {isWishlisted ? <RiHeart3Fill /> : <RiHeart3Line />}
           </button>
           <button
-              onClick={(e) => {
-                e.preventDefault();
-                addToCompare(product);
-              }}
-              className="absolute top-12 left-2 text-black text-2xl z-10"
-            >
-              <BiGitCompare />
-            </button>
+            onClick={(e) => {
+              e.preventDefault();
+              addToCompare(product);
+            }}
+            className="absolute top-12 left-2 text-black text-2xl z-10"
+          >
+            <BiGitCompare />
+          </button>
           <Image
             src={product.imageUrl}
             alt="product-image"
@@ -94,12 +61,8 @@ const Card: React.FC<CardProps> = ({ product, addToCompare }) => {
             quality={100}
             className="md:w-[444px] md:h-[296px] xxl:w-[444px] xxl:h-[296px] xl:w-[260px] xl:h-[263px] sm:w-[180px] sm:h-[190px] object-cover rounded-[20px] w-[140px] h-[164px]"
           />
-          <div
-            // data-aos="flip-left"
-            // data-aos-delay="300"
-            className="flex flex-col justify-center "
-          >
-            <h1 className=" font-satoshiBold font-semibold md:text-[20px] text-black text-[12px] w-[280px] capitalize leading-[24px]">
+          <div className="flex flex-col justify-center ">
+            <h1 className=" font-satoshiBold font-semibold md:text-[20px] text-black text-[12px] capitalize sm:leading-[17px] leading-[13px] md:leading-[20px]">
               {product.name}
             </h1>
             <div className="md:w-[150px] w-[117px] h-[19px] flex gap-[11px] items-center md:gap-[13px] ">

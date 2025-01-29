@@ -34,19 +34,18 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-   --blackBgColor: #000000;
-   --whiteBgColor: #ffffff;
-   --bgLightGrayColor:  #F0F0F0;
-   --BannerBgColor: #F2F0F1;
-   --redOfferBgColor: #ffc4c4;
-   --redTextOfferColor:#FF3333;
-   --productDetailBbImageColor: #F0EEED;
-   --productDetailBgCircle1: #4F4631;
-   --productDetailBgCircle2: #314F4A;
-   --productDetailBgCircle3: #31344F;
+    --blackBgColor: #000000;
+    --whiteBgColor: #ffffff;
+    --bgLightGrayColor:  #F0F0F0;
+    --BannerBgColor: #F2F0F1;
+    --redOfferBgColor: #ffc4c4;
+    --redTextOfferColor:#FF3333;
+    --productDetailBbImageColor: #F0EEED;
+    --productDetailBgCircle1: #4F4631;
+    --productDetailBgCircle2: #314F4A;
+    --productDetailBgCircle3: #31344F;
   }
 }
-
 body {
   font-family: integralcf, satoshi, satoshiBold;
 }
@@ -118,20 +117,17 @@ display:  none;
   cursor: pointer;
  
 }
-
 .slider-values {
   display: flex;
   justify-content: center;
   gap: 80px;
   margin-top: 10px;
 }
-
 .slider-values span {
   font-size: 14px;
   font-weight: bold;
 font-family: "satoshi";
 }
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -187,7 +183,6 @@ font-family: "satoshi";
     --chart-5: 340 75% 55%;
   }
 }
-
 @layer base {
   * {
     @apply border-border;
@@ -199,7 +194,6 @@ font-family: "satoshi";
 .search-bar-container {
   margin: 20px 0;
 }
-
 .search-input {
   width: 100%;
   padding: 8px 12px;
@@ -207,26 +201,22 @@ font-family: "satoshi";
   border: 1px solid #ccc;
   font-size: 16px;
 }
-
 .products-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-
 .product-card {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 10px;
   text-align: center;
 }
-
 .pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
-
 .pagination button {
   padding: 10px;
   margin: 0 10px;

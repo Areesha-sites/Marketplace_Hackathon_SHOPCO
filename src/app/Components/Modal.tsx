@@ -1,4 +1,9 @@
+"use client";
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import { ModalProps } from "../../../types/ComponentsTypes";
+import { ReviewSubmissionType } from "../../../types/ComponentsTypes";
+import { ReviewCardPropsTypes } from "../../../types/ComponentsTypes";
 import {
   Dialog,
   DialogContent,
@@ -11,52 +16,54 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/hooks/use-toast";
-interface ModalProps {
-  onClose: () => void;
-  onSubmit: (review: {
-    name: string;
-    description: string;
-    date: string;
-    _id?: string;
-  }) => void;
-  currentReview: {
-    _id?: string;
-    name: string;
-    description: string;
-    date: string;
-  } | null;
-}
 const Modal: React.FC<ModalProps> = ({ onClose, onSubmit, currentReview }) => {
   const { toast } = useToast();
   const [name, setName] = useState(currentReview?.name || "");
   const [description, setDescription] = useState(
     currentReview?.description || ""
   );
-
   useEffect(() => {
     if (currentReview) {
       setName(currentReview.name);
       setDescription(currentReview.description);
     }
   }, [currentReview]);
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!name || !description) {
       alert("Name and description are required.");
       return;
     }
-    const newReview = {
+    const newReview: ReviewSubmissionType = { 
       name,
       description,
       date: new Date().toISOString(),
+      _id: currentReview?._id,
     };
-    onSubmit(newReview);
-    toast({
-      description: currentReview
-        ? "Review updated successfully"
-        : "Your review has been submitted successfully.",
-    });
-    onClose();
+    const reviewWithAllProps: ReviewCardPropsTypes = { 
+      _id: newReview._id || uuidv4(), 
+      name: newReview.name,
+      description: newReview.description,
+      date: newReview.date,
+      rating: "/rating.svg", 
+      correct: "/correct-icon.svg",
+      onEdit: () => {}, 
+      onRemove: async () => {}, 
+    };
+    try {
+      await onSubmit(reviewWithAllProps); 
+      toast({
+        description: currentReview
+          ? "Review updated successfully"
+          : "Your review has been submitted successfully.",
+      });
+      onClose();
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      toast({
+        variant: "destructive",
+        description: "Failed to submit review. Please try again.",
+      });
+    }
   };
   return (
     <Dialog open onOpenChange={(isOpen) => !isOpen && onClose()}>

@@ -17,8 +17,6 @@ const NewArrival = () => {
         </div>
         <Link href="/casual" className="flex justify-center items-center mx-auto w-full">
         <button
-          // data-aos="zoom-out-up"
-          // data-aos-delay="300"
           className=" absolute md:top-[1140px] lg:top-[1370px] xl:top-[1460px] mx-auto py-[16px] px-[54px] rounded-[62px] border-[1px] border-black/10 text-black text-[12px] sm:w-[338px] w-[270px] h-[46px] top-[1530px] sm:top-[1600px] md:w-[210px] md:h-[52px] font-satoshi hover:bg-black hover:text-white transition-all duration-500 ease-in-out xxl:top-[1550px]"
         >
           View All

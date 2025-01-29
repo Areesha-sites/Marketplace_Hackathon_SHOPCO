@@ -1,6 +1,5 @@
 import React from "react";
 import Footer from "../Components/Footer";
-import Image from "next/image";
 import Link from "next/link";
 const Signup = () => {
   return (
@@ -110,12 +109,63 @@ const Signup = () => {
             </div>
           </section>
         </div>
-        {/* <div className="absolute top-[1000px] md:top-[1200px]">
+        <div className="absolute top-[1000px] md:top-[1200px]">
           <Footer />
-        </div> */}
+        </div>
       </div>
     </>
   );
 };
-
 export default Signup;
+// export default Signup;
+
+// import { SignUp } from "@clerk/clerk-react";
+
+// function SignUpPage() {
+//   return (
+//     <div>
+//       <h1>Sign Up</h1>
+//       <SignUp />
+//     </div>
+//   );
+// }
+
+// export default SignUpPage;
+
+// import { useRouter } from "next/router";
+// import CheckoutLayout from "@/app/Components/checkoutComp/CheckoutLayout";
+// import BillingShippingForm from "@/app/Components/checkoutComp/BillingShippingForm";
+// import PaymentDetails from "@/app/Components/checkoutComp/PaymentDetails";
+// import ReviewOrder from "@/app/Components/checkoutComp/ReviewOrder";
+// import ConfirmationPage from "@/app/Components/checkoutComp/ConfirmationPage";
+// import { useEffect } from "react";
+
+// const CheckoutStep: React.FC = () => {
+//   const router = useRouter();
+//   const { step } = router.query;
+//   useEffect(() => {
+//     if (!step) {
+//       router.push("/checkoutComp/billing-shipping");
+//     }
+//   }, [step, router]);
+
+//   const renderStep = () => {
+//     switch (step) {
+//       case "billing-shipping":
+//         return <BillingShippingForm onNext={() => router.push("/checkoutComp/payment")} />;
+//       case "payment":
+//         return <PaymentDetails onNext={() => router.push("/checkoutComp/review")} />;
+//       case "review":
+//         return <ReviewOrder onConfirm={() => router.push("/checkoutComp/confirmation")} />;
+//       case "confirmation":
+//         return <ConfirmationPage />;
+//       default:
+//         router.push("/checkoutComp/billing-shipping");
+//         return null;
+//     }
+//   };
+
+//   return <CheckoutLayout>{renderStep()}</CheckoutLayout>;
+// };
+
+// export default CheckoutStep;

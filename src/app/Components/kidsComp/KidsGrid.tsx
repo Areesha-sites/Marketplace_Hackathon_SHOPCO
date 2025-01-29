@@ -1,44 +1,20 @@
+import KidsCard from "./Card";
 import React from "react";
-import Card from "./Card";
-interface GridProps {
-  products: {
-    _id: string;
-    name: string;
-    price: number;
-    discountPercent: number | null;
-    offer: number;
-    imageUrl: string;
-    ratingReviews: number;
-  }[];
-  addToCompare: (product: any) => void;
-}
-const GridKids: React.FC<GridProps> = ({
+import { Product } from "../../../../types/ComponentsTypes";
+import { GridsProps } from "../../../../types/ComponentsTypes";
+const GridKids: React.FC<GridsProps> = ({
   products,
   addToCompare,
 }: {
-  products: any[];
-  addToCompare: (product: any) => void;
+  products: Product[];
+  addToCompare: (product: Product) => void;
 }) => {
   return (
     <div
-      className="
-       grid 
-       grid-cols-2 
-       gap-y-[130px] 
-       sm:gap-y-[100px]
-       gap-x-[10px] 
-       lg:gap-y-[10px]
-       md:grid-cols-3
-       lg:grid-cols-2
-       xl:grid-cols-3
-       xl:gap-0
-       md:gap-[20px]
-       items-start
-       md:gap-y-[130px]
-      "
+      className="flex justify-center flex-wrap gap-y-[160px] sm:gap-y-[100px] md:gap-y-[120px] xl:gap-y-[160px] gap-x-[10px] xl:grid grid-cols-3 xl:mt-[40px] mt-[-30px] lg:grid-cols-2 xl:grid-cols-3 2xl:flex 2xl:flex-wrap"
     >
       {products.map((product) => (
-        <Card key={product._id} product={product} addToCompare={addToCompare} />
+        <KidsCard key={product._id} product={product} addToCompare={addToCompare} />
       ))}
     </div>
   );

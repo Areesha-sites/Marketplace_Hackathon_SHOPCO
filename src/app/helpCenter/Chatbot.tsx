@@ -1,31 +1,28 @@
-// src/app/help-center/Chatbot.js
 import React, { useState } from "react";
-
-interface Message {
-  user: "User" | "Bot";
-  text: string;
-}
-
+import { Message } from "../../../types/ComponentsTypes";
 const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
-
   const sendMessage = () => {
     if (input.trim()) {
       setMessages([...messages, { user: "User", text: input }]);
-      // Simulate bot response
       setTimeout(() => {
-        setMessages((prev) => [...prev, { user: "Bot", text: "How can I help you?" }]);
+        setMessages((prev) => [
+          ...prev,
+          { user: "Bot", text: "How can I help you?" },
+        ]);
       }, 1000);
       setInput("");
     }
   };
-
   return (
     <div className="chatbot-container">
       <div className="messages">
         {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.user === "User" ? "user" : "bot"}`}>
+          <div
+            key={index}
+            className={`message ${msg.user === "User" ? "user" : "bot"}`}
+          >
             {msg.text}
           </div>
         ))}

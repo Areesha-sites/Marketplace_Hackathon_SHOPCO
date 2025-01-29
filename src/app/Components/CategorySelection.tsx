@@ -1,15 +1,7 @@
-// CategorySelection.tsx
-
 import React from "react";
 import { CategorySelectionPropTypes } from "../../../types/ComponentsTypes";
 import Image from "next/image";
-
-interface Category {
-  name: string;
-  bgColor: string;
-  imgSrc: string;
-}
-
+import { Category } from "../../../types/ComponentsTypes";
 const CategorySelection: React.FC<CategorySelectionPropTypes> = ({
   onSelectCategory,
   activeCategory,
@@ -22,7 +14,6 @@ const CategorySelection: React.FC<CategorySelectionPropTypes> = ({
     { name: "hoodie", bgColor: "#FCE4EC", imgSrc: "/category4.jpg" },
     { name: "jeans", bgColor: "#FFF9C4", imgSrc: "/category5.jpg" },
   ];
-
   return (
     <div className="flex flex-wrap gap-4 justify-center items-center py-4">
       {categories.map((category, index) => (

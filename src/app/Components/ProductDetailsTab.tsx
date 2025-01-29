@@ -1,47 +1,48 @@
 "use client";
 import React, { useState } from "react";
-import Faqs from "./Faqs";
-import Image from "next/image";
+// import Faqs from "./Faqs";
+// import Image from "next/image";
 import { useRef } from "react";
 import ReviewCardList from "./ReviewCardList";
-import ProductDetailsTable from "./ProductDetailsTable";
-import { GiSettingsKnobs } from "react-icons/gi";
+// import ProductDetailsTable from "./ProductDetailsTable";
+// import { GiSettingsKnobs } from "react-icons/gi";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Link from "next/link";
-import { Minus, Plus } from "lucide-react";
-import { Bar, BarChart, ResponsiveContainer } from "recharts";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { Button } from "@/components/ui/button";
-import SideBar from "./SideBar";
+// import { Minus, Plus } from "lucide-react";
+// import { Bar, BarChart, ResponsiveContainer } from "recharts";
+// import {
+//   Drawer,
+//   DrawerClose,
+//   DrawerContent,
+//   DrawerDescription,
+//   DrawerFooter,
+//   DrawerHeader,
+//   DrawerTitle,
+//   DrawerTrigger,
+// } from "@/components/ui/drawer";
+// import { Button } from "@/components/ui/button";
+// import SideBar from "./SideBar";
+// import Faqs from "@/sanity/schemaTypes/faqs";
 const ProductDetailsTab = () => {
   const [activeTab, setActiveTab] = useState("tab1");
-  const dropdownRef = useRef(null);
+  // const dropdownRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSubDropdownOpen, setIsSubDropdownOpen] = useState(false);
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const handleMouseEnter = () => {
-    setIsDropdownOpen(true);
-  };
-  const handleMouseLeave = () => {
-    setIsDropdownOpen(false);
-    setIsSubDropdownOpen(false);
-  };
-  const toggleSubDropdown = () => {
-    setIsSubDropdownOpen(!isSubDropdownOpen);
-  };
+  // const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  // const handleMouseEnter = () => {
+  //   setIsDropdownOpen(true);
+  // };
+  // const handleMouseLeave = () => {
+  //   setIsDropdownOpen(false);
+  //   setIsSubDropdownOpen(false);
+  // };
+  // const toggleSubDropdown = () => {
+  //   setIsSubDropdownOpen(!isSubDropdownOpen);
+  // };
   return (
     <div className="flex justify-between md:justify-center items-center w-full flex-col mx-auto px-4 sm:px-2">
       <div className="border-b border-black/10 dark:border-neutral-700 w-[270px] sm:w-full mx-auto xl:w-[1160px] xxl:w-[1240px]">
@@ -65,7 +66,6 @@ const ProductDetailsTab = () => {
           >
             Product Details
           </button>
-
           <button
             type="button"
             className={`py-4 px-1 text-[12px] sm:text-[14px] md:text-[20px] font-satoshi whitespace-nowrap ${
@@ -124,23 +124,14 @@ const ProductDetailsTab = () => {
             </div>
           </div>
         )}
-
         {activeTab === "tab2" && (
           <div id="content-tab2" role="tabpanel" aria-labelledby="tab2">
             <div className="">
-              <div className="flex items-center">
-                <h4
-                  // data-aos="fade-up-right"
-                  // data-aos-delay="300"
-                  className="absolute md:top-[100px] xl:left-[50px] xxl:left-0 left-[16px] text-[16px]  lg:top-[1245px] top-[80px] md:text-[24px] font-bold text-black font-satoshiBold xl:top-[100px]"
-                >
+              <div className="flex items-center px-0 sm:px-4 xl:px-10 gap-x-[10px] w-full mx-auto justify-start">
+                <h4 className=" text-[16px] md:text-[24px] font-bold text-black font-satoshiBold mt-[30px]">
                   All Reviews
                 </h4>
-                <span
-                  // data-aos="fade-up-right"
-                  // data-aos-delay="300"
-                  className="absolute md:top-[110px] xl:left-[180px] xxl:left-[130px]  xl:top-[110px] font-satoshi md:text-[16px] font-normal text-black/60 text-[12px] lg:top-[1245px] top-[85px] left-[105px] md:left-[140px] "
-                >
+                <span className="font-satoshi md:text-[16px] font-normal text-black/60 text-[12px] mt-[30px]">
                   (451)
                 </span>
               </div>
@@ -158,45 +149,44 @@ const ProductDetailsTab = () => {
                     className="md:w-[24px] md:h-[24px] sm:w-[20px] sm:h-[20px] h-[15px] w-[15px]"
                   />
                 </div> */}
-
-                <Drawer>
+                {/* <Drawer>
                   <DrawerTrigger asChild>
                     <Button
                       variant="default"
                       className="bg-white hover:bg-white shadow-white"
                     >
                       <div className="md:h-[48px] md:w-[48px] sm:w-[40px] sm:h-[40px] w-[30px] h-[30px] bg-bgLightGrayColor rounded-full absolute md:left-[986px] xxl:left-[910px] xl:left-[830px] xl:top-[100px] md:top-[888px] flex justify-center items-center sm:left-[30px] ">
-                        {/* <Image
+                        <Image
                           src="/product-detail-review-icon.svg"
                           alt="client-review"
                           height={24}
                           width={24}
                           className="md:w-[24px] md:h-[24px] sm:w-[20px] sm:h-[20px] h-[15px] w-[15px]"
-                        /> */}
-
+                        />
                         <GiSettingsKnobs className="md:w-[50px] md:h-[50px] sm:w-[20px] sm:h-[20px] h-[15px] w-[15px] text-black" />
                       </div>
                     </Button>
                   </DrawerTrigger>
                   <DrawerContent>
-                    {/* <SideBar
-                    // handleCategoryChange={handleCategoryChange}
-                    // activeColor={activeColor}
-                    // setFilteredProducts={setProducts}
-                    // setTotalPages={setTotalPages}
-                    /> */}
+                    <SideBar
+                    handleCategoryChange={handleCategoryChange}
+                    activeColor={activeColor}
+                    setFilteredProducts={setProducts}
+                    setTotalPages={setTotalPages}
+                    />
                     <DrawerFooter>
                       <DrawerClose asChild>
                         <Button variant="outline">Cancel</Button>
                       </DrawerClose>
                     </DrawerFooter>
                   </DrawerContent>
-                </Drawer>
-
-                <div className="relative inline-block left-[645px] top-[102px]">
+                </Drawer> */}
+              </div>
+              <div className="flex justify-end w-full sm:px-4 mx-auto px-0 xl:px-48 mt-[-30px]">
+                <div className="relative inline-block ">
                   <button
                     onClick={() => setIsDropdownOpen((prev) => !prev)}
-                    className="text-black bg-bgLightGrayColor rounded-[62px] outline-none border-none font-medium  text-sm px-7 py-3 inline-flex items-center font-satoshi"
+                    className="text-black bg-bgLightGrayColor rounded-[62px] outline-none border-none font-medium text-[12px] sm:text-sm px-4 sm:px-7 py-1.5 sm:py-3 inline-flex items-center font-satoshi"
                   >
                     Latest
                     <svg
@@ -215,7 +205,7 @@ const ProductDetailsTab = () => {
                     </svg>
                   </button>
                   {isDropdownOpen && (
-                    <div className="absolute left-0 z-10 mt-2 w-36 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
+                    <div className="absolute left-[-120px] md:left-[-170px] z-10 mt-2 w-24 md:w-36 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
                       <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 ">
                         <li>
                           <button
@@ -241,7 +231,7 @@ const ProductDetailsTab = () => {
                             </svg>
                           </button>
                           {isSubDropdownOpen && (
-                            <div className="absolute left-full top-0 z-20 ml-2 w-36 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
+                            <div className="absolute left-full top-0 z-20 ml-2 w-24 md:w-36 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
                               <ul className="py-2 font-satoshi text-sm text-gray-700 dark:text-gray-200">
                                 <li>
                                   <Link
@@ -330,17 +320,15 @@ const ProductDetailsTab = () => {
                   )}
                 </div>
               </div>
-              <div className="absolute md:top-[180px] md:left-[100px] xxl:left-[0px] xl:left-0 top-[130px] left-[16px]">
-                <ReviewCardList />
-              </div>
+            </div>
+            <div className="flex justify-center items-center mt-[30px]">
+              <ReviewCardList />
             </div>
           </div>
         )}
         {activeTab === "tab3" && (
           <div id="content-tab3" role="tabpanel" aria-labelledby="tab3">
-            <div className="">
-              <Faqs />
-            </div>
+            <div className="">{/* <Faqs/> */}</div>
           </div>
         )}
       </div>

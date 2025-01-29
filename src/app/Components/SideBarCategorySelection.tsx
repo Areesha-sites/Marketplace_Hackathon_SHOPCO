@@ -13,7 +13,6 @@ const SideBarCategorySelection = ({
     { title: "Hoodie", value: "hoodie" },
     { title: "Shirts", value: "shirt" },
   ];
-
   return (
     <div className="lg:w-[247px] w-full h-auto flex flex-col gap-[20px]">
       {categories.map((category, index) => (
@@ -45,4 +44,4 @@ const SideBarCategorySelection = ({
     </div>
   );
 };
-export default SideBarCategorySelection
+export default SideBarCategorySelection;

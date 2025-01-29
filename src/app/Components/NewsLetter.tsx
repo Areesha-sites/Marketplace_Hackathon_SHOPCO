@@ -1,9 +1,8 @@
 import React from "react";
 import Image from "next/image";
-
 const NewsLetter = () => {
   return (
-    <div className="flex justify-center items-center w-full mx-auto absolute top-[-140px] md:top-[-100px] left-0">
+    <div className="flex justify-center items-center w-full mx-auto absolute top-[-140px] md:top-[-100px]  left-0">
       <div className="bg-black text-white rounded-[20px] py-8 px-6 md:px-14 flex justify-center items-center md:flex-row flex-col w-[1150px]">
         <h1 className=" font-integralCf uppercase font-extrabold text-[24px] sm:text-[32px] leading-[35px] tracking-wider xl:text-[40px] xl:leading-[45px] w-full whitespace-nowrap md:hidden block">
           STAY UP TO DATE <br /> ABOUT OUR <br /> LATEST OFFERS

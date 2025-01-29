@@ -16,27 +16,27 @@ import Link from "next/link";
 const HelpCenter = () => {
   return (
     <>
-       <div className="absolute top-[150px] left-[100px]"> 
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink>
-                  <Link href="/" className="font-satoshi">
-                    Home
-                  </Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
+      <div className="absolute top-[150px] left-[100px]">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink>
+                <Link href="/" className="font-satoshi">
+                  Home
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
               <BreadcrumbPage>
-                  <Link href="/helpCenter" className="font-satoshi">
-                 Help Center
-                  </Link>
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
+                <Link href="/helpCenter" className="font-satoshi">
+                  Help Center
+                </Link>
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
       <section className="flex justify-center items-center w-full mx-auto h-auto mt-28 lg:mt-44 md:mt-36">
         <div className="flex flex-col justify-center items-center gap-y-[10px]">
           <div className="flex justify-center items-center gap-x-[10px] h-[30px] bg-bgLightGrayColor w-[200px] md:w-[250px] rounded-[50px]">

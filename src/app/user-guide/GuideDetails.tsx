@@ -8,7 +8,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-const GuideDetails = ({ guide }: any) => {
+import { GuideDetailsProps } from "../../../types/ComponentsTypes";
+const GuideDetails = ({ guide }: GuideDetailsProps) => {
   return (
     <div className="">
       <div className="">
@@ -40,7 +41,6 @@ const GuideDetails = ({ guide }: any) => {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-
       <div className="flex justify-center items-center w-full mx-auto flex-col">
         <h1 className="text-3xl font-bold my-4 font-integralCf tracking-wider">
           {guide.title}

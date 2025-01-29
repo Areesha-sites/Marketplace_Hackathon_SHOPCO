@@ -12,11 +12,9 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-
 const FAQPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [faqs, setFaqs] = useState([]);
-
   useEffect(() => {
     const fetchFAQs = async () => {
       const data = await client.fetch(`*[_type == "faq"]{
@@ -27,9 +25,8 @@ const FAQPage = () => {
     };
     fetchFAQs();
   }, []);
-
   return (
-    <div className="">
+    <div>
       <div className="flex"> 
         <div className="absolute top-[130px] left-[100px]"> 
           <Breadcrumb>

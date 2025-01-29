@@ -17,19 +17,16 @@ export default function Home() {
       anchorPlacement: "top-bottom",
     });
   }, []);
-
   return (
-    <>
-      <div className="">
-        <Banner />
-        <NewArrivalSection />
-        <TopSelling />
-        <DressStyleSection />
-        <HappyCustomerSection />
-        <div className="absolute md:top-[3750px] top-[3660px] ">
-          <Footer />
-        </div>
+    <div>
+      <Banner />
+      <NewArrivalSection />
+      <TopSelling />
+      <DressStyleSection />
+      <HappyCustomerSection />
+      <div className="absolute md:top-[3750px] top-[3660px]">
+        <Footer />
       </div>
-    </>
+    </div>
   );
 }

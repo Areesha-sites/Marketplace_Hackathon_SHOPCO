@@ -3,14 +3,13 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { GoChevronRight } from "react-icons/go";
 import Link from "next/link";
-// import Footer from "../Components/Footer";
 import { PiTrashFill } from "react-icons/pi";
 import { IoAddOutline } from "react-icons/io5";
 import { RiSubtractLine } from "react-icons/ri";
 import { CartItem } from "../../../types/ComponentsTypes";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
+import Footer from "../Components/Footer";
 const CartPage = () => {
-  // const [count, setCount] = useState<number>(1);
   const [validPromo, setValidPromo] = useState<boolean>(false);
   const [promoCode, setPromoCode] = useState<string>("");
   const [cart, setCart] = useState<CartItem[]>(() => {
@@ -20,7 +19,6 @@ const CartPage = () => {
     }
     return [];
   });
-  // const [count, setCount] = useState(1);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedCart = localStorage.getItem("cart");
@@ -29,11 +27,6 @@ const CartPage = () => {
       }
     }
   }, []);
-  // const removeFromCart = (index) => {
-  //   const updatedCart = cart.filter((_, i) => i !== index);
-  //   setCart(updatedCart);
-  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
-  // };
   const updateCart = (updatedCart: CartItem[]) => {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -251,9 +244,9 @@ const CartPage = () => {
           </div>
         )}
       </div>
-      {/* <div className="absolute top-[1300px]">
+      <div className="relative top-[1000px]">
         <Footer />
-      </div> */}
+      </div>
     </section>
   );
 };

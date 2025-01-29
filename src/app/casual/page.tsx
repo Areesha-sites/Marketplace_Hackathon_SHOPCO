@@ -1,23 +1,6 @@
 "use client";
-import React, { useState } from "react";
-// import SideBar from "../Components/SideBar";
-import Image from "next/image";
-// import Pagination from "../Components/Pagination";
-// import CausalCardsList from "../Components/CasualCardsList";
 import Footer from "../Components/Footer";
 import Link from "next/link";
-// import { Button } from "@/components/ui/button";
-// import {
-//   Drawer,
-//   DrawerClose,
-//   DrawerContent,
-//   DrawerDescription,
-//   DrawerFooter,
-//   DrawerHeader,
-//   DrawerTitle,
-//   DrawerTrigger,
-// } from "@/components/ui/drawer";
-// import { client } from "@/sanity/lib/client";
 import CasualCard from "../Components/casualComp/CasualCard";
 import {
   Breadcrumb,
@@ -27,184 +10,36 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-// import CasualProduct from "../Components/CasualProduct";
-// import { notFound } from "next/navigation";
-// interface Products {
-//   _id: string;
-//   name: string;
-//   description: string;
-//   price: number;
-//   imageUrl: string;
-//   category: string;
-//   discountPercent: number | null;
-//   isNew: boolean | null;
-//   colors: string[];
-//   sizes: string[];
-// }
-// // const fetchProducts = async ({ params }: { params: { id: string } }) => {
-//   const { id } = params;
-//   const query = `*[_type=="products" && _id==$id][0]{
-//     _id,
-//     name,
-//     description,
-//     price,
-//     "imageUrl" : image.asset->url,
-//     category,
-//     discountPercent,
-//     "isNew": new,
-//     colors,
-//     sizes
-//   }`;
-//   try {
-//     const product: Products | null = await client.fetch(query, { id });
-
-//     if (!product) {
-//       return notFound();
-//     }
-//     return product;
-//   } catch (error) {
-//     console.error("Error fetching product:", error);
-//     return notFound();
-//   }
-// };
 const CasualDetails: React.FC = () => {
-  // const [isSidebarVisible, setSidebarVisible] = useState(false);
-  // const [isOpen, setIsOpen] = useState(false);
-  // const handleMouseEnter = () => setIsOpen(true);
-  // const handleMouseLeave = () => setIsOpen(false);
-  // const toggleSidebar = () => {
-  //   setSidebarVisible((prev) => !prev);
-  // };
-
   return (
     <>
-      <div className="flex justify-center items-center w-full 3xl:w-full 2xl:w-full">
+      <div>
         <section>
-          <div
-            // data-aos="zoom-in"
-            // data-aos-delay="200"
-            className="xl:w-[1100px] xxl:w-[1240px] absolute md:top-[134px] lg:left-[50px] xl:left-[100px] border-b-[1px] border-black/10 top-[98px] w-full left-0 mx-auto lg:w-[930px] md:w-[600px]"
-          ></div>
-          <div className="absolute top-[160px] left-[100px]">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink>
-                  <Link href="/" className="font-satoshi">
-                    Home
-                  </Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-              <BreadcrumbPage>
-                  <Link href="/casual" className="font-satoshi">
-                 Casual
-                  </Link>
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <div className="xl:w-[1100px] xxl:w-[1240px] absolute md:top-[100px] md:left-[20px] lg:left-[50px] xl:left-[100px] border-b-[1px] border-black/10 top-[98px] w-full left-0 mx-auto lg:w-[930px] md:w-[710px] lg:top-[120px]"></div>
+          <div className="mt-[120px] ml-5 lg:ml-12 lg:mt-[140px] xl:ml-[100px]">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink>
+                    <Link href="/" className="font-satoshi">
+                      Home
+                    </Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>
+                    <Link href="/casual" className="font-satoshi">
+                      Casual
+                    </Link>
+                  </BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
           </div>
-          {/* <div className={`${isSidebarVisible ? "block" : "hidden"} lg:block`}> */}
-            {/* <Drawer>
-  <DrawerTrigger asChild>
-  <div
-            className="w-[32px] h-[32px] absolute top-[200px] left-[180px] rounded-[62px] bg-bgLightGrayColor flex justify-center items-center md:hidden"
-            onClick={toggleSidebar}
-          >
-            <Image
-              src="/Frame (6).svg"
-              alt="icon"
-              height={16}
-              width={16}
-              className="h-[16px] w-[16px]"
-            />
-          </div>
-  </DrawerTrigger>
-  <DrawerContent>
-  <SideBar closeSidebar={toggleSidebar} />
-    <div className="p-4">
-      <DrawerFooter>
-        <Button onClick={toggleSidebar}>Close Sidebar</Button>
-      </DrawerFooter>
-    </div>
-  </DrawerContent>
-</Drawer> */}
-
-            {/* <Drawer>
-      <DrawerTrigger asChild>
-        <Button variant="outline">Open Drawer</Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <div className="mx-auto w-full max-w-sm">
-          <DrawerHeader>
-            <DrawerTitle>Move Goal</DrawerTitle>
-            <DrawerDescription>Set your daily activity goal.</DrawerDescription>
-          </DrawerHeader>
-          <div className="p-4 pb-0">
-            <div className="flex items-center justify-center space-x-2">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 shrink-0 rounded-full"
-                onClick={() => onClick(-10)}
-                disabled={goal <= 200}
-              >
-                <Minus />
-                <span className="sr-only">Decrease</span>
-              </Button>
-              <div className="flex-1 text-center">
-                <div className="text-7xl font-bold tracking-tighter">
-                  {goal}
-                </div>
-                <div className="text-[0.70rem] uppercase text-muted-foreground">
-                  Calories/day
-                </div>
-              </div>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 shrink-0 rounded-full"
-                onClick={() => onClick(10)}
-                disabled={goal >= 400}
-              >
-                <Plus />
-                <span className="sr-only">Increase</span>
-              </Button>
-            </div>
-            <div className="mt-3 h-[120px]">
-              {/* <ResponsiveContainer width="100%" height="100%"> */}
-            {/* <BarChart data={data}>
-                  <Bar
-                    dataKey="goal"
-                    style={
-                      {
-                        fill: "hsl(var(--foreground))",
-                        opacity: 0.9,
-                      } as React.CSSProperties
-                    }
-                  />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-          <DrawerFooter>
-            <Button>Submit</Button>
-            <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DrawerClose>
-          </DrawerFooter>
-        </div>
-      </DrawerContent>
-    </Drawer> */}
-            {/* <SideBar closeSidebar={toggleSidebar} /> */}
-          {/* </div> */}
           <div className="flex justify-between items-center w-full px-2 mx-auto">
-            <div className="flex justify-between w-full ml-2 items-center gap-x-[40px]">
-              <h1
-                className="absolute lg:top-[204px] top-[149px]  lg:left-[360px] xl:left-[415px] md:text-[32px] text-[24px] font-bold text-black font-satoshiBold"
-              >
+            <div className="flex justify-between w-full ml-2 items-center gap-x-[40px] lg:ml-11">
+              <h1 className=" md:text-[32px] text-[24px] font-bold text-black font-satoshiBold lg:ml-[340px] xl:ml-[350px] xl:mt-[40px] lg:mt-[30px]">
                 Casual
               </h1>
             </div>
@@ -214,14 +49,12 @@ const CasualDetails: React.FC = () => {
               <CasualCard />
             </div>
           </div>
-          <div className="flex justify-center items-center w-full mx-auto">
-            <div
-              className="lg:w-[600px] md:w-[700px] w-full mx-auto lg:left-[375px] xl:left-[415px] md:top-[1333px] lg:top-[2400px] xxl:top-[1580px] xxl:w-[925px] xl:w-[770px] xl:top-[1470px] top-[1400px] sm:top-[1590px] absolute border-b-[1px] border-black/10 "
-            ></div>
+          <div className="flex justify-center items-center w-full mx-auto mt-[1500px]">
+            {/* <div className="lg:w-[600px] md:w-[700px] w-full mx-auto xxl:w-[925px] xl:w-[770px] border-b-[1px] border-black/10 "></div> */}
           </div>
         </section>
       </div>
-      <div className="absolute md:top-[1830px] xxl:top-[2100px] xl:top-[1750px] top-[1500px] z-20">
+      <div className="absolute md:top-[1830px] lg:top-[2700px] xxl:top-[1800px] xl:top-[1750px] top-[1800px] sm:top-[2000px] z-20">
         <Footer />
       </div>
     </>

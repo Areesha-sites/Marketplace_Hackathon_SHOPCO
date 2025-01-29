@@ -1,94 +1,20 @@
 "use client";
-// // /src/app/contact/ContactForm.js
-// import { useState } from 'react';
-
-// const ContactForm = () => {
-// const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-
-// const handleSubmit = (e:any) => {
-//   e.preventDefault();
-//   // Process the form data
-//   alert('Message sent!');
-// };
-
-//   return (
-//     <form onSubmit={handleSubmit} classNameName="contact-form">
-//       <label classNameName="contact-label" htmlFor="name">Your Name</label>
-//       <input
-//         type="text"
-//         id="name"
-//         name="name"
-//         value={formData.name}
-//         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-//         classNameName="contact-input"
-//         required
-//       />
-
-//       <label classNameName="contact-label" htmlFor="email">Your Email</label>
-//       <input
-//         type="email"
-//         id="email"
-//         name="email"
-//         value={formData.email}
-//         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-//         classNameName="contact-input"
-//         required
-//       />
-
-//       <label classNameName="contact-label" htmlFor="message">Your Message</label>
-//       <textarea
-//         id="message"
-//         name="message"
-//         value={formData.message}
-//         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-//         classNameName="contact-textarea"
-//         required
-//       />
-
-//       <button type="submit" classNameName="contact-submit">Send Message</button>
-//     </form>
-//   );
-// };
-
-// export default ContactForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React from "react";
 import { GrFacebookOption } from "react-icons/gr";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { useState } from "react";
+import { ContactFormData } from "../../../types/ComponentsTypes";
+import { FormEvent } from "react";
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     fullName: "",
     email: "",
     phoneNumber: "",
     message: "",
   });
-
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     alert("Message sent!");
   };
@@ -112,7 +38,6 @@ const ContactForm = () => {
               <h2 className="text-gray-800 text-base font-bold xxl:text-[20px]">
                 Socials
               </h2>
-
               <ul className="flex mt-4 space-x-4">
                 <li className="bg-[#e6e6e6cf] h-8 w-8 hover:bg-black cursor-pointer transition-all duration-300 ease-in-out rounded-full flex items-center justify-center shrink-0 hover:text-white">
                   <GrFacebookOption className="h-5 w-5 text-black hover:text-white " />
@@ -147,7 +72,6 @@ const ContactForm = () => {
                 }
               />
             </div>
-
             <div className="flex md:flex-row flex-col gap-4">
               <input
                 type="email"
@@ -168,7 +92,6 @@ const ContactForm = () => {
                 }
               />
             </div>
-
             <textarea
               placeholder="Message"
               rows={6}
@@ -178,7 +101,6 @@ const ContactForm = () => {
                 setFormData({ ...formData, message: e.target.value })
               }
             ></textarea>
-
             <button
               type="submit"
               className="text-white bg-black xxl:text-[16px] rounded-[50px] hover:bg-black/90 tracking-wide text-sm px-4 py-3 w-full !mt-6"

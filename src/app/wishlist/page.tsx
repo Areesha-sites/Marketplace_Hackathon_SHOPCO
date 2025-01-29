@@ -11,8 +11,9 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { WishlistItems } from "../../../types/ComponentsTypes";
 const Wishlist: React.FC = () => {
-  const [wishlist, setWishlist] = useState<any[]>([]);
+  const [wishlist, setWishlist] = useState<WishlistItems[]>([]);
   useEffect(() => {
     const savedWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
     setWishlist(savedWishlist);

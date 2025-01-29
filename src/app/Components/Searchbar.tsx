@@ -3,19 +3,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
-
-interface SearchbarTypes {
-  _id: string;
-  name: string;
-  _type: string;
-}
-
+import { SearchbarTypes } from "../../../types/ComponentsTypes";
 const SearchBar: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState<string>(""); // Ensure the type is explicitly string
-  const [suggestions, setSuggestions] = useState<SearchbarTypes[]>([]); // Explicitly set the type as SearchbarTypes array
-  const [products, setProducts] = useState<SearchbarTypes[]>([]); // Products are also of type SearchbarTypes array
-
-  // Fetch all product data once
+  const [searchTerm, setSearchTerm] = useState<string>(""); 
+  const [suggestions, setSuggestions] = useState<SearchbarTypes[]>([]); 
+  const [products, setProducts] = useState<SearchbarTypes[]>([]);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -26,37 +18,30 @@ const SearchBar: React.FC = () => {
             _type
           }
         `);
-        console.log("Fetched Products:", result); // Debug log
+        console.log("Fetched Products:", result);
         setProducts(result);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
-  
     fetchProducts();
   }, []);
-  
-
-  // Handle input changes and filter suggestions
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value.toLowerCase();
     setSearchTerm(query);
-  
     if (query) {
       const filtered = products.filter((product) =>
         product.name.toLowerCase().includes(query)
       );
-      console.log("Filtered Suggestions:", filtered); // Debug log
+      console.log("Filtered Suggestions:", filtered); 
       setSuggestions(filtered);
     } else {
       setSuggestions([]);
     }
   };
-
   const handleMouseLeave = () => {
     setSuggestions([]);
   };
-
   return (
     <div className="xl:w-[377px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center font-satoshi relative hidden">
       <Image

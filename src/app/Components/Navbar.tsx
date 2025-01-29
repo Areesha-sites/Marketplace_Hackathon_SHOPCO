@@ -3,33 +3,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
 import { FaRegHeart } from "react-icons/fa6";
 import SearchBar from "./Searchbar";
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-}
-interface SearchbarTypes {
-  _id: string;
-  name: string;
-  route: any;
-}
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { IoMenu } from "react-icons/io5";
-// import SearchBar from "./Searchbar";
-import { client } from "@/sanity/lib/client";
-import { useToast } from "@/components/hooks/use-toast";
-import Alert from "@mui/material/Alert";
-const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
+const Navbar = () => {
   const dropdownItems = [
     {
       name: "Casual",
@@ -70,154 +49,77 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
   ];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState<SearchbarTypes[]>([]);
-  const [loading, setLoading] = useState(false);
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [suggestions, setSuggestions] = useState<SearchbarTypes[]>([]);
+  // const [loading, setLoading] = useState(false);
+  // const schemaRoutes = [
+  //   "casualDetails",
+  //   "newArrivals",
+  //   "topSelling",
+  //   "productDetailsProduct",
+  //   "kidsDetails",
+  //   "women",
+  //   "men",
+  // ];
+  // const fetchSuggestions = async (query: string) => {
+  //   setLoading(true);
+  //   try {
+  //     const queries = schemaRoutes.map((route) =>
+  //       client.fetch(
+  //         `*[_type == "${route}" && lower(name) match "${query.toLowerCase()}*"] {
+  //           _id,
+  //           name,
+  //           _type
+  //         }`
+  //       )
+  //     );
+  //     const results = await Promise.all(queries);
+  //     const allResults = results.flat().map((product) => ({
+  //       ...product,
+  //       route: product._type,
+  //     }));
+  //     setSuggestions(allResults);
+  //   } catch (error) {
+  //     console.error("Error fetching suggestions:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
-  const schemaRoutes = [
-    "casualDetails",
-    "newArrivals",
-    "topSelling",
-    "productDetailsProduct",
-    "kidsDetails",
-    "women",
-    "men",
-  ];
-
-  const fetchSuggestions = async (query: string) => {
-    setLoading(true);
-    try {
-      const queries = schemaRoutes.map((route) =>
-        client.fetch(
-          `*[_type == "${route}" && lower(name) match "${query.toLowerCase()}*"] {
-            _id,
-            name,
-            _type
-          }`
-        )
-      );
-      const results = await Promise.all(queries);
-      const allResults = results.flat().map((product) => ({
-        ...product,
-        route: product._type,
-      }));
-      setSuggestions(allResults);
-    } catch (error) {
-      console.error("Error fetching suggestions:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value;
-    setSearchTerm(query);
-    if (query.trim()) {
-      fetchSuggestions(query);
-    } else {
-      setSuggestions([]);
-    }
-  };
-
-  const handleMouseLeave = () => setSuggestions([]);
+  // const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const query = e.target.value;
+  //   setSearchTerm(query);
+  //   if (query.trim()) {
+  //     fetchSuggestions(query);
+  //   } else {
+  //     setSuggestions([]);
+  //   }
+  // };
+  // const handleMouseLeave = () => setSuggestions([]);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
   const closeDropdown = () => {
     setIsDropdownOpen(false);
   };
   const [cartCount, setCartCount] = useState(0);
-
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartCount(cart.length);
   }, []);
-
-  const handleAddToCart = (product: Product) => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    cart.push(product);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    setCartCount(cart.length);
-  };
-
-  // const fetchSuggestions = async (searchTerm: string, route: string) => {
-  //   let query;
-  //   switch (route) {
-  //     case "casualDetails":
-  //       query = `*[_type == "casual" && name match "${searchTerm}*"] {
-  //         _id,
-  //         name
-  //       }`;
-  //       break;
-  //     case "newArrivalDetails":
-  //       query = `*[_type == "newArrivals" && name match "${searchTerm}*"] {
-  //         _id,
-  //         name
-  //       }`;
-  //       break;
-  //     case "topSellingDetails":
-  //       query = `*[_type == "topSelling" && name match "${searchTerm}*"] {
-  //         _id,
-  //         name
-  //       }`;
-  //       break;
-  //     case "productsDetailedProduct":
-  //       query = `*[_type == "products" && name match "${searchTerm}*"] {
-  //         _id,
-  //         name
-  //       }`;
-  //       break;
-  //       case "kids":
-  //       query = `*[_type == "kids" && name match "${searchTerm}*"] {
-  //         _id,
-  //         name
-  //       }`;
-  //       break;
-  //       case "men":
-  //       query = `*[_type == "men" && name match "${searchTerm}*"] {
-  //         _id,
-  //         name
-  //       }`;
-  //       break;
-  //       case "women":
-  //       query = `*[_type == "women" && name match "${searchTerm}*"] {
-  //         _id,
-  //         name
-  //       }`;
-  //       break;
-  //     default:
-  //       query = `*[_type == "casual" && name match "${searchTerm}*"] {
-  //         _id,
-  //         name
-  //       }`;
-  //       break;
-  //   }
-  //   const results = await client.fetch(query);
-  //   setSuggestions(results);
+  // const handleAddToCart = (product: NavProduct) => {
+  //   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  //   cart.push(product);
+  //   localStorage.setItem("cart", JSON.stringify(cart));
+  //   setCartCount(cart.length);
   // };
-
-  // const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const query = e.target.value;
-  //   setSearchTerm(query);
-  //   if (query) {
-  //     // Pass the correct route name here based on where you are searching
-  //     fetchSuggestions(query, "casualDetails"); // Adjust this based on the current route or search context
-  //   } else {
-  //     setSuggestions([]);
-  //   }
-  // };
-
   const [wishlistCount, setWishlistCount] = useState(0);
-
   useEffect(() => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
     setWishlistCount(wishlist.length);
-
-    // Listen for changes in localStorage
     const handleStorageChange = () => {
       const updatedWishlist = JSON.parse(
         localStorage.getItem("wishlist") || "[]"
@@ -225,12 +127,10 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
       setWishlistCount(updatedWishlist.length);
     };
     window.addEventListener("storage", handleStorageChange);
-
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
-  const { toast } = useToast();
   return (
     <>
       <nav className="w-full h-[41px] absolute md:top-[52px] lg:top-[62px] top-[47px] flex justify-center items-center xl:px-[20px] md:px-5 lg:px-[50px] xxl:px-[87px] 2xL:w-full">
@@ -282,16 +182,6 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
                 )}
               </div>
             </div>
-            {/* navbarLinks.map((link, index) => (
-              <Link
-                key={index}
-                href="/"
-                className="xl:text-[16px] md:text-[12px] lg:text-[12px] font-normal text-black hover:text-gray-700 whitespace-nowrap font-satoshi ml-3"
-              >
-                {link}
-              </Link>
-            ))} */}
-
             {navbarLinks.map((link, index) => (
               <Link
                 href={link.href}
@@ -302,97 +192,7 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
               </Link>
             ))}
           </div>
-
-          {/* <div className="xl:w-[577px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor flex gap-[12px] items-center font-satoshi relative">
-            <Image
-              src="/Frame (34).svg"
-              alt="search-icon"
-              height={24}
-              width={24}
-              className="xl:h-[24px] xl:w-[24px] lg:h-[20px] lg:w-[20px] md:w-[15px] h-[15px]"
-            />
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              className="md:text-[12px] lg:text-[16px] font-normal text-black/40 border-none outline-none bg-bgLightGrayColor font-satoshi"
-              placeholder="Search for products..."
-            />
-
-            {suggestions.length > 0 && (
-              <div
-                className="absolute top-[10px] bg-white shadow-md rounded-lg w-full mt-16 font-satoshi"
-                onMouseLeave={handleMouseLeave}
-              >
-                <ScrollArea className="h-48 w-full max-h-[200px] overflow-y-auto">
-                  {suggestions.map((product) => (
-                    <Link
-                      key={product._id}
-                      href={`/casualDetails/${product._id}`}
-                    >
-                      <p className="block px-4 py-2 hover:bg-gray-200 text-black font-satoshi">
-                        {product.name}
-                      </p>
-                    </Link>
-                  ))}
-                </ScrollArea>
-              </div>
-            )}
-          </div> */}
-
-          {/* <div className="xl:w-[377px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center font-satoshi relative hidden">
-      <Image
-        src="/Frame (34).svg"
-        alt="search-icon"
-        height={24}
-        width={24}
-        className="xl:h-[24px] xl:w-[24px] lg:h-[20px] lg:w-[20px] md:w-[15px] h-[15px]"
-      />
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        className="md:text-[12px] lg:text-[16px] font-normal text-black/40 border-none outline-none bg-bgLightGrayColor font-satoshi"
-        placeholder="Search for products..."
-      />
-      {suggestions.length > 0 && (
-        <div
-          className="absolute top-[10px] bg-white shadow-md rounded-lg w-full mt-16 font-satoshi"
-          onMouseLeave={handleMouseLeave}
-        >
-          <ScrollArea className="h-48 w-full max-h-[200px] overflow-y-auto">
-            {suggestions.map((product) => (
-              <Link
-                key={product._id}
-                href={`/${product.route}/${product._id}`}
-              >
-                <p className="block px-4 py-2 hover:bg-gray-200 text-black font-satoshi">
-                  {product.name}
-                </p>
-              </Link>
-            ))}
-          </ScrollArea>
-        </div>
-      )}
-    </div> */}
-
           <SearchBar />
-
-          {/* <div className="xl:w-[577px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center hidden font-satoshi ">
-            <Image
-              src="/Frame (34).svg"
-              alt="search-icon"
-              height={24}
-              width={24}
-              className="xl:h-[24px] xl:w-[24px] lg:h-[20px] lg:w-[20px] md:w-[15px] h-[15px]"
-            />
-            <input
-              type="text"
-              className=" md:text-[12px] lg:text-[16px] font-normal text-black/40 border-none outline-none bg-bgLightGrayColor font-satoshi"
-              placeholder="Search for products..."
-            />
-          </div> */}
-
           <div className="flex justify-center items-center md:gap-[14px] md:w-[62px] xxl:w-[62px] xl:w-[80px] xxl:gap-[14px] md:h-[24px] w-[96px] h-[24px] gap-[12px] xl:gap-[10px] absolute md:left-[278px] md:static">
             <Image
               src="/Frame (35).svg"
@@ -402,14 +202,19 @@ const Navbar = ({ onSearch }: { onSearch: (searchTerm: string) => void }) => {
               className="xl:h-[24px] xl:w-[24px] lg:h-[20px] lg:w-[20px] md:w-[15px] h-[24px] w-[24px] md:h-[15px] md:hidden hidden"
             />
             <div className="flex flex-col ">
-              <Link href="/cart">
+              <Link href="/cart" className="relative">
                 <Image
                   src="/Frame (36).svg"
                   alt="cart-icon"
                   height={24}
                   width={24}
-                  className="xl:h-[24px] xl:w-[24px] md:w-[15px] md:h-[15px] lg:w-[20px] lg:h-[20px] md:block hidden "
+                  className="xl:h-[24px] xl:w-[24px] md:w-[15px] md:h-[15px] lg:w-[20px] lg:h-[20px] md:block hidden"
                 />
+                {cartCount > 0 && (
+                  <span className="absolute top-[-7px] right-[-10px] bg-black text-white rounded-full text-[10px] font-satoshi w-4 h-4 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </Link>
             </div>
             <Link href="/signup">

@@ -11,6 +11,7 @@ import customerReviews from './customerReviews'
 import faqs from './faqs'
 import userGuide from './userGuide'
 
+
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [casual, newArrivals, topSelling, productDetailsProduct, kids, women, men, customerComments, customerReviews, faqs, userGuide],
 }

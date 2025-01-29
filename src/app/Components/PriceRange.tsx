@@ -1,31 +1,32 @@
+"use client"
 import { client } from "@/sanity/lib/client";
 import { useState } from "react";
-const RangeSlider = ({category, setFilteredProducts, setTotalPages }: {
-  category: any,
-  setFilteredProducts: any,
-  setTotalPages: any,
-
-}) => {
+import { useEffect } from "react";
+import { RangeSliderProps } from "../../../types/ComponentsTypes";
+const RangeSlider: React.FC<RangeSliderProps> = ({ category, setFilteredProducts, setTotalPages }) => {
   const [leftValue, setLeftValue] = useState(50);
   const [rightValue, setRightValue] = useState(200);
   const [currentPage, setCurrentPage] = useState(1);
-  const handleLeftChange = async (e: any) => {
-    const value = parseInt(e.target.value);
+  useEffect(() => {
+    fetchAndSetProducts(leftValue, rightValue, currentPage);
+  }, [category, leftValue, rightValue, currentPage]); 
+  const handleLeftChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value, 10);
     if (value < rightValue) {
       setLeftValue(value);
-      await fetchAndSetProducts(value, rightValue, currentPage);
+      setCurrentPage(1);
     }
   };
-  const handleRightChange = async (e: any) => {
-    const value = parseInt(e.target.value);
+  const handleRightChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value, 10);
     if (value > leftValue) {
       setRightValue(value);
-      await fetchAndSetProducts(leftValue, value, currentPage);
+      setCurrentPage(1);
     }
   };
   const fetchAndSetProducts = async (
-    minPrice: any,
-    maxPrice: any,
+    minPrice: number,
+    maxPrice: number,
     page: number
   ) => {
     try {

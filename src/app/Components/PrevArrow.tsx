@@ -1,16 +1,13 @@
 "use client";
-
 import React, { useState } from "react";
 import { PrevArrowsProps } from "../../../types/ComponentsTypes";
 import { GoArrowLeft } from "react-icons/go";
-
 const PrevArrow = ({ onClick }: PrevArrowsProps) => {
   const [isActive, setIsActive] = useState(false);
-
   return (
     <div
       onClick={() => {
-        onClick?.(); // Call the slick function to move the slider
+        onClick?.(); 
       }}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}

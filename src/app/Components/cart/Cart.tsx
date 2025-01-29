@@ -15,7 +15,7 @@ const Cart = () => {
   return (
     <>
       <section>
-        {/* <div className="md:w-[1240px] xxl:w-[1240px] xl:w-[1100px] w-full absolute md:top-[134px] top-[98px] left-[16px] md:left-[100px] border-b-[1px] border-black/10"></div> */}
+        <div className="md:w-[1240px] xxl:w-[1240px] xl:w-[1100px] w-full absolute md:top-[134px] top-[98px] left-[16px] md:left-[100px] border-b-[1px] border-black/10"></div>
         <div
           data-aos="flip-right"
           data-aos-delay="200"
@@ -101,7 +101,7 @@ const Cart = () => {
                     alt="decrease"
                     height={20}
                     width={20}
-                    onClick={handleDecrement} // Add onClick handler
+                    onClick={handleDecrement} 
                     className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] cursor-pointer "
                   />
                   <span className="text-[14px] font-satoshi text-black font-bold">
@@ -112,7 +112,7 @@ const Cart = () => {
                     alt="increase"
                     height={20}
                     width={20}
-                    onClick={handleIncrement} // Add onClick handler
+                    onClick={handleIncrement} 
                     className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] cursor-pointer "
                   />
                 </div>
@@ -180,7 +180,7 @@ const Cart = () => {
                     alt="increase"
                     height={20}
                     width={20}
-                    onClick={handleIncrement} // Add onClick handler
+                    onClick={handleIncrement} 
                     className="md:h-[20px] md:w-[20px] h-[16px] w-[16px]"
                   />
                 </div>

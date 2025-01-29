@@ -9,7 +9,11 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-const UserGuideList = ({ guides, onGuideClick }: any) => {
+import { UserGuideListProps } from "../../../types/ComponentsTypes";
+const UserGuideList: React.FC<UserGuideListProps> = ({
+  guides,
+  onGuideClick,
+}) => {
   return (
     <>
       <Breadcrumb className="ml-[90px] mt-[-20px]">
@@ -47,7 +51,7 @@ const UserGuideList = ({ guides, onGuideClick }: any) => {
         <div className="flex justify-center w-full">
           <ul className="flex flex-col justify-center gap-4 w-full max-w-md">
             {guides &&
-              guides.map((guide: any) => (
+              guides.map((guide) => (
                 <div
                   className="guide-item flex justify-between items-center px-6 py-3 bg-bgLightGrayColor bg-opacity-20 hover:bg-opacity-30 cursor-pointer transition-all duration-200 ease-in-out"
                   key={guide.slug.current}

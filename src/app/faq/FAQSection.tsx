@@ -1,12 +1,13 @@
 import Link from "next/link";
-const FAQSection = ({ faqs, query }: any) => {
-  const filteredFaqs = faqs.filter((faq: any) =>
+import { FAQSectionProps } from "../../../types/ComponentsTypes";
+const FAQSection: React.FC<FAQSectionProps> = ({ faqs, query }) => {
+  const filteredFaqs = faqs.filter((faq) =>
     faq.question.toLowerCase().includes(query.toLowerCase())
   );
   return (
     <>
       <div className="flex flex-col divide-y sm:px-8 lg:px-12 px-5 xl:px-32 divide-gray-700 w-full">
-        {filteredFaqs.map((faq: any, index: any) => (
+        {filteredFaqs.map((faq, index) => (
           <details
             key={index}
             className="py-2 outline-none text-left cursor-pointer focus:underline font-satoshi text-[14px] xxl:text-[16px] md:text-[16px]"
@@ -22,7 +23,6 @@ const FAQSection = ({ faqs, query }: any) => {
           </details>
         ))}
       </div>
-
       <div className="mt-5 flex justify-center items-center w-full mx-auto py-9">
         <p className="font-satoshi text-black font-normal text-[14px] text-center">
           Have more questions?

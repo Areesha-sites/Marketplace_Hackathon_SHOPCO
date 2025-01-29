@@ -1,6 +1,13 @@
 import Image from "next/image";
 import { IoTrash } from "react-icons/io5";
-const ComparisonTable = ({ products, removeCompareItem }: any) => {
+import { Product } from "../../../types/ComponentsTypes";
+const ComparisonTable = ({
+  products,
+  removeCompareItem,
+}: {
+  products: Product[];
+  removeCompareItem: (id: string) => void;
+}) => {
   return (
     <table className="w-full border-collapse border border-gray-200">
       <thead>
@@ -14,7 +21,7 @@ const ComparisonTable = ({ products, removeCompareItem }: any) => {
         </tr>
       </thead>
       <tbody>
-        {products.map((product: any) => (
+        {products.map((product: Product) => (
           <tr key={product._id}>
             <td className="border border-gray-200 p-2 h-[60px] w-[60px]">
               <Image
@@ -27,13 +34,15 @@ const ComparisonTable = ({ products, removeCompareItem }: any) => {
             </td>
             <td className="border border-gray-200 p-2">{product.name}</td>
             <td className="border border-gray-200 p-2">${product.price}</td>
-            <td className="border border-gray-200 p-2 text-black/50 line-through">${product.discountPercent}</td>
-            <td className="border border-gray-200 p-2">{product.ratingReviews}</td>
+            <td className="border border-gray-200 p-2 text-black/50 line-through">
+              ${product.discountPercent}
+            </td>
+            <td className="border border-gray-200 p-2">
+              {product.ratingReviews}
+            </td>
             <td className="border border-gray-200 p-2 flex justify-center items-center w-full text-center">
-              <button
-                onClick={() => removeCompareItem(product._id)}
-              >
-               <IoTrash  className="text-red-500 hover:text-red-400 h-5 w-5"/>
+              <button onClick={() => removeCompareItem(product._id)}>
+                <IoTrash className="text-red-500 hover:text-red-400 h-5 w-5" />
               </button>
             </td>
           </tr>

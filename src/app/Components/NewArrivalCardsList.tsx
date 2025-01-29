@@ -7,23 +7,8 @@ import Link from "next/link";
 import { RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
 import { BiGitCompare } from "react-icons/bi";
 import ComparisonTable from "./ComparisonTable";
-// import { Item } from "@radix-ui/react-select";
-interface Product {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string;
-  category: string;
-  discountPercent: number | null;
-  isNew: boolean | null;
-  colors: string[];
-  sizes: string[];
-  ratingReviews: number;
-  offer: number;
-}
-// Fetch products
-const fetchProducts = async (): Promise<Product[]> => {
+import { NewArrivalProduct, Product } from "../../../types/ComponentsTypes";
+const fetchProducts = async (): Promise<NewArrivalProduct[]> => {
   const products = await client.fetch(
     `*[_type=="newArrivals"] {
       ratingReviews,
@@ -49,8 +34,7 @@ const NewArrivalCardsList = () => {
   const { toast } = useToast();
   // const [products, setProducts] = useState<Product[]>([]);
   // const [loading, setLoading] = useState(true);
-  const [wishlist, setWishlist] = useState<Product[]>([]);
-
+  const [wishlist, setWishlist] = useState<NewArrivalProduct[]>([]);
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -62,21 +46,16 @@ const NewArrivalCardsList = () => {
         setLoading(false);
       }
     };
-
-    // Load wishlist from localStorage
     const loadWishlist = () => {
       const storedWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
       setWishlist(storedWishlist);
     };
-
     loadProducts();
     loadWishlist();
   }, []);
-
-  const toggleWishlist = (item: Product) => {
+  const toggleWishlist = (item: NewArrivalProduct) => {
     const isWishlisted = wishlist.some((product) => product._id === item._id);
     let updatedWishlist;
-
     if (isWishlisted) {
       updatedWishlist = wishlist.filter((product) => product._id !== item._id);
       toast({
@@ -88,36 +67,28 @@ const NewArrivalCardsList = () => {
         description: "Item added to wishlist successfully.",
       });
     }
-
     setWishlist(updatedWishlist);
     localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
   };
-
- const [comparisonList, setComparisonList] = useState<any[]>([]);
+  const [comparisonList, setComparisonList] = useState<Product[]>([]);
   const [showCompareDialog, setShowCompareDialog] = useState(false);
-  const addToCompare = (product: any) => {
+
+  const addToCompare = (product: NewArrivalProduct) => {  
+    const productToAdd: Product = {
+      _createdAt: new Date().toISOString(), 
+      ...product, 
+    };
     if (comparisonList.length === 2) {
-      if (
-        window.confirm(
-          "You can only compare two items at a time. Do you want to clear the comparison list?"
-        )
-      ) {
+      if (window.confirm("You can only compare two items at a time. Do you want to clear the comparison list?")) {
         setComparisonList([]);
       }
       return;
     }
-
-    const isAlreadyAdded = comparisonList.some(
-      (item) => item._id === product._id
-    );
-
+    const isAlreadyAdded = comparisonList.some((item) => item._id === product._id);
     if (!isAlreadyAdded) {
-      setComparisonList([...comparisonList, product]);
-
+      setComparisonList([...comparisonList, productToAdd]); 
       if (comparisonList.length === 0) {
-        alert(
-          "First product selected successfully. Now select the second product."
-        );
+        alert("First product selected successfully. Now select the second product.");
       } else if (comparisonList.length === 1) {
         alert("Second product selected successfully.");
         setShowCompareDialog(true);
@@ -126,7 +97,6 @@ const NewArrivalCardsList = () => {
       alert("This item is already in the comparison list.");
     }
   };
-
   const removeCompareItem = (productId: string) => {
     const updatedList = comparisonList.filter((item) => item._id !== productId);
     setComparisonList(updatedList);
@@ -135,7 +105,6 @@ const NewArrivalCardsList = () => {
     }
     alert("Item removed from comparison list.");
   };
-
   const settings = {
     arrows: true,
     infinite: true,
@@ -166,7 +135,7 @@ const NewArrivalCardsList = () => {
         settings: { slidesToShow: 2 },
       },
     ],
-    customPaging: function (i: any) {
+    customPaging: function (i: number) {
       return (
         <div className=" bottom-0 right-0 transform translate-y-1/2 translate-x-1/2">
           {i + 1}
@@ -174,7 +143,7 @@ const NewArrivalCardsList = () => {
       );
     },
   };
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<NewArrivalProduct[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const loadProducts = async () => {
@@ -187,7 +156,6 @@ const NewArrivalCardsList = () => {
         setLoading(false);
       }
     };
-
     loadProducts();
   }, []);
   if (loading) {
@@ -217,14 +185,14 @@ const NewArrivalCardsList = () => {
                     )}
                   </button>
                   <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      console.log("Add to Compare clicked for:", item.name);
-                    }}
-                    className="absolute top-12 left-2 text-black text-2xl z-10"
-                  >
-                    <BiGitCompare />
-                  </button>
+              onClick={(e) => {
+                e.preventDefault();
+                addToCompare(item);
+              }}
+              className="absolute top-12 left-2 text-black text-2xl z-10"
+            >
+              <BiGitCompare />
+            </button>
                <Image
                  src={item.imageUrl}
                  alt="product-image"
@@ -276,8 +244,7 @@ const NewArrivalCardsList = () => {
          </Link>
         ))}
       </Slider>
-    </div>
-    <div>
+      <div>
         {showCompareDialog && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg shadow-lg p-8 w-full md:w-3/4 relative">
@@ -295,6 +262,7 @@ const NewArrivalCardsList = () => {
           </div>
         )}
       </div>
+    </div>
    </div>
   );
 };

@@ -1,16 +1,14 @@
+"use client";
 import React, { useEffect, useRef } from "react";
-
-const GuideContent = ({ activeGuide, guides }: any) => {
+import { GuideContentProps } from "../../../types/ComponentsTypes";
+const GuideContent = ({ activeGuide, guides }: GuideContentProps) => {
   const guideRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     if (guideRef.current) {
       guideRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [activeGuide]);
-
-  const guide = guides.find((g: any) => g.id === activeGuide);
-
+  const guide = guides.find((g) => g.id === activeGuide);
   return (
     <div className="w-3/4 p-4" ref={guideRef}>
       {guide ? (

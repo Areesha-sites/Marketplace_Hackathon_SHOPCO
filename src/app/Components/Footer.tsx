@@ -9,8 +9,8 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <>
-      <div className="">
-        <div className="">
+      <div>
+        <div>
           <NewsLetter />
         </div>
         <footer className=" bg-BannerBgColor py-6 px-0 lg:px-12 h-auto md:h-auto w-full mx-auto">
@@ -102,7 +102,7 @@ const Footer = () => {
                   </Link>
                   <Link
                     href="/"
-                    className="font-satoshi font-normal lg:text-[16px] text-[14px] leading-[19px] text-[#000000] opacity-[60%] whitespace-nowrap hover:text-black hover:opacity-100 transition-all duration-300 ease-in-out"
+                    className="font-satoshi font-normal lg:text-[16px] text-[14px] leading-[19px] text-[#000000] opacity-[60%] md:whitespace-nowrap hover:text-black hover:opacity-100 transition-all duration-300 ease-in-out"
                   >
                     Customer Support
                   </Link>
@@ -114,7 +114,7 @@ const Footer = () => {
                   </Link>
                   <Link
                     href="/"
-                    className="font-satoshi font-normal lg:text-[16px] text-[14px] leading-[19px] text-[#000000] opacity-[60%] whitespace-nowrap hover:text-black hover:opacity-100 transition-all duration-300 ease-in-out"
+                    className="font-satoshi font-normal lg:text-[16px] text-[14px] leading-[19px] text-[#000000] opacity-[60%] sm:whitespace-nowrap hover:text-black hover:opacity-100 transition-all duration-300 ease-in-out"
                   >
                     Terms & Conditions
                   </Link>
@@ -173,7 +173,7 @@ const Footer = () => {
                   </Link>
                   <Link
                     href=""
-                    className="font-satoshi font-normal lg:text-[16px] text-[14px] leading-[19px] text-[#000000] opacity-[60%] whitespace-nowrap hover:text-black hover:opacity-100 transition-all duration-300 ease-in-out"
+                    className="font-satoshi font-normal lg:text-[16px] text-[14px] leading-[19px] text-[#000000] opacity-[60%] sm:whitespace-nowrap hover:text-black hover:opacity-100 transition-all duration-300 ease-in-out"
                   >
                     Development Tutorial
                   </Link>

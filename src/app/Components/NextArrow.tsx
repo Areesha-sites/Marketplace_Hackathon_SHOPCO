@@ -1,12 +1,9 @@
 "use client";
-
 import React, { useState } from "react";
 import { NextArrowsProps } from "../../../types/ComponentsTypes";
 import { GoArrowRight } from "react-icons/go";
-
 const NextArrow = ({ onClick }: NextArrowsProps) => {
   const [isActive, setIsActive] = useState(false);
-
   return (
     <div
       onClick={() => {

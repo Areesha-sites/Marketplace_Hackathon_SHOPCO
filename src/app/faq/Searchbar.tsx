@@ -1,4 +1,5 @@
-const SearchBar = ({ onSearch }: any) => {
+import { FAQSearchBarProps } from "../../../types/ComponentsTypes";
+const SearchBar = ({ onSearch }: FAQSearchBarProps) => {
   return (
     <div className="w-full max-w-sm min-w-[200px] px-4 sm:px-4 font-satoshi"> 
       <div className="relative">
