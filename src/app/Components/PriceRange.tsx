@@ -8,23 +8,6 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ category, setFilteredProducts
   const [leftValue, setLeftValue] = useState(50);
   const [rightValue, setRightValue] = useState(200);
   const [currentPage, setCurrentPage] = useState(1);
-  useEffect(() => {
-    fetchAndSetProducts(leftValue, rightValue, currentPage);
-  }, [category, leftValue, rightValue, currentPage]); 
-  const handleLeftChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (value < rightValue) {
-      setLeftValue(value);
-      setCurrentPage(1);
-    }
-  };
-  const handleRightChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (value > leftValue) {
-      setRightValue(value);
-      setCurrentPage(1);
-    }
-  };
   const fetchAndSetProducts = useCallback(async (minPrice: number, maxPrice: number, page: number) => {
     try {
       const productsPerPage = 9;
@@ -40,18 +23,34 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ category, setFilteredProducts
       }`;
       const products = await client.fetch(query);
       setFilteredProducts(products);
+
       const countQuery = `count(*[_type == "${category}" && price >= ${minPrice} && price <= ${maxPrice}])`;
       const totalCount = await client.fetch(countQuery);
       setTotalPages(Math.ceil(totalCount / productsPerPage));
     } catch (error) {
       console.error("Error fetching filtered products:", error);
     }
-  }, [category, setFilteredProducts, setTotalPages]); // Add dependencies to useCallback
+  }, [category, setFilteredProducts, setTotalPages]); // Dependencies for useCallback
 
   useEffect(() => {
-    fetchAndSetProducts(leftValue, rightValue, currentPage); // Now it's okay
-  }, [fetchAndSetProducts, leftValue, rightValue, currentPage]); // Add fetchAndSetProducts
+    fetchAndSetProducts(leftValue, rightValue, currentPage);
+  }, [fetchAndSetProducts, leftValue, rightValue, currentPage]); // fetchAndSetProducts is now a dependency
 
+  const handleLeftChange = (e: React.ChangeEvent<HTMLInputElement>) => { // Removed async
+    const value = parseInt(e.target.value, 10);
+    if (value < rightValue) {
+      setLeftValue(value);
+      setCurrentPage(1);
+    }
+  };
+
+  const handleRightChange = (e: React.ChangeEvent<HTMLInputElement>) => { // Removed async
+    const value = parseInt(e.target.value, 10);
+    if (value > leftValue) {
+      setRightValue(value);
+      setCurrentPage(1);
+    }
+  };
   return (
     <div className="slider-container">
       <div className="slider-bar">

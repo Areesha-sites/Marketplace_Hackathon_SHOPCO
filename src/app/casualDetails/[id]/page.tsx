@@ -31,18 +31,18 @@ import {
 } from "@/components/ui/breadcrumb";
 import { client } from "@/sanity/lib/client";
 import { CasualDetailsProducts } from "../../../../types/ComponentsTypes";
-interface Props {
-  params: {
-    id: string;
-  };
-}
+// interface Props {
+//   params: {
+//     id: string;
+//   };
+// }
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
 import Footer from "@/app/Components/Footer";
-const CasualDetails = async ({ params }: { params: { id: string } }) => {
+const CasualDetails = ({ params }: { params: { id: string } }) => { 
   const { id } = params;
   const [product, setProduct] = useState<CasualDetailsProducts | null>(null);
   const [count, setCount] = useState(1);
@@ -69,18 +69,21 @@ const CasualDetails = async ({ params }: { params: { id: string } }) => {
       try {
         const productData = await client.fetch<CasualDetailsProducts>(query, { id });
         if (!productData) {
-          notFound();
+          // Handle not found (e.g., redirect, show error message)
+          console.error("Product not found"); // Placeholder, implement proper handling
+          return; // Important: Exit early if product not found
         } else {
           setProduct(productData);
         }
       } catch (error) {
         console.error("Error fetching product:", error);
-        notFound();
+        // Handle error (e.g., show error message)
       }
     };
 
     fetchProduct();
   }, [id]);
+
   const addToCart = (
     product: CasualDetailsProducts,
     size: string,
