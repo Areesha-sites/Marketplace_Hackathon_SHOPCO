@@ -48,35 +48,36 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
   useEffect(() => {
-    const query = `*[_type=="casual" && _id==$id][0]{
-      _id,
-      name,
-      description,
-      price,
-      ratingReviews,
-      "imageUrl": image.asset->url,
-      category,
-      discountPercent,
-      "isNew": new,
-      colors,
-      offer,
-      sizes
-    }`;
+    const fetchProduct = async () => {
+      const query = `*[_type=="casual" && _id==$id][0]{
+        _id,
+        name,
+        description,
+        price,
+        ratingReviews,
+        "imageUrl": image.asset->url,
+        category,
+        discountPercent,
+        "isNew": new,
+        colors,
+        offer,
+        sizes
+      }`;
 
-    client
-      .fetch<CasualDetailsProducts>(query, { id })
-      .then((productData) => {
+      try {
+        const productData = await client.fetch<CasualDetailsProducts>(query, { id });
         if (!productData) {
           console.error("Product not found");
           return;
         }
         setProduct(productData);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching product:", error);
-      });
-  }, [id]);
+      }
+    };
 
+    fetchProduct(); // Call the async function
+  }, [id]);
   const addToCart = (
     product: CasualDetailsProducts,
     size: string,
