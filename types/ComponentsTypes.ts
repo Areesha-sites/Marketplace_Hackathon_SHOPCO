@@ -157,20 +157,35 @@ export interface CasualDetailsProduct {
   ratingReviews: number;
   offer: number;
 }
-export interface CasualDetailsProducts {
+export type CasualDetailsProducts = {
   _id: string;
   name: string;
-  description?: string;
   imageUrl: string;
   price: number;
+  description?: string;
   category?: string;
-  discountPercent?: number | null;
-  isNew?: boolean | null;
-  colors: string[];
-  sizes: string[];
+  discountPercent?: number;
+  isNew?: boolean;
   ratingReviews?: number;
   offer?: number;
-}
+  colors: string[]; // Ensure this is defined
+  sizes: string[]; // Ensure this is defined
+};
+
+export type WishlistItem = {
+  _id: string;
+  name: string;
+  imageUrl: string;
+  price: number;
+  description?: string;
+  category?: string;
+  discountPercent?: number;
+  isNew?: boolean;
+  ratingReviews?: number;
+  offer?: number;
+  colors?: string[]; // Add this if missing
+  sizes?: string[]; // Add this if missing
+};
 // export interface CasualCardPropsTypes {
 //   product: {
 //     _id: string;
@@ -212,9 +227,22 @@ export interface CartProduct extends CasualDetailsProduct {
   selectedColor: string;
   quantity: number;
 }
-export interface WishlistItem {
-  _id: string;
+export interface WishlistCartItem {
+  id: string;
+  title: string;
+  price: number;
+  image: string;
+  quantity?: number;
+  description: string;
+  category: string;
+  discountPercent: number | null;
+  isNew: boolean | null;
+  ratingReviews: number;
+  offer: number;
 }
+// export interface WishlistItem {
+//   _id: string;
+// }
 export interface Product {
   _createdAt: string;
   ratingReviews?: number;
@@ -376,3 +404,35 @@ export interface SideBarProps {
   setFilteredProducts: (products: any[]) => void;
   setTotalPages: (totalPages: number) => void;
 }
+export interface ProductSuggestion {
+  _id: string;
+  name: string;
+  imageUrl: string;
+  _type: string;
+}
+export interface Translations {
+  signupMessage: string;
+  signupNow: string;
+  // ... add other translation keys for all your components
+  heading?: string;  // Example for Banner component
+  bannerSubtitle?: string; // Example for Banner component
+  // ... more translations
+}
+export interface TopHeaderProps {
+  translations: Translations;
+  language: string;      
+  onChangeLanguage: (lang: string) => void;
+}
+
+export interface UserTypes {
+  _id: string; 
+  name: string;
+  email: string;
+ }
+export interface OrderTypes {
+  _id: string;
+  orderAmount: number; 
+  orderDate: string;
+  status: string;
+ }
+ 

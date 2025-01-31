@@ -244,7 +244,7 @@ const CartPage = () => {
           </div>
         )}
       </div>
-      <div className="relative top-[1000px]">
+      <div className="relative top-[1200px] md:top-[1000px]">
         <Footer />
       </div>
     </section>

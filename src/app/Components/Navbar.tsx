@@ -4,10 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { FaRegHeart } from "react-icons/fa6";
-import SearchBar from "./Searchbar";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { IoMenu } from "react-icons/io5";
+import NavbarSearchBar from "./ProductSearchBar";
 const Navbar = () => {
   const dropdownItems = [
     {
@@ -32,7 +32,6 @@ const Navbar = () => {
       description: "Shop our exclusive deals and discounts.",
     },
   ];
-
   const navbarLinks = [
     {
       name: "On Sale",
@@ -43,59 +42,12 @@ const Navbar = () => {
       href: "/helpCenter",
     },
     {
-      name: "Contact Us",
-      href: "/contact",
+      name: "Dashboard",
+      href: "/dashboard",
     },
   ];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [suggestions, setSuggestions] = useState<SearchbarTypes[]>([]);
-  // const [loading, setLoading] = useState(false);
-  // const schemaRoutes = [
-  //   "casualDetails",
-  //   "newArrivals",
-  //   "topSelling",
-  //   "productDetailsProduct",
-  //   "kidsDetails",
-  //   "women",
-  //   "men",
-  // ];
-  // const fetchSuggestions = async (query: string) => {
-  //   setLoading(true);
-  //   try {
-  //     const queries = schemaRoutes.map((route) =>
-  //       client.fetch(
-  //         `*[_type == "${route}" && lower(name) match "${query.toLowerCase()}*"] {
-  //           _id,
-  //           name,
-  //           _type
-  //         }`
-  //       )
-  //     );
-  //     const results = await Promise.all(queries);
-  //     const allResults = results.flat().map((product) => ({
-  //       ...product,
-  //       route: product._type,
-  //     }));
-  //     setSuggestions(allResults);
-  //   } catch (error) {
-  //     console.error("Error fetching suggestions:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const query = e.target.value;
-  //   setSearchTerm(query);
-  //   if (query.trim()) {
-  //     fetchSuggestions(query);
-  //   } else {
-  //     setSuggestions([]);
-  //   }
-  // };
-  // const handleMouseLeave = () => setSuggestions([]);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -110,12 +62,6 @@ const Navbar = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartCount(cart.length);
   }, []);
-  // const handleAddToCart = (product: NavProduct) => {
-  //   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  //   cart.push(product);
-  //   localStorage.setItem("cart", JSON.stringify(cart));
-  //   setCartCount(cart.length);
-  // };
   const [wishlistCount, setWishlistCount] = useState(0);
   useEffect(() => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
@@ -192,7 +138,7 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-          <SearchBar />
+        <NavbarSearchBar/>
           <div className="flex justify-center items-center md:gap-[14px] md:w-[62px] xxl:w-[62px] xl:w-[80px] xxl:gap-[14px] md:h-[24px] w-[96px] h-[24px] gap-[12px] xl:gap-[10px] absolute md:left-[278px] md:static">
             <Image
               src="/Frame (35).svg"

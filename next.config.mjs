@@ -3,9 +3,9 @@ const nextConfig = {
   images:{
     domains:["cdn.sanity.io"]
   },
-  // experimental: {
-  //   srcDir: true, // Enable experimental support for src directory
-  // },
+  experimental: {
+    middleware: true
+  }
 };
 
 export default nextConfig;

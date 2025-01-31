@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
-// import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PiTrashFill } from "react-icons/pi";
 import { IoAddOutline } from "react-icons/io5";
@@ -40,7 +39,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
 import Footer from "@/app/Components/Footer";
-const CasualDetails = async ({ params }: { params: { id: string } }) => {
+const CasualDetails = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const [product, setProduct] = useState<CasualDetailsProducts | null>(null);
   const [count, setCount] = useState(1);
@@ -49,36 +48,35 @@ const CasualDetails = async ({ params }: { params: { id: string } }) => {
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
   useEffect(() => {
-    const fetchProduct = async () => {
-      const query = `*[_type=="casual" && _id==$id][0]{
-        _id,
-        name,
-        description,
-        price,
-        ratingReviews,
-        "imageUrl": image.asset->url,
-        category,
-        discountPercent,
-        "isNew": new,
-        colors,
-        offer,
-        sizes
-      }`;
-      try {
-        const productData = await client.fetch<CasualDetailsProducts>(query, { id });
+    const query = `*[_type=="casual" && _id==$id][0]{
+      _id,
+      name,
+      description,
+      price,
+      ratingReviews,
+      "imageUrl": image.asset->url,
+      category,
+      discountPercent,
+      "isNew": new,
+      colors,
+      offer,
+      sizes
+    }`;
+
+    client
+      .fetch<CasualDetailsProducts>(query, { id })
+      .then((productData) => {
         if (!productData) {
           console.error("Product not found");
           return;
-        } else {
-          setProduct(productData);
         }
-      } catch (error) {
+        setProduct(productData);
+      })
+      .catch((error) => {
         console.error("Error fetching product:", error);
-      }
-    };
-
-    fetchProduct();
+      });
   }, [id]);
+
   const addToCart = (
     product: CasualDetailsProducts,
     size: string,

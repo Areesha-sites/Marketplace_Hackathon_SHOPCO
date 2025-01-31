@@ -6,8 +6,6 @@ const NewArrival = () => {
     <>
       <section>
         <h1
-          data-aos="zoom-in"
-          data-aos-delay="200"
           className="absolute md:top-[650px] lg:top-[800px] xxl:top-[991px] xl:top-[900px] text-blackBgColor md:text-[48px] font-extrabold text-center text-[25px] sm:text-[32px] top-[1200px] tracking-wider font-integralCf w-full"
         >
           NEW ARRIVALS
@@ -23,8 +21,6 @@ const NewArrival = () => {
         </button>
         </Link>
         {/* <div
-          // data-aos="zoom-out-up"
-          // data-aos-delay="300"
           className="md:w-[1280px] xxl:w-[1200px] xl:w-[1115px] absolute md:top-[1694px] xl:top-[1600px] top-[1610px] w-full md:left-[100px] xxl:left-[100px] border-b-[1px] border-black/10 sm:left-[16px] lg:w-[930px] lg:mx-auto lg:left-[36px] xl:left-[50px]"
         ></div> */}
       </section>
