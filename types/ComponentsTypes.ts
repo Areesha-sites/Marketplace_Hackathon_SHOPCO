@@ -381,8 +381,10 @@ export interface GuideDetailsProps {
 export interface UserPageGuide {
   _id: string;
   title: string;
-  content: any[]; 
+  content: string;
+  slug: { current: string }; // Add this property
 }
+
 export interface GuideList {
   slug: { current: string };
   title: string;
