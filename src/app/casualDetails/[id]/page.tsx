@@ -76,7 +76,7 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
       }
     };
 
-    fetchProduct(); // Call the async function
+    fetchProduct(); 
   }, [id]);
   const addToCart = (
     product: CasualDetailsProducts,
