@@ -149,8 +149,8 @@ export interface CasualDetailsProduct {
   quantity?: number;
   selectedSize?: string;
   selectedColor?: string;
-  sizes: string;
-  colors: string;
+  sizes?: string;
+  colors?: string;
   description: string;
   category: string;
   discountPercent: number | null;
@@ -169,8 +169,8 @@ export type CasualDetailsProducts = {
   isNew?: boolean;
   ratingReviews?: number;
   offer?: number;
-  colors: string[]; // Ensure this is defined
-  sizes: string[]; // Ensure this is defined
+  colors?: string[]; // Ensure this is defined
+  sizes?: string[]; // Ensure this is defined
 };
 
 export type WishlistItem = {
@@ -224,8 +224,6 @@ export interface GridsProps {
   addToCompare: (product: Product) => void;
 }
 export interface CartProduct extends CasualDetailsProduct {
-  selectedSize: string;
-  selectedColor: string;
   quantity: number;
 }
 export interface WishlistCartItem {
@@ -400,7 +398,7 @@ export interface WishlistItems {
   name: string;
   imageUrl: string;
   price: number;
-  discountPercent?: number; 
+  discountPercent?: number;
 }
 export interface SideBarProps {
   handleCategoryChange: (category: string, index: number) => void;

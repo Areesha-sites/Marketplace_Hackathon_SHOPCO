@@ -10,60 +10,57 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { PiTrashFill } from "react-icons/pi";
 import { IoAddOutline } from "react-icons/io5";
 import { RiSubtractLine } from "react-icons/ri";
-import { WishlistCartItem } from "../../../types/ComponentsTypes";
-import {
-  Breadcrumb,
+import {  Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import {
-  Sheet,
+  BreadcrumbSeparator, } from "@/components/ui/breadcrumb";
+import { Sheet,
   SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+  SheetTrigger, } from "@/components/ui/sheet";
 import { WishlistItems } from "../../../types/ComponentsTypes";
 const Wishlist: React.FC = () => {
   const [wishlist, setWishlist] = useState<WishlistItems[]>([]);
-    const [cart, setCart] = useState<CartProduct[]>([]);
-    const [showCart, setShowCart] = useState(false);
-  
-   const addToCart = (product: CasualDetailsProducts) => {
-    const productInCart = cart.find((item) => item.id === product._id);
-    if (productInCart) {
-      const updatedCart = cart.map((item) =>
-        item.id === product._id
-          ? { ...item, quantity: (item.quantity ?? 0) + 1 }
-          : item
-      );
-      setCart(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-    } else {
-      // *** KEY CHANGE: Provide ALL required properties for CartProduct ***
-      const newCartItem: CartProduct = {
-        id: product._id,
-        title: product.name,
-        image: product.imageUrl,
-        price: product.price,
-        quantity: 1,
-        description: product.description ?? "", // Provide default if needed
-        category: product.category ?? "",
-        discountPercent: product.discountPercent ?? 0,
-        isNew: product.isNew ?? false,
-        ratingReviews: product.ratingReviews ?? 0,
-        offer: product.offer ?? 0,
-      };
+const [cart, setCart] = useState<CartProduct[]>([]);
+ const [showCart, setShowCart] = useState(false);  
+ const addToCart = (product: CasualDetailsProducts) => {
+  const productInCart = cart.find((item) => item.id === product._id);
 
-      const updatedCart: CartProduct[] = [...cart, newCartItem];
-      setCart(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-    }
-  };
+  if (productInCart) {
+    const updatedCart = cart.map((item) =>
+      item.id === product._id
+        ? { ...item, quantity: (item.quantity ?? 0) + 1 }
+        : item
+    );
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  } else {
+    const newCartItem: CartProduct = {
+      id: product._id,
+      title: product.name,
+      image: product.imageUrl,
+      price: product.price,
+      quantity: 1,
+      description: product.description ?? "",
+      category: product.category ?? "",
+      discountPercent: product.discountPercent ?? 0,
+      isNew: product.isNew ?? false,
+      ratingReviews: product.ratingReviews ?? 0,
+      offer: product.offer ?? 0,
+    };
+    
+    
+
+    const updatedCart: CartProduct[] = [...cart, newCartItem];
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  }
+};
+
     const removeFromCart = (productId: string) => {
       const updatedCart = cart.filter((item) => item.id !== productId);
       setCart(updatedCart);
