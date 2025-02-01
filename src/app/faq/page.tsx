@@ -3,14 +3,12 @@ import { useEffect, useState } from 'react';
 import FAQSection from './FAQSection';
 import SearchBar from './Searchbar';
 import { client } from '@/sanity/lib/client';
-import {
-  Breadcrumb,
+import {   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  BreadcrumbSeparator, } from '@/components/ui/breadcrumb';
 import Link from "next/link";
 const FAQPage = () => {
   const [searchQuery, setSearchQuery] = useState('');

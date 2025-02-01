@@ -2,14 +2,12 @@
 import Footer from "../Components/Footer";
 import Link from "next/link";
 import CasualCard from "../Components/casualComp/CasualCard";
-import {
-  Breadcrumb,
+import {  Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  BreadcrumbSeparator, } from "@/components/ui/breadcrumb";
 const CasualDetails: React.FC = () => {
   return (
     <>

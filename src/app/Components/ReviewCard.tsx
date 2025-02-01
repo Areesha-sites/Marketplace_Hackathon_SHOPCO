@@ -1,14 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import { ReviewCardPropsTypes } from "../../../types/ComponentsTypes";
-import {
-  DropdownMenu,
+import {   DropdownMenu,
   DropdownMenuItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  DropdownMenuTrigger, } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import { CiEdit } from "react-icons/ci";

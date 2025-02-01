@@ -2,15 +2,13 @@
 import React, { useState } from "react";
 // import Faqs from "./Faqs";
 // import Image from "next/image";
-import { useRef } from "react";
+// import { useRef } from "react";
 import ReviewCardList from "./ReviewCardList";
 // import ProductDetailsTable from "./ProductDetailsTable";
 // import { GiSettingsKnobs } from "react-icons/gi";
-import {
-  Popover,
+import {   Popover,
   PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  PopoverTrigger, } from "@radix-ui/react-popover";
 import Link from "next/link";
 // import { Minus, Plus } from "lucide-react";
 // import { Bar, BarChart, ResponsiveContainer } from "recharts";

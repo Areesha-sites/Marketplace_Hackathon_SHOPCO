@@ -2,14 +2,12 @@
 import Footer from "../Components/Footer";
 import Link from "next/link";
 import MenCards from "../Components/menComp/MenCard";
-import {
-  Breadcrumb,
+import {   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  BreadcrumbSeparator,} from "@/components/ui/breadcrumb";
 const Men: React.FC = () => {
   return (
     <>

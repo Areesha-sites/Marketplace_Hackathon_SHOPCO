@@ -2,14 +2,12 @@
 import Footer from "../Components/Footer";
 import Link from "next/link";
 import KidCards from "../Components/kidsComp/KidsCard";
-import {
-  Breadcrumb,
+import {   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  BreadcrumbSeparator, } from "@/components/ui/breadcrumb";
 const Kids: React.FC = () => {
   return (
     <>

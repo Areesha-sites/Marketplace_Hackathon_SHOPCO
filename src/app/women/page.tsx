@@ -2,14 +2,14 @@
 import Footer from "../Components/Footer";
 import Link from "next/link";
 import WomenCards from "../Components/womenComp/WomenCard";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { Breadcrumb,
+BreadcrumbList,
+BreadcrumbItem,
+BreadcrumbLink,
+BreadcrumbPage,
+BreadcrumbSeparator
+
+ } from "@/components/ui/breadcrumb";
 const Women: React.FC = () => {
   return (
     <>

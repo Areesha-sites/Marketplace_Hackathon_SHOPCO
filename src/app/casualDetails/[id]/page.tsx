@@ -12,6 +12,7 @@ import ProductDetailsTab from "@/app/Components/ProductDetailsTab";
 import { PiSmileySad } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import { CartProduct } from "../../../../types/ComponentsTypes";
+
 import {
   Sheet,
   SheetClose,
@@ -65,7 +66,9 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
       }`;
 
       try {
-        const productData = await client.fetch<CasualDetailsProducts>(query, { id });
+        const productData = await client.fetch<CasualDetailsProducts>(query, {
+          id,
+        });
         if (!productData) {
           console.error("Product not found");
           return;
@@ -76,7 +79,7 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
       }
     };
 
-    fetchProduct(); 
+    fetchProduct();
   }, [id]);
   const addToCart = (
     product: CasualDetailsProducts,
@@ -299,7 +302,7 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
               Select Colors
             </p>
             <div className="w-[143px] h-[37px] flex gap-[16px]">
-              {product.colors.map((color, index) => (
+              {product.colors?.map((color, index) => (
                 <div
                   key={index}
                   className={`h-[37px] w-[37px] rounded-full flex justify-center items-center ${
@@ -326,7 +329,7 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
               Choose Size
             </p>
             <div className="md:w-[420px] w-[280px] sm:w-[353px] h-[46px] flex gap-[6px] sm:gap-[12px]">
-              {product.sizes.map((size) => (
+              {product.sizes?.map((size) => (
                 <button
                   key={size}
                   onClick={() => setSelectedSize(size)}

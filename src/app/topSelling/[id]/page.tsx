@@ -13,22 +13,19 @@ import ProductDetailsTab from "@/app/Components/ProductDetailsTab";
 import { PiSmileySad } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import { CartProduct } from "../../../../types/ComponentsTypes";
-import {
-  Sheet,
+import {   Sheet,
   SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import {
-  Breadcrumb,
+  SheetTrigger, } from "@/components/ui/sheet";
+
+import {   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  BreadcrumbSeparator, } from "@/components/ui/breadcrumb";
 import { client } from "@/sanity/lib/client";
 import { CasualDetailsProducts } from "../../../../types/ComponentsTypes";
 interface Props {
@@ -304,7 +301,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
               Select Colors
             </p>
             <div className="w-[143px] h-[37px] flex gap-[16px]">
-              {product.colors.map((color, index) => (
+              {product.colors?.map((color, index) => (
                 <div
                   key={index}
                   className={`h-[37px] w-[37px] rounded-full flex justify-center items-center ${
@@ -331,7 +328,7 @@ const TopSellingDetails: React.FC<Props> = ({ params }) => {
               Choose Size
             </p>
             <div className="md:w-[420px] w-[280px] sm:w-[353px] h-[46px] flex gap-[6px] sm:gap-[12px]">
-              {product.sizes.map((size) => (
+              {product.sizes?.map((size) => (
                 <button
                   key={size}
                   onClick={() => setSelectedSize(size)}

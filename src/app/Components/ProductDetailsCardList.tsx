@@ -29,7 +29,7 @@ const fetchProducts = async (): Promise<NewArrivalProduct[]> => {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useToast } from "@/components/hooks/use-toast"
+import { useToast } from "@/components/hooks/use-toast";
 const ProductDetailsCardList = () => {
   const { toast } = useToast();
   // const [products, setProducts] = useState<Product[]>([]);

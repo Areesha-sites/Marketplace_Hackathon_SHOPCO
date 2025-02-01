@@ -5,17 +5,17 @@ import { ModalProps } from "../../../types/ComponentsTypes";
 import { ReviewSubmissionType } from "../../../types/ComponentsTypes";
 import { ReviewCardPropsTypes } from "../../../types/ComponentsTypes";
 import {
-  Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { Dialog } from "@/components/ui/dialog";
 import { useToast } from "@/components/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 const Modal: React.FC<ModalProps> = ({ onClose, onSubmit, currentReview }) => {
   const { toast } = useToast();
   const [name, setName] = useState(currentReview?.name || "");

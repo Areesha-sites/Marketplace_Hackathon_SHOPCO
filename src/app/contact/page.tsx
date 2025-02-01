@@ -1,12 +1,10 @@
 import ContactForm from './ContactForm';
-import {
-  Breadcrumb,
+import {   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  BreadcrumbSeparator, } from '@/components/ui/breadcrumb';
 import Link from "next/link";
 const ContactUsPage = () => {
   return (

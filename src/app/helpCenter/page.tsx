@@ -4,14 +4,12 @@ import { AiOutlineFileSearch } from "react-icons/ai";
 import { GoQuestion } from "react-icons/go";
 import { MdOutlineEmail } from "react-icons/md";
 import { MdOutlineMessage } from "react-icons/md";
-import {
-  Breadcrumb,
+import {   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  BreadcrumbSeparator, } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 const HelpCenter = () => {
   return (
