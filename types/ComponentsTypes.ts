@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { TypedObject } from "@portabletext/types";
 export interface NewArrivalCardsPropsTypes {
   id: string;
   image: string;
@@ -371,7 +372,7 @@ export interface Message {
 }
 export interface Guide {
   title: string;
-  content: string[];
+  content: TypedObject[]; // Change from string[] to TypedObject[]
   slug: { current: string };
 }
 
@@ -382,8 +383,8 @@ export interface GuideDetailsProps {
 export interface UserPageGuide {
   _id: string;
   title: string;
-  content: string;
-  slug: { current: string }; // Add this property
+  content: TypedObject[];
+  slug: { current: string };
 }
 
 export interface GuideList {

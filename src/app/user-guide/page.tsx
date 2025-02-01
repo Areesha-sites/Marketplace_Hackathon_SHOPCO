@@ -28,12 +28,11 @@ const UserGuidePage: React.FC = () => {
     if (fullGuide) {
       setSelectedGuide({
         title: fullGuide.title,
-        content: [fullGuide.content], 
-        slug: fullGuide.slug,
+        content: fullGuide.content, // Ensure content is TypedObject[]
+        slug: { current: fullGuide._id },
       });
     }
   };
-
   return (
     <div className="mt-48 container mx-auto px-4">
       {!selectedGuide ? (

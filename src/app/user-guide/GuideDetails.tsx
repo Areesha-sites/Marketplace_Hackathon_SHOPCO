@@ -1,14 +1,15 @@
 import { PortableText } from "@portabletext/react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { GuideDetailsProps } from "../../../types/ComponentsTypes";
+import { TypedObject } from "@portabletext/types";
+
+export interface Guide {
+  title: string;
+  content: TypedObject[]; // Change from string[] to TypedObject[]
+}
+
 const GuideDetails = ({ guide }: GuideDetailsProps) => {
   return (
     <div className="">
