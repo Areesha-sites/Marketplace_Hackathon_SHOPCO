@@ -370,10 +370,11 @@ export interface Message {
   text: string;
 }
 export interface Guide {
-  _id: string;
   title: string;
-  content: any[];
+  content: string[];
+  slug: { current: string };
 }
+
 export interface GuideDetailsProps {
   guide: Guide;
   onBack: () => void; 

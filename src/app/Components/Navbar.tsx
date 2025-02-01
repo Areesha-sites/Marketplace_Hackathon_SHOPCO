@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { FaRegHeart } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { IoMenu } from "react-icons/io5";
 import NavbarSearchBar from "./ProductSearchBar";
 const Navbar = () => {

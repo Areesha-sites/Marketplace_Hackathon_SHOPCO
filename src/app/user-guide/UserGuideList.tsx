@@ -1,13 +1,6 @@
 import React from "react";
 import { MdArrowOutward } from "react-icons/md";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { UserGuideListProps } from "../../../types/ComponentsTypes";
 const UserGuideList: React.FC<UserGuideListProps> = ({
