@@ -21,7 +21,6 @@ import DashboardProfile from "../Components/Profile";
 import ProductDashboard from "../Components/DashboardProducts";
 import CustomerDashboard from "../Components/DashboardCustomer";
 import OrdersDashboard from "../Components/DashboardOrders";
-
 const userQuery = groq`*[_type == "user"] { _id, name, email }`;
 const orderQuery = groq`*[_type == "order"] { _id, orderAmount, orderDate, status }`;
 const topSellingQuery = groq`*[_type == "topSelling"] { _id, name }`;
