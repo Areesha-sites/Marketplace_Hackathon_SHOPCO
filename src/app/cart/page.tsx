@@ -9,9 +9,20 @@ import { RiSubtractLine } from "react-icons/ri";
 import { CartItem } from "../../../types/ComponentsTypes";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import Footer from "../Components/Footer";
+import dynamic from "next/dynamic";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+const CheckoutModal = dynamic(
+  () => import("../Components/OrderSystem/CheckoutModal"),
+  {
+    ssr: false,
+  }
+);
+
 const CartPage = () => {
   const [validPromo, setValidPromo] = useState<boolean>(false);
   const [promoCode, setPromoCode] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [orderSucess, setOrderSuccess] = useState<any | boolean>(false);
   const [cart, setCart] = useState<CartItem[]>(() => {
     if (typeof window !== "undefined") {
       const savedCart = localStorage.getItem("cart");
@@ -62,6 +73,23 @@ const CartPage = () => {
       alert("Invalid Promo Code");
     }
   };
+  const handleOpenModal = () => {
+    if (cart.length === 0 || subtotal === 0) {
+      // subtotal ko call nahi karein, direct use karein
+      alert("Please add items to your cart before proceeding to checkout.");
+      return;
+    }
+    setIsModalOpen(true);
+  };
+
+  const handleSubmitForm = (formData: any) => {
+    console.log(formData);
+    localStorage.removeItem("cart");
+    setCart([]);
+  };
+
+  const handleCloseModal = () => setIsModalOpen(false);
+
   return (
     <section>
       <div className="container mx-auto p-6 px-8">
@@ -244,8 +272,49 @@ const CartPage = () => {
           </div>
         )}
       </div>
-      <div className="relative top-[1200px] md:top-[1000px]">
+      {/* <div className="relative top-[1200px] md:top-[1000px]">
         <Footer />
+      </div> */}
+
+      <div className="flex justify-between lg:items-center mt-6 lg:flex-row flex-col lg:gap-0 gap-4">
+        {/* <SignedOut>
+          <SignInButton mode="modal">
+            <button className="px-6 py-2 bg-darkPrimary text-white rounded-md hover:bg-navbarColor">
+              Sign in to Checkout
+            </button>
+          </SignInButton>
+        </SignedOut> */}
+
+        {/* <SignedIn> */}
+          <button
+            onClick={handleOpenModal}
+            className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor mt-28"
+          >
+            Go to checkout
+          </button>
+        {/* </SignedIn> */}
+
+        {isModalOpen && (
+          <CheckoutModal
+            isOpen={setIsModalOpen}
+            onSubmit={(formData) => {
+              console.log("Order Submitted", formData);
+              setTimeout(() => {
+                setIsModalOpen(false); // Close the modal after actions are completed
+                setOrderSuccess(false); // Reset order success status
+              }, 5000);
+            }}
+            cartItems={cart}
+            closeModal={handleCloseModal}
+            orderSuccess={setOrderSuccess}
+            setCartItems={setCart} // Pass setCartItems function
+            calculateSubtotal={subtotal}
+          />
+        )}
+
+        <button className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor">
+          <Link href="/products">Continue Shopping</Link>
+        </button>
       </div>
     </section>
   );

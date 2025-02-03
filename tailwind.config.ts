@@ -90,7 +90,26 @@ const config: Config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		}
-  	}
+  	},
+	  keyframes: {
+			dot1: {
+				'0%, 100%': { opacity: '0' },
+				'33%': { opacity: '1' },
+			},
+			dot2: {
+				'0%, 66%': { opacity: '0' },
+				'33%, 100%': { opacity: '1' },
+			},
+			dot3: {
+				'0%, 33%': { opacity: '0' },
+				'66%, 100%': { opacity: '1' },
+			},
+		},
+		animation: {
+			dot1: 'dot1 1.5s infinite',
+			dot2: 'dot2 1.5s infinite',
+			dot3: 'dot3 1.5s infinite',
+		},
   },
   plugins: [require("tailwindcss-animate")],
 };

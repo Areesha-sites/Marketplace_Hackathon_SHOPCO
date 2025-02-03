@@ -5,10 +5,12 @@ import { client } from "@/sanity/lib/client";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import { ProductSuggestion } from "../../../types/ComponentsTypes";
-const NavbarSearchBar = () => {
+
+const NavbarSearchBar = ({ isMobile }: { isMobile?: boolean }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<ProductSuggestion[]>([]);
   const router = useRouter();
+
   useEffect(() => {
     if (!query) {
       setSuggestions([]);
@@ -30,6 +32,7 @@ const NavbarSearchBar = () => {
     };
     fetchProducts();
   }, [query]);
+
   const handleSelect = (product: ProductSuggestion) => {
     setQuery("");
     setSuggestions([]);
@@ -59,8 +62,9 @@ const NavbarSearchBar = () => {
         console.warn(`Unknown product type: ${product._type}`);
     }
   };
+
   return (
-    <div className="xl:w-[377px] lg:w-[400px] md:w-[250px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor md:flex gap-[12px] items-center font-satoshi relative hidden">
+    <div className={`${isMobile ? 'w-full' : 'xl:w-[377px] lg:w-[400px] md:w-[250px]'} xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor flex gap-[12px] items-center font-satoshi relative`}>
       <Image
         src="/Frame (34).svg"
         alt="search-icon"

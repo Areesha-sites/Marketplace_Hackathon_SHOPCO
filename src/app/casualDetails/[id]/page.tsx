@@ -12,7 +12,6 @@ import ProductDetailsTab from "@/app/Components/ProductDetailsTab";
 import { PiSmileySad } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import { CartProduct } from "../../../../types/ComponentsTypes";
-
 import {
   Sheet,
   SheetClose,
@@ -31,9 +30,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import { client } from "@/sanity/lib/client";
 import { CasualDetailsProducts } from "../../../../types/ComponentsTypes";
-// interface PageProps {
-//   params: { id: string };
-// }
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -392,15 +388,15 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
         <div className="mt-[40px]">
           <ProductDetailsTab />
         </div>
-        <h1 className="md:w-[579px] md:h-[58px] font-black text-black md:text-[48px] text-[32px] w-[250px] leading-[36px] mx-auto text-center uppercase tracking-wider font-integralCf md:whitespace-nowrap mt-[100px]">
+        {/* <h1 className="md:w-[579px] md:h-[58px] font-black text-black md:text-[48px] text-[32px] w-[250px] leading-[36px] mx-auto text-center uppercase tracking-wider font-integralCf md:whitespace-nowrap mt-[100px]">
           You might also like
-        </h1>
-        <div className="">
+        </h1> */}
+        {/* <div className="">
           <ProductDetailsCardList />
-        </div>
-        <div className="absolute xl:top-[2070px] xxl:top-[2872px] top-[2800px]">
+        </div> */}
+        {/* <div className="absolute xl:top-[2070px] xxl:top-[2872px] top-[2800px]">
           <Footer />
-        </div>
+        </div> */}
         <Sheet open={showCart} onOpenChange={setShowCart}>
           <SheetTrigger asChild>
             <Button

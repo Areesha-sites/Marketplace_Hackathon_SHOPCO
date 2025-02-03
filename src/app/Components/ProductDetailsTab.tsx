@@ -10,6 +10,7 @@ import {   Popover,
   PopoverContent,
   PopoverTrigger, } from "@radix-ui/react-popover";
 import Link from "next/link";
+import SubscriptionComponent from "./Subscription";
 // import { Minus, Plus } from "lucide-react";
 // import { Bar, BarChart, ResponsiveContainer } from "recharts";
 // import {
@@ -116,9 +117,9 @@ const ProductDetailsTab = () => {
                   Available in multiple sizes and color variants.
                 </li>
               </ul>
-              {/* <div className="mt-6 md:mt-14">
-                <ProductDetailsTable />
-              </div> */}
+              <div className="mt-0">
+              <SubscriptionComponent/>
+              </div>
             </div>
           </div>
         )}

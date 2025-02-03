@@ -72,7 +72,6 @@ const NewArrivalCardsList = () => {
   };
   const [comparisonList, setComparisonList] = useState<Product[]>([]);
   const [showCompareDialog, setShowCompareDialog] = useState(false);
-
   const addToCompare = (product: NewArrivalProduct) => {  
     const productToAdd: Product = {
       _createdAt: new Date().toISOString(), 
@@ -168,7 +167,7 @@ const NewArrivalCardsList = () => {
         {products.map((item, index) => (
            <Link key={index} href={`/newArrival/${item._id}`} passHref>
            <div
-             className="lg:h-[420px] xxl:h-[420px] xl:h-[380px] flex flex-col justify-between"
+             className="lg:h-[420px] xxl:h-[420px] xl:h-[380px] h-[400px] flex flex-col justify-between"
            >
              <div className="lg:w-[295px] lg:h-[298px] md:w-[230px] md:h-[230px] xxl:w-[295px] xxl:h-[298px] xl:w-[285px] xl:h-[278px] sm:w-[172px] sm:h-[174px] w-[140px] h-[104px] rounded-[20px] bg-bannerBg relative flex flex-col gap-[10px]">
              <button
