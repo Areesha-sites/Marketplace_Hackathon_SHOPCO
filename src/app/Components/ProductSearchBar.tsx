@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import { ProductSuggestion } from "../../../types/ComponentsTypes";
 
-const NavbarSearchBar = ({ isMobile }: { isMobile?: boolean }) => {
+const NavbarSearchBar = () => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<ProductSuggestion[]>([]);
   const router = useRouter();
@@ -64,7 +64,7 @@ const NavbarSearchBar = ({ isMobile }: { isMobile?: boolean }) => {
   };
 
   return (
-    <div className={`${isMobile ? 'w-full' : 'xl:w-[377px] lg:w-[400px] md:w-[250px]'} xl:h-[48px] lg:h-[45px] md:h-[30px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor flex gap-[12px] items-center font-satoshi relative`}>
+    <div className=" w-[260px] sm:w-[340px] md:w-[400px] xl:w-[377px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[6px] md:py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor flex gap-[12px] items-center font-satoshi relative">
       <Image
         src="/Frame (34).svg"
         alt="search-icon"
@@ -76,11 +76,11 @@ const NavbarSearchBar = ({ isMobile }: { isMobile?: boolean }) => {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="md:text-[12px] lg:text-[16px] font-normal text-black/40 border-none outline-none bg-bgLightGrayColor font-satoshi"
+        className="w-full md:text-[12px] lg:text-[16px] font-normal text-black/40 border-none outline-none bg-bgLightGrayColor font-satoshi"
         placeholder="Search for products..."
       />
       {suggestions.length > 0 && (
-        <div className="absolute left-0 top-[calc(100%+4px)] w-[calc(100vw-70vw)] bg-white shadow-lg rounded-md z-50 max-h-60 border overflow-auto">
+        <div className="absolute left-0 top-[calc(100%+4px)] w-full lg:w-[calc(100vw-70vw)] bg-white shadow-lg rounded-md z-50 max-h-60 border overflow-auto">
           <ScrollArea>
             <ul className="p-2">
               {suggestions.map((product) => (
@@ -96,7 +96,7 @@ const NavbarSearchBar = ({ isMobile }: { isMobile?: boolean }) => {
                     width={40}
                     className="w-10 h-10 object-cover rounded"
                   />
-                  <span>{product.name}</span>{" "}
+                  <span>{product.name}</span>
                 </li>
               ))}
             </ul>

@@ -12,6 +12,8 @@ import ProductDetailsTab from "@/app/Components/ProductDetailsTab";
 import { PiSmileySad } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import { CartProduct } from "../../../../types/ComponentsTypes";
+import { useSession, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import {
   Sheet,
   SheetClose,
@@ -44,6 +46,9 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
   const [showCart, setShowCart] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
+  // const { data: session } = useSession();
+  const router = useRouter();
+
   useEffect(() => {
     const fetchProduct = async () => {
       const query = `*[_type=="casual" && _id==$id][0]{
@@ -88,6 +93,7 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
         item.selectedSize === size &&
         item.selectedColor === color
     );
+
     if (productInCart) {
       const updatedCart = cart.map((item) =>
         item.id === product._id &&

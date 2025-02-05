@@ -12,7 +12,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ category, setFilteredProducts
     try {
       const productsPerPage = 9;
       const startIndex = (page - 1) * productsPerPage;
-      const query = `*[_type == "${category}" && price >= ${minPrice} && price <= ${maxPrice}] | order(price asc) [${startIndex}...${startIndex + productsPerPage}] {
+      const query = `*[_type == "casual" && price >= ${minPrice} && price <= ${maxPrice}] | order(price asc) [${startIndex}...${startIndex + productsPerPage}] {
         _id,
         name,
         price,
@@ -24,7 +24,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ category, setFilteredProducts
       const products = await client.fetch(query);
       setFilteredProducts(products);
 
-      const countQuery = `count(*[_type == "${category}" && price >= ${minPrice} && price <= ${maxPrice}])`;
+      const countQuery = `count(*[_type == "casual" && price >= ${minPrice} && price <= ${maxPrice}])`;
       const totalCount = await client.fetch(countQuery);
       setTotalPages(Math.ceil(totalCount / productsPerPage));
     } catch (error) {

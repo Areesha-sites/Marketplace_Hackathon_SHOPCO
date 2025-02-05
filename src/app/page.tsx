@@ -8,7 +8,12 @@ import HappyCustomerSection from "./Components/HappyCustomerSection";
 import "aos/dist/aos.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
-const Loader = ({ isVisible }: any) => {
+
+interface LoaderProps {
+  isVisible: boolean;
+}
+
+const Loader = ({ isVisible }: LoaderProps) => {
   const text = "shop.co";
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -39,7 +44,7 @@ const Loader = ({ isVisible }: any) => {
           transition={{ duration: 0.5, delay: 1 }}
         >
           {displayText}
-          <span className="animate-blink">|</span> 
+          <span className="animate-blink">|</span> {/* Blinking cursor effect */}
         </motion.div>
         <motion.div
           className="mt-4 h-1 bg-gray-800"
@@ -61,31 +66,33 @@ const Loader = ({ isVisible }: any) => {
 };
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
   const [isLoaderVisible, setIsLoaderVisible] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false);
-      setTimeout(() => setIsLoaderVisible(false), 500); 
-    }, 8000); 
+      setIsLoaderVisible(false); // Hide loader after 4 seconds
+    }, 4000); // Adjust loader duration here
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <div>
-      {/* <AnimatePresence>
-        {isLoaderVisible && <Loader isVisible={isLoading} />}
+      <AnimatePresence>
+        {isLoaderVisible && <Loader isVisible={isLoaderVisible} />}
       </AnimatePresence>
-      {!isLoading && <Banner />}
-   <NewArrivalSection />
-         <TopSelling />
-      <DressStyleSection />
-      <HappyCustomerSection />
-      <div className="absolute md:top-[3750px] top-[3660px]">
-        <Footer />
-      </div> */}
+      {!isLoaderVisible && (
+        <>
+          <Banner />
+          <NewArrivalSection />
+          <TopSelling />
+          <DressStyleSection />
+          <HappyCustomerSection />
+         <div className="absolute top-[5000px]">
+         <Footer />
+         </div>
+        </>
+      )}
     </div>
   );
 }

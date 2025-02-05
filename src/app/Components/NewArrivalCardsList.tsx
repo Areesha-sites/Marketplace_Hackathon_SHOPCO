@@ -162,12 +162,12 @@ const NewArrivalCardsList = () => {
   }
   return (
    <div className="flex justify-center items-center w-full mx-auto">
-     <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[740px] top-[1270px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1020px] lg:top-[920px] xxl:top-[1100px]">
+     <div className="w-full xxl:px-[90px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute ">
       <Slider {...settings}>
         {products.map((item, index) => (
            <Link key={index} href={`/newArrival/${item._id}`} passHref>
            <div
-             className="lg:h-[420px] xxl:h-[420px] xl:h-[380px] h-[400px] flex flex-col justify-between"
+             className="lg:h-[420px] xxl:h-[420px] xl:h-[380px] h-[180px] flex flex-col justify-between"
            >
              <div className="lg:w-[295px] lg:h-[298px] md:w-[230px] md:h-[230px] xxl:w-[295px] xxl:h-[298px] xl:w-[285px] xl:h-[278px] sm:w-[172px] sm:h-[174px] w-[140px] h-[104px] rounded-[20px] bg-bannerBg relative flex flex-col gap-[10px]">
              <button

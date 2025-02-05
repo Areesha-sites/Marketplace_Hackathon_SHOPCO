@@ -12,7 +12,7 @@ import Footer from "../Components/Footer";
 import dynamic from "next/dynamic";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 const CheckoutModal = dynamic(
-  () => import("../Components/OrderSystem/CheckoutModal"),
+  () => import("../Components/orderSystem/CheckoutModal"),
   {
     ssr: false,
   }
@@ -75,7 +75,6 @@ const CartPage = () => {
   };
   const handleOpenModal = () => {
     if (cart.length === 0 || subtotal === 0) {
-      // subtotal ko call nahi karein, direct use karein
       alert("Please add items to your cart before proceeding to checkout.");
       return;
     }
@@ -86,7 +85,7 @@ const CartPage = () => {
     console.log(formData);
     localStorage.removeItem("cart");
     setCart([]);
-  };
+ };
 
   const handleCloseModal = () => setIsModalOpen(false);
 

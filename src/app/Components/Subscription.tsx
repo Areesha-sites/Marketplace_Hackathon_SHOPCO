@@ -11,21 +11,26 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
+} from "@/components/ui/alert-dialog";
+
 interface Subscription {
   _id?: string;
   name: string;
   email: string;
-  description: string;
   plan: "monthly" | "yearly";
   status?: string;
+  startDate?: string;
   renewalDate?: string;
+  billingAddress?: string;
+  paymentMethod?: string;
+  transactionId?: string;
+  history?: { status: string; date: string }[];
 }
+
 export default function SubscriptionComponent() {
   const [subscription, setSubscription] = useState<Subscription>({
     name: "",
     email: "",
-    description: "",
     plan: "monthly",
   });
   const [status, setStatus] = useState<string>("");
@@ -37,11 +42,11 @@ export default function SubscriptionComponent() {
   const [showForm, setShowForm] = useState<boolean>(true);
   const [showCards, setShowCards] = useState<boolean>(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
+
   useEffect(() => {
     setSubscription({
       name: "",
       email: "",
-      description: "",
       plan: "monthly",
     });
     setShowForm(true);
@@ -49,6 +54,7 @@ export default function SubscriptionComponent() {
     setShowSuccessAlert(false);
     setError("");
   }, []);
+
   useEffect(() => {
     async function fetchSubscriptions() {
       setLoading(true);
@@ -64,8 +70,9 @@ export default function SubscriptionComponent() {
     }
     fetchSubscriptions();
   }, []);
+
   const handleFormSubmit = () => {
-    if (!subscription.name || !subscription.email || !subscription.description) {
+    if (!subscription.name || !subscription.email) {
       setError("Please fill in all fields.");
       return;
     }
@@ -77,6 +84,7 @@ export default function SubscriptionComponent() {
     setShowCards(true);
     setError("");
   };
+
   const handleSubscribe = async (plan: "monthly" | "yearly") => {
     setLoading(true);
     const today = new Date();
@@ -99,7 +107,9 @@ export default function SubscriptionComponent() {
         ...subscription,
         plan,
         status: "active",
+        startDate: today.toISOString(),
         renewalDate: renewalDate.toISOString(),
+        history: [{ status: "active", date: today.toISOString() }],
       };
       const createdSubscription = await client.create({
         _type: "subscription",
@@ -125,13 +135,14 @@ export default function SubscriptionComponent() {
       setLoading(false);
     }
   };
+
   const handleCancel = async (id: string) => {
     setLoading(true);
     try {
       await client.delete(id);
       setSubscriptions((prev) => prev.filter((sub) => sub._id !== id));
       setStatus("Subscription canceled successfully!");
-        toast.success("Subscription canceled successfully!");
+      toast.success("Subscription canceled successfully!");
       closeSuccessAlert(); 
     } catch (error) {
       console.error("Error canceling subscription:", error);
@@ -141,23 +152,28 @@ export default function SubscriptionComponent() {
       setShowCancelModal(false);
     }
   };
+
   const validateEmail = (email: string): boolean => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };
+
   const openCancelModal = (id: string) => {
     setSubscriptionToCancel(id);
     setShowCancelModal(true);
   };
+
   const closeCancelModal = () => {
     setShowCancelModal(false);
     setSubscriptionToCancel(null);
   };
+
   const closeSuccessAlert = () => {
     setShowSuccessAlert(false);
-    setSubscription({ name: "", email: "", description: "", plan: "monthly" });
+    setSubscription({ name: "", email: "", plan: "monthly" });
     setShowForm(true);
   };
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       {showForm && (
@@ -200,23 +216,6 @@ export default function SubscriptionComponent() {
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 font-satoshi"
               >
                 Email Address
-              </label>
-            </div>
-            <div className="relative z-0 w-full mb-5 group">
-              <textarea
-                value={subscription.description}
-                onChange={(e) => setSubscription({ ...subscription, description: e.target.value })}
-                name="repeat_text"
-                id="floating_repeat_text"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-gray-200 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                htmlFor="floating_repeat_text"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-500 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 font-satoshi"
-              >
-                Message
               </label>
             </div>
             <button
@@ -288,9 +287,14 @@ export default function SubscriptionComponent() {
               <div>
                 <p className="text-gray-600 text-sm font-satoshi">{sub.name}</p>
                 <p className="text-sm text-gray-600 font-satoshi">{sub.email}</p>
-                <p className="text-sm text-gray-600 font-satoshi">{sub.description}</p>
                 <p className="text-sm text-gray-600 font-satoshi">
                   {sub.plan === "monthly" ? "Monthly Plan" : "Yearly Plan"}
+                </p>
+                <p className="text-sm text-gray-600 font-satoshi">
+                  Start Date:{" "}
+                  {sub.startDate
+                    ? new Date(sub.startDate).toLocaleDateString()
+                    : "N/A"}
                 </p>
                 <p className="text-sm text-gray-600 font-satoshi">
                   Renewal Date:{" "}
@@ -310,7 +314,8 @@ export default function SubscriptionComponent() {
           ))}
         </ul>
       )}
- {showCancelModal && (
+
+      {showCancelModal && (
         <AlertDialog open={showCancelModal} onOpenChange={setShowCancelModal}>
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -328,8 +333,6 @@ export default function SubscriptionComponent() {
           </AlertDialogContent>
         </AlertDialog>
       )}
-
-
     </div>
   );
 }
