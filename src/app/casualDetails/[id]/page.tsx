@@ -38,7 +38,10 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
 import Footer from "@/app/Components/Footer";
+import AddToCartButton from "@/app/Components/AddToCart";
+import { useUser, SignInButton } from "@clerk/nextjs";
 const CasualDetails = ({ params }: { params: { id: string } }) => {
+  const { isSignedIn } = useUser();
   const { id } = params;
   const [product, setProduct] = useState<CasualDetailsProducts | null>(null);
   const [count, setCount] = useState(1);
@@ -374,7 +377,7 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
                   className="md:h-[24px] md:w-[24px] h-[16px] w-[16px] cursor-pointer"
                 />
               </div>
-              <button
+              {/* <button
                 onClick={() => {
                   if (!selectedSize || !selectedColor) {
                     alert(
@@ -387,7 +390,23 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
                 className="md:w-[400px] xxl:w-[400px] xl:w-[300px] md:h-[52px] h-[44px] py-[16px] sm:px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center flex justify-center font-satoshi w-[180px] sm:w-[236px] whitespace-nowrap"
               >
                 Add to Cart
-              </button>
+              </button> */}
+              <button
+      onClick={() => {
+        if (!isSignedIn) {
+          window.location.href = "/sign-in"; // User ko Sign-In page pr redirect karo
+          return;
+        }
+        if (!selectedSize || !selectedColor) {
+          alert("Please select a size and color before adding to cart.");
+          return;
+        }
+        addToCart(product, selectedSize, selectedColor);
+      }}
+      className="md:w-[400px] xxl:w-[400px] xl:w-[300px] md:h-[52px] h-[44px] py-[16px] sm:px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center flex justify-center font-satoshi w-[180px] sm:w-[236px] whitespace-nowrap"
+    >
+      Add to Cart
+    </button>
             </div>
           </div>
         </div>

@@ -136,7 +136,7 @@ const HelpCenter = () => {
                   real-time for quick assistance.
                 </p>
                 <Link
-                  href="#"
+                  href="liveChat"
                   className="flex justify-between items-center w-full mx-auto "
                 >
                   <button className="text-black font-satoshi hover:text-black/80 text-[14px] ">

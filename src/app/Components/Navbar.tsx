@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { IoMenu } from "react-icons/io5";
 import NavbarSearchBar from "./ProductSearchBar";
+import { UserButton, useUser } from "@clerk/nextjs";
 import { RxCross2 } from "react-icons/rx";
 import { useSession, signOut } from "next-auth/react";
 const Navbar = () => {
+  const { isSignedIn } = useUser()
   // const { data: session } = useSession();
   const dropdownItems = [
     {
@@ -43,10 +45,6 @@ const Navbar = () => {
     {
       name: "Help Center",
       href: "/helpCenter",
-    },
-    {
-      name: "Dashboard",
-      href: "/dashboard",
     },
   ];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -180,7 +178,7 @@ const Navbar = () => {
                 )} */}
               </Link>
             </div>
-            <Link href="/signup">
+            {/* <Link href="/signup">
               <Image
                 src="/Frame (37).svg"
                 alt="user-icon"
@@ -188,7 +186,14 @@ const Navbar = () => {
                 width={24}
                 className="xl:h-[24px] xl:w-[24px] h-[24px] w-[24px] md:w-[15px] md:h-[15px] lg:w-[25px] lg:h-[25px] lg:block hidden"
               />
-            </Link>
+            </Link> */}
+              <div>
+        {isSignedIn ? (
+          <UserButton />
+        ) : (
+          <a href="/sign-in" className="text-blue-600">Sign In</a>
+        )}
+      </div>
             <Link href="/wishlist">
               <div className="relative hidden lg:flex">
                 <FaRegHeart className="text-black h-[20px] w-[20px]" />

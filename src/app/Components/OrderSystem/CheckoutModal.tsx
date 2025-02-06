@@ -225,7 +225,7 @@ const CheckoutModal = ({
 
           // Customer email parameters
           const customerEmailParams = {
-            to_email: userData.email || "areebazafar715@gmail.com",
+            to_email: userData.email || "areesha21314@gmail.com",
             to_name: userData.fullName || "Customer",
             item_name: orderItems,
             total_price: `£${calculateSubtotal().toFixed(2)}`,
@@ -234,10 +234,10 @@ const CheckoutModal = ({
             city: userData.city || "N/A",
             postal_code: userData.zipCode || "N/A",
             contact_number: userData.phoneNumber || "N/A",
-            support_email: "areebazafar715@gmail.com",
-            support_phone: "+923495678943",
+            support_email: "areesha21314@gmail.com",
+            support_phone: "+923312969746",
             payment_method: "COD",
-            company_name: "Avion Furniture",
+            company_name: "SHOP.CO",
           };
 
           if (!formData.email) {
@@ -249,7 +249,7 @@ const CheckoutModal = ({
           const storeEmailParams = {
             ...customerEmailParams,
             customer_email: userData.email,
-            to_email: "areebazafar715@gmail.com",
+            to_email: "areesha21314@gmail.com",
           };
 
           // Sending email to customer
@@ -288,11 +288,11 @@ const CheckoutModal = ({
 
     setIsLoading(true); // Set loading to true while waiting for response
     const addressFrom = {
-      name: "Avion Furniture",
-      street1: "123 32 A Korangi",
+      name: "SHOP.CO",
+      street1: "North Karachi",
       city: "Karachi",
       state: "Sindh",
-      zip: "94107",
+      zip: "71500",
       country: "Pakistan",
     };
 
@@ -452,7 +452,6 @@ const CheckoutModal = ({
             <div className="bg-white rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2 p-6 max-h-[90vh] overflow-y-auto">
               <h2 className="text-2xl font-bold mb-4">Enter Your Details</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Row 1: Name and Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="fullName" className="block font-medium">
@@ -462,7 +461,7 @@ const CheckoutModal = ({
                       type="text"
                       id="fullName"
                       name="fullName"
-                      value={formData.fullName} // Ensure the value is correctly linked
+                      value={formData.fullName} 
                       onChange={handleChange}
                       className="border rounded-lg w-full p-2 text-black"
                       placeholder="Enter your full name"

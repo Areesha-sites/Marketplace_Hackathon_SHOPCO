@@ -20,7 +20,7 @@ export const createOrder = async (order: Order) => {
   try {
     // Check if the orderId already exists in the sanity
     const existingOrder = await client.fetch(
-      `*[_type == "order" && orderId == $orderId][0]`,
+      `*[_type == "checkOrder" && orderId == $orderId][0]`,
       { orderId: order.orderId }
     );
 
@@ -33,7 +33,7 @@ export const createOrder = async (order: Order) => {
 
     // Proceed to create the order since the orderId is unique, and the user and products exist
     const newOrder = {
-      _type: 'order',
+      _type: 'checkOrder',
       orderId: order.orderId,
       userId: order.userId,
       orderDate: order.orderDate,

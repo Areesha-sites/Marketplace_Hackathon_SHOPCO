@@ -9,7 +9,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 
     try {
-        // 2. Fetch Live Tracking Details using trackingNumber
         const trackingDetails = await axios.get(`https://api.goshippo.com/tracks/${carrier}/${trackingNumber}`, {
           headers: {
             "Authorization": `ShippoToken ${SHIPPO_API_KEY}`,

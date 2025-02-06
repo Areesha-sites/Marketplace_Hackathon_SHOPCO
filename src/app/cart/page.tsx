@@ -11,6 +11,14 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import Footer from "../Components/Footer";
 import dynamic from "next/dynamic";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 const CheckoutModal = dynamic(
   () => import("../Components/orderSystem/CheckoutModal"),
   {
@@ -107,22 +115,26 @@ const CartPage = () => {
         ) : (
           <div className="">
             <div className="border-b-[1px] border-black/10 w-full top-[100px] xxl:w-[1300px] xl:w-[1170px] lg:left-[50px] md:mx-auto absolute lg:top-[130px] left-0 lg:w-[920px]"></div>
-            <div className="flex justify-start md:justify-center items-center absolute xl:left-[30px] xxl:left-[100px] top-[120px] lg:top-[158px] left-[16px] lg:left-[50px]">
-              <Link
-                href="/"
-                className="font-satoshi text-[16px] font-normal text-black/60 hover:text-black"
-              >
-                {" "}
-                Home
-              </Link>
-              <GoChevronRight className="w-[16px] h-[16px]" />
-              <Link
-                href="/cart"
-                className="font-satoshi text-[16px] font-normal text-black"
-              >
-                {" "}
-                Cart
-              </Link>
+            <div className="flex justify-start items-start w-full px-7 xl:px-16 mt-[130px]">
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink>
+                      <Link href="/" className="font-satoshi">
+                        Casual
+                      </Link>
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>
+                      <Link href="/cart" className="font-satoshi">
+                        Cart
+                      </Link>
+                    </BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
             </div>
             <h1 className="md:text-[40px] font-bold text-center mb-6 absolute lg:top-[204px] xl:left-[30px] xxl:left-[100px] font-integralCf left-[16px] text-[32px] top-[140px] lg:left-[50px]">
               Your Cart
@@ -252,7 +264,7 @@ const CartPage = () => {
                       Apply
                     </button>
                   </div>
-                  <Link href="/checkout">
+                  <div  onClick={handleOpenModal}>
                     <button className="w-full h-[60px] py-[16px] bg-black px-[54px] rounded-[62px] flex justify-center gap-[10px] items-center">
                       <p className="font-satoshi text-[16px] text-white font-medium">
                         Go to Checkout
@@ -264,16 +276,16 @@ const CartPage = () => {
                         width={24}
                       />
                     </button>
-                  </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         )}
       </div>
-      {/* <div className="relative top-[1200px] md:top-[1000px]">
+      <div className="relative top-[1200px] md:top-[1000px]">
         <Footer />
-      </div> */}
+      </div>
 
       <div className="flex justify-between lg:items-center mt-6 lg:flex-row flex-col lg:gap-0 gap-4">
         {/* <SignedOut>
@@ -285,12 +297,12 @@ const CartPage = () => {
         </SignedOut> */}
 
         {/* <SignedIn> */}
-          <button
+          {/* <button
             onClick={handleOpenModal}
             className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor mt-28"
           >
             Go to checkout
-          </button>
+          </button> */}
         {/* </SignedIn> */}
 
         {isModalOpen && (
@@ -311,9 +323,9 @@ const CartPage = () => {
           />
         )}
 
-        <button className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor">
+        {/* <button className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor">
           <Link href="/products">Continue Shopping</Link>
-        </button>
+        </button> */}
       </div>
     </section>
   );

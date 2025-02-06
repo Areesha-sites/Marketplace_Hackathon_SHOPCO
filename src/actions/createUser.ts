@@ -1,6 +1,5 @@
 import { client } from "../sanity/lib/client";
 
-// TypeScript interface to define the shape of the userData object
 interface Order {
   orderId: string;
   productId: string;
@@ -21,16 +20,14 @@ interface UserData {
 
 export const createOrUpdateUser = async (userData: UserData) => {
   try {
-    // Check if the user already exists
     const existingUser = await client.fetch(
-      `*[_type == "user" && (userId == $userId || name == $name)][0]`,
+      `*[_type == "checkUser" && (userId == $userId || name == $name)][0]`,
       { userId: userData.userId, name: userData.name }
     );
 
     if (!existingUser) {
-      // User does not exist, create a new user
       const newUser = {
-        _type: "user",
+        _type: "checkUser",
         userId: userData.userId,
         name: userData.name,
         email: userData.email,
@@ -52,7 +49,6 @@ export const createOrUpdateUser = async (userData: UserData) => {
       console.log("New user created:", createdUser);
       return createdUser;
     } else if (existingUser.orders && existingUser.orders.length > 0) {
-      // User exists and already has orders, update their orders
       const updatedOrders = [
         ...existingUser.orders,
         ...userData.order.map((order) => ({
@@ -75,7 +71,6 @@ export const createOrUpdateUser = async (userData: UserData) => {
       console.log("User orders updated:", updatedUser);
       return updatedUser;
     } else {
-      // User exists but has no orders, update createdAt and updatedAt
       const updatedUser = await client
         .patch(existingUser._id)
         .set({

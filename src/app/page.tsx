@@ -8,6 +8,7 @@ import HappyCustomerSection from "./Components/HappyCustomerSection";
 import "aos/dist/aos.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import Chatbot from "./Components/ChatBots";
 
 interface LoaderProps {
   isVisible: boolean;
