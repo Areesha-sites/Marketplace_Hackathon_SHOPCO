@@ -6,16 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-// import category from "./products/Category";
 import { SideBarProps } from "../../../types/ComponentsTypes";
-
-// const handleColorClick = (colorIndex: number) => {
-//   const [activeColor, setActiveColor] = useState(0);
-//   const handleColorClick = (index: any) => {
-//     setActiveColor(index);
-//   };
-//   console.log("Selected color index:", colorIndex);
-// };
 const SideBar = ({
   handleCategoryChange,
   setFilteredProducts,

@@ -16,7 +16,7 @@ export default async function shippoOrder(req: NextApiRequest, res: NextApiRespo
             },
             {
                 headers: {
-                    Authorization: `ShippoToken shippo_test_41ce080ca4af761b4041a1bcaeb6b5adaad23003`,
+                    Authorization: `ShippoToken ${process.env.SHIPPO_API_KEY}`,
                     "Content-Type": "application/json",
                 },
             }

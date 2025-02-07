@@ -1,13 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-
-const SHIPPO_API_KEY = "shippo_test_41ce080ca4af761b4041a1bcaeb6b5adaad23003"; // Replace with your Shippo API key
-
+const SHIPPO_API_KEY = process.env.SHIPPO_API_KEY; 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const { trackingNumber, carrier} = req.body;
-
-
     try {
         const trackingDetails = await axios.get(`https://api.goshippo.com/tracks/${carrier}/${trackingNumber}`, {
           headers: {
@@ -15,13 +11,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             "Content-Type": "application/x-www-form-urlencoded",
           },
         });
-  
-        // Combine all details in response
         const combinedData = {
           trackingDetails: trackingDetails.data,
 };
-  
-        // Send back all details
         res.status(200).json(combinedData);
     } catch (error: any) {
       console.error("Error fetching data:", error);

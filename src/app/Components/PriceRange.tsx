@@ -30,13 +30,13 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ category, setFilteredProducts
     } catch (error) {
       console.error("Error fetching filtered products:", error);
     }
-  }, [category, setFilteredProducts, setTotalPages]); // Dependencies for useCallback
+  }, [category, setFilteredProducts, setTotalPages]); 
 
   useEffect(() => {
     fetchAndSetProducts(leftValue, rightValue, currentPage);
-  }, [fetchAndSetProducts, leftValue, rightValue, currentPage]); // fetchAndSetProducts is now a dependency
+  }, [fetchAndSetProducts, leftValue, rightValue, currentPage]);
 
-  const handleLeftChange = (e: React.ChangeEvent<HTMLInputElement>) => { // Removed async
+  const handleLeftChange = (e: React.ChangeEvent<HTMLInputElement>) => { 
     const value = parseInt(e.target.value, 10);
     if (value < rightValue) {
       setLeftValue(value);
@@ -44,7 +44,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ category, setFilteredProducts
     }
   };
 
-  const handleRightChange = (e: React.ChangeEvent<HTMLInputElement>) => { // Removed async
+  const handleRightChange = (e: React.ChangeEvent<HTMLInputElement>) => { 
     const value = parseInt(e.target.value, 10);
     if (value > leftValue) {
       setRightValue(value);

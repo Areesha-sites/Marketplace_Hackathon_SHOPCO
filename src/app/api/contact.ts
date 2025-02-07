@@ -1,9 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import nodemailer from "nodemailer";
-
-
 import { createClient } from "@sanity/client";
-
 export const clients = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
@@ -18,8 +15,6 @@ export default async function handler(req: any, res: any) {
 console.log(res)
   try {
     const { name, fullName, email, phoneNumber, message } = req.body;
-
-    // Save to Sanity
     const doc = {
       _type: "contactMessage",
       firstName: name,
@@ -28,10 +23,7 @@ console.log(res)
       phoneNumber,
       message,
     };
-
     await client.create(doc);
-
-    // Send email
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -39,16 +31,13 @@ console.log(res)
         pass: process.env.EMAIL_PASSWORD,
       },
     });
-
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       subject: "New Contact Form Submission",
       text: `Name: ${name} ${fullName}\nEmail: ${email}\nPhone: ${phoneNumber}\nMessage: ${message}`,
     };
-
     await transporter.sendMail(mailOptions);
-
     res.status(200).json({ message: "Message sent successfully!" });
   } catch (error) {
     console.error("Error:", error);

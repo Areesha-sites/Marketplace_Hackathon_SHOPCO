@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { GoChevronRight } from "react-icons/go";
 import Link from "next/link";
 import { PiTrashFill } from "react-icons/pi";
 import { IoAddOutline } from "react-icons/io5";
@@ -10,7 +9,7 @@ import { CartItem } from "../../../types/ComponentsTypes";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import Footer from "../Components/Footer";
 import dynamic from "next/dynamic";
-import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+// import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import {
   Breadcrumb,
   BreadcrumbItem,

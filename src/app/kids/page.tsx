@@ -121,8 +121,6 @@ const Kids: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Main Content */}
       <div style={{ visibility: isLoading ? "hidden" : "visible" }}>
         <section>
           <div className="xl:w-[1100px] xxl:w-[1240px] absolute md:top-[100px] md:left-[20px] lg:left-[50px] xl:left-[100px] border-b-[1px] border-black/10 top-[98px] w-full left-0 mx-auto lg:w-[930px] md:w-[710px] lg:top-[120px]"></div>
@@ -160,11 +158,9 @@ const Kids: React.FC = () => {
             </div>
           </div>
           <div className="flex justify-center items-center w-full mx-auto mt-[1500px]">
-            {/* <div className="lg:w-[600px] md:w-[700px] w-full mx-auto xxl:w-[925px] xl:w-[770px] border-b-[1px] border-black/10 "></div> */}
           </div>
         </section>
       </div>
-
       {!isLoading && (
         <div className="absolute md:top-[1830px] lg:top-[2700px] xxl:top-[1800px] xl:top-[1750px] top-[1800px] sm:top-[2000px] z-20">
           <Footer />

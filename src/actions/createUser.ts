@@ -1,5 +1,4 @@
 import { client } from "../sanity/lib/client";
-
 interface Order {
   orderId: string;
   productId: string;
@@ -7,7 +6,6 @@ interface Order {
   productPrice: number;
   quantity: number;
 }
-
 interface UserData {
   userId: string;
   name: string;
@@ -17,14 +15,12 @@ interface UserData {
   address: string;
   order: Order[];
 }
-
 export const createOrUpdateUser = async (userData: UserData) => {
   try {
     const existingUser = await client.fetch(
       `*[_type == "checkUser" && (userId == $userId || name == $name)][0]`,
       { userId: userData.userId, name: userData.name }
     );
-
     if (!existingUser) {
       const newUser = {
         _type: "checkUser",
@@ -44,7 +40,6 @@ export const createOrUpdateUser = async (userData: UserData) => {
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
-
       const createdUser = await client.create(newUser);
       console.log("New user created:", createdUser);
       return createdUser;
@@ -59,7 +54,6 @@ export const createOrUpdateUser = async (userData: UserData) => {
           quantity: order.quantity,
         })),
       ];
-
       const updatedUser = await client
         .patch(existingUser._id)
         .set({
@@ -67,7 +61,6 @@ export const createOrUpdateUser = async (userData: UserData) => {
           updatedAt: new Date().toISOString(),
         })
         .commit();
-
       console.log("User orders updated:", updatedUser);
       return updatedUser;
     } else {
@@ -85,7 +78,6 @@ export const createOrUpdateUser = async (userData: UserData) => {
           updatedAt: new Date().toISOString(),
         })
         .commit();
-
       console.log("User with no orders updated:", updatedUser);
       return updatedUser;
     }

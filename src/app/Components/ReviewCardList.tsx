@@ -56,8 +56,6 @@ const ReviewsCard: React.FC<ReviewCardPropsTypes> = ({
               </p>
             </div>
           </div>
-
-          {/* Dropdown Menu for Edit & Remove Actions */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
@@ -72,8 +70,6 @@ const ReviewsCard: React.FC<ReviewCardPropsTypes> = ({
                 Actions
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-
-              {/* Edit Button */}
               <DropdownMenuItem onClick={onEdit}>
                 <div className="flex justify-between items-center w-full">
                   <span className="flex items-center gap-x-2 font-satoshi">
@@ -82,8 +78,6 @@ const ReviewsCard: React.FC<ReviewCardPropsTypes> = ({
                   <CiEdit className="text-black/45 h-[20px] w-[20px]" />
                 </div>
               </DropdownMenuItem>
-
-              {/* Remove Button */}
               <DropdownMenuItem onClick={() => onRemove(_id)}>
                 <div className="flex justify-between items-center w-full">
                   <span className="flex items-center gap-x-2 font-satoshi text-red-500">
@@ -95,7 +89,6 @@ const ReviewsCard: React.FC<ReviewCardPropsTypes> = ({
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-
         <p className="font-satoshi text-left font-medium md:text-[16px] text-[12px] text-black/60 relative md:top-[25px]">
           Posted on {date}
         </p>

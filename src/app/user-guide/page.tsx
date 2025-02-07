@@ -16,19 +16,17 @@ const UserGuidePage: React.FC = () => {
     getGuides();
   }, []);
 
-  // Convert UserPageGuide to GuideList for UserGuideList component
   const formattedGuides: GuideList[] = guides.map(({ title, _id }) => ({
     title,
-    slug: { current: _id }, // Convert _id to slug format
+    slug: { current: _id },
   }));
 
-  // Convert UserPageGuide to Guide for GuideDetails component
   const handleGuideClick = (guide: GuideList) => {
     const fullGuide = guides.find((g) => g._id === guide.slug.current);
     if (fullGuide) {
       setSelectedGuide({
         title: fullGuide.title,
-        content: fullGuide.content, // Ensure content is TypedObject[]
+        content: fullGuide.content,
         slug: { current: fullGuide._id },
       });
     }

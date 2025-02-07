@@ -12,7 +12,7 @@ import ProductDetailsTab from "@/app/Components/ProductDetailsTab";
 import { PiSmileySad } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import { CartProduct } from "../../../../types/ComponentsTypes";
-import { useSession, signIn } from "next-auth/react";
+// import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import {
   Sheet,
@@ -38,10 +38,10 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ProductDetailsCardList from "@/app/Components/ProductDetailsCardList";
 import Footer from "@/app/Components/Footer";
-import AddToCartButton from "@/app/Components/AddToCart";
-import { useUser, SignInButton } from "@clerk/nextjs";
+// import AddToCartButton from "@/app/Components/AddToCart";
+// import { useUser, SignInButton } from "@clerk/nextjs";
 const CasualDetails = ({ params }: { params: { id: string } }) => {
-  const { isSignedIn } = useUser();
+  // const { isSignedIn } = useUser();
   const { id } = params;
   const [product, setProduct] = useState<CasualDetailsProducts | null>(null);
   const [count, setCount] = useState(1);
@@ -50,8 +50,7 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
   // const { data: session } = useSession();
-  const router = useRouter();
-
+  // const router = useRouter();
   useEffect(() => {
     const fetchProduct = async () => {
       const query = `*[_type=="casual" && _id==$id][0]{
@@ -68,7 +67,6 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
         offer,
         sizes
       }`;
-
       try {
         const productData = await client.fetch<CasualDetailsProducts>(query, {
           id,
@@ -82,7 +80,6 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
         console.error("Error fetching product:", error);
       }
     };
-
     fetchProduct();
   }, [id]);
   const addToCart = (
@@ -379,10 +376,10 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
               </div>
               <button
                 onClick={() => {
-                  if (!isSignedIn) {
-                    window.location.href = "/sign-in";
-                    return;
-                  }
+                  // if (!isSignedIn) {
+                  //   window.location.href = "/sign-in";
+                  //   return;
+                  // }
                   if (!selectedSize || !selectedColor) {
                     alert(
                       "Please select a size and color before adding to cart."

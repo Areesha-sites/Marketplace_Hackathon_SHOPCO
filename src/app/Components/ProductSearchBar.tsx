@@ -5,7 +5,6 @@ import { client } from "@/sanity/lib/client";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import { ProductSuggestion } from "../../../types/ComponentsTypes";
-
 const NavbarSearchBar = () => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<ProductSuggestion[]>([]);

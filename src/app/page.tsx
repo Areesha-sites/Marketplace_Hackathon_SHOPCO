@@ -8,12 +8,9 @@ import HappyCustomerSection from "./Components/HappyCustomerSection";
 import "aos/dist/aos.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import Chatbot from "./Components/ChatBots";
-
 interface LoaderProps {
   isVisible: boolean;
 }
-
 const Loader = ({ isVisible }: LoaderProps) => {
   const text = "shop.co";
   const [displayText, setDisplayText] = useState("");
@@ -45,7 +42,7 @@ const Loader = ({ isVisible }: LoaderProps) => {
           transition={{ duration: 0.5, delay: 1 }}
         >
           {displayText}
-          <span className="animate-blink">|</span> {/* Blinking cursor effect */}
+          <span className="animate-blink">|</span>
         </motion.div>
         <motion.div
           className="mt-4 h-1 bg-gray-800"
@@ -88,10 +85,10 @@ export default function Home() {
            <NewArrivalSection />
          <TopSelling />
            <DressStyleSection />
-          {/*<HappyCustomerSection />
+          <HappyCustomerSection />
          <div className="absolute top-[5000px]">
          <Footer />
-         </div> */}
+         </div>
         </>
       )}
     </div>

@@ -32,8 +32,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { useToast } from "@/components/hooks/use-toast";
 const ProductDetailsCardList = () => {
   const { toast } = useToast();
-  // const [products, setProducts] = useState<Product[]>([]);
-  // const [loading, setLoading] = useState(true);
   const [wishlist, setWishlist] = useState<NewArrivalProduct[]>([]);
   useEffect(() => {
     const loadProducts = async () => {

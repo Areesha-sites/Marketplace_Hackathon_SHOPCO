@@ -55,3 +55,31 @@ export interface TrackingData {
   estimatedDeliveryDate?: string;
   actualDeliveryDate?: string;
 }
+export interface OrderData {
+  productId: string;
+  productName: string;
+  quantity: number;
+  totalAmount: number;
+  status: string;
+  originalPrice: number;
+}
+export interface Order {
+  orderId: string;
+  userId: string;
+  orderDate: string;
+  orderData: OrderData[];
+}
+
+export interface ShipmentData {
+  orderId: string;
+  userName: string;
+  userEmail: string;
+  userPhone: string;
+  countryCode: string;
+  shippingAddress: string;
+  status: string;
+  trackingNumber: string;
+  shipmentDate: string;
+  deliveryDate: string;
+  carrier: string;
+}

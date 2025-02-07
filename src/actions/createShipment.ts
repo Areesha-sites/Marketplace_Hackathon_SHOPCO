@@ -1,19 +1,5 @@
 import { client } from "../sanity/lib/client";
-
-interface ShipmentData {
-  orderId: string;
-  userName: string;
-  userEmail: string;
-  userPhone: string;
-  countryCode: string;
-  shippingAddress: string;
-  status: string;
-  trackingNumber: string;
-  shipmentDate: string;
-  deliveryDate: string;
-  carrier: string;
-}
-
+import { ShipmentData } from "../../types/Tracking-ShipmentTypes";
 export const createShipment = async (shipmentData: ShipmentData) => {
   try {
     const newShipment = {
@@ -32,10 +18,7 @@ export const createShipment = async (shipmentData: ShipmentData) => {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
-
-    // Create the shipment in Sanity
     const createdShipment = await client.create(newShipment);
-
     console.log("Shipment created:", createdShipment);
     return createdShipment;
   } catch (error) {

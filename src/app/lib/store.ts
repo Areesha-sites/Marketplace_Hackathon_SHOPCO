@@ -17,23 +17,23 @@ interface PaymentData {
 }
 
 interface CheckoutState {
-  step: number;  // Current step in the checkout process
-  billing: BillingData;  // Billing information
-  shipping: ShippingData;  // Shipping information
-  payment: PaymentData;  // Payment information
-  setStep: (step: number) => void;  // Set the current step
-  setBilling: (data: Partial<BillingData>) => void;  // Update billing data
-  setShipping: (data: Partial<ShippingData>) => void;  // Update shipping data
-  setPayment: (data: Partial<PaymentData>) => void;  // Update payment data
+  step: number; 
+  billing: BillingData;  
+  shipping: ShippingData;  
+  payment: PaymentData;  
+  setStep: (step: number) => void; 
+  setBilling: (data: Partial<BillingData>) => void;  
+  setShipping: (data: Partial<ShippingData>) => void; 
+  setPayment: (data: Partial<PaymentData>) => void; 
 }
 
 export const useCheckoutStore = create<CheckoutState>((set) => ({
-  step: 1,  // Default to step 1 (Shipping)
-  billing: { name: '', email: '', address: '' },  // Default billing info
-  shipping: { name: '', address: '' },  // Default shipping info
-  payment: { cardNumber: '', expiry: '' },  // Default payment info
-  setStep: (step) => set({ step }),  // Function to update step
-  setBilling: (data) => set((state) => ({ billing: { ...state.billing, ...data } })),  // Function to update billing data
-  setShipping: (data) => set((state) => ({ shipping: { ...state.shipping, ...data } })),  // Function to update shipping data
-  setPayment: (data) => set((state) => ({ payment: { ...state.payment, ...data } })),  // Function to update payment data
+  step: 1, 
+  billing: { name: '', email: '', address: '' }, 
+  shipping: { name: '', address: '' }, 
+  payment: { cardNumber: '', expiry: '' },  
+  setStep: (step) => set({ step }), 
+  setBilling: (data) => set((state) => ({ billing: { ...state.billing, ...data } })), 
+  setShipping: (data) => set((state) => ({ shipping: { ...state.shipping, ...data } })),  
+  setPayment: (data) => set((state) => ({ payment: { ...state.payment, ...data } })),  
 }));

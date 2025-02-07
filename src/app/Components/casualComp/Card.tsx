@@ -6,20 +6,16 @@ import { RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
 import { BiGitCompare } from "react-icons/bi";
 import { toast } from "sonner"; 
 import { CasualCardPropsTypes, Product } from "../../../../types/ComponentsTypes";
-
 const Card: React.FC<CasualCardPropsTypes> = ({ product, addToCompare }) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
-
   useEffect(() => {
     const storedWishlist = localStorage.getItem("wishlist");
     const wishlist: Product[] = storedWishlist ? JSON.parse(storedWishlist) : [];
     setIsWishlisted(wishlist.some((item) => item._id === product._id));
   }, [product._id]);
-
   const toggleWishlist = () => {
     const storedWishlist = localStorage.getItem("wishlist");
     const wishlist: Product[] = storedWishlist ? JSON.parse(storedWishlist) : [];
-    
     let message = "";
     if (isWishlisted) {
       const updatedWishlist = wishlist.filter((item) => item._id !== product._id);
@@ -41,10 +37,8 @@ const Card: React.FC<CasualCardPropsTypes> = ({ product, addToCompare }) => {
     const notificationSound = new Audio("/notification.mp3");
     notificationSound.play();
   };
-
   const handleCompare = () => {
     addToCompare(product);
-
     toast.success(`Added to Compare: ${product.name}`, {
       description: "Compare list updated successfully.",
       action: {
@@ -52,11 +46,9 @@ const Card: React.FC<CasualCardPropsTypes> = ({ product, addToCompare }) => {
         onClick: () => console.log("Undo Action"),
       },
     });
-
     const notificationSound = new Audio("/notification.mp3");
     notificationSound.play();
   };
-
   return (
     <Link href={`/casualDetails/${product._id}`} passHref>
       <div className="sm:h-[190px] md:h-[300px] h-[100px] xxl:h-[270px] xl:h-[250px] flex flex-col justify-between">

@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import { FaRegHeart, FaTimes } from "react-icons/fa"; // Import FaTimes for the cross icon
+import { FaRegHeart } from "react-icons/fa"; // Import FaTimes for the cross icon
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { IoMenu } from "react-icons/io5";
 import NavbarSearchBar from "./ProductSearchBar";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { RxCross2 } from "react-icons/rx";
-import { useSession, signOut } from "next-auth/react";
+// import { useSession, signOut } from "next-auth/react";
 const Navbar = () => {
   const { isSignedIn } = useUser()
   // const { data: session } = useSession();
@@ -171,11 +171,11 @@ const Navbar = () => {
                   width={24}
                   className="xl:h-[24px] xl:w-[24px] md:w-[15px] md:h-[15px] lg:w-[20px] lg:h-[20px] lg:block hidden"
                 />
-                {/* {cartCount > 0 && (
+                {cartCount > 0 && (
                   <span className="absolute top-[-7px] right-[-10px] bg-black text-white rounded-full text-[10px] font-satoshi w-4 h-4 flex items-center justify-center">
                     {cartCount}
                   </span>
-                )} */}
+                )}
               </Link>
             </div>
             {/* <Link href="/signup">

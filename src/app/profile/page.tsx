@@ -1,14 +1,11 @@
 
 "use client"; 
 import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs';
-
 export default function Profile() {
   const { user, isLoaded } = useUser();
-
   if (!isLoaded) {
     return <div>Loading...</div>; 
   }
-
   return (
     <div className='mt-56'>
       <h1>Profile</h1>

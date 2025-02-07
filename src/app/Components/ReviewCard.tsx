@@ -49,7 +49,6 @@ const ReviewsCard = ({
                 </p>
               </div>
             </div>
-
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

@@ -1,19 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-
-// Define types for guide object
-interface Guide {
-  id: string;
-  title: string;
-  content: string;
-}
-
-// Define props type
-interface GuideContentProps {
-  activeGuide: string;
-  guides: Guide[];
-}
-
+import { GuideContentProps } from "../../../types/ComponentsTypes";
 const GuideContent: React.FC<GuideContentProps> = ({ activeGuide, guides }) => {
   const guideRef = useRef<HTMLDivElement | null>(null);
 

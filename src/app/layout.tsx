@@ -5,7 +5,7 @@ import Navbar from "./Components/Navbar";
 import { Toaster } from "sonner";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import Script from "next/script"; // Import Script for chatbot
+import Script from "next/script"; 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "SHOP.CO",
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
           <Script
             src="https://www.chatbase.co/embed.min.js"
-            data-chatbot-id="uhmozxi9UYSh5lFd_QXTB" // Your Chatbot ID
+            data-chatbot-id="uhmozxi9UYSh5lFd_QXTB" 
             data-domain="www.chatbase.co"
             strategy="afterInteractive"
             defer

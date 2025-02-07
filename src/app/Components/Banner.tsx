@@ -8,7 +8,6 @@ const Banner = () => {
       <div className="flex justify-center items-center w-full mt-[100px] xl:mt-[200px] xxl:mt-[240px] lg:mt-[130px]">
         <section className="max-w-[1700px] w-full mx-auto py-14 bg-BannerBgColor relative">
           <div className="flex justify-center items-center w-full mx-auto">
-            {/* Star Image */}
             <Image
               src="/Vector (2).svg"
               alt="star"
@@ -17,7 +16,6 @@ const Banner = () => {
               className="xl:w-[56px] xl:h-[56px] absolute xxl:left-[785px] md:top-[160px] xxl:top-[200px] xl:left-[685px] z-20 w-[44px] h-[44px] top-[630px] left-[5px] sm:left-[27px] star-rotate xl:top-[200px] md:left-[400px] lg:left-[560px] lg:top-[200px]"
             />
 
-            {/* Content */}
             <div className="flex flex-col justify-center items-center mx-auto w-full">
               <h1 className="lg:w-[577px] lg:h-[173px] absolute lg:top-[80px] md:left-[20px] xxl:left-[100px] xl:left-[70px] xxl:text-[64px] xl:text-[54px] xl:leading-[54px] sm:text-[36px] xxl:leading-[64px] leading-[34px] text-blackBgColor z-20 sm:w-[350px] h-[93px] top-[40px] left-[16px] font-bold tracking-wider font-integralCf lg:left-[26px] lg:text-[50px] lg:leading-[45px] xl:top-[20px] w-[300px] text-[30px]">
                 FIND CLOTHES THAT MATCHES YOUR STYLE
@@ -34,7 +32,6 @@ const Banner = () => {
               </Link>
             </div>
 
-            {/* Stats for Mobile */}
             <div className="w-[278px] h-[52px] absolute top-[330px] sm:top-[310px] left-[20px] sm:left-[56px] flex justify-between md:hidden">
               <div className="w-[106px] h-[48px] flex flex-col">
                 <h2 className="text-[24px] font-bold font-satoshiBold text-blackBgColor">
@@ -66,7 +63,6 @@ const Banner = () => {
             </div>
           </div>
 
-          {/* Main Images */}
           <Image
             src="/Rectangle 2 (2).svg"
             alt="main-image"
@@ -91,7 +87,6 @@ const Banner = () => {
         </section>
       </div>
 
-      {/* Brand Logos */}
       <div className="max-w-[1700px] w-full h-[146px] md:h-[122px] xxl:h-[122px] md:top-[465px] lg:top-[590px] xxl:top-[797px] xl:top-[723px] absolute bg-black top-[1000px] flex justify-center sm:flex-row flex-wrap gap-x-[40px] px-[8px] items-center lg:w-full gap-y-0">
         <Image
           src="/Group (5).svg"

@@ -73,18 +73,17 @@ export default function SubscriptionComponent() {
 
   const handleFormSubmit = () => {
     if (!subscription.name || !subscription.email) {
-      setError("Please fill in all fields.");
+      setStatus("Please fill in all fields.");
       return;
     }
     if (!validateEmail(subscription.email)) {
-      setError("Please enter a valid email address.");
+      setStatus("Please enter a valid email address.");
       return;
     }
     setShowForm(false);
     setShowCards(true);
-    setError("");
+    setStatus("");
   };
-
   const handleSubscribe = async (plan: "monthly" | "yearly") => {
     setLoading(true);
     const today = new Date();
@@ -128,14 +127,13 @@ export default function SubscriptionComponent() {
           },
         },
       });
-
-      // Display the subscription details for a few seconds before resetting the form
+  
       setTimeout(() => {
         setShowSuccessAlert(false);
         setSubscription({ name: "", email: "", plan: "monthly" });
         setShowForm(true);
-      }, 3000); // Adjust the time as needed (3000ms = 3 seconds)
-
+      }, 3000); 
+  
     } catch (error) {
       console.error("Sanity Error:", error);
       setStatus("Error subscribing. Try again.");
@@ -160,7 +158,6 @@ export default function SubscriptionComponent() {
       setShowCancelModal(false);
     }
   };
-
   const validateEmail = (email: string): boolean => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
@@ -184,6 +181,11 @@ export default function SubscriptionComponent() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
+      {status && (
+      <p className="mt-4 p-2 border rounded bg-green-100 text-green-600">
+        {status}
+      </p>
+    )}
       {showForm && (
         <div>
           <h1 className="text-[29px] font-integralCf font-extrabold mt-8 tracking-wider">

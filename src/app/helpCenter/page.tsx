@@ -3,7 +3,6 @@ import { FaArrowRight } from "react-icons/fa6";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { GoQuestion } from "react-icons/go";
 import { MdOutlineEmail } from "react-icons/md";
-import { MdOutlineMessage } from "react-icons/md";
 import {   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -117,28 +116,6 @@ const HelpCenter = () => {
                 </p>
                 <Link
                   href="/contact"
-                  className="flex justify-between items-center w-full mx-auto "
-                >
-                  <button className="text-black font-satoshi hover:text-black/80 text-[14px] ">
-                    Read More
-                  </button>
-                  <FaArrowRight className="text-black h-[15px] w-[15px]" />
-                </Link>
-              </div>
-            </div>
-            <div className="w-[250px] h-[250px]  border-t-[1px] border-full border-purple-500">
-              <div className="flex flex-col gap-y-[10px] justify-start py-3 hover:bg-gray-50 transition-all duration-300 cursor-pointer ease-linear">
-                <MdOutlineMessage className="h-[30px] w-[30px] text-black/50" />
-                <h1 className="text-black font-satoshi text-[20px] font-semibold">
-                  Live Chat
-                </h1>
-                <p className="text-left font-normal text-black font-satoshi text-[14px]">
-                  Get instant answers to your questions with our live chat
-                  support. Connect with a customer service representative in
-                  real-time for quick assistance.
-                </p>
-                <Link
-                  href="liveChat"
                   className="flex justify-between items-center w-full mx-auto "
                 >
                   <button className="text-black font-satoshi hover:text-black/80 text-[14px] ">

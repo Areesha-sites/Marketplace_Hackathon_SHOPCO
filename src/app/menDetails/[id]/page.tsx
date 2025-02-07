@@ -403,7 +403,7 @@ const MenDetails: React.FC<Props> = ({ params }) => {
           <SheetTrigger asChild>
             <Button
               variant="outline"
-              className="fixed bottom-6 right-6 font-satoshi bg-black text-white p-4 rounded-full flex items-center justify-center text-lg cursor-pointer w-[50px] h-[50px] hover:text-white hover:bg-black"
+              className="fixed bottom-20 right-5 font-satoshi bg-black text-white p-4 rounded-full flex items-center justify-center text-lg cursor-pointer w-[50px] h-[50px] hover:text-white hover:bg-black"
               onClick={() => setShowCart(!showCart)}
             >
               <div className="w-[15px] h-[15px] flex justify-center items-center bg-white text-black rounded-full text-[10px] absolute top-[8px] left-[25px]">
