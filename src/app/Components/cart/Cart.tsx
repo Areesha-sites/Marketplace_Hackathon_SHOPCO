@@ -1,345 +1,323 @@
 "use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { PiTrashFill } from "react-icons/pi";
+import { IoAddOutline } from "react-icons/io5";
+import { RiSubtractLine } from "react-icons/ri";
+import { CartItem } from "../../../../types/ComponentsTypes";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 import Footer from "../Footer";
-import { useState } from "react";
-const Cart = () => {
-  const [count, setCount] = useState(1);
-  const handleIncrement = () => {
-    setCount(count + 1);
+import dynamic from "next/dynamic";
+// import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+const CheckoutModal = dynamic(() => import("../orderSystem/CheckoutModal"), {
+  ssr: false,
+});
+const CartPage = () => {
+  const [validPromo, setValidPromo] = useState<boolean>(false);
+  const [promoCode, setPromoCode] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [orderSucess, setOrderSuccess] = useState<any | boolean>(false);
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    if (typeof window !== "undefined") {
+      const savedCart = localStorage.getItem("cart");
+      return savedCart ? (JSON.parse(savedCart) as CartItem[]) : [];
+    }
+    return [];
+  });
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        setCart(JSON.parse(savedCart) as CartItem[]);
+      }
+    }
+  }, []);
+  const updateCart = (updatedCart: CartItem[]) => {
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
-  const handleDecrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
+  const removeFromCart = (index: number) => {
+    const updatedCart = cart.filter((_, i) => i !== index);
+    updateCart(updatedCart);
+  };
+  const increaseQuantity = (index: number) => {
+    const updatedCart = [...cart];
+    updatedCart[index].quantity += 1;
+    updateCart(updatedCart);
+  };
+  const decreaseQuantity = (index: number) => {
+    const updatedCart = [...cart];
+    if (updatedCart[index].quantity > 1) {
+      updatedCart[index].quantity -= 1;
+      updateCart(updatedCart);
     }
   };
+  const subtotal = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  const discountAmount = validPromo ? subtotal * 0.2 : 0;
+  const deliveryFee = 15;
+  const total = subtotal - discountAmount + deliveryFee;
+  const discount = subtotal ? subtotal * 0.2 : 0;
+  const applyPromoCode = () => {
+    if (promoCode === "DISCOUNT20") {
+      setValidPromo(true);
+    } else {
+      alert("Invalid Promo Code");
+    }
+  };
+  const handleOpenModal = () => {
+    if (cart.length === 0 || subtotal === 0) {
+      alert("Please add items to your cart before proceeding to checkout.");
+      return;
+    }
+    setIsModalOpen(true);
+  };
+  const handleSubmitForm = (formData: any) => {
+    console.log(formData);
+    localStorage.removeItem("cart");
+    setCart([]);
+  };
+  const handleCloseModal = () => setIsModalOpen(false);
   return (
-    <>
-      <section>
-        <div className="md:w-[1240px] xxl:w-[1240px] xl:w-[1100px] w-full absolute md:top-[134px] top-[98px] left-[16px] md:left-[100px] border-b-[1px] border-black/10"></div>
-        <div
-          data-aos="flip-right"
-          data-aos-delay="200"
-          className="md:w-[106px] w-[89px] h-[22px] absolute md:top-[158px] md:left-[100px] left-[16px] flex gap-[12px] items-center top-[118px]"
-        >
-          <span className="font-satoshi text-[16px] font-normal text-black/60">
-            Home
-          </span>
-          <Image
-            src="/Frame (5).svg"
-            alt="icon"
-            height={16}
-            width={16}
-            className="h-[16px] w-[16px]"
-          />
-          <span className="font-satoshi text-[16px] font-normal text-black">
-            Cart
-          </span>
-        </div>
-        <h1
-          data-aos="zoom-in"
-          data-aos-delay="300"
-          className="absolute md:top-[204px] left-[16px] md:left-[100px] text-black font-black uppercase md:text-[40px] text-[32px] top-[145px] font-integralCf"
-        >
-          Your cart
-        </h1>
-        <div
-          data-aos="flip-right"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="2000"
-          className="md:w-[715px] xxl:w-[715px] xl:w-[617px] w-[358px] h-[389px] md:h-[508px] absolute md:left-[100px] left-[16px] md:top-[276px] top-[203px] md:py-[20px] md:px-[24px] p-[14px] rounded-[20px] border-[1px] border-black/10 flex flex-col md:gap-[24px] gap-[16px]"
-        >
-          <div className="md:w-[667px] w-[330px]  md:h-[124px] h-[99px] flex gap-[14px] md:gap-[16px] ">
-            <div className="w-[124px] h-[124px] rounded-[8.66px] bg-bgLightGrayColor">
-              <Image
-                src="/image 8 (1).svg"
-                alt="shirt"
-                height={187}
-                width={125}
-                className="md:h-[124px] md:w-[124px] h-[99px] w-[99px] absolute rounded-[8.66px]"
-              />
+    <section>
+      <div className="container mx-auto p-6 px-8">
+        {cart.length === 0 ? (
+          <div className="flex flex-col items-center justify-center gap-y-[10px] h-[400px] xl:mt-32 mt-14">
+            <HiOutlineShoppingBag className="w-[100px] h-[100px] text-black/20" />
+            <p className="text-black/50 font-satoshi text-[16px] md:text-[20px]">
+              Your Cart is Empty!
+            </p>
+            <Link href="/casual">
+              <button className="bg-black hover:bg-black/80 text-white px-6 flex justify-center items-center text-[14px] mt-4 font-satoshi rounded-[50px] w-[200px] h-[50px]">
+                Start Shipping
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <div className="">
+            <div className="border-b-[1px] border-black/10 w-full top-[100px] xxl:w-[1300px] xl:w-[1170px] lg:left-[50px] md:mx-auto absolute lg:top-[130px] left-0 lg:w-[920px]"></div>
+            <div className="flex justify-start items-start w-full px-7 xl:px-16 mt-[130px]">
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink>
+                      <Link href="/" className="font-satoshi">
+                        Casual
+                      </Link>
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>
+                      <Link href="/cart" className="font-satoshi">
+                        Cart
+                      </Link>
+                    </BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
             </div>
-            <div className="md:w-[527px] xxl:w-[527px] xl:w-[10px] md:h-[124px] flex justify-between">
-              <div className="md:w-[227px] md:h-[118px] flex justify-between ">
-                <div className="md:w-[227px] md:h-[71px] w-[217px] h-[57px] flex flex-col gap-[2px] relative left-[100px] md:static">
-                  <h1 className="md:text-[20px] text-[16px] md:font-bold font-medium text-black font-satoshiBold whitespace-nowrap ">
-                    Gradient Graphic T-shirt
-                  </h1>
-                  <div className="w-[78px] h-[42px] flex flex-col gap-[4px]">
-                    <p className="md:text-[14px] text-[12px] font-satoshi text-black font-normal ">
-                      Size:{" "}
-                      <span className="text-black opacity-50 font-satoshi">
-                        {" "}
-                        Large
-                      </span>
-                    </p>
+            <h1 className="md:text-[40px] font-bold text-center mb-6 absolute lg:top-[204px] xl:left-[30px] xxl:left-[100px] font-integralCf left-[16px] text-[32px] top-[140px] lg:left-[50px]">
+              Your Cart
+            </h1>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-[10px] w-full mx-auto ">
+              <div className="flex justify-center items-center w-full mx-auto ">
+                <div className="xl:w-[715px] lg:w-[580px] md:h-[708px] lg:h-[500px] h-[389px] xxl:h-[508px] border border-black/10 rounded-[20px] lg:top-[276px] md:top-[220px] top-[200px] absolute xl:left-[30px] left-0 xxl:left-[100px] flex-col gap-[24px] md:px-[24px] w-full flex mx-auto md:w-full lg:left-[20px] overflow-y-auto overflow-x-hidden">
+                  <div className="xl:w-[667px] lg:w-[670px] w-full h-[124px] ">
+                    {cart.map((product, index) => (
+                      <div
+                        className="flex md:justify-center xl:justify-start justify-start md:gap-[16px] gap-[17px] items-center border-b-[1px] border-black/10 w-full lg:w-[520px] xl:w-[650px] py-3 md:py-7 px-3 lg:px-8 xl:px-0"
+                        key={index}
+                      >
+                        <Image
+                          height={124}
+                          width={124}
+                          className="md:h-[124px] md:w-[124px] sm:w-[99px] sm:h-[99px] w-[80px] h-[90px] object-cover rounded-[8px]"
+                          src={product.image}
+                          alt={product.name}
+                        />
+                        <div className="flex justify-between items-center lg:w-[640px] md:w-[700px] md:px-0 w-full ">
+                          <div className="flex flex-col h-[118px] justify-between">
+                            <div className="flex flex-col">
+                              <h2 className="text-black font-satoshi sm:text-[16px] text-[14px] md:text-[20px] font-bold whitespace-nowrap lg:w-[100px]">
+                                {product.title}
+                              </h2>
+                              <p className=" text-[12px] md:text-[14px] font-satoshi font-normal text-black">
+                                Size:{" "}
+                                <span className="text-black/60">
+                                  {product.size || "N/A"}
+                                </span>
+                              </p>
+                              <p className=" text-[12px] md:text-[14px] font-satoshi font-normal text-black">
+                                Color:{" "}
+                                <span className="text-black/60">
+                                  {product.color || "N/A"}
+                                </span>
+                              </p>
+                            </div>
+                            <p className=" text-[20px] md:text-[24px] font-satoshi font-bold text-black">
+                              ${(product.price * product.quantity).toFixed(2)}
+                            </p>
+                          </div>
+                          <div className="flex justify-between items-end flex-col h-[124px] sm:ml-[-50px] ml-[-70px] md:ml-[150px] md:mr-0 lg:mr-[10px]">
+                            <PiTrashFill
+                              onClick={() => removeFromCart(index)}
+                              className="text-red-500 md:h-[24px] md:w-[24px] h-[20px] w-[20px] cursor-pointer hover:text-red-400 mt-2"
+                            />
+                            <div className="flex justify-center items-center gap-[14px] md:gap-[20px] md:px-5 md:py-2 w-[105px] md:w-[126px] h-[31px] py-[14px] px-[20px] md:h-[44px] bg-BannerBgColor rounded-[62px]">
+                              <IoAddOutline
+                                onClick={() => increaseQuantity(index)}
+                                className="md:h-[20px] md:w-[20px] h-[20px] w-[20px] text-black cursor-pointer"
+                              />
+                              <p className="text-[14px] text-black font-satoshi font-bold ">
+                                {product.quantity}
+                              </p>
+                              <RiSubtractLine
+                                onClick={() => decreaseQuantity(index)}
+                                className="md:h-[20px] md:w-[20px] h-[20px] w-[20px] text-black cursor-pointer"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="w-[78px] h-[42px] flex flex-col gap-[4px]">
-                    <p className="md:text-[14px] text-[12px] font-satoshi text-black font-normal whitespace-nowrap">
-                      Color:{" "}
-                      <span className="text-black opacity-50 font-satoshi">
-                        {" "}
-                        White
-                      </span>
-                    </p>
-                  </div>
-                  <h2 className="md:text-[24px] text-[20px] font-satoshi font-bold text-black mt-2">
-                    $145
+                </div>
+                <div className="xxl:w-[505px] xl:w-[480px] lg:w-[390px] w-full mx-auto md:h-[480px] h-[390px] xl:h-[468px] xxl:h-[458px] xl:left-[760px] xxl:left-[835px] absolute lg:top-[276px] md:top-[940px] top-[600px] rounded-[20px] border border-black/10 md:py-[20px] md:px-[24px] px-[20px] py-[20px] flex flex-col gap-[24px] lg:left-[610px]">
+                  <h2 className="text-black font-satoshi md:text-[24px] text-[20px] font-bold  ">
+                    Order Summary
                   </h2>
-                </div>
-                <Image
-                  src="/Frame (4).svg"
-                  alt="delete"
-                  height={24}
-                  width={24}
-                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[280px] xxl:left-[280px] xl:left-[190px] relative left-[105px] top-[3px]"
-                />
-              </div>
-              <div className="md:w-[225px] md:h-[124px] flex justify-between">
-                <div className="md:w-[126px] md:h-[44px] md:py-[12px] md:px-[20px] rounded-[62px] bg-bgLightGrayColor relative md:left-[110px] xxl:left-[110px] xl:left-[85px] md:top-[83px] flex md:gap-[20px] h-[31px] w-[105px] py-[14px] px-[20px] top-[75px] justify-center items-center gap-[12px]">
-                  <Image
-                    src="/decrease.svg"
-                    alt="decrease"
-                    height={20}
-                    width={20}
-                    onClick={handleDecrement} 
-                    className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] cursor-pointer "
-                  />
-                  <span className="text-[14px] font-satoshi text-black font-bold">
-                  {count}
-                  </span>
-                  <Image
-                    src="/increase.svg"
-                    alt="increase"
-                    height={20}
-                    width={20}
-                    onClick={handleIncrement} 
-                    className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] cursor-pointer "
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="md:w-[667px] xxl:w-[667px] xl:w-[570px] w-[330px]  border-b-[1px] border-black/10"></div>
-          <div className="md:w-[667px]  md:h-[124px] flex gap-[16px] ">
-            <div className="md:w-[124px] md:h-[124px] rounded-[8.66px] bg-bgLightGrayColor">
-              <Image
-                src="/new-arrival3.svg"
-                alt="shirt"
-                height={187}
-                width={125}
-                className="md:h-[124px] md:w-[124px] h-[99px] w-[99px]  absolute rounded-[8.66px]"
-              />
-            </div>
-            <div className="md:w-[527px] md:h-[124px] w-[330px] h-[99px] flex justify-between">
-              <div className="md:w-[230px] md:h-[118px] flex justify-between ">
-                <div className="md:w-[227px] md:h-[71px] flex flex-col gap-[2px] relative left-[100px] md:static">
-                  <h1 className="md:text-[20px] text-[14px] md:font-bold font-medium text-black whitespace-nowrap font-satoshiBold">
-                    CHECKERED SHIRT
-                  </h1>
-                  <div className="w-[78px] h-[42px] flex flex-col gap-[4px]">
-                    <p className="md:text-[14px] text-[12px] font-satoshi text-black font-normal whitespace-nowrap">
-                      Size:{" "}
-                      <span className="text-black opacity-50 font-satoshi">
-                        {" "}
-                        Medium
-                      </span>
-                    </p>
+                  <div className="flex flex-col gap-[20px]">
+                    <div className="flex justify-between items-center w-full ">
+                      <p className="text-black/60 font-normal md:text-[20px] text-[16px] font-satoshi">
+                        Subtotal
+                      </p>
+                      <p className="text-black font-satoshi md:text-[20px] text-[16px] font-bold">
+                        ${subtotal.toFixed(2)}
+                      </p>
+                    </div>
+                    <div className="flex justify-between items-center w-full ">
+                      <p className="text-black/60 font-normal md:text-[20px] text-[16px] font-satoshi">
+                        Discount (-20%)
+                      </p>
+                      <p className="text-red-500 font-satoshi md:text-[20px] text-[16px] font-bold">
+                        -${(discount || 0).toFixed(2)}
+                      </p>
+                    </div>
+                    <div className="flex justify-between items-center w-full ">
+                      <p className="text-black/60 font-normal md:text-[20px] text-[16px] font-satoshi">
+                        Delivery Fee
+                      </p>
+                      <p className="text-black font-satoshi md:text-[20px] text-[16px] font-bold">
+                        ${deliveryFee.toFixed(2)}
+                      </p>
+                    </div>
+                    <div className="border-b-[1px] border-black/10 w-full"></div>
+                    <div className="flex justify-between items-center w-full ">
+                      <p className="text-black font-normal md:text-[20px] text-[16px] font-satoshi">
+                        Total
+                      </p>
+                      <p className="text-black font-satoshi text-[20px] md:text-[24px] font-bold">
+                        ${total.toFixed(2)}
+                      </p>
+                    </div>
                   </div>
-                  <div className="w-[78px] h-[42px] flex flex-col gap-[4px]">
-                    <p className="md:text-[14px] text-[12px] font-satoshi text-black font-normal whitespace-nowrap">
-                      Color: <span className="text-black opacity-50"> red</span>
-                    </p>
+                  <div className="flex justify-between gap-[10px] items-center w-full">
+                    <button className="lg:w-[300px] w-full h-[48px] bg-[#F0F0F0] rounded-[62px] py-[12px] px-[16px] flex gap-[16px]">
+                      <Image
+                        src="/promo-code.svg"
+                        alt=""
+                        height={24}
+                        width={24}
+                        className="md:h-[24px] md:w-[24px] h-[20px] w-[20px]"
+                      />
+                      <input
+                        value={promoCode}
+                        onChange={(e) => setPromoCode(e.target.value)}
+                        placeholder="Add promo code"
+                        className="font-satoshi text-[14px] md:text-[16px] font-normal text-black/40 border-none outline-none bg-[#F0F0F0] w-full"
+                      />
+                    </button>
+                    <button
+                      onClick={applyPromoCode}
+                      className="h-[48px] w-[119px] rounded-[62px] bg-black text-white py-[12px] px-[16px] text-[16px] font-satoshi font-medium flex justify-center items-center"
+                    >
+                      Apply
+                    </button>
                   </div>
-                  <h2 className="md:text-[24px] text-[20px] font-satoshi font-bold text-black mt-2">
-                    $180
-                  </h2>
-                </div>
-                <Image
-                  src="/Frame (4).svg"
-                  alt="delete"
-                  height={24}
-                  width={24}
-                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[300px] xxl:left-[300px] xl:left-[210px] relative
-                 top-[3px] left-[175px]"
-                />
-              </div>
-              <div className="w-[225px] h-[124px] flex justify-between">
-                <div className="md:w-[126px] md:h-[44px] md:py-[12px] md:px-[20px] rounded-[62px] bg-bgLightGrayColor relative md:left-[110px] xxl:left-[110px] xl:left-[10px] md:top-[83px] flex md:gap-[20px] h-[31px] w-[105px] py-[14px] px-[20px] top-[75px] justify-center items-center gap-[12px] left-[84px]">
-                  <Image
-                    src="/decrease.svg"
-                    alt="decrease"
-                    height={20}
-                    width={20}
-                    className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] "
-                  />
-                  <span className="text-[14px] text-black font-bold font-satoshi">
-                    1
-                  </span>
-                  <Image
-                    src="/increase.svg"
-                    alt="increase"
-                    height={20}
-                    width={20}
-                    onClick={handleIncrement} 
-                    className="md:h-[20px] md:w-[20px] h-[16px] w-[16px]"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="md:w-[667px] xxl:w-[667px] xl:w-[570px] w-[330px] border-b-[1px] border-black/10"></div>
-          <div className="md:w-[667px]  md:h-[124px] flex gap-[16px] ">
-            <div className="md:w-[124px] md:h-[124px] h-[99px] w-[99px] rounded-[8.66px] bg-bgLightGrayColor">
-              <Image
-                src="/new-arrival2.svg"
-                alt="shirt"
-                height={187}
-                width={125}
-                className="md:h-[124px] md:w-[124px] h-[99px] w-[99px] absolute rounded-[8.66px]"
-              />
-            </div>
-            <div className="md:w-[527px] md:h-[124px] flex justify-between">
-              <div className="md:w-[225px] md:h-[118px] flex justify-between ">
-                <div className="md:w-[225px] md:h-[71px] flex flex-col gap-[2px] relative left-[100px]  md:left-[160px] md:absolute">
-                  <h1 className="md:text-[20px] md:font-bold font-medium text-[14px] text-black font-satoshiBold   whitespace-nowrap">
-                    SKINNY FIT JEANS
-                  </h1>
-                  <div className="md:w-[78px] md:h-[42px] flex flex-col gap-[4px]">
-                    <p className="md:text-[14px] text-[12px] font-satoshi text-black font-normal ">
-                      Size:{" "}
-                      <span className="text-black opacity-50 font-satoshi">
-                        {" "}
-                        Large
-                      </span>
-                    </p>
+                  <div onClick={handleOpenModal}>
+                    <button className="w-full h-[60px] py-[16px] bg-black px-[54px] rounded-[62px] flex justify-center gap-[10px] items-center">
+                      <p className="font-satoshi text-[16px] text-white font-medium">
+                        Go to Checkout
+                      </p>
+                      <Image
+                        src="/arrowLeft.svg"
+                        alt="right-arrow"
+                        height={24}
+                        width={24}
+                      />
+                    </button>
                   </div>
-                  <div className="md:w-[78px] md:h-[42px] flex flex-col gap-[4px]">
-                    <p className="md:text-[14px] text-[12px] font-satoshi text-black font-normal whitespace-nowrap">
-                      Color:{" "}
-                      <span className="text-black opacity-50 font-satoshi">
-                        {" "}
-                        blue
-                      </span>
-                    </p>
-                  </div>
-                  <h2 className="md:text-[24px] text-[20px] font-satoshi font-bold text-black mt-2">
-                    $240
-                  </h2>
-                </div>
-                <Image
-                  src="/Frame (4).svg"
-                  alt="delete"
-                  height={24}
-                  width={24}
-                  className="h-[16px] w-[16px] md:w-[24px] md:h-[24px] md:left-[510px] xxl:left-[510px] xl:left-[415px] relative
-                 top-[3px] left-[180px] "
-                />
-              </div>
-              <div className="w-[210px] h-[124px] flex justify-between">
-                <div className="md:w-[126px] md:h-[44px] md:py-[12px] md:px-[20px] rounded-[62px] bg-bgLightGrayColor relative md:left-[96px] xxl:left-[95px] xl:left-[-7px] md:top-[80px] flex md:gap-[20px] h-[31px] w-[105px] py-[14px] px-[20px] top-[70px] justify-center items-center gap-[12px] left-[80px] ">
-                  <Image
-                    src="/decrease.svg"
-                    alt="decrease"
-                    height={20}
-                    width={20}
-                    className="md:h-[20px] md:w-[20px] h-[16px] w-[16px] "
-                  />
-                  <span className="text-[14px] text-black font-satoshi font-bold">
-                    1
-                  </span>
-                  <Image
-                    src="/increase.svg"
-                    alt="increase"
-                    height={20}
-                    width={20}
-                    className="md:h-[20px] md:w-[20px] h-[16px] w-[16px]"
-                  />
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          data-aos="flip-left"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="2000"
-          className="md:w-[505px] xxl:w-[505px] xl:w-[430px] md:h-[458px] absolute md:top-[276px] md:left-[835px] xxl:left-[835px] xl:left-[730px] md:py-[20px] md:px-[24px] rounded-[20px] border-[1px] border-black/10 flex flex-col md:gap-[24px] w-[358px] h-[390px] top-[612px] left-[16px] p-[20px] gap-[16px]"
-        >
-          <h2 className="font-satoshiBold md:text-[24px] text-[20px] font-bold text-black">
-            Order Summary
-          </h2>
-          <div className="md:w-[457px] md:h-[193px] flex flex-col gap-[20px] w-[313px] h-[173px]  ">
-            <div className="md:w-[457px] xxl:w-[457px] xl:w-[380px] md:h-[27px] flex justify-between">
-              <p className="md:text-[20px]  text-[16px] font-normal font-satoshi text-black/60">
-                Subtotal
-              </p>
-              <p className="md:text-[20px] text-[16px] font-bold font-satoshi text-black">
-                $565
-              </p>
-            </div>
-            <div className="md:w-[457px] xxl:w-[457px] xl:w-[380px]  md:h-[27px] flex justify-between">
-              <p className="md:text-[20px]  text-[16px] font-normal font-satoshi text-black/60">
-                Discount (-20%)
-              </p>
-              <p className="md:text-[20px] font-bold text-[16px] font-satoshi text-redTextOfferColor">
-                -$113
-              </p>
-            </div>
-            <div className="md:w-[457px] xxl:w-[457px] xl:w-[380px]  md:h-[27px] flex justify-between">
-              <p className="md:text-[20px] text-[16px] font-normal font-satoshi text-black/60">
-                Delivery Fee
-              </p>
-              <p className="md:text-[20px] font-bold font-satoshi text-black">
-                $15
-              </p>
-            </div>
-            <div className="md:w-[457px] xxl:w-[457px] xl:w-[380px] border-b-[1px] border-black/10"></div>
-            <div className="md:w-[457px] xxl:w-[457px] xl:w-[380px]  md:h-[27px] flex justify-between">
-              <p className="md:text-[20px] font-normal font-satoshiBold text-black">
-                Total
-              </p>
-              <p className="md:text-[24px] font-bold  text-[20px] font-satoshi text-black">
-                $467
-              </p>
-            </div>
-          </div>
-          <div className="md:w-[457px]  md:h-[48px] flex gap-[12px]">
-            <div className="md:w-[326px] xxl:w-[326px] xl:w-[248px] h-[48px] w-[218px] py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor flex gap-[12px]">
-              <Image
-                src="/tag-icon.svg"
-                alt="tag-icon"
-                height={24}
-                width={24}
-                className="md:h-[24px] md:w-[24px] h-[20px] w-[20px]"
-              />
-              <p className="md:text-[16px] text-[14px] font-satoshi font-normal text-black/40">
-                Add promo code
-              </p>
-            </div>
-            <button className="py-[12px] px-[16px] bg-black text-white rounded-[62px] font-satoshi md:text-[16px] text-[14px] font-medium md:w-[119px] h-[48px] w-[88px]">
-              Apply
-            </button>
-          </div>
-          <div className="md:w-[457px] xxl:w-[457px] xl:w-[380px] md:h-[60px] md:py-[16px] md:px-[56px] px-[54px] py-[14px] rounded-[62px] bg-black text-white flex items-center gap-[12px] justify-center">
-            <span className="md:text-[16px] text-[14px] font-satoshi font-medium">
-              Go to Checkout
-            </span>
-            <Image
-              src="/arrow-down-bold 1.svg"
-              alt="right-arrow"
-              height={24}
-              width={24}
-              className="md:h-[24px] md:w-[24px] h-[20px] w-[20px]"
-            />
-          </div>
-        </div>
-      </section>
-
-      <div className="absolute md:top-[954px] top-[1187px]">
+        )}
+      </div>
+      <div className="relative top-[1200px] md:top-[1000px]">
         <Footer />
       </div>
-    </>
+      <div className="flex justify-between lg:items-center mt-6 lg:flex-row flex-col lg:gap-0 gap-4">
+        {/* <SignedOut>
+          <SignInButton mode="modal">
+            <button className="px-6 py-2 bg-darkPrimary text-white rounded-md hover:bg-navbarColor">
+              Sign in to Checkout
+            </button>
+          </SignInButton>
+        </SignedOut> */}
+
+        {/* <SignedIn> */}
+        {/* <button
+            onClick={handleOpenModal}
+            className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor mt-28"
+          >
+            Go to checkout
+          </button> */}
+        {/* </SignedIn> */}
+        {isModalOpen && (
+          <CheckoutModal
+            isOpen={setIsModalOpen}
+            onSubmit={(formData) => {
+              console.log("Order Submitted", formData);
+              setTimeout(() => {
+                setIsModalOpen(false);
+                setOrderSuccess(false);
+              }, 5000);
+            }}
+            cartItems={cart}
+            closeModal={handleCloseModal}
+            orderSuccess={setOrderSuccess}
+            setCartItems={setCart}
+            calculateSubtotal={subtotal}
+          />
+        )}
+        {/* <button className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor">
+          <Link href="/products">Continue Shopping</Link>
+        </button> */}
+      </div>
+    </section>
   );
 };
 
-export default Cart;
+export default CartPage;
