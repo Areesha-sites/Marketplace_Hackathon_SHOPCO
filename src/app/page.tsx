@@ -71,8 +71,8 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoaderVisible(false); // Hide loader after 4 seconds
-    }, 4000); // Adjust loader duration here
+      setIsLoaderVisible(false);
+    }, 4000); 
 
     return () => clearTimeout(timer);
   }, []);
@@ -85,13 +85,13 @@ export default function Home() {
       {!isLoaderVisible && (
         <>
           <Banner />
-          <NewArrivalSection />
-          <TopSelling />
-          <DressStyleSection />
-          <HappyCustomerSection />
+           <NewArrivalSection />
+         <TopSelling />
+           <DressStyleSection />
+          {/*<HappyCustomerSection />
          <div className="absolute top-[5000px]">
          <Footer />
-         </div>
+         </div> */}
         </>
       )}
     </div>

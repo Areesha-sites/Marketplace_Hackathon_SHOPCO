@@ -377,8 +377,12 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
                   className="md:h-[24px] md:w-[24px] h-[16px] w-[16px] cursor-pointer"
                 />
               </div>
-              {/* <button
+              <button
                 onClick={() => {
+                  if (!isSignedIn) {
+                    window.location.href = "/sign-in";
+                    return;
+                  }
                   if (!selectedSize || !selectedColor) {
                     alert(
                       "Please select a size and color before adding to cart."
@@ -390,49 +394,33 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
                 className="md:w-[400px] xxl:w-[400px] xl:w-[300px] md:h-[52px] h-[44px] py-[16px] sm:px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center flex justify-center font-satoshi w-[180px] sm:w-[236px] whitespace-nowrap"
               >
                 Add to Cart
-              </button> */}
-              <button
-      onClick={() => {
-        if (!isSignedIn) {
-          window.location.href = "/sign-in"; // User ko Sign-In page pr redirect karo
-          return;
-        }
-        if (!selectedSize || !selectedColor) {
-          alert("Please select a size and color before adding to cart.");
-          return;
-        }
-        addToCart(product, selectedSize, selectedColor);
-      }}
-      className="md:w-[400px] xxl:w-[400px] xl:w-[300px] md:h-[52px] h-[44px] py-[16px] sm:px-[54px] rounded-[62px] bg-black text-white text-[14px] md:text-[16px] font-medium items-center flex justify-center font-satoshi w-[180px] sm:w-[236px] whitespace-nowrap"
-    >
-      Add to Cart
-    </button>
+              </button>
             </div>
           </div>
         </div>
         <div className="mt-[40px]">
           <ProductDetailsTab />
         </div>
-        {/* <h1 className="md:w-[579px] md:h-[58px] font-black text-black md:text-[48px] text-[32px] w-[250px] leading-[36px] mx-auto text-center uppercase tracking-wider font-integralCf md:whitespace-nowrap mt-[100px]">
+        <h1 className="md:w-[579px] md:h-[58px] font-black text-black md:text-[48px] text-[32px] w-[250px] leading-[36px] mx-auto text-center uppercase tracking-wider font-integralCf md:whitespace-nowrap mt-[100px]">
           You might also like
-        </h1> */}
-        {/* <div className="">
+        </h1>
+        <div className="">
           <ProductDetailsCardList />
-        </div> */}
-        {/* <div className="absolute xl:top-[2070px] xxl:top-[2872px] top-[2800px]">
+        </div>
+        <div className="absolute xl:top-[2870px] xxl:top-[2872px] top-[2800px]">
           <Footer />
-        </div> */}
+        </div>
         <Sheet open={showCart} onOpenChange={setShowCart}>
           <SheetTrigger asChild>
             <Button
               variant="outline"
-              className="fixed bottom-6 right-6 font-satoshi bg-black text-white p-4 rounded-full flex items-center justify-center text-lg cursor-pointer w-[50px] h-[50px] hover:text-white hover:bg-black"
+              className="fixed bottom-20 right-5 font-satoshi bg-black text-white p-4 rounded-full flex items-center justify-center text-lg cursor-pointer w-[55px] h-[55px] hover:text-white hover:bg-black"
               onClick={() => setShowCart(!showCart)}
             >
               <div className="w-[15px] h-[15px] flex justify-center items-center bg-white text-black rounded-full text-[10px] absolute top-[8px] left-[25px]">
                 {cart.length}
               </div>
-              <FaCartArrowDown className="text-white h-7 w-7 ml-[-10px]" />
+              <FaCartArrowDown className="text-white h-8 w-8 ml-[-10px]" />
             </Button>
           </SheetTrigger>
           <SheetContent className="overflow-y-auto h-[100vh] max-w-[100vw] w-full px-4 py-6">

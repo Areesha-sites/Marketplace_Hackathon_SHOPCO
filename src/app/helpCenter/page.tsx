@@ -52,9 +52,11 @@ const HelpCenter = () => {
             for personalized support.
           </p>
           <div className="flex justify-center items-center gap-x-[10px] mt-3">
+            <Link href="/liveChat">
             <button className="bg-black text-white w-[120px] h-[30px] rounded-[50px] font-satoshi text-[14px] font-medium flex justify-center items-center transition-all duration-300 hover:bg-white hover:border-[1px] hover:border-black/25 hover:text-black">
               Chatbot
             </button>
+            </Link>
             <button className="bg-white text-black w-[120px] h-[30px] rounded-[50px] font-satoshi text-[14px] font-medium flex justify-center items-center transition-all duration-300 hover:bg-black border-[1px] border-black/25 hover:text-white">
               Request Send
             </button>

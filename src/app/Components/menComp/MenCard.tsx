@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import MenGrid from "./MenGrid";
@@ -8,6 +8,7 @@ import SideBar from "../SideBar";
 import ComparisonTable from "../ComparisonTable";
 import Image from "next/image";
 import { Product } from "../../../../types/ComponentsTypes";
+import { toast } from "sonner"; 
 const fetchProducts = async (
   page: number,
   pageSize: number,
@@ -45,19 +46,6 @@ const MenCards = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [activeColor, setActiveColor] = useState<number | null>(null);
   const [sortOrder, setSortOrder] = useState<string>("");
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  // const [goal, setGoal] = React.useState(350);
-  // function onClick(adjustment: number) {
-  //   setGoal(Math.max(200, Math.min(400, goal + adjustment)));
-  // }
-  // const handleToggleSidebar = () => {
-  //   setIsSidebarOpen(!isSidebarOpen);
-  // };
-
-  // const handleCloseSidebar = () => {
-  //   setIsSidebarOpen(false);
-  // };
-  // const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
   const pageSize = 9;
   useEffect(() => {
     const loadProducts = async () => {
@@ -83,6 +71,9 @@ const MenCards = () => {
   const handleSort = (order: string) => {
     setSortOrder(order);
     setCurrentPage(1);
+    toast.success(`Sorting applied: ${order}`, {
+      description: "Product list updated successfully.",
+    });
   };
   const [isOpen, setIsOpen] = useState(false);
   const handleMouseEnter = () => setIsOpen(true);
@@ -107,44 +98,45 @@ const MenCards = () => {
       handlePageChange(currentPage + 1);
     }
   };
-   const [comparisonList, setComparisonList] = useState<Product[]>([]);
-   const [showCompareDialog, setShowCompareDialog] = useState(false);
-   const addToCompare = (product: Product) => {
-     if (comparisonList.length === 2) {
-       if (
-         window.confirm(
-           "You can only compare two items at a time. Do you want to clear the comparison list?"
-         )
-       ) {
-         setComparisonList([]);
-       }
-       return;
-     }
-     const isAlreadyAdded = comparisonList.some(
-       (item) => item._id === product._id
-     );
-     if (!isAlreadyAdded) {
-       setComparisonList([...comparisonList, product]);
-       if (comparisonList.length === 0) {
-         alert(
-           "First product selected successfully. Now select the second product."
-         );
-       } else if (comparisonList.length === 1) {
-         alert("Second product selected successfully.");
-         setShowCompareDialog(true);
-       }
-     } else {
-       alert("This item is already in the comparison list.");
-     }
-   };
-   const removeCompareItem = (productId: string) => {
-     const updatedList = comparisonList.filter((item) => item._id !== productId);
-     setComparisonList(updatedList);
-     if (updatedList.length === 0) {
-       setShowCompareDialog(false);
-     }
-     alert("Item removed from comparison list.");
-   };
+  const [comparisonList, setComparisonList] = useState<Product[]>([]);
+  const [showCompareDialog, setShowCompareDialog] = useState(false);
+  const addToCompare = (product: Product) => {
+    if (comparisonList.length === 2) {
+      toast.warning("You can only compare two items at a time.", {
+        description: "Do you want to clear the comparison list?",
+        action: {
+          label: "Yes, Clear",
+          onClick: () => setComparisonList([]),
+        },
+      });
+      return;
+    }
+    const isAlreadyAdded = comparisonList.some(
+      (item) => item._id === product._id
+    );  
+    if (!isAlreadyAdded) {
+      setComparisonList([...comparisonList, product]);
+      if (comparisonList.length === 0) {
+        toast.success("First product selected successfully.", {
+          description: "Now select the second product.",
+        });
+      } else if (comparisonList.length === 1) {
+        toast.success("Second product selected successfully.");
+        setShowCompareDialog(true);
+      }
+    } else {
+      toast.error("This item is already in the comparison list.");
+    }
+  };
+  const removeCompareItem = (productId: string) => {
+    const updatedList = comparisonList.filter((item) => item._id !== productId);
+    setComparisonList(updatedList);
+  
+    if (updatedList.length === 0) {
+      setShowCompareDialog(false);
+    }
+    toast.info("Item removed from comparison list.");
+  };
   return (
     <div>
       <div className="absolute left-[-370px] top-[-270px] xl:left-0 xl:top-0 xxl:left-[-420px]">
@@ -180,7 +172,7 @@ const MenCards = () => {
               </div>
             </div>
             {isOpen && (
-              <div className="absolute top-[20px] md:top-[-15px] md:left-[630px] lg:left-[500px] xl:left-[750px] left-[160px] bg-white border border-gray-200 shadow-md rounded-md w-[150px] z-50 sm:left-[220px] sm:top-[30px]">
+              <div className="absolute top-[20px] md:top-[-15px] md:left-[630px] lg:left-[750px] left-[160px] bg-white border border-gray-200 shadow-md rounded-md w-[150px] z-50 sm:left-[220px] sm:top-[30px]">
                 <ul className="text-black text-[14px] font-satoshi">
                   <li
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-satoshi hover:text-blue-500"

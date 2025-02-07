@@ -128,6 +128,14 @@ export default function SubscriptionComponent() {
           },
         },
       });
+
+      // Display the subscription details for a few seconds before resetting the form
+      setTimeout(() => {
+        setShowSuccessAlert(false);
+        setSubscription({ name: "", email: "", plan: "monthly" });
+        setShowForm(true);
+      }, 3000); // Adjust the time as needed (3000ms = 3 seconds)
+
     } catch (error) {
       console.error("Sanity Error:", error);
       setStatus("Error subscribing. Try again.");
@@ -271,6 +279,12 @@ export default function SubscriptionComponent() {
               {loading ? "Subscribing..." : "Subscribe Yearly"}
             </button>
           </div>
+        </div>
+      )}
+
+      {showSuccessAlert && (
+        <div className="mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+          <p>Subscription successful! Your details will be displayed for a few seconds.</p>
         </div>
       )}
 

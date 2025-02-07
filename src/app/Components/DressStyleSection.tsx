@@ -3,11 +3,11 @@ import Image from "next/image";
 const DressStyleSection = () => {
   return (
     <>
-      <section className="md:w-[1239px] xxl:w-[1239px] xl:w-[1180px] bg-bgLightGrayColor xl:h-[846px] w-[358px] h-[995px] absolute md:top-[2417px] xl:top-[2317px] md:left-[100px] xxl:left-[100px] xl:left-[50px] md:rounded-[40px] rounded-[20px] top-[2123px] left-[18px] lg:left-[16px] lg:w-[990px] lg:h-[720px]">
-        <h1 className="lg:text-[48px] text-[32px] leading-[36px] w-[286px] md:w-[654px] font-extrabold text-black relative top-[40px] text-center uppercase left-[36px] xl:left-[276px] lg:top-[70px] tracking-wider font-integralCf md:whitespace-nowrap lg:left-[150px]">
+      <section className="md:w-[1239px] xxl:w-[1239px] xl:w-[1180px] bg-bgLightGrayColor xl:h-[846px] w-[300px] sm:w-[358px] h-[995px] absolute md:top-[2417px] xl:top-[2317px] md:left-[100px] xxl:left-[100px] xl:left-[50px] md:rounded-[40px] rounded-[20px] top-[2223px] left-[18px] lg:left-[16px] lg:w-[990px] lg:h-[720px]">
+        <h1 className="lg:text-[48px] text-[32px] leading-[36px] w-[286px] md:w-[654px] font-extrabold text-black relative top-[40px] text-center uppercase sm:left-[36px] xl:left-[276px] lg:top-[70px] tracking-wider font-integralCf md:whitespace-nowrap lg:left-[150px]">
           BROWSE BY dress STYLE
         </h1>
-        <div className="xl:w-[407px] xl:h-[289px] w-[310px] h-[190px] relative top-[80px] left-[24px] lg:top-[135px] md:left-[64px] xxl:left-[64px] xl:left-[30px] rounded-[20px] bg-white lg:w-[360px] lg:h-[250px] ">
+        <div className="xl:w-[407px] xl:h-[289px] w-[310px] h-[190px] relative top-[80px] sm:left-[24px] lg:top-[135px] md:left-[64px] xxl:left-[64px] xl:left-[30px] rounded-[20px] bg-white lg:w-[360px] lg:h-[250px] ">
           <h1 className="md:text-[36px] text-[24px] left-[24px] font-bold font-satoshiBold text-black relative z-30 top-[25px] md:left-[36px]">
             Casual
           </h1>

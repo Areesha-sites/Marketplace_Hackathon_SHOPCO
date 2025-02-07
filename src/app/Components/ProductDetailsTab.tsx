@@ -11,6 +11,7 @@ import {   Popover,
   PopoverTrigger, } from "@radix-ui/react-popover";
 import Link from "next/link";
 import SubscriptionComponent from "./Subscription";
+import Faqs from "./Faqs";
 // import { Minus, Plus } from "lucide-react";
 // import { Bar, BarChart, ResponsiveContainer } from "recharts";
 // import {
@@ -327,7 +328,7 @@ const ProductDetailsTab = () => {
         )}
         {activeTab === "tab3" && (
           <div id="content-tab3" role="tabpanel" aria-labelledby="tab3">
-            <div className="">{/* <Faqs/> */}</div>
+            <div className=""><Faqs/></div>
           </div>
         )}
       </div>

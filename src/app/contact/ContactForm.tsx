@@ -1,22 +1,42 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "sonner";
 import { GrFacebookOption } from "react-icons/gr";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
-import { useState } from "react";
-import { ContactFormData } from "../../../types/ComponentsTypes";
-import { FormEvent } from "react";
 const ContactForm = () => {
-  const [formData, setFormData] = useState<ContactFormData>({
+  const [formData, setFormData] = useState({
     name: "",
     fullName: "",
     email: "",
     phoneNumber: "",
     message: "",
   });
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Message sent!");
+    try {
+      const response = await fetch("/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        setFormData({
+          name: "",
+          fullName: "",
+          email: "",
+          phoneNumber: "",
+          message: "",
+        });
+        toast.success("Message sent successfully!", {
+          description: "We will get back to you soon.",
+        });
+      } else {
+        toast.error("Failed to send message.");
+      }
+    } catch (error) {
+      toast.error("Something went wrong.");
+    }
   };
   return (
     <>
@@ -61,6 +81,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
+                required
               />
               <input
                 type="text"
@@ -70,6 +91,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, fullName: e.target.value })
                 }
+                required
               />
             </div>
             <div className="flex md:flex-row flex-col gap-4">
@@ -81,6 +103,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
+                required
               />
               <input
                 type="text"
@@ -100,6 +123,7 @@ const ContactForm = () => {
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
               }
+              required
             ></textarea>
             <button
               type="submit"

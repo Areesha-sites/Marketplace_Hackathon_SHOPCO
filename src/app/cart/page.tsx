@@ -25,7 +25,6 @@ const CheckoutModal = dynamic(
     ssr: false,
   }
 );
-
 const CartPage = () => {
   const [validPromo, setValidPromo] = useState<boolean>(false);
   const [promoCode, setPromoCode] = useState<string>("");
@@ -88,15 +87,12 @@ const CartPage = () => {
     }
     setIsModalOpen(true);
   };
-
   const handleSubmitForm = (formData: any) => {
     console.log(formData);
     localStorage.removeItem("cart");
     setCart([]);
- };
-
+  };
   const handleCloseModal = () => setIsModalOpen(false);
-
   return (
     <section>
       <div className="container mx-auto p-6 px-8">
@@ -264,7 +260,7 @@ const CartPage = () => {
                       Apply
                     </button>
                   </div>
-                  <div  onClick={handleOpenModal}>
+                  <div onClick={handleOpenModal}>
                     <button className="w-full h-[60px] py-[16px] bg-black px-[54px] rounded-[62px] flex justify-center gap-[10px] items-center">
                       <p className="font-satoshi text-[16px] text-white font-medium">
                         Go to Checkout
@@ -286,7 +282,6 @@ const CartPage = () => {
       <div className="relative top-[1200px] md:top-[1000px]">
         <Footer />
       </div>
-
       <div className="flex justify-between lg:items-center mt-6 lg:flex-row flex-col lg:gap-0 gap-4">
         {/* <SignedOut>
           <SignInButton mode="modal">
@@ -297,32 +292,30 @@ const CartPage = () => {
         </SignedOut> */}
 
         {/* <SignedIn> */}
-          {/* <button
+        {/* <button
             onClick={handleOpenModal}
             className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor mt-28"
           >
             Go to checkout
           </button> */}
         {/* </SignedIn> */}
-
         {isModalOpen && (
           <CheckoutModal
             isOpen={setIsModalOpen}
             onSubmit={(formData) => {
               console.log("Order Submitted", formData);
               setTimeout(() => {
-                setIsModalOpen(false); // Close the modal after actions are completed
-                setOrderSuccess(false); // Reset order success status
+                setIsModalOpen(false);
+                setOrderSuccess(false);
               }, 5000);
             }}
             cartItems={cart}
             closeModal={handleCloseModal}
             orderSuccess={setOrderSuccess}
-            setCartItems={setCart} // Pass setCartItems function
+            setCartItems={setCart}
             calculateSubtotal={subtotal}
           />
         )}
-
         {/* <button className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor">
           <Link href="/products">Continue Shopping</Link>
         </button> */}

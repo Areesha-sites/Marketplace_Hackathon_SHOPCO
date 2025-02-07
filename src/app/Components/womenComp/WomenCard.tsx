@@ -8,6 +8,7 @@ import SideBar from "../SideBar";
 import ComparisonTable from "../ComparisonTable";
 import Image from "next/image";
 import { Product } from "../../../../types/ComponentsTypes";
+import { toast } from "sonner"; 
 const fetchProducts = async (
   page: number,
   pageSize: number,
@@ -45,20 +46,6 @@ const WomenCards = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [activeColor, setActiveColor] = useState<number | null>(null);
   const [sortOrder, setSortOrder] = useState<string>("");
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  // const [goal, setGoal] = React.useState(350);
-
-  // function onClick(adjustment: number) {
-  //   setGoal(Math.max(200, Math.min(400, goal + adjustment)));
-  // }
-  // const handleToggleSidebar = () => {
-  //   setIsSidebarOpen(!isSidebarOpen);
-  // };
-
-  // const handleCloseSidebar = () => {
-  //   setIsSidebarOpen(false);
-  // };
-  // const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
   const pageSize = 9;
   useEffect(() => {
     const loadProducts = async () => {
@@ -84,6 +71,9 @@ const WomenCards = () => {
   const handleSort = (order: string) => {
     setSortOrder(order);
     setCurrentPage(1);
+    toast.success(`Sorting applied: ${order}`, {
+      description: "Product list updated successfully.",
+    });
   };
   const [isOpen, setIsOpen] = useState(false);
   const handleMouseEnter = () => setIsOpen(true);
@@ -112,45 +102,41 @@ const WomenCards = () => {
   const [showCompareDialog, setShowCompareDialog] = useState(false);
   const addToCompare = (product: Product) => {
     if (comparisonList.length === 2) {
-      if (
-        window.confirm(
-          "You can only compare two items at a time. Do you want to clear the comparison list?"
-        )
-      ) {
-        setComparisonList([]);
-      }
+      toast.warning("You can only compare two items at a time.", {
+        description: "Do you want to clear the comparison list?",
+        action: {
+          label: "Yes, Clear",
+          onClick: () => setComparisonList([]),
+        },
+      });
       return;
     }
-
     const isAlreadyAdded = comparisonList.some(
       (item) => item._id === product._id
-    );
-
+    );  
     if (!isAlreadyAdded) {
       setComparisonList([...comparisonList, product]);
-
       if (comparisonList.length === 0) {
-        alert(
-          "First product selected successfully. Now select the second product."
-        );
+        toast.success("First product selected successfully.", {
+          description: "Now select the second product.",
+        });
       } else if (comparisonList.length === 1) {
-        alert("Second product selected successfully.");
+        toast.success("Second product selected successfully.");
         setShowCompareDialog(true);
       }
     } else {
-      alert("This item is already in the comparison list.");
+      toast.error("This item is already in the comparison list.");
     }
   };
-
   const removeCompareItem = (productId: string) => {
     const updatedList = comparisonList.filter((item) => item._id !== productId);
     setComparisonList(updatedList);
+  
     if (updatedList.length === 0) {
       setShowCompareDialog(false);
     }
-    alert("Item removed from comparison list.");
+    toast.info("Item removed from comparison list.");
   };
-
   return (
     <div>
       <div className="absolute left-[-370px] top-[-270px] xl:left-0 xl:top-0 xxl:left-[-420px]">

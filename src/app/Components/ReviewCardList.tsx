@@ -1,16 +1,18 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import { client } from "@/sanity/lib/client";
 import Modal from "./Modal";
 import { v4 as uuidv4 } from "uuid";
 import { ReviewCardPropsTypes } from "../../../types/ComponentsTypes";
 import Image from "next/image";
-import {   DropdownMenu,
+import {
+  DropdownMenu,
   DropdownMenuItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger, } from "@/components/ui/dropdown-menu";
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import { CiEdit } from "react-icons/ci";
@@ -70,7 +72,7 @@ const ReviewsCard: React.FC<ReviewCardPropsTypes> = ({
                 Actions
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              
+
               {/* Edit Button */}
               <DropdownMenuItem onClick={onEdit}>
                 <div className="flex justify-between items-center w-full">
@@ -90,7 +92,6 @@ const ReviewsCard: React.FC<ReviewCardPropsTypes> = ({
                   <IoMdTrash className="text-red-500 h-[20px] w-[20px]" />
                 </div>
               </DropdownMenuItem>
-
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -104,10 +105,13 @@ const ReviewsCard: React.FC<ReviewCardPropsTypes> = ({
 };
 
 const ReviewCardList = () => {
-  const [reviewCardsData, setReviewCardsData] = useState<ReviewCardPropsTypes[]>([]);
+  const [reviewCardsData, setReviewCardsData] = useState<
+    ReviewCardPropsTypes[]
+  >([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
-  const [currentReview, setCurrentReview] = useState<ReviewCardPropsTypes | null>(null);
+  const [currentReview, setCurrentReview] =
+    useState<ReviewCardPropsTypes | null>(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -128,13 +132,17 @@ const ReviewCardList = () => {
     };
     fetchReviews();
   }, []);
-  const handleAddReview = async (newReview: { name: string; description: string; date: string }) => {
+  const handleAddReview = async (newReview: {
+    name: string;
+    description: string;
+    date: string;
+  }) => {
     const reviewWithId: ReviewCardPropsTypes = {
       _id: uuidv4(),
       name: newReview.name,
       description: newReview.description,
       date: newReview.date,
-      rating: "/rating.svg", 
+      rating: "/rating.svg",
       correct: "/correct-icon.svg",
       onEdit: () => {},
       onRemove: async () => {},
@@ -142,7 +150,7 @@ const ReviewCardList = () => {
     try {
       await client.create({
         _type: "customerReviews",
-        ...newReview, 
+        ...newReview,
       });
       setReviewCardsData((prevReviews) => [reviewWithId, ...prevReviews]);
     } catch (error) {
@@ -174,7 +182,9 @@ const ReviewCardList = () => {
   const handleRemoveReview = async (id: string) => {
     try {
       await client.delete(id);
-      setReviewCardsData((prevReviews) => prevReviews.filter((review) => review._id !== id));
+      setReviewCardsData((prevReviews) =>
+        prevReviews.filter((review) => review._id !== id)
+      );
     } catch (error) {
       console.error("Error deleting review:", error);
     }
@@ -190,8 +200,8 @@ const ReviewCardList = () => {
               name={item.name}
               description={item.description}
               date={new Date(item.date).toLocaleDateString()}
-              rating={item.rating || "/rating.svg"} 
-              correct={item.correct || "/correct-icon.svg"} 
+              rating={item.rating || "/rating.svg"}
+              correct={item.correct || "/correct-icon.svg"}
               onEdit={() => {
                 setCurrentReview(item);
                 setIsEditModal(true);
@@ -201,10 +211,19 @@ const ReviewCardList = () => {
             />
           ))
         ) : (
-          <div className="font-satoshi">No reviews yet. Be the first to leave a review!</div>
+          <div className="font-satoshi">
+            No reviews yet. Be the first to leave a review!
+          </div>
         )}
       </div>
-
+      <div className="">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="md:w-[166px] sm:w-[113px] md:h-[48px] h-[40px] py-[10px] sm:py-[16px] px-[10px] sm:px-[20px] rounded-[62px] flex justify-center items-center bg-black text-white whitespace-nowrap text-[10px] sm:text-[12px] md:text-[16px] font-medium  font-satoshi absolute right-7 top-[1095px]"
+        >
+          Write a Review
+        </button>
+      </div>
       {isModalOpen && (
         <Modal
           onClose={() => setIsModalOpen(false)}

@@ -37,6 +37,7 @@ const SideBar = ({
     setActiveColor(index);
     console.log("Selected color index:", index); 
   };
+  
   const colors = [
     "#00C12B",
     "#F50606",

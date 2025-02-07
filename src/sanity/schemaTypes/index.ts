@@ -21,6 +21,7 @@ import checkUser from "./checkUser";
 import inventory from "./inventory";
 import products from "./products";
 import shipment from "./shipment";
+import contact from "./contact";
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     casual,
@@ -44,6 +45,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     checkUser,
     inventory,
     products,
-    shipment
+    shipment,
+    contact
   ],
 };

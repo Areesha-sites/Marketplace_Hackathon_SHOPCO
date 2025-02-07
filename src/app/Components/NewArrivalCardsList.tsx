@@ -167,7 +167,7 @@ const NewArrivalCardsList = () => {
         {products.map((item, index) => (
            <Link key={index} href={`/newArrival/${item._id}`} passHref>
            <div
-             className="lg:h-[420px] xxl:h-[420px] xl:h-[380px] h-[180px] flex flex-col justify-between"
+             className="md:h-[420px] xxl:h-[420px] xl:h-[380px] h-[260px] sm:h-[280px] flex flex-col justify-between"
            >
              <div className="lg:w-[295px] lg:h-[298px] md:w-[230px] md:h-[230px] xxl:w-[295px] xxl:h-[298px] xl:w-[285px] xl:h-[278px] sm:w-[172px] sm:h-[174px] w-[140px] h-[104px] rounded-[20px] bg-bannerBg relative flex flex-col gap-[10px]">
              <button
@@ -204,7 +204,7 @@ const NewArrivalCardsList = () => {
                <div
                  className="flex flex-col justify-center "
                >
-                 <h1 className=" font-satoshiBold font-semibold md:text-[20px] text-black text-[12px] w-[280px] capitalize leading-[24px]">
+                 <h1 className=" font-satoshiBold font-semibold md:text-[20px] text-black text-[12px] w-[150px] sm:w-[280px] capitalize sm:leading-[24px] leading-[18px]">
                    {item.name}
                  </h1>
                  <div className="md:w-[150px] w-[117px] h-[19px] flex gap-[11px] items-center md:gap-[13px] ">

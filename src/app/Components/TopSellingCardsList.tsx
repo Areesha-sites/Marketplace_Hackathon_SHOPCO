@@ -172,7 +172,7 @@ const TopSellingCardsList = () => {
   }
   return (
     <div className="flex justify-center items-center w-full mx-auto">
-      <div className="w-full xxl:px-[90px] left-[2px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute md:top-[740px] top-[1770px] xl:left-[0px] xxl:left-[0px] lg:left-[0px] xl:top-[1720px] lg:top-[920px] xxl:top-[1750px]">
+      <div className="w-full xxl:px-[90px] lg:px-14 sm:px-2 overflow-hidden px-2 xl:px-14 absolute ">
         <Slider {...settings}>
           {products.map((item, index) => (
             <Link key={index} href={`/topSelling/${item._id}`} passHref>

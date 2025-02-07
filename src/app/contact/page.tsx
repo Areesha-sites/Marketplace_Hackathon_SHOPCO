@@ -1,5 +1,5 @@
 import ContactForm from './ContactForm';
-import {   Breadcrumb,
+import { Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -9,7 +9,7 @@ import Link from "next/link";
 const ContactUsPage = () => {
   return (
   <>
-  <div className="absolute top-[160px] left-[100px]"> 
+  <div className="absolute lg:top-[130px] lg:left-[60px] xl:top-[160px] xl:left-[100px] left-[30px] top-[100px]"> 
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
@@ -38,7 +38,7 @@ const ContactUsPage = () => {
       </BreadcrumbList>
     </Breadcrumb>
   </div>
-    <div className="mt-28 lg:mt-44 md:mt-32">
+    <div className="mt-36 lg:mt-44 md:mt-32">
       <h1 className="flex justify-center items-center w-full mx-auto text-[25px] md:text-[28px] xxl:text-[42px] lg:text-[35px] text-black font-extrabold font-integralCf tracking-wider">Contact Us</h1>
       <ContactForm />
     </div>
