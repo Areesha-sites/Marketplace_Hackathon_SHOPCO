@@ -8,7 +8,8 @@ import { RiSubtractLine } from "react-icons/ri";
 import { CartItem } from "../../../types/ComponentsTypes";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import Footer from "../Components/Footer";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
+import { lazy } from "react";
 // import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import {
   Breadcrumb,
@@ -18,9 +19,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-const CheckoutModal = dynamic(() => import("../Components/orderSystem/CheckoutModal"), {
-  ssr: false,
-});
+const CheckoutModal = lazy(() => import("../Components/orderSystem/CheckoutModal"))
 const CartPage = () => {
   const [validPromo, setValidPromo] = useState<boolean>(false);
   const [promoCode, setPromoCode] = useState<string>("");
