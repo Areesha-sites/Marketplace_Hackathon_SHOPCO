@@ -8,7 +8,7 @@ import { RiSubtractLine } from "react-icons/ri";
 import { CartItem } from "../../../types/ComponentsTypes";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import Footer from "../Components/Footer";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 // import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import {
   Breadcrumb,
@@ -18,14 +18,14 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-// const CheckoutModal = dynamic(() => import("../orderSystem/CheckoutModal"), {
-//   ssr: false,
-// });
+const CheckoutModal = dynamic(() => import("../Components/orderSystem/CheckoutModal"), {
+  ssr: false,
+});
 const CartPage = () => {
   const [validPromo, setValidPromo] = useState<boolean>(false);
   const [promoCode, setPromoCode] = useState<string>("");
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [orderSucess, setOrderSuccess] = useState<any | boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [orderSucess, setOrderSuccess] = useState<any | boolean>(false);
   const [cart, setCart] = useState<CartItem[]>(() => {
     if (typeof window !== "undefined") {
       const savedCart = localStorage.getItem("cart");
@@ -76,19 +76,19 @@ const CartPage = () => {
       alert("Invalid Promo Code");
     }
   };
-  // const handleOpenModal = () => {
-  //   if (cart.length === 0 || subtotal === 0) {
-  //     alert("Please add items to your cart before proceeding to checkout.");
-  //     return;
-  //   }
-  //   setIsModalOpen(true);
-  // };
+  const handleOpenModal = () => {
+    if (cart.length === 0 || subtotal === 0) {
+      alert("Please add items to your cart before proceeding to checkout.");
+      return;
+    }
+    setIsModalOpen(true);
+  };
   // const handleSubmitForm = (formData: any) => {
   //   console.log(formData);
   //   localStorage.removeItem("cart");
   //   setCart([]);
   // };
-  // const handleCloseModal = () => setIsModalOpen(false);
+  const handleCloseModal = () => setIsModalOpen(false);
   return (
     <section>
       <div className="container mx-auto p-6 px-8">
@@ -258,7 +258,7 @@ const CartPage = () => {
                   </div>
                   <div 
                   
-                  // onClick={handleOpenModal}
+                  onClick={handleOpenModal}
                   
                   >
                     <button className="w-full h-[60px] py-[16px] bg-black px-[54px] rounded-[62px] flex justify-center gap-[10px] items-center">
@@ -293,13 +293,13 @@ const CartPage = () => {
 
         {/* <SignedIn> */}
         {/* <button
-            onClick={handleOpenModal}
+           
             className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor mt-28"
           >
             Go to checkout
           </button> */}
         {/* </SignedIn> */}
-        {/* {isModalOpen && (
+        {isModalOpen && (
           <CheckoutModal
             isOpen={setIsModalOpen}
             onSubmit={(formData) => {
@@ -315,10 +315,7 @@ const CartPage = () => {
             setCartItems={setCart}
             calculateSubtotal={subtotal}
           />
-        )} */}
-        {/* <button className="px-6 py-2 bg-darkPrimary text-black rounded-md hover:bg-navbarColor">
-          <Link href="/products">Continue Shopping</Link>
-        </button> */}
+        )}
       </div>
     </section>
   );

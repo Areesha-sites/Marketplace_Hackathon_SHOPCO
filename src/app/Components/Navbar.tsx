@@ -12,7 +12,7 @@ import { UserButton, useUser } from "@clerk/nextjs";
 import { RxCross2 } from "react-icons/rx";
 // import { useSession, signOut } from "next-auth/react";
 const Navbar = () => {
-  const { isSignedIn } = useUser()
+  const { isSignedIn } = useUser();
   // const { data: session } = useSession();
   const dropdownItems = [
     {
@@ -82,8 +82,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-full h-[41px] absolute md:top-[52px] lg:top-[62px] top-[47px] flex justify-center items-center xl:px-[20px] md:px-5 lg:px-[50px] xxl:px-[87px] 2xL:w-full">
-        <div className="flex lg:justify-center md:justify-between items-center h-full w-full lg:gap-[20px] xl:gap-[40px]">
+      <nav className="w-full h-[41px] absolute md:top-[52px] lg:top-[62px] top-[47px] flex justify-center items-center xl:px-[20px] md:px-5 lg:px-[10px] xxl:px-[87px] 2xL:w-full">
+        <div className="flex md:justify-between items-center h-full w-full lg:gap-[20px] xl:gap-[40px] lg:px-14">
           <h1 className="lg:text-[32px] md:-mt-2 -mt-1 text-black font-bold lg:static absolute md:left-[56px] text-[25.2px] font-integralCf tracking-wider lg:block hidden">
             <Link href="/"> SHOP.CO</Link>
           </h1>
@@ -154,7 +154,7 @@ const Navbar = () => {
           <Link href="/login">Login</Link>
         )}
       </div> */}
-          <div className="flex justify-center items-center md:gap-[14px] md:w-[62px] xxl:w-[62px] xl:w-[80px] xxl:gap-[14px] md:h-[24px] w-[96px] h-[24px] gap-[12px] xl:gap-[10px] absolute md:left-[278px] lg:static">
+          <div className="flex justify-center items-center md:gap-[14px] md:w-[62px] lg:w-[104px] xxl:w-[115px]  xxl:gap-[14px] md:h-[24px] w-[96px] h-[24px] gap-[12px] xl:gap-[10px] absolute md:left-[278px] lg:left-[200px] lg:static">
             <Image
               src="/Frame (35).svg"
               alt="searchBar"
@@ -178,22 +178,15 @@ const Navbar = () => {
                 )}
               </Link>
             </div>
-            {/* <Link href="/signup">
-              <Image
-                src="/Frame (37).svg"
-                alt="user-icon"
-                height={24}
-                width={24}
-                className="xl:h-[24px] xl:w-[24px] h-[24px] w-[24px] md:w-[15px] md:h-[15px] lg:w-[25px] lg:h-[25px] lg:block hidden"
-              />
-            </Link> */}
-              <div>
-        {isSignedIn ? (
-          <UserButton />
-        ) : (
-          <a href="/sign-in" className="text-blue-600">Sign In</a>
-        )}
-      </div>
+            <div className="lg:block hidden">
+              {isSignedIn ? (
+                <UserButton />
+              ) : (
+                <Link href="/sign-in" className="text-blue-600 ">
+                  Sign In
+                </Link>
+              )}
+            </div>
             <Link href="/wishlist">
               <div className="relative hidden lg:flex">
                 <FaRegHeart className="text-black h-[20px] w-[20px]" />
@@ -210,7 +203,7 @@ const Navbar = () => {
       <div className="flex justify-between py-2 px-6 lg:hidden h-[41px] w-full absolute top-[46px]">
         <div className="">
           {!isSearchOpen && (
-            <div className="flex justify-center w-[180px] items-center">
+            <div className="flex justify-center sm:w-[180px] w-[140px] mt-1 sm:mt-0 items-center">
               <Sheet>
                 <SheetTrigger asChild>
                   <div className="absolute left-[0px] top-[3px] lg:hidden cursor-pointer w-[35px] h-[35px]">
@@ -273,7 +266,7 @@ const Navbar = () => {
                   </div>
                 </SheetContent>
               </Sheet>
-              <h1 className="lg:hidden block text-[25px] -mt-2 font-bold text-black font-integralCf">
+              <h1 className="lg:hidden block sm:text-[25px] text-[20px] -mt-2 font-bold text-black font-integralCf">
                 <Link href="/"> SHOP.CO</Link>
               </h1>
             </div>
@@ -313,13 +306,13 @@ const Navbar = () => {
                   className="h-[24px] w-[24px]"
                 />
               </Link>
-              <Image
-                src="/Frame (37).svg"
-                alt="user-icon"
-                height={24}
-                width={24}
-                className="h-[24px] w-[24px]"
-              />
+              {isSignedIn ? (
+                <UserButton />
+              ) : (
+                <Link href="/sign-in" className="text-blue-600 ">
+                  Sign In
+                </Link>
+              )}
               <Link href="/wishlist">
                 <div className="relative lg:hidden flex">
                   <FaRegHeart className="text-black h-[20px] w-[20px]" />

@@ -63,7 +63,7 @@ const NavbarSearchBar = () => {
   };
 
   return (
-    <div className=" w-[260px] sm:w-[340px] md:w-[400px] xl:w-[357px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[6px] md:py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor flex gap-[12px] items-center font-satoshi relative">
+    <div className=" w-[260px] sm:w-[340px] md:w-[400px] lg:w-[320px] xl:w-[400px] xxl:w-[500px] xl:h-[48px] lg:h-[45px] md:h-[30px] py-[6px] md:py-[12px] px-[16px] rounded-[62px] bg-bgLightGrayColor flex gap-[12px] items-center font-satoshi relative">
       <Image
         src="/Frame (34).svg"
         alt="search-icon"
