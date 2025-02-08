@@ -86,7 +86,7 @@ export default function Home() {
          <TopSelling />
            <DressStyleSection />
            <HappyCustomerSection />
-         <div className="absolute top-[5000px]">
+         <div className="absolute top-[3600px]">
          <Footer />
          </div>
         </>
