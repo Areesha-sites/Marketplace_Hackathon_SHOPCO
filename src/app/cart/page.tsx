@@ -8,7 +8,7 @@ import { RiSubtractLine } from "react-icons/ri";
 import { CartItem } from "../../../types/ComponentsTypes";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import Footer from "../Components/Footer";
-import CheckoutModal from "../Components/orderSystem/CheckoutModal";
+import CheckoutModal from "../Components/OrderSystem/CheckoutModal";
 // import dynamic from "next/dynamic";
 // import { lazy } from "react";
 // import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
