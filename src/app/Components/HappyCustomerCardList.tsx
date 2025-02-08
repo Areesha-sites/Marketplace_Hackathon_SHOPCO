@@ -46,7 +46,7 @@ const HappyCustomerCardList = () => {
     ],
   };
   return (
-    <div className="w-full xl:px-14 xxl:px-20 lg:px-20">
+    <div className="w-full xl:px-14 xxl:px-20 lg:px-20 px-2">
       <Slider {...settings}>
         {customerComments.map((comment) => (
           <div
