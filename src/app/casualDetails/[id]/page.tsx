@@ -13,7 +13,7 @@ import { PiSmileySad } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import { CartProduct } from "../../../../types/ComponentsTypes";
 // import { useSession, signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import {
   Sheet,
   SheetClose,
@@ -198,6 +198,8 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
   }
   return (
     <>
+   
+      <div >
       <section className="h-[2490]">
         <div className="absolute top-[120px] lg:top-[150px] xl:top-[160px] left-[20px] lg:left-[100px] md:left-[40px]">
           <Breadcrumb>
@@ -504,6 +506,8 @@ const CasualDetails = ({ params }: { params: { id: string } }) => {
           </SheetContent>
         </Sheet>
       </section>
+
+      </div>
     </>
   );
 };

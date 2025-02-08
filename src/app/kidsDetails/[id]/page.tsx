@@ -397,9 +397,11 @@ const KidsDetails: React.FC<Props> = ({ params }) => {
         <div className="">
           <ProductDetailsCardList />
         </div>
+      
         <div className="absolute xl:top-[2870px] xxl:top-[2872px] top-[2800px]">
           <Footer />
         </div>
+    
         <Sheet open={showCart} onOpenChange={setShowCart}>
           <SheetTrigger asChild>
             <Button
